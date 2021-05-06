@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-inicio',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  nombreUsuario: string;
 
-  ngOnInit(): void {
+  constructor(private tokenService: TokenService) { }
+
+  ngOnInit() {
+    this.nombreUsuario = this.tokenService.getUserName();
   }
 
 }

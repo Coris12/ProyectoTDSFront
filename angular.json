@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ProyectoTDSFrontend"
+    }
+  },
+  "defaultProject": "ProyectoTDSFrontend",
+  "cli": {
+    "analytics": "91d5d4a3-281c-469b-92c0-f751fff252ad"
+  }
 }
