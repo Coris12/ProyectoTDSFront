@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Producto } from 'src/app/models/producto';
+import { Proveedor } from 'src/app/models/proveedor';
 import { ProductoService } from 'src/app/service/producto.service';
+import { ProveedorService } from 'src/app/service/proveedor.service';
 import { TokenService } from 'src/app/service/token.service';
 
 @Component({
@@ -12,10 +14,12 @@ import { TokenService } from 'src/app/service/token.service';
 export class ControlComponent implements OnInit {
 
   productos: Producto[] = [];
+  provedores: Proveedor[] = [];
   isAdmin = false;
 
   constructor(
     private productoService: ProductoService,
+    private provedorService:ProveedorService,
     private toastr: ToastrService,
     private tokenService: TokenService
   ) { }
@@ -34,7 +38,16 @@ export class ControlComponent implements OnInit {
         console.log(err);
       }
     );
+    this.provedorService.lista().subscribe(
+      data => {
+        this.provedores = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
+
 
   borrar(id: number) {
     this.productoService.delete(id).subscribe(

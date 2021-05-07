@@ -6,6 +6,7 @@
         <th scope="col">Id</th>
         <th scope="col">Nombre</th>
         <th scope="col">Precio</th>
+        <th scope="col">Proveedor</th>
         <th scope="col">Ver</th>
         <th scope="col" *ngIf="isAdmin">Editar</th>
         <th scope="col" *ngIf="isAdmin">Borrar</th>
@@ -16,6 +17,7 @@
         <td>{{producto.id}}</td>
         <td>{{producto.nombre}}</td>
         <td>{{producto.precio}}€</td>
+        <td>{{producto.nombreP}}</td>
         <td><button class="btn btn-outline-primary" routerLink='/detalle/{{producto.id}}'><i class="far fa-eye"></i> Ver</button></td>
         <td *ngIf="isAdmin"><button class="btn btn-outline-warning" routerLink="/editar/{{producto.id}}"><i class="far fa-edit"></i> Editar</button></td>
         <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="borrar(producto.id)"><i class="far fa-trash-alt"></i> Eliminar</button></td>
