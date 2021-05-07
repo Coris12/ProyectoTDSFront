@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 const TOKEN_KEY = 'AuthToken';
-
+const USERNAME_KEY = 'AuthUserName';
+const AUTHORITIES_KEY = 'AuthAuthorities';
 @Injectable({
   providedIn: 'root'
 })
@@ -60,6 +61,17 @@ export class TokenService {
   public logOut(): void {
     window.localStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  //
+  public getAuthorities(): string[] {
+    this.roles = [];
+    if (sessionStorage.getItem(AUTHORITIES_KEY)) {
+      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
+        this.roles.push(authority.authority);
+      });
+    }
+    return this.roles;
   }
 }
 
