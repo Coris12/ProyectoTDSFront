@@ -38,14 +38,7 @@ export class ControlComponent implements OnInit {
         console.log(err);
       }
     );
-    this.provedorService.lista().subscribe(
-      data => {
-        this.provedores = data;
-      },
-      err => {
-        console.log(err);
-      }
-    );
+  
   }
 
 

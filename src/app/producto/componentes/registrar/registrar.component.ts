@@ -17,7 +17,11 @@ export class RegistrarComponent implements OnInit {
   precio: number = null;
   
   nombreP='';
-  idP:number=null;
+  idP: number;
+
+  provee: Proveedor[];
+  proveedorElegida: Proveedor = null;
+  
 
   constructor(
     private productoService: ProductoService,
@@ -27,7 +31,10 @@ export class RegistrarComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.proveedorService.getProv().subscribe(provee => this.provee = provee);
+
   }
+
 
   onCreate(): void {
     const producto = new Producto(this.nombre, this.precio);
@@ -44,7 +51,7 @@ export class RegistrarComponent implements OnInit {
         });
       }
     );
-    const proveedor = new Proveedor(this.nombreP);
+ /* const proveedor = new Proveedor(this.nombreP,this.idP);
     this.proveedorService.save(proveedor).subscribe(
       data => {
         this.toastr.success('Proveedor Creado', 'OK', {
@@ -57,7 +64,7 @@ export class RegistrarComponent implements OnInit {
           timeOut: 3000,  positionClass: 'toast-top-center',
         });
       }
-    );
+    );*/
   }
   
 }
