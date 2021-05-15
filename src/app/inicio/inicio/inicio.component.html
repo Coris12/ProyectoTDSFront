@@ -1,13 +1,18 @@
 <app-header></app-header>
-
-<div class="container">
-    <div class="jumbotron">
-        <h1 *ngIf="!nombreUsuario" class="display-4">Hello, world!</h1>
-        <h1 *ngIf="nombreUsuario" class="display-4">Hello, {{nombreUsuario}}</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-      </div>
+<div class="container mt-4">
+    <p-card header="Sistema de solicitudes." subheader="Card Subheader" [style]="{width: '100%'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="header">
+            <h1 *ngIf="!nombreUsuario" class="display-4">Bienvenido!</h1>
+            <h1 *ngIf="nombreUsuario" class="display-4">Bienvenido, {{nombreUsuario}}</h1>
+        </ng-template>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+        <ng-template pTemplate="footer">
+            <div align="right" *ngIf="isLogged">
+                <p-button label="Cerrar Session" icon="pi pi-user" styleClass="p-button-warning" [style]="{'margin-left': '.5em'}" (click)="onLogOut()"></p-button>
+            </div>
+            <div align="right" *ngIf="!isLogged">
+                <p-button label="Iniciar Session" icon="pi pi-user" styleClass="p-button-warning" [style]="{'margin-left': '.5em'}" routerLink='/login'></p-button>
+            </div>
+        </ng-template>
+    </p-card>
 </div>
-

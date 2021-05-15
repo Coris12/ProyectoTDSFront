@@ -4,6 +4,7 @@ import { LoginUsuario } from '../../models/login-usuario';
 import { AuthService } from '../../../service/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     private tokenService: TokenService,
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit() {
@@ -38,12 +40,16 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginUsuario).subscribe(
       data => {
         this.tokenService.setToken(data.token);
+        this.messageService.add({severity:'success', summary: 'User', detail: 'Usewr user', life: 3000});
         this.router.navigate(['/']);
       },
       err => {
         this.errMsj = err.error.message;
-        this.toastr.error(this.errMsj, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error al ingresar, credenciales incorrectas.',
+          life: 3000,
         });
       }
     );

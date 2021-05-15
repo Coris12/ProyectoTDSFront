@@ -9,11 +9,15 @@ import { TokenService } from 'src/app/service/token.service';
 export class InicioComponent implements OnInit {
 
   nombreUsuario: string;
-
+  isLogged = false;
   constructor(private tokenService: TokenService) { }
 
   ngOnInit() {
     this.nombreUsuario = this.tokenService.getUserName();
+    this.isLogged = this.tokenService.isLogged();
   }
-
+ 
+  onLogOut():void{
+    this.tokenService.logOut();
+  }
 }

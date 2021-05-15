@@ -1,7 +1,7 @@
 export class Producto {
     id?: number;
-    nombre: string;
-    precio: number;
+    nombre?: string;
+    precio?: number;
 
     constructor(nombre: string, precio: number) {
         this.nombre = nombre;
