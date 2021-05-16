@@ -50,6 +50,7 @@ import {MenubarModule} from 'primeng/menubar';
 import {SkeletonModule} from 'primeng/skeleton';
 import {PasswordModule} from 'primeng/password';
 import {DividerModule} from 'primeng/divider';
+import {ButtonModule} from 'primeng/button';
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -80,6 +81,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FileUploadModule,
     // *primeng
     SelectButtonModule,
+    ButtonModule,
     CardModule,
     ToastModule,
     FormsModule,
@@ -108,7 +110,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     
 
   ],
-  providers: [interceptorProvider,MessageService, ConfirmationService],
+  providers: [interceptorProvider, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -64,7 +64,7 @@ export class ControlComponent implements OnInit {
     if (this.producto.nombre.trim()) {
       if (this.producto.id) {
         this.productos[this.findIndexById(this.producto.nombre)] = this.producto;
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+        this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Created', life: 3000});
       }
       this.productos = [...this.productos];
       this.productDialog = false;

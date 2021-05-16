@@ -1,23 +1,26 @@
 <app-header></app-header>
-<div class="container" *ngIf="producto">
-    <div class="row mt-5">
-        <div class="col-md-4 mx-auto">
-            <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre"
-                    [(ngModel)]="producto.nombre" required>
+<p-toast></p-toast>
+<div class="container mt-4">
+    <p-card header="Producto" subheader="Editar producto" [style]="{width: '360px'}" styleClass="p-card-shadow" *ngIf="producto">
+        <ng-template pTemplate="boody">
+            <div class="p-fluit">
+                <div class="p-fluit">
+                    <form novalidate #f="ngForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="producto.nombre" required>
+                        </div>
+                        <div class="p-fluit">
+                            <label for="precio">Precio</label>
+                            <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="producto.precio" required>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="precio">Precio</label>
-                    <input type="number" class="form-control" id="precio" name="precio"
-                    [(ngModel)]="producto.precio" required>
-                </div>
-                <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">
-                    <i class="fas fa-pencil-alt"></i> Actualizar</button>
-                <button class="btn btn-outline-primary btn-block" routerLink="/lista">
-                    <i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
-            </form>
-        </div>
-    </div>
+            </div>
+            <div class="p-fluit row mt-4 container">
+                <p-button label="Actualizar" icon="pi pi-pencil" styleClass="p-button-success" [disabled]="!f.valid" type="submit" (click)="onUpdate()"></p-button>
+                <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-danger" [style]="{'margin-left': '.5em'}" type="submit" routerLink="/lista"></p-button>
+            </div>
+        </ng-template>
+    </p-card>
 </div>

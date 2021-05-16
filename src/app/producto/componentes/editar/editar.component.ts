@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Producto } from 'src/app/models/producto';
 import { ProductoService } from 'src/app/service/producto.service';
 
@@ -18,7 +19,9 @@ export class EditarComponent implements OnInit {
     private productoService: ProductoService,
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService,
+    private primengConfig: PrimeNGConfig
   ) { }
 
   ngOnInit() {
@@ -34,15 +37,18 @@ export class EditarComponent implements OnInit {
         this.router.navigate(['/']);
       }
     );
+    this.primengConfig.ripple = true;
   }
 
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params.id;
     this.productoService.update(id, this.producto).subscribe(
       data => {
+        
         this.toastr.success('Producto Actualizado', 'OK', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
+        
         this.router.navigate(['/lista']);
       },
       err => {
@@ -52,5 +58,7 @@ export class EditarComponent implements OnInit {
       }
     );
   }
-
+  
 }
+
+

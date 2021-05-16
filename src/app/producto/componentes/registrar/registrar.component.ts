@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ProveedorService } from 'src/app/service/proveedor.service';
 import { Proveedor } from 'src/app/models/proveedor';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-registrar',
@@ -14,25 +15,35 @@ import { Proveedor } from 'src/app/models/proveedor';
 export class RegistrarComponent implements OnInit {
 
   nombre = '';
+  nombreP = '';
   precio: number = null;
+
   
-  nombreP='';
   idP: number;
 
   provee: Proveedor[];
+  proveer:any[]
   proveedorElegida: Proveedor = null;
+  selectedProveedor: string;
+  item: string;
+  items: SelectItem[];
   
-
   constructor(
     private productoService: ProductoService,
-    private proveedorService:ProveedorService,
+    private proveedorService: ProveedorService,
     private toastr: ToastrService,
     private router: Router
-    ) { }
+  ) { 
+    this.items = [];
+    this.proveer = [
+      { idP: 1, nombreP: 'Nike' },
+      { idP: 2, nombreP: 'Adidas'},
+    ];
+    
+  }
 
   ngOnInit() {
-    this.proveedorService.getProv().subscribe(provee => this.provee = provee);
-
+  
   }
 
 
@@ -47,24 +58,25 @@ export class RegistrarComponent implements OnInit {
       },
       err => {
         this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
+          timeOut: 3000, positionClass: 'toast-top-center',
         });
       }
     );
- /* const proveedor = new Proveedor(this.nombreP,this.idP);
-    this.proveedorService.save(proveedor).subscribe(
-      data => {
-        this.toastr.success('Proveedor Creado', 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
-        this.router.navigate(['/lista']);
-      },
-      err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });
-      }
-    );*/
+
+    const proveedor = new Proveedor(this.nombreP);
+       this.proveedorService.save(proveedor).subscribe(
+         data => {
+           this.toastr.success('Proveedor Creado', 'OK', {
+             timeOut: 3000, positionClass: 'toast-top-center'
+           });
+           this.router.navigate(['/lista']);
+         },
+         err => {
+           this.toastr.error(err.error.mensaje, 'Fail', {
+             timeOut: 3000,  positionClass: 'toast-top-center',
+           });
+         }
+       );
   }
-  
+
 }
