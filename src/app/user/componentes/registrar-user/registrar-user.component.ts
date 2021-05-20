@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
-import { AuthService } from 'src/app/service/auth.service';
+
 import { TokenService } from 'src/app/service/token.service';
 import { NuevoUsuario } from '../../models/nuevo-usuario';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-registrar-user',

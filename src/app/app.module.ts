@@ -5,21 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer/footer/footer.component';
 import { LoginComponent } from './user/componentes/login/login.component';
-import { DetalleComponent } from './user/componentes/detalle/detalle.component';
 import { InicioComponent } from './inicio/inicio/inicio.component';
 import { HeaderComponent } from './header/header/header.component';
-import { RegistrarComponent } from './producto/componentes/registrar/registrar.component';
-import { EditarComponent } from './producto/componentes/editar/editar.component';
-import { DetallesComponent } from './producto/componentes/detalles/detalles.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { RegistrarUserComponent } from './user/componentes/registrar-user/registrar-user.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, RouterLink } from '@angular/router';
-import { ControlComponent } from './producto/componentes/control/control.component';
-import { interceptorProvider } from './producto/componentes/service/prod-interceptor.service';
+import { RouterModule } from '@angular/router';
+import { DetallesProveedorComponent } from './proveedor/componentes/detalles-proveedor/detalles-proveedor.component';
+import { ControlProveedorComponent } from './proveedor/componentes/control-proveedor/control-proveedor.component';
+import { EditarProveedorComponent } from './proveedor/componentes/editar-proveedor/editar-proveedor.component';
+import { RegistrarProveedorComponent } from './proveedor/componentes/registrar-proveedor/registrar-proveedor.component';
+import { RegistrarProductoComponent } from './producto/componentes/registrar-producto/registrar-producto.component';
+import { DetallesProductoComponent } from './producto/componentes/detalles-producto/detalles-producto.component';
+import { ControlProductoComponent } from './producto/componentes/control-producto/control-producto.component';
+import { EditarProductoComponent } from './producto/componentes/editar-producto/editar-producto.component';
+import { EditarUserComponent } from './user/componentes/editar-user/editar-user.component';
+import { ControlUserComponent } from './user/componentes/control-user/control-user.component';
+import { DetalleUserComponent } from './user/componentes/detalle-user/detalle-user.component';
+
 
 //*servicios primeng
 import {ConfirmationService, MessageService} from 'primeng/api';
@@ -53,6 +58,11 @@ import {DividerModule} from 'primeng/divider';
 import {ButtonModule} from 'primeng/button';
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { interceptorProvider } from './producto/service/prod-interceptor.service';
+
+
+
+
 
 
 @NgModule({
@@ -61,13 +71,21 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     InicioComponent,
     HeaderComponent,
     FooterComponent,
-    DetalleComponent,
-    ControlComponent,
-    RegistrarComponent,
-    EditarComponent,
-    DetallesComponent,
     LoginComponent,
     RegistrarUserComponent,
+    DetallesProveedorComponent,
+    ControlProveedorComponent,
+    EditarProveedorComponent,
+    RegistrarProveedorComponent,
+    RegistrarProductoComponent,
+    DetallesProductoComponent,
+    ControlProductoComponent,
+    EditarProductoComponent,
+    EditarUserComponent,
+    ControlUserComponent,
+    DetalleUserComponent,
+
+   
   ],
   imports: [
     BrowserModule,

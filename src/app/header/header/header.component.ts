@@ -35,11 +35,18 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged
       },
       {
+        label: 'Lista Proveedor',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/lista-proveedor'],
+        visible: this.isLogged
+      },
+      {
         label: 'Nuevo',
         icon: 'pi pi-fw pi-check-square',
-        routerLink: ['/nuevo'],
+        routerLink: ['/nuevo-pro'],
         visible: this.isLogged && this.isAdmin
       },
+      
       {
         label: 'Iniciar Sesión',
         icon: 'pi pi-fw pi-user',

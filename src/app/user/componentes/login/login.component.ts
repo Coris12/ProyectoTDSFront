@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from 'src/app/service/token.service';
 import { LoginUsuario } from '../../models/login-usuario';
-import { AuthService } from '../../../service/auth.service';
+
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',

@@ -1,0 +1,14 @@
+<app-header></app-header>
+<div class="container mt-4" *ngIf="proveedor">
+    <p-card header="Proveedor" subheader="Detalle del Proveedor." [style]="{width: '360px'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="boody">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>ID: </b>{{proveedor.idP}}</li>
+                <li class="list-group-item"><b>Nombre: </b>{{proveedor.nombreP}}</li>
+            </ul>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <p-button label="Regresar" icon="pi pi-angle-left" type="submit" (click)="regresar()"></p-button>
+        </ng-template>
+    </p-card>
+</div>

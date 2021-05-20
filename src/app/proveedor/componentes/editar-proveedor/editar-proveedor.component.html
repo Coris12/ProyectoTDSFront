@@ -1,0 +1,23 @@
+<app-header></app-header>
+<p-toast></p-toast>
+<div class="container mt-4">
+    <p-card header="Proveedor" subheader="Editar proveedor" [style]="{width: '360px'}" styleClass="p-card-shadow" *ngIf="proveedor">
+        <ng-template pTemplate="boody">
+            <div class="p-fluit">
+                <div class="p-fluit">
+                    <form novalidate #f="ngForm">
+                        <div class="form-group">
+                            <label for="nombreP">Nombre</label>
+                            <input type="text" class="form-control" id="nombreP" name="nombreP" [(ngModel)]="proveedor.nombreP" required>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+            <div class="p-fluit row mt-4 container">
+                <p-button label="Actualizar" icon="pi pi-pencil" styleClass="p-button-success" [disabled]="!f.valid" type="submit" (click)="onUpdate()"></p-button>
+                <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-danger" [style]="{'margin-left': '.5em'}" type="submit" routerLink="/lista-proveedor"></p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

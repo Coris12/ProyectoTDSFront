@@ -7,20 +7,30 @@ import { InicioComponent } from './inicio/inicio/inicio.component';
 import { LoginComponent } from './user/componentes/login/login.component';
 import { RegistrarUserComponent } from './user/componentes/registrar-user/registrar-user.component';
 import { ProdGuardService } from './guards/prod-guard.service';
-import { ControlComponent } from './producto/componentes/control/control.component';
-import { DetallesComponent } from './producto/componentes/detalles/detalles.component';
-import { RegistrarComponent } from './producto/componentes/registrar/registrar.component';
-import { EditarComponent } from './producto/componentes/editar/editar.component';
+
+import { DetallesProveedorComponent } from './proveedor/componentes/detalles-proveedor/detalles-proveedor.component';
+import { ControlProveedorComponent } from './proveedor/componentes/control-proveedor/control-proveedor.component';
+import { EditarProveedorComponent } from './proveedor/componentes/editar-proveedor/editar-proveedor.component';
+import { RegistrarProveedorComponent } from './proveedor/componentes/registrar-proveedor/registrar-proveedor.component';
+import { RegistrarProductoComponent } from './producto/componentes/registrar-producto/registrar-producto.component';
+import { DetallesProductoComponent } from './producto/componentes/detalles-producto/detalles-producto.component';
+import { ControlProductoComponent } from './producto/componentes/control-producto/control-producto.component';
+import { EditarProductoComponent } from './producto/componentes/editar-producto/editar-producto.component';
+
 
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'registro', component: RegistrarUserComponent, canActivate: [LoginGuard] },
-  { path: 'lista', component: ControlComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
-  { path: 'detalle/:id', component: DetallesComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
-  { path: 'nuevo', component: RegistrarComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
-  { path: 'editar/:id', component: EditarComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
+  { path: 'lista-proveedor', component: ControlProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'lista', component: ControlProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'detalle/:id', component: DetallesProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'detallePro/:id', component: DetallesProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'nuevo-pro', component: RegistrarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
+  { path: 'nuevo-provee', component: RegistrarProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
+  { path: 'editar/:id', component: EditarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
+  { path: 'editarPro/:id', component: EditarProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
