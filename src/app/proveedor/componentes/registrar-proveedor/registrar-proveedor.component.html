@@ -4,8 +4,8 @@
         <div class="p-fluit">
             <form novalidate #f="ngForm">
                 <div class="p-fluit">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombreP" required>
+                    <label for="nombreP">Nombre</label>
+                    <input type="text" class="form-control" id="nombreP" name="nombreP" [(ngModel)]="nombreP" required>
                 </div>
                 <div class="p-fluit row mt-4 container">
                     <p-button label="Guardar" icon="pi pi-check" styleClass="p-button-success" [disabled]="!f.valid" type="submit" (click)="onCreate()"></p-button>

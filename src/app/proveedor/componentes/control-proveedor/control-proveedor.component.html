@@ -7,7 +7,7 @@
             <i class="pi pi-plus"></i> Nuevo Proveedor</button>
         </div>
     </p-toolbar>
-    <p-table #dt [value]="proveedores" [rows]="10" [paginator]="true" [globalFilterFields]="['nombre','proveedor.nombreP']" [(selection)]="selectedProveedor" [rowHover]="true" dataKey="id" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 20, 30]">
+    <p-table #dt [value]="proveedores" [rows]="10" [paginator]="true" [globalFilterFields]="['nombreP','proveedor.nombreP']" [(selection)]="selectedProveedor" [rowHover]="true" dataKey="id" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 20, 30]">
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-ai-center p-jc-between">
                 <h5 class="p-m-0">Control de proveedores.</h5>
@@ -30,7 +30,7 @@
         <ng-template pTemplate="body" let-proveedor>
             <tr>
                 <td>{{proveedor.idP}}</td>
-                <td>{{proveedor.nombreP}}</td>
+                <td>{{proveedor.nombreP}</td>
                 <td><button button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-mr-2" routerLink='/detallePro/{{proveedor.idP}}'></button></td>
                 <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" routerLink="/editarPro/{{proveedor.idP}}"></button></td>
                 <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="borrar(proveedor.idP)"></button></td>
@@ -51,8 +51,8 @@
 <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Detalles Proveedor" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
-            <label for="name">Nombre</label>
-            <input type="text" pInputText id="name" [(ngModel)]="proveedor.nombreP" required autofocus />
+            <label for="nombreP">Nombre</label>
+            <input type="text" pInputText id="nombreP" [(ngModel)]="proveedor.nombreP" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !proveedor.nombreP">Nombre es requerido.</small>
         </div>
 

@@ -7,7 +7,7 @@
             <i class="pi pi-plus"></i> Nuevo Producto</button>
         </div>
     </p-toolbar>
-    <p-table #dt [value]="productos" [rows]="10" [paginator]="true" [globalFilterFields]="['nombre','producto.nombre','precio','producto.precio']" [(selection)]="selectedProductos" [rowHover]="true" dataKey="id" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 20, 30]">
+    <p-table #dt [value]="productos" [rows]="10" [paginator]="true" [globalFilterFields]="['nombreProducto','producto.nombreProducto','precioProducto','producto.precioProducto']" [(selection)]="selectedProductos" [rowHover]="true" dataKey="id" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 20, 30]">
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-ai-center p-jc-between">
                 <h5 class="p-m-0">Control de productos.</h5>
@@ -32,7 +32,7 @@
             <tr>
                 <td>{{producto.id}}</td>
                 <td>{{producto.nombre}}</td>
-                <td>{{producto.precio}}€</td>
+                <td>{{producto.precio}}</td>
                 <td><button button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-mr-2" routerLink='/detalle/{{producto.id}}'></button></td>
                 <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" routerLink="/editar/{{producto.id}}"></button></td>
                 <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="borrar(producto.id)"></button></td>

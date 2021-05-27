@@ -12,7 +12,7 @@ import { Proveedor } from '../model/proveedor';
 export class ProveedorService {
   proveedorURL = environment.proveedorURL;
  
-
+  private httpHeaders = new HttpHeaders({ 'ContentType': 'application/json' });
   constructor(private httpClient: HttpClient) { }
   
   

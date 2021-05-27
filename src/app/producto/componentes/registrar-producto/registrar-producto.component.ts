@@ -16,7 +16,7 @@ export class RegistrarProductoComponent implements OnInit {
 
 
   nombre = '';
-  nombreP = '';
+  nombreProveedor = '';
   precio: number = null;
 
   
@@ -64,7 +64,7 @@ export class RegistrarProductoComponent implements OnInit {
       }
     );
 
-   /* const proveedor = new Proveedor(this.nombreP);
+    const proveedor = new Proveedor(this.nombreProveedor);
        this.proveedorService.save(proveedor).subscribe(
          data => {
            this.toastr.success('Proveedor Creado', 'OK', {
@@ -77,7 +77,7 @@ export class RegistrarProductoComponent implements OnInit {
              timeOut: 3000,  positionClass: 'toast-top-center',
            });
          }
-       );*/
+       );
   }
 
 
