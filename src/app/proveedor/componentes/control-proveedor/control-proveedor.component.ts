@@ -59,9 +59,9 @@ export class ControlProveedorComponent implements OnInit {
 
   saveProveedor() {
     this.submitted = true;
-    if (this.proveedor.nombreP.trim()) {
-      if (this.proveedor.idP) {
-        this.proveedores[this.findIndexById(this.proveedor.nombreP)] = this.proveedor;
+    if (this.proveedor.nombreProveedor.trim()) {
+      if (this.proveedor.idProveedor) {
+        this.proveedores[this.findIndexById(this.proveedor.nombreProveedor)] = this.proveedor;
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Proveedor Creado', life: 3000});
       }
       this.proveedores = [...this.proveedores];
@@ -73,7 +73,7 @@ export class ControlProveedorComponent implements OnInit {
   findIndexById(nombre: string): number {
     let index = -1;
     for (let i = 0; i < this.proveedores.length; i++) {
-        if (this.proveedores[i].nombreP === nombre) {
+        if (this.proveedores[i].nombreProveedor === nombre) {
             index = i;
             break;
         }

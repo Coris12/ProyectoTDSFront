@@ -7,7 +7,7 @@
             <i class="pi pi-plus"></i> Nuevo Proveedor</button>
         </div>
     </p-toolbar>
-    <p-table #dt [value]="proveedores" [rows]="10" [paginator]="true" [globalFilterFields]="['nombreP','proveedor.nombreP']" [(selection)]="selectedProveedor" [rowHover]="true" dataKey="id" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 20, 30]">
+    <p-table #dt [value]="proveedores" [rows]="10" [paginator]="true" [globalFilterFields]="['nombreProveedor','proveedor.nombreProveedor']" [(selection)]="selectedProveedor" [rowHover]="true" dataKey="id" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 20, 30]">
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-ai-center p-jc-between">
                 <h5 class="p-m-0">Control de proveedores.</h5>
@@ -29,11 +29,11 @@
         </ng-template>
         <ng-template pTemplate="body" let-proveedor>
             <tr>
-                <td>{{proveedor.idP}}</td>
-                <td>{{proveedor.nombreP}</td>
-                <td><button button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-mr-2" routerLink='/detallePro/{{proveedor.idP}}'></button></td>
-                <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" routerLink="/editarPro/{{proveedor.idP}}"></button></td>
-                <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="borrar(proveedor.idP)"></button></td>
+                <td>{{proveedor.idProveedor}}</td>
+                <td>{{proveedor.nombreProveedor}}</td>
+                <td><button button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-mr-2" routerLink='/detallePro/{{proveedor.idProveedor}}'></button></td>
+                <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" routerLink="/editarPro/{{proveedor.idProveedor}}"></button></td>
+                <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="borrar(proveedor.idProveedor)"></button></td>
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
@@ -51,9 +51,9 @@
 <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Detalles Proveedor" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
-            <label for="nombreP">Nombre</label>
-            <input type="text" pInputText id="nombreP" [(ngModel)]="proveedor.nombreP" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !proveedor.nombreP">Nombre es requerido.</small>
+            <label for="nombre">Nombre</label>
+            <input type="text" pInputText id="nombreP" [(ngModel)]="proveedor.nombreProveedor" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !proveedor.nombreProveedor">Nombre es requerido.</small>
         </div>
 
     </ng-template>

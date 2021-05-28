@@ -15,12 +15,12 @@ import { ProductoService } from '../../service/producto.service';
 export class RegistrarProductoComponent implements OnInit {
 
 
-  nombre = '';
+  nombreProducto = '';
   nombreProveedor = '';
-  precio: number = null;
+  precioProducto: number = null;
 
   
-  idP: number;
+  idProveedor: number;
 
   provee: Proveedor[];
   proveer:any[]
@@ -49,7 +49,7 @@ export class RegistrarProductoComponent implements OnInit {
 
 
   onCreate(): void {
-    const producto = new Producto(this.nombre, this.precio);
+    const producto = new Producto(this.nombreProducto, this.precioProducto,this.idProveedor);
     this.productoService.save(producto).subscribe(
       data => {
         this.toastr.success('Producto Creado', 'OK', {
@@ -63,8 +63,9 @@ export class RegistrarProductoComponent implements OnInit {
         });
       }
     );
+    
 
-    const proveedor = new Proveedor(this.nombreProveedor);
+  /*  const proveedor = new Proveedor(this.nombreProveedor);
        this.proveedorService.save(proveedor).subscribe(
          data => {
            this.toastr.success('Proveedor Creado', 'OK', {
@@ -77,7 +78,7 @@ export class RegistrarProductoComponent implements OnInit {
              timeOut: 3000,  positionClass: 'toast-top-center',
            });
          }
-       );
+       );*/
   }
 
 

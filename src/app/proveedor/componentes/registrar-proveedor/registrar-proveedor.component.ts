@@ -12,9 +12,9 @@ import { Proveedor } from '../../model/proveedor';
 export class RegistrarProveedorComponent implements OnInit {
 
 
-  nombreP = '';
+  nombreProveedor = '';
   
-  idP: number;
+  idPProveedor: number;
 
  
   
@@ -34,7 +34,7 @@ export class RegistrarProveedorComponent implements OnInit {
 
 
   onCreate(): void {
-    const producto = new Proveedor(this.nombreP);
+    const producto = new Proveedor(this.nombreProveedor);
     this.proveedorService.save(producto).subscribe(
       data => {
         this.toastr.success('Producto Creado', 'OK', {

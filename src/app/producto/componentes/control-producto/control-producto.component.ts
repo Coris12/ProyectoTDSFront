@@ -62,9 +62,9 @@ export class ControlProductoComponent implements OnInit {
 
   saveProduct() {
     this.submitted = true;
-    if (this.producto.nombre.trim()) {
-      if (this.producto.id) {
-        this.productos[this.findIndexById(this.producto.nombre)] = this.producto;
+    if (this.producto.nombreProducto.trim()) {
+      if (this.producto.idProducto) {
+        this.productos[this.findIndexById(this.producto.nombreProducto)] = this.producto;
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Producto creado.', life: 3000});
       }
       this.productos = [...this.productos];
@@ -76,7 +76,7 @@ export class ControlProductoComponent implements OnInit {
   findIndexById(nombre: string): number {
     let index = -1;
     for (let i = 0; i < this.productos.length; i++) {
-        if (this.productos[i].nombre === nombre) {
+        if (this.productos[i].nombreProducto === nombre) {
             index = i;
             break;
         }

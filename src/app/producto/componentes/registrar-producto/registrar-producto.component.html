@@ -4,15 +4,15 @@
         <div class="p-fluit">
             <form novalidate #f="ngForm">
                 <div class="p-fluit">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombre" required>
+                    <label for="nombreProducto">Nombre</label>
+                    <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" [(ngModel)]="nombreProducto" required>
                 </div>
                 <div class="p-fluit">
-                    <label for="precio">Precio</label>
-                    <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="precio" required>
+                    <label for="precioProducto">Precio</label>
+                    <input type="number" class="form-control" id="precioProducto" name="precioProducto" [(ngModel)]="precioProducto" required>
                 </div>
                 <div class="mt-4 md-5">
-                    <input type="number" class="form-control" id="nombreProveedor" name="nombreProveedor" [(ngModel)]="nombreProveedor" required></div>
+                    <input type="number" class="form-control" id="id_proveedor" name="id_proveedor" [(ngModel)]="idProveedor" required></div>
                 <div class="p-fluit row mt-4 container">
                     <p-button label="Guardar" icon="pi pi-check" styleClass="p-button-success" [disabled]="!f.valid" type="submit" (click)="onCreate()"></p-button>
                     <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-danger" [style]="{'margin-left': '.5em'}" type="submit" routerLink="/lista"></p-button>

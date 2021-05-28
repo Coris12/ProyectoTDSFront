@@ -33,9 +33,9 @@
                 <td>{{producto.id}}</td>
                 <td>{{producto.nombre}}</td>
                 <td>{{producto.precio}}</td>
-                <td><button button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-mr-2" routerLink='/detalle/{{producto.id}}'></button></td>
-                <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" routerLink="/editar/{{producto.id}}"></button></td>
-                <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="borrar(producto.id)"></button></td>
+                <td><button button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-mr-2" routerLink='/detalle/{{producto.idProducto}}'></button></td>
+                <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" routerLink="/editar/{{producto.idProducto}}"></button></td>
+                <td *ngIf="isAdmin"><button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="borrar(producto.idProducto)"></button></td>
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
@@ -54,12 +54,12 @@
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="name">Nombre</label>
-            <input type="text" pInputText id="name" [(ngModel)]="producto.nombre" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !producto.nombre">Name is required.</small>
+            <input type="text" pInputText id="name" [(ngModel)]="producto.nombreProducto" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !producto.nombreProducto">Name is required.</small>
         </div>
         <div class="p-field p-col">
             <label for="price">Precio</label>
-            <p-inputNumber id="price" [(ngModel)]="producto.precio" mode="currency" currency="USD" locale="en-US">
+            <p-inputNumber id="price" [(ngModel)]="producto.precioProducto" mode="currency" currency="USD" locale="en-US">
             </p-inputNumber>
         </div>
     </ng-template>
