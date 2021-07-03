@@ -14,12 +14,14 @@ export class HeaderComponent implements OnInit {
 
   isLogged = false;
   isAdmin = false;
+  isTribunal = false;
 
   constructor(private tokenService: TokenService) { }
 
   ngOnInit() {
     this.isLogged = this.tokenService.isLogged();
     this.isAdmin = this.tokenService.isAdmin();
+    this.isTribunal = this.tokenService.isTribunal();
 
     //items del menu
     this.items = [
@@ -32,13 +34,13 @@ export class HeaderComponent implements OnInit {
         label: 'Lista',
         icon: 'pi pi-fw pi-list',
         routerLink: ['/lista'],
-        visible: this.isLogged
+        visible: this.isTribunal
       },
       {
         label: 'Lista Proveedor',
         icon: 'pi pi-fw pi-list',
         routerLink: ['/lista-proveedor'],
-        visible: this.isLogged
+        visible: this.isLogged && this.isAdmin
       },
       {
         label: 'Nuevo',
@@ -46,7 +48,12 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/nuevo-pro'],
         visible: this.isLogged && this.isAdmin
       },
-      
+      {
+        label: 'Entrega',
+        icon: 'pi pi-fw pi-user',
+        routerLink: ['/entregar'],
+        visible: this.isLogged && this.isTribunal
+      },
       {
         label: 'Iniciar Sesión',
         icon: 'pi pi-fw pi-user',
