@@ -15,9 +15,9 @@ import { ProductoService } from '../../service/producto.service';
 export class RegistrarProductoComponent implements OnInit {
 
 
-  nombreProducto = '';
+  nombre = '';
   nombreProveedor = '';
-  precioProducto: number = null;
+  precio: number = null;
 
   producto: Producto = new Producto();
   idProveedor: number;

@@ -16,6 +16,7 @@ import { RegistrarProductoComponent } from './producto/componentes/registrar-pro
 import { DetallesProductoComponent } from './producto/componentes/detalles-producto/detalles-producto.component';
 import { ControlProductoComponent } from './producto/componentes/control-producto/control-producto.component';
 import { EditarProductoComponent } from './producto/componentes/editar-producto/editar-producto.component';
+import { ControlUserComponent } from './user/componentes/control-user/control-user.component';
 
 
 
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'nuevo-provee', component: RegistrarProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   { path: 'editar/:id', component: EditarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   { path: 'editarPro/:id', component: EditarProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
+  { path: 'entregar', component: ControlUserComponent, canActivate: [ProdGuardService], data: { expectedRol: ['tribunal'] } },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

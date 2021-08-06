@@ -2,11 +2,11 @@ import { Producto } from '../../producto/model/producto';
 
 
 export class Proveedor {
-    idProveedor?:number ;
-    nombreProveedor?:string ;
-    productosProveedor?: Producto[];
+    idP?:number ;
+    nombreP?:string ;
+    productosP?: Producto[];
 
-    constructor(nombreProveedor: string) {
-        this.nombreProveedor= nombreProveedor;
+    constructor(nombreP: string) {
+        this.nombreP= nombreP;
     }
 }
