@@ -8,11 +8,11 @@
                     <form novalidate #f="ngForm">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="producto.nombre" required>
+                            <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="producto.nombreProducto" required>
                         </div>
                         <div class="p-fluit">
                             <label for="precio">Precio</label>
-                            <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="producto.precio" required>
+                            <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="producto.precioProducto" placeholderrequired>
                         </div>
                     </form>
                 </div>

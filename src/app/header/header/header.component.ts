@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
         label: 'Lista',
         icon: 'pi pi-fw pi-list',
         routerLink: ['/lista'],
-        visible: this.isTribunal
+        visible: this.isLogged
       },
       {
         label: 'Lista Proveedor',

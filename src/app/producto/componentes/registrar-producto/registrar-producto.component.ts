@@ -15,9 +15,7 @@ import { ProductoService } from '../../service/producto.service';
 export class RegistrarProductoComponent implements OnInit {
 
 
-  nombre = '';
   nombreProveedor = '';
-  precio: number = null;
 
   producto: Producto = new Producto();
   idProveedor: number;
@@ -46,7 +44,7 @@ export class RegistrarProductoComponent implements OnInit {
   ngOnInit() {
   
   }
-
+ 
 
   onCreate(): void {
         this.productoService.save(this.producto).subscribe(

@@ -56,6 +56,7 @@ import {SkeletonModule} from 'primeng/skeleton';
 import {PasswordModule} from 'primeng/password';
 import {DividerModule} from 'primeng/divider';
 import {ButtonModule} from 'primeng/button';
+
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { interceptorProvider } from './producto/service/prod-interceptor.service';

@@ -13,8 +13,9 @@ export class ProductoService {
   private httpHeaders = new HttpHeaders({ 'ContentType': 'application/json' });
   constructor(private httpClient: HttpClient) { }
 
+
   public lista(): Observable<Producto[]> {
-    return this.httpClient.get<Producto[]>(this.productoURL + 'lista',{headers:this.httpHeaders});
+    return this.httpClient.get<Producto[]>(this.productoURL + 'search');
   }
 
   public detail(id: number): Observable<Producto> {
