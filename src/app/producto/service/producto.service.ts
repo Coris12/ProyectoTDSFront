@@ -14,7 +14,7 @@ export class ProductoService {
   constructor(private httpClient: HttpClient) { }
 
   public lista(): Observable<Producto[]> {
-    return this.httpClient.get<Producto[]>(this.productoURL + 'search');
+    return this.httpClient.get<Producto[]>(this.productoURL + 'lista',{headers:this.httpHeaders});
   }
 
   public detail(id: number): Observable<Producto> {

@@ -19,7 +19,7 @@ export class RegistrarProductoComponent implements OnInit {
   nombreProveedor = '';
   precioProducto: number = null;
 
-  
+  producto: Producto = new Producto();
   idProveedor: number;
 
   provee: Proveedor[];
@@ -49,13 +49,14 @@ export class RegistrarProductoComponent implements OnInit {
 
 
   onCreate(): void {
-    const producto = new Producto(this.nombreProducto, this.precioProducto,this.idProveedor);
-    this.productoService.save(producto).subscribe(
+        this.productoService.save(this.producto).subscribe(
       data => {
+       if(data){
         this.toastr.success('Producto Creado', 'OK', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
         this.router.navigate(['/lista']);
+       }
       },
       err => {
         this.toastr.error(err.error.mensaje, 'Fail', {

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUserName';
+const USER_KEY = 'auth-user';
 const AUTHORITIES_KEY = 'AuthAuthorities';
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,9 @@ export class TokenService {
 
   public getToken(): string {
     return localStorage.getItem(TOKEN_KEY);
+  }
+  public getUser(): any {
+    return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
 
   public isLogged(): boolean {
