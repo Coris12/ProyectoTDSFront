@@ -30,40 +30,20 @@ export class HeaderComponent implements OnInit {
         icon: 'pi pi-fw pi-home',
         routerLink: ['/'],
       },
+      //! opciones para el administrador
       {
-        label: 'Lista',
+        label: 'Lista Usuarios',
         icon: 'pi pi-fw pi-list',
-        routerLink: ['/lista'],
-        visible: this.isLogged
-      },
-      {
-        label: 'Lista Proveedor',
-        icon: 'pi pi-fw pi-list',
-        routerLink: ['/lista-proveedor'],
+        routerLink: ['/lista-usuarios'],
         visible: this.isLogged && this.isAdmin
       },
-      {
-        label: 'Nuevo',
-        icon: 'pi pi-fw pi-check-square',
-        routerLink: ['/nuevo-pro'],
-        visible: this.isLogged && this.isAdmin
-      },
-      {
-        label: 'Entrega',
-        icon: 'pi pi-fw pi-user',
-        routerLink: ['/entregar'],
-        visible: this.isLogged && this.isTribunal
-      },
-      {
-        label: 'Iniciar Sesión',
-        icon: 'pi pi-fw pi-user',
-        routerLink: ['/login'],
-        visible: !this.isLogged,
-      },
+      //! fin opciones para el administrador 
+      
       {
         label: 'Cerrar Sesión',
         icon: 'pi pi-fw pi-user-minus',
         visible: this.isLogged,
+        
         command: () => {
           this.onLogOut();
         },
