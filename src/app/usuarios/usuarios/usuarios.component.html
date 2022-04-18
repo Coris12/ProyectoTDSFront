@@ -1,14 +1,31 @@
 <app-header></app-header>
 <div class="p-5 bg-light container mt-4">
     <div class="col animated fadeIn">
-        <div class="row">
-            <h1>Lista de Usuarios</h1>
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Lista de usuarios</h1>
+            </div>
+            <div class="ml-auto p-2">
+                <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay" class="p-button-rounded p-button-text red" (click)="cargarUsuarios()">
+                </button>
+            </div>
         </div>
     </div>
     <div class="row">
-        <p-table [value]="usuarios" [paginator]="true" [rows]="10" styleClass=" p-datatable-responsive-demo p-datatable-lg p-datatable-striped" [lazy]="true" [loading]="loading" [totalRecords]="totalRecords" [rowsPerPageOptions]="[10, 20, 30]" (onLazyLoad)="cargarUsuarios($event)">
+        <p-table #dt [value]="usuarios" [paginator]="true" [rows]="10" styleClass="p-datatable-responsive-demo p-datatable-lg p-datatable-striped" [loading]="loading" [totalRecords]="totalRecords" [rowsPerPageOptions]="[10, 20, 30]" (onLazyLoad)="cargarUsuarios($event)"
+            [globalFilterFields]="['nombre', 'id']">
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <button pButton label="Limpiar campos" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+                    <span class="p-input-icon-left ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Buscar usuario" />
+                    </span>
+                </div>
+            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
+                    <th>Cedula/Ruc</th>
                     <th>Nombres</th>
                     <th>Usuario</th>
                     <th>Email</th>
@@ -18,6 +35,7 @@
             </ng-template>
             <ng-template pTemplate="body" let-usuarios>
                 <tr>
+                    <td>{{usuarios.id}}</td>
                     <td>{{usuarios.nombre}}</td>
                     <td>{{usuarios.nombreUsuario}}</td>
                     <td>{{usuarios.email}}</td>
@@ -26,9 +44,9 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
-                <tr>
-                    <td colspan="2">Roles no encontrados.</td>
-                </tr>
+
+                <td colspan="2" style="text-align:center">Roles no encontrados.</td>
+
             </ng-template>
         </p-table>
     </div>

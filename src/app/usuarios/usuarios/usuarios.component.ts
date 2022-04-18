@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { Usuario } from 'src/app/model/usuario';
 
@@ -10,7 +11,8 @@ import { Usuario } from 'src/app/model/usuario';
 })
 export class UsuariosComponent implements OnInit {
 
-
+  //!! Buscar de la tabla
+  @ViewChild('dt') table: Table;
   //! variables
   columnas: any[];
   usuarios: Usuario[] = [];
@@ -30,8 +32,11 @@ export class UsuariosComponent implements OnInit {
     this.loading = true;
 
     //carga de roles
-    this.roles = ['ROLE_ADMINISTRADOR' , 'ROLE_COORDINADOR' , 'ROLE_ESTUDIANTE' , 'ROLE_TRIBUNAL' , 'ROLE_TUTOR'];
-
+    this.roles = ['ROLE_ADMINISTRADOR', 'ROLE_COORDINADOR', 'ROLE_ESTUDIANTE', 'ROLE_TRIBUNAL', 'ROLE_TUTOR'];
+    this.cargarUsuarios();
+  }
+  clear(table: Table) {
+    table.clear();
   }
 
   cargarUsuarios(event?: LazyLoadEvent): void {
@@ -57,7 +62,7 @@ export class UsuariosComponent implements OnInit {
     this.authController.putArrendatarioUsingPOST(this.idUsuario, this.nuevoRol).subscribe(data => {
       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Rol actualizado.' });
       this.cargarUsuarios();
-      this.dialogo =false;
+      this.dialogo = false;
     })
   }
 
