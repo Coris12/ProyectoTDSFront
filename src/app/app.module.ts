@@ -44,12 +44,14 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
-
+import {CarouselModule} from 'primeng/carousel';
+import {GMapModule} from 'primeng/gmap';
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthControllerService } from './api/authController.service';
 import { LoginComponent } from './modulos/user/componentes/login/login.component';
 import { UsuariosComponent } from './modulos/usuarios/usuarios/usuarios.component';
+import { UbicacionesComponent } from './modulos/componentes/ubicaciones/ubicaciones.component';
 
 
 
@@ -65,6 +67,7 @@ import { UsuariosComponent } from './modulos/usuarios/usuarios/usuarios.componen
     LoginComponent,
     RegistrarUserComponent,
     UsuariosComponent,
+    UbicacionesComponent,
 
 
   ],
@@ -80,6 +83,8 @@ import { UsuariosComponent } from './modulos/usuarios/usuarios/usuarios.componen
     FileUploadModule,
     // *primeng
     SelectButtonModule,
+    CarouselModule,
+    GMapModule,
     ButtonModule,
     CardModule,
     ToastModule,

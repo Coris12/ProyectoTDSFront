@@ -19,6 +19,7 @@ import { ProdGuardService } from './guards/prod-guard.service';
 import { LoginComponent } from './modulos/user/componentes/login/login.component';
 import { UsuariosComponent } from './modulos/usuarios/usuarios/usuarios.component';
 import { RegistrarUserComponent } from './modulos/user/componentes/registrar-user/registrar-user.component';
+import { UbicacionesComponent } from './modulos/componentes/ubicaciones/ubicaciones.component';
 
 
 
@@ -26,6 +27,8 @@ const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'registro', component: RegistrarUserComponent, canActivate: [LoginGuard] },
+  
+  { path: 'ubicaciones', component: UbicacionesComponent, canActivate: [LoginGuard] },
   // { path: 'lista-proveedor', component: ControlProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'lista', component: ControlProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'detalle/:id', component: DetallesProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
