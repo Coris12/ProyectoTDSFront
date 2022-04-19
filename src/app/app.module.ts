@@ -1,21 +1,17 @@
+import { RegistrarUserComponent } from './modulos/user/componentes/registrar-user/registrar-user.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './footer/footer/footer/footer.component';
-import { LoginComponent } from './user/componentes/login/login.component';
-import { InicioComponent } from './inicio/inicio/inicio.component';
-import { HeaderComponent } from './header/header/header.component';
+import { InicioComponent } from './modulos/componentes/inicio/inicio.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
-import { RegistrarUserComponent } from './user/componentes/registrar-user/registrar-user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { EditarUserComponent } from './user/componentes/editar-user/editar-user.component';
-import { ControlUserComponent } from './user/componentes/control-user/control-user.component';
-import { DetalleUserComponent } from './user/componentes/detalle-user/detalle-user.component';
+import { FooterComponent } from './modulos/componentes/footer/footer.component';
+import { HeaderComponent } from './modulos/componentes/header/header.component';
 
 
 //*servicios primeng
@@ -51,8 +47,9 @@ import { ButtonModule } from 'primeng/button';
 
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { UsuariosComponent } from './usuarios/usuarios/usuarios.component';
 import { AuthControllerService } from './api/authController.service';
+import { LoginComponent } from './modulos/user/componentes/login/login.component';
+import { UsuariosComponent } from './modulos/usuarios/usuarios/usuarios.component';
 
 
 
@@ -67,9 +64,6 @@ import { AuthControllerService } from './api/authController.service';
     FooterComponent,
     LoginComponent,
     RegistrarUserComponent,
-    EditarUserComponent,
-    ControlUserComponent,
-    DetalleUserComponent,
     UsuariosComponent,
 
 

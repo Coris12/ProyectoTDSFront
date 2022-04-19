@@ -1,11 +1,10 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginGuard } from './guards/login.guard';
-import { InicioComponent } from './inicio/inicio/inicio.component';
+import { InicioComponent } from './modulos/componentes/inicio/inicio.component';
 
 
-import { LoginComponent } from './user/componentes/login/login.component';
-import { RegistrarUserComponent } from './user/componentes/registrar-user/registrar-user.component';
 import { ProdGuardService } from './guards/prod-guard.service';
 
 // import { DetallesProveedorComponent } from './proveedor/componentes/detalles-proveedor/detalles-proveedor.component';
@@ -15,9 +14,11 @@ import { ProdGuardService } from './guards/prod-guard.service';
 // import { RegistrarProductoComponent } from './producto/componentes/registrar-producto/registrar-producto.component';
 // import { DetallesProductoComponent } from './producto/componentes/detalles-producto/detalles-producto.component';
 // import { ControlProductoComponent } from './producto/componentes/control-producto/control-producto.component';
-// import { EditarProductoComponent } from './producto/componentes/editar-producto/editar-producto.component';
-import { ControlUserComponent } from './user/componentes/control-user/control-user.component';
-import { UsuariosComponent } from './usuarios/usuarios/usuarios.component';
+// import { EditarProductoComponent } from './producto/componentes/editar-producto/editar-producto.component'
+
+import { LoginComponent } from './modulos/user/componentes/login/login.component';
+import { UsuariosComponent } from './modulos/usuarios/usuarios/usuarios.component';
+import { RegistrarUserComponent } from './modulos/user/componentes/registrar-user/registrar-user.component';
 
 
 
@@ -33,7 +34,7 @@ const routes: Routes = [
   { path: 'lista-usuarios', component: UsuariosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   // { path: 'editar/:id', component: EditarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   // { path: 'editarPro/:id', component: EditarProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
-  { path: 'entregar', component: ControlUserComponent, canActivate: [ProdGuardService], data: { expectedRol: ['tribunal'] } },
+  //{ path: 'entregar', component: ControlUserComponent, canActivate: [ProdGuardService], data: { expectedRol: ['tribunal'] } },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
