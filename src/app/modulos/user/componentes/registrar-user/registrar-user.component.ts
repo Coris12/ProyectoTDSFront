@@ -15,10 +15,16 @@ import { AuthService } from '../../service/auth.service';
 export class RegistrarUserComponent implements OnInit {
 
   nuevoUsuario: NuevoUsuario;
-  nombre: string;
-  nombreUsuario: string;
-  email: string;
-  password: string;
+  identificacion?: string;
+  nombres?: string;
+  direccion?: string;
+  celular?: string;
+  sexo?:string;
+  email?:string;
+  ciudad?:string;
+  nombreUsuario?: string;
+  password?: string;
+
   errMsj: string;
 
   constructor(
@@ -33,7 +39,16 @@ export class RegistrarUserComponent implements OnInit {
   }
 
   onRegister(): void {
-    this.nuevoUsuario = new NuevoUsuario(this.nombre, this.nombreUsuario, this.email, this.password);
+    this.nuevoUsuario = new NuevoUsuario( 
+      this.identificacion,
+      this.nombres ,
+      this.direccion, 
+      this.celular, 
+      this.sexo ,
+      this.ciudad,
+      this.nombreUsuario,
+      this.email ,
+      this.password);
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
         this.router.navigate(['/login']);

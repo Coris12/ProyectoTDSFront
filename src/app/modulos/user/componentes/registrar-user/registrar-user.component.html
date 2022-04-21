@@ -13,14 +13,14 @@
 
             </ul>
         </div>
-        <div class="card-body">
+        <!-- /.nav-collapse <div class="card-body">
             <div class="container" style="text-align: center;">
                 <img src="../../../../assets/medivalle.jpg" class="img-thumbnail" width="350" height="350">
             </div>
             <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="nombre" required>
+                    <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="nombres" required>
                 </div>
                 <div class="p-fluid">
                     <label for="nombreUsuario">Nombre de Usuario</label>
@@ -52,9 +52,111 @@
                 </div>
                 <div class="form-group  mt-4" align='center'>
                     <p-button class="p-button-rounded" [disabled]="!f.valid" type="submit">
-                        <i class="fas fa-sign-in-alt"></i> Crear cuenta</p-button>
+                        <i class="fas fa-sign-in-alt"></i> Crear cuenta
+                    </p-button>
                 </div>
             </form>
+        </div>-->
+        <div class="container mt-2" style="text-align: center;">
+            <img src="../../../../assets/medivalle.jpg" class="img-thumbnail" width="350" height="350">
         </div>
+        <br>
+        <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+            <div class="grid p-fluid">
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="identificacion" pInputText [(ngModel)]="identificacion"
+                            name="identificacion">
+                        <label for="inputtext-left">Identificacion</label>
+                    </span>
+                </div>
+
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="nombres" pInputText [(ngModel)]="nombres" name="nombres">
+                        <label for="inputtext-left">Nombres</label>
+                    </span>
+                </div>
+
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="direccion" pInputText [(ngModel)]="direccion" name="direccion">
+                        <label for="inputtext-left">Direccion</label>
+                    </span>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="celular" pInputText [(ngModel)]="celular" name="celular">
+                        <label for="inputtext-left">Celular</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="sexo" pInputText [(ngModel)]="sexo" name="sexo">
+                        <label for="inputtext-left">Sexo</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="email" pInputText [(ngModel)]="email" name="email">
+                        <label for="inputtext-left">Email</label>
+                    </span>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="ciudad" pInputText [(ngModel)]="ciudad" name="ciudad">
+                        <label for="inputtext-left">Ciudad</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario"
+                            name="nombreUsuario">
+                        <label for="inputtext-left">Nombre usuario</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <p-password [(ngModel)]="password" name="password" required>
+                            <ng-template pTemplate="header">
+                                <h6>Ingrese una contraseña</h6>
+                            </ng-template>
+                            <ng-template pTemplate="footer">
+                                <p-divider></p-divider>
+                                <p class="p-mt-2">Sugerencias.</p>
+                                <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+                                    <li>Al menos una letra en minuscula.</li>
+                                    <li>Al menos una letra en mayuscula.</li>
+                                    <li>Al menos un numero.</li>
+                                    <li>Minimo 8 caracteres.</li>
+                                </ul>
+                            </ng-template>
+                        </p-password>
+                        <label for="inputtext-left">Contrasena</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group  mt-4" align='center'>
+                <p-button class="p-button-rounded" [disabled]="!f.valid" type="submit">
+                    <i class="fas fa-sign-in-alt"></i> Crear cuenta
+                </p-button>
+            </div>
+        </form>
     </div>
+
 </div>

@@ -56,12 +56,12 @@ export class TokenService {
     const payloadDecoded = atob(payload);
     const values = JSON.parse(payloadDecoded);
     const roles = values.roles;
-    if (roles.indexOf('ROLE_ADMINISTRADOR') < 0) {
+    if (roles.indexOf('ROLE_ADMIN') < 0) {
       return false;
     }
     return true;
   }
-  public isTribunal(): boolean {
+  public isPaciente(): boolean {
     if (!this.isLogged()) {
       return false;
     }
@@ -70,11 +70,87 @@ export class TokenService {
     const payloadDecoded = atob(payload);
     const values = JSON.parse(payloadDecoded);
     const roles = values.roles;
-    if (roles.indexOf('ROLE_TRIBUNAL') < 0) {
+    if (roles.indexOf('ROLE_PACIENTE') < 0) {
       return false;
     }
     return true;
   }
+
+  public isCounter(): boolean {
+    if (!this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    const payload = token.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    const roles = values.roles;
+    if (roles.indexOf('ROLE_COUNTER') < 0) {
+      return false;
+    }
+    return true;
+  }
+
+  public isLaboratorio(): boolean {
+    if (!this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    const payload = token.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    const roles = values.roles;
+    if (roles.indexOf('ROLE_LABORATORIO') < 0) {
+      return false;
+    }
+    return true;
+  }
+
+  public isDoctor(): boolean {
+    if (!this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    const payload = token.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    const roles = values.roles;
+    if (roles.indexOf('ROLE_DOCTOR') < 0) {
+      return false;
+    }
+    return true;
+  }
+  public isFarmacia(): boolean {
+    if (!this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    const payload = token.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    const roles = values.roles;
+    if (roles.indexOf('ROLE_FARMACIA') < 0) {
+      return false;
+    }
+    return true;
+  }
+  public isContabilidad(): boolean {
+    if (!this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    const payload = token.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    const roles = values.roles;
+    if (roles.indexOf('ROLE_CONTABILIDAD') < 0) {
+      return false;
+    }
+    return true;
+  }
+
+
+
 
   public logOut(): void {
     window.localStorage.clear();

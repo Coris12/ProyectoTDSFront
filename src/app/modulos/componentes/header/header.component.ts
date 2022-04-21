@@ -14,15 +14,14 @@ export class HeaderComponent implements OnInit {
 
   isLogged = false;
   isAdmin = false;
-  isTribunal = false;
+  isPaciente = false;
 
   constructor(private tokenService: TokenService) { }
 
   ngOnInit() {
     this.isLogged = this.tokenService.isLogged();
     this.isAdmin = this.tokenService.isAdmin();
-    this.isTribunal = this.tokenService.isTribunal();
-
+    this.isPaciente = this.tokenService.isPaciente();
     //items del menu
     this.items = [
       {
@@ -37,7 +36,17 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/lista-usuarios'],
         visible: this.isLogged && this.isAdmin
       },
-      //! fin opciones para el administrador 
+      //-! fin opciones para el administrador 
+      
+      //! opciones para el paciente
+      {
+        label: 'Testpaciente',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/lista-usuarios'],
+        visible: this.isLogged && this.isPaciente
+      },
+
+      //! fin opciones para el paciente 
       
       {
         label: 'Cerrar Sesión',

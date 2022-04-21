@@ -1,12 +1,22 @@
 export class NuevoUsuario {
-    nombre?: string;
+    identificacion?: string;
+    nombres?: string;
+    direccion?: string;
+    celular?: string;
+    sexo?:string;
+    email?:string;
+    ciudad?:string;
     nombreUsuario?: string;
-    email?: string;
     password?: string;
-    constructor(nombre: string, nombreUsuario: string, email: string, password: string) {
-        this.nombre = nombre;
-        this.nombreUsuario = nombreUsuario;
+    constructor(identificacion:string, nombres: string, direccion:string, celular: string, sexo:string, email:string, ciudad:string, nombreUsuario:string, password:string) {
+        this.identificacion = identificacion;
+        this.nombres = nombres;
+        this.direccion = direccion;
+        this.celular = celular;
+        this.sexo =sexo;
         this.email = email;
+        this.ciudad = ciudad;
+        this.nombreUsuario = nombreUsuario;
         this.password = password;
     }
 }
