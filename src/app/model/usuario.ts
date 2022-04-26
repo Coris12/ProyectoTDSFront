@@ -12,10 +12,17 @@
 import { Rol } from './rol';
 
 export interface Usuario { 
+    celular?: string;
+    ciudad?: string;
+    direccion?: string;
     email?: string;
+    estado?: number;
     id?: number;
-    nombre?: string;
+    identificacion?: string;
     nombreUsuario?: string;
+    nombres?: string;
     password?: string;
+    profesion?: string;
     roles?: Array<Rol>;
+    sexo?: string;
 }

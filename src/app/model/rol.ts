@@ -15,12 +15,14 @@ export interface Rol {
     rolNombre?: Rol.RolNombreEnum;
 }
 export namespace Rol {
-    export type RolNombreEnum = 'ROLE_ADMINISTRADOR' | 'ROLE_COORDINADOR' | 'ROLE_ESTUDIANTE' | 'ROLE_TRIBUNAL' | 'ROLE_TUTOR';
+    export type RolNombreEnum = 'ROLE_ADMIN' | 'ROLE_CONTABILIDAD' | 'ROLE_COUNTER' | 'ROLE_DOCTOR' | 'ROLE_FARMACIA' | 'ROLE_LABORATORIO' | 'ROLE_PACIENTE';
     export const RolNombreEnum = {
-        ADMINISTRADOR: 'ROLE_ADMINISTRADOR' as RolNombreEnum,
-        COORDINADOR: 'ROLE_COORDINADOR' as RolNombreEnum,
-        ESTUDIANTE: 'ROLE_ESTUDIANTE' as RolNombreEnum,
-        TRIBUNAL: 'ROLE_TRIBUNAL' as RolNombreEnum,
-        TUTOR: 'ROLE_TUTOR' as RolNombreEnum
+        ADMIN: 'ROLE_ADMIN' as RolNombreEnum,
+        CONTABILIDAD: 'ROLE_CONTABILIDAD' as RolNombreEnum,
+        COUNTER: 'ROLE_COUNTER' as RolNombreEnum,
+        DOCTOR: 'ROLE_DOCTOR' as RolNombreEnum,
+        FARMACIA: 'ROLE_FARMACIA' as RolNombreEnum,
+        LABORATORIO: 'ROLE_LABORATORIO' as RolNombreEnum,
+        PACIENTE: 'ROLE_PACIENTE' as RolNombreEnum
     };
 }
