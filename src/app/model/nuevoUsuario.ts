@@ -11,9 +11,16 @@
  */
 
 export interface NuevoUsuario { 
-    email?: string;
-    nombre: string;
+    celular: string;
+    ciudad: string;
+    direccion: string;
+    email: string;
+    estado: number;
+    identificacion: string;
     nombreUsuario: string;
+    nombres: string;
     password: string;
+    profesion: string;
     roles?: Array<string>;
+    sexo: string;
 }

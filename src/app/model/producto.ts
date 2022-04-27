@@ -9,10 +9,20 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Proveedor } from './proveedor';
 
 export interface Producto { 
+    categoriaProducto?: string;
+    codBarra?: string;
+    codigoRef?: string;
+    descripcionProducto?: string;
     estadoProducto?: number;
+    fechaExp?: string;
     idProducto?: number;
+    inventarioProducto?: string;
     nombreProducto?: string;
     precioProducto?: number;
+    proveedor?: Proveedor;
+    regSanitario?: string;
+    stockProducto?: number;
 }

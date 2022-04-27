@@ -11,6 +11,14 @@
  */
 
 export interface ProductoDto { 
+    categoriaProducto?: string;
+    codBarra?: string;
+    codigoRef?: string;
+    descripcionProducto?: string;
+    fechaExp?: string;
+    inventarioProducto?: string;
     nombreProducto?: string;
     precioProducto?: number;
+    regSanitario?: string;
+    stockProducto?: number;
 }
