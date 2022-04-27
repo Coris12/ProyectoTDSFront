@@ -61,6 +61,7 @@ import { ProductoControllerService } from './api/productoController.service';
 import { SucursalControllerService } from './api/sucursalController.service';
 import { SucursalComponent } from './modulos/sucursal/sucursal.component';
 import { interceptorProvider } from './interceptor/prod-interceptor.service';
+import { ProductoComponent } from './modulos/productos/producto/producto.component';
 
 
 
@@ -78,6 +79,7 @@ import { interceptorProvider } from './interceptor/prod-interceptor.service';
     UsuariosComponent,
     UbicacionesComponent,
     SucursalComponent,
+    ProductoComponent,
 
   ],
   imports: [

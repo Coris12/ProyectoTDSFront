@@ -1,0 +1,148 @@
+<app-header></app-header>
+<p-toast></p-toast>
+
+<div class="p-5 bg-light container mt-4">
+    <div class="col animated fadeIn">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Productos</h1>
+            </div>
+        </div>
+        <p-toolbar>
+            <div class="p-toolbar-group-left">
+                <!-- (click)="showDialog()" -->
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text"
+                    label="Nuevo Producto" icon="pi pi-file-o" (click)="productoDialog=true"></button>
+            </div>
+            <div class="p-toolbar-group-right">
+            </div>
+        </p-toolbar>
+    </div>
+    <div class="row">
+        <p-table #dt [value]="productos" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <span class="p-input-icon-left ml-auto">
+
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Id </th>
+                    <th>Nombre Producto</th>
+                    <th>Categoria</th>
+                    <th>Codigo barras</th>
+                    <th>Codigo referencia</th>
+                    <th>Descripcion</th>
+                    <th>Fecha Expiracion</th>
+                    <th>Inventario</th>
+                    <th>Precio</th>
+                    <th>Registro Sanitario</th>
+                    <th>Stock</th>
+                    <th>Proveedor</th>
+                    <th>Opciones</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-productos>
+                <tr>
+                    <td>{{productos.idProducto}}</td>
+                    <td>{{productos.nombreProducto}}</td>
+                    <td>{{productos.categoriaProducto}}</td>
+                    <td>{{productos.codBarra}}</td>
+                    <td>{{productos.codigoRef}}</td>
+                    <td>{{productos.descripcionProducto}}</td>
+                    <td>{{productos.fechaExp}}</td>
+                    <td>{{productos.inventarioProducto}}</td>
+                    <td>{{productos.precioProducto}}</td>
+                    <td>{{productos.regSanitario}}</td>
+                    <td>{{productos.stockProducto}}</td>
+                    <td>{{productos.proveedor.idProveedor}}</td>
+
+                    <td><button pButton pRipple type="button" label="eliminar" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="eliminarProducto(idProducto)"></button></td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+
+<p-dialog header="Crear Producto." [(visible)]="productoDialog" [modal]="true" [style]="{width: '50vw', height: '30vw'}"
+    [draggable]="false" [resizable]="false" class="p-fluid">
+    <form [formGroup]="productoForm" (ngSubmit)="saveProducto()">
+
+        <div class="form-group col">
+            <label for="requisitos ">Categoria producto</label>
+            <div class="p-inputgroup">
+                <input type="text"  formControlName="categoriaProducto">
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="requisitos ">Codigo Barras</label>
+            <div class="p-inputgroup">
+                <input type="text"  formControlName="codBarra">
+            </div>
+        </div>
+        <div class="form-group col ">
+            <label for="requisitos ">Codigo referencia</label>
+            <div class="p-inputgroup">
+                <input type="text"  formControlName="codigoRef">
+            </div>
+        </div>
+        <div class="form-group col ">
+            <label for="requisitos ">Descripcion</label>
+            <div class="p-inputgroup">
+                <input type="text"  formControlName="descripcionProducto">
+            </div>
+        </div>
+        <div class="form-group col ">
+            <label for="requisitos ">Fecha Expiracion</label>
+            <div class="p-inputgroup">
+                <input type="date"  formControlName="fechaExp">
+            </div>
+        </div>
+        <div class="form-group col ">
+            <label for="requisitos ">Inventario</label>
+            <div class="p-inputgroup">
+                <input type="number"  formControlName="inventarioProducto">
+            </div>
+        </div>
+        <div class="form-group col ">
+            <label for="requisitos ">Nombre producto</label>
+            <div class="p-inputgroup">
+                <input type="text"  formControlName="nombreProducto">
+            </div>
+        </div>
+
+        <div class="form-group col ">
+            <label for="requisitos ">Precio</label>
+            <div class="p-inputgroup">
+                <input type="number"  formControlName="precioProducto">
+            </div>
+        </div>
+        <div class="form-group col ">
+            <label for="requisitos ">Registro Sanitario</label>
+            <div class="p-inputgroup">
+                <input type="text"  formControlName="regSanitario">
+            </div>
+        </div>
+        
+        <div class="form-group col ">
+            <label for="requisitos ">Stock</label>
+            <div class="p-inputgroup">
+                <input type="number"  formControlName="stockProducto">
+            </div>
+        </div>
+        <div class="form-group col ">
+            <label for="requisitos ">Proveedor</label>
+            <div class="p-inputgroup">
+                <input type="text"  formControlName="proveedor">
+            </div>
+        </div>
+      
+        <div style="text-align:right">
+            <p-button type="submit" icon="pi pi-check" label="Guardar" styleClass="p-button-text"></p-button>
+        </div>
+    </form>
+</p-dialog>

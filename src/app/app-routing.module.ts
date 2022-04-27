@@ -21,6 +21,8 @@ import { UsuariosComponent } from './modulos/usuarios/usuarios/usuarios.componen
 import { RegistrarUserComponent } from './modulos/user/componentes/registrar-user/registrar-user.component';
 import { UbicacionesComponent } from './modulos/componentes/ubicaciones/ubicaciones.component';
 import { SucursalComponent } from './modulos/sucursal/sucursal.component';
+import { ProductoComponent } from './modulos/productos/producto/producto.component';
+
 
 
 
@@ -28,7 +30,7 @@ const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'registro', component: RegistrarUserComponent, canActivate: [LoginGuard] },
-  
+
   { path: 'ubicaciones', component: UbicacionesComponent, canActivate: [LoginGuard] },
   // { path: 'lista-proveedor', component: ControlProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'lista', component: ControlProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
@@ -36,14 +38,15 @@ const routes: Routes = [
   // { path: 'detallePro/:id', component: DetallesProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'nuevo-pro', component: RegistrarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   { path: 'lista-usuarios', component: UsuariosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
-  
+  { path: 'lista-productos', component: ProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+
   { path: 'lista-sucursales', component: SucursalComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'editar/:id', component: EditarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   // { path: 'editarPro/:id', component: EditarProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   //{ path: 'entregar', component: ControlUserComponent, canActivate: [ProdGuardService], data: { expectedRol: ['tribunal'] } },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 
-  
+
 ];
 
 @NgModule({

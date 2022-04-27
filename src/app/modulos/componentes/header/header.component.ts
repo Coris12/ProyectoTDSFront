@@ -33,11 +33,11 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Lista Usuarios',
         icon: 'pi pi-fw pi-list',
-        routerLink: ['/lista-usuarios'],
+        routerLink: ['/'],
         visible: this.isLogged && this.isAdmin
       },
       //-! fin opciones para el administrador 
-      
+
       //! opciones para el paciente
       {
         label: 'Testpaciente',
@@ -46,21 +46,31 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isPaciente
       },
 
-       //! opciones sucursal
-       {
+      //! opciones productos
+      {
+        label: 'Productos',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/lista-productos'],
+        visible: this.isLogged && this.isAdmin
+      },
+
+      //! fin opciones para el paciente 
+
+      //! opciones sucursal
+      {
         label: 'Sucursal',
         icon: 'pi pi-fw pi-briefcase',
         routerLink: ['/lista-sucursales'],
         visible: this.isLogged && this.isAdmin
       },
-      
+
       //! fin opciones para el paciente 
-      
+
       {
         label: 'Cerrar Sesión',
         icon: 'pi pi-fw pi-user-minus',
         visible: this.isLogged,
-        
+
         command: () => {
           this.onLogOut();
         },
@@ -69,9 +79,9 @@ export class HeaderComponent implements OnInit {
 
   }
 
-onLogOut(): void {
-  this.tokenService.logOut();
-}
+  onLogOut(): void {
+    this.tokenService.logOut();
+  }
 
 
 }
