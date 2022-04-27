@@ -18,7 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { GenericResponseListSucursal } from '../model/genericResponseListSucursal';
-import { GenericResponsestring } from '../model/genericResponsestring';
+import { Sucursal } from '../model/sucursal';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -57,15 +57,67 @@ export class SucursalControllerService {
 
 
     /**
-     * getAllSucursales
+     * Crear sucursal
+     * 
+     * @param body sucursal
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public createUsingPOST5(body: Sucursal, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public createUsingPOST5(body: Sucursal, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public createUsingPOST5(body: Sucursal, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public createUsingPOST5(body: Sucursal, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling createUsingPOST5.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/sucursal/crearSucursal`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Listar todas las sucursales
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAllSucursalesUsingGET(observe?: 'body', reportProgress?: boolean): Observable<GenericResponseListSucursal>;
-    public getAllSucursalesUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseListSucursal>>;
-    public getAllSucursalesUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseListSucursal>>;
-    public getAllSucursalesUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listAllSucursalesUsingGET(observe?: 'body', reportProgress?: boolean): Observable<GenericResponseListSucursal>;
+    public listAllSucursalesUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseListSucursal>>;
+    public listAllSucursalesUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseListSucursal>>;
+    public listAllSucursalesUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -89,224 +141,6 @@ export class SucursalControllerService {
 
         return this.httpClient.request<GenericResponseListSucursal>('get',`${this.basePath}/sucursal/getAllSucursales`,
             {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * saveSucursal
-     * 
-     * @param correoSuc 
-     * @param direccionSuc 
-     * @param farmaciaIdEmpleado 
-     * @param farmaciaIdFarmacia 
-     * @param farmaciaIdProducto 
-     * @param farmaciaSucursalCorreoSuc 
-     * @param farmaciaSucursalDireccionSuc 
-     * @param farmaciaSucursalIdSucursal 
-     * @param farmaciaSucursalNombreSuc 
-     * @param farmaciaSucursalTelefonoSuc 
-     * @param idSucursal 
-     * @param nombreSuc 
-     * @param telefonoSuc 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public saveSucursalUsingPOST(correoSuc?: string, direccionSuc?: string, farmaciaIdEmpleado?: number, farmaciaIdFarmacia?: number, farmaciaIdProducto?: number, farmaciaSucursalCorreoSuc?: string, farmaciaSucursalDireccionSuc?: string, farmaciaSucursalIdSucursal?: number, farmaciaSucursalNombreSuc?: string, farmaciaSucursalTelefonoSuc?: number, idSucursal?: number, nombreSuc?: string, telefonoSuc?: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public saveSucursalUsingPOST(correoSuc?: string, direccionSuc?: string, farmaciaIdEmpleado?: number, farmaciaIdFarmacia?: number, farmaciaIdProducto?: number, farmaciaSucursalCorreoSuc?: string, farmaciaSucursalDireccionSuc?: string, farmaciaSucursalIdSucursal?: number, farmaciaSucursalNombreSuc?: string, farmaciaSucursalTelefonoSuc?: number, idSucursal?: number, nombreSuc?: string, telefonoSuc?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public saveSucursalUsingPOST(correoSuc?: string, direccionSuc?: string, farmaciaIdEmpleado?: number, farmaciaIdFarmacia?: number, farmaciaIdProducto?: number, farmaciaSucursalCorreoSuc?: string, farmaciaSucursalDireccionSuc?: string, farmaciaSucursalIdSucursal?: number, farmaciaSucursalNombreSuc?: string, farmaciaSucursalTelefonoSuc?: number, idSucursal?: number, nombreSuc?: string, telefonoSuc?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public saveSucursalUsingPOST(correoSuc?: string, direccionSuc?: string, farmaciaIdEmpleado?: number, farmaciaIdFarmacia?: number, farmaciaIdProducto?: number, farmaciaSucursalCorreoSuc?: string, farmaciaSucursalDireccionSuc?: string, farmaciaSucursalIdSucursal?: number, farmaciaSucursalNombreSuc?: string, farmaciaSucursalTelefonoSuc?: number, idSucursal?: number, nombreSuc?: string, telefonoSuc?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (correoSuc !== undefined && correoSuc !== null) {
-            queryParameters = queryParameters.set('correoSuc', <any>correoSuc);
-        }
-        if (direccionSuc !== undefined && direccionSuc !== null) {
-            queryParameters = queryParameters.set('direccionSuc', <any>direccionSuc);
-        }
-        if (farmaciaIdEmpleado !== undefined && farmaciaIdEmpleado !== null) {
-            queryParameters = queryParameters.set('farmacia.idEmpleado', <any>farmaciaIdEmpleado);
-        }
-        if (farmaciaIdFarmacia !== undefined && farmaciaIdFarmacia !== null) {
-            queryParameters = queryParameters.set('farmacia.idFarmacia', <any>farmaciaIdFarmacia);
-        }
-        if (farmaciaIdProducto !== undefined && farmaciaIdProducto !== null) {
-            queryParameters = queryParameters.set('farmacia.idProducto', <any>farmaciaIdProducto);
-        }
-        if (farmaciaSucursalCorreoSuc !== undefined && farmaciaSucursalCorreoSuc !== null) {
-            queryParameters = queryParameters.set('farmacia.sucursal.correoSuc', <any>farmaciaSucursalCorreoSuc);
-        }
-        if (farmaciaSucursalDireccionSuc !== undefined && farmaciaSucursalDireccionSuc !== null) {
-            queryParameters = queryParameters.set('farmacia.sucursal.direccionSuc', <any>farmaciaSucursalDireccionSuc);
-        }
-        if (farmaciaSucursalIdSucursal !== undefined && farmaciaSucursalIdSucursal !== null) {
-            queryParameters = queryParameters.set('farmacia.sucursal.idSucursal', <any>farmaciaSucursalIdSucursal);
-        }
-        if (farmaciaSucursalNombreSuc !== undefined && farmaciaSucursalNombreSuc !== null) {
-            queryParameters = queryParameters.set('farmacia.sucursal.nombreSuc', <any>farmaciaSucursalNombreSuc);
-        }
-        if (farmaciaSucursalTelefonoSuc !== undefined && farmaciaSucursalTelefonoSuc !== null) {
-            queryParameters = queryParameters.set('farmacia.sucursal.telefonoSuc', <any>farmaciaSucursalTelefonoSuc);
-        }
-        if (idSucursal !== undefined && idSucursal !== null) {
-            queryParameters = queryParameters.set('idSucursal', <any>idSucursal);
-        }
-        if (nombreSuc !== undefined && nombreSuc !== null) {
-            queryParameters = queryParameters.set('nombreSuc', <any>nombreSuc);
-        }
-        if (telefonoSuc !== undefined && telefonoSuc !== null) {
-            queryParameters = queryParameters.set('telefonoSuc', <any>telefonoSuc);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (JWT) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/sucursal/saveSucursal`,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * updateSucursal
-     * 
-     * @param correoSuc 
-     * @param direccionSuc 
-     * @param farmaciaIdEmpleado 
-     * @param farmaciaIdFarmacia 
-     * @param farmaciaIdProducto 
-     * @param farmaciaSucursalCorreoSuc 
-     * @param farmaciaSucursalDireccionSuc 
-     * @param farmaciaSucursalIdSucursal 
-     * @param farmaciaSucursalNombreSuc 
-     * @param farmaciaSucursalTelefonoSuc 
-     * @param idSucursal 
-     * @param nombreSuc 
-     * @param telefonoSuc 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public updateSucursalUsingPUT(correoSuc?: string, direccionSuc?: string, farmaciaIdEmpleado?: number, farmaciaIdFarmacia?: number, farmaciaIdProducto?: number, farmaciaSucursalCorreoSuc?: string, farmaciaSucursalDireccionSuc?: string, farmaciaSucursalIdSucursal?: number, farmaciaSucursalNombreSuc?: string, farmaciaSucursalTelefonoSuc?: number, idSucursal?: number, nombreSuc?: string, telefonoSuc?: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public updateSucursalUsingPUT(correoSuc?: string, direccionSuc?: string, farmaciaIdEmpleado?: number, farmaciaIdFarmacia?: number, farmaciaIdProducto?: number, farmaciaSucursalCorreoSuc?: string, farmaciaSucursalDireccionSuc?: string, farmaciaSucursalIdSucursal?: number, farmaciaSucursalNombreSuc?: string, farmaciaSucursalTelefonoSuc?: number, idSucursal?: number, nombreSuc?: string, telefonoSuc?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public updateSucursalUsingPUT(correoSuc?: string, direccionSuc?: string, farmaciaIdEmpleado?: number, farmaciaIdFarmacia?: number, farmaciaIdProducto?: number, farmaciaSucursalCorreoSuc?: string, farmaciaSucursalDireccionSuc?: string, farmaciaSucursalIdSucursal?: number, farmaciaSucursalNombreSuc?: string, farmaciaSucursalTelefonoSuc?: number, idSucursal?: number, nombreSuc?: string, telefonoSuc?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public updateSucursalUsingPUT(correoSuc?: string, direccionSuc?: string, farmaciaIdEmpleado?: number, farmaciaIdFarmacia?: number, farmaciaIdProducto?: number, farmaciaSucursalCorreoSuc?: string, farmaciaSucursalDireccionSuc?: string, farmaciaSucursalIdSucursal?: number, farmaciaSucursalNombreSuc?: string, farmaciaSucursalTelefonoSuc?: number, idSucursal?: number, nombreSuc?: string, telefonoSuc?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (correoSuc !== undefined && correoSuc !== null) {
-            queryParameters = queryParameters.set('correoSuc', <any>correoSuc);
-        }
-        if (direccionSuc !== undefined && direccionSuc !== null) {
-            queryParameters = queryParameters.set('direccionSuc', <any>direccionSuc);
-        }
-        if (farmaciaIdEmpleado !== undefined && farmaciaIdEmpleado !== null) {
-            queryParameters = queryParameters.set('farmacia.idEmpleado', <any>farmaciaIdEmpleado);
-        }
-        if (farmaciaIdFarmacia !== undefined && farmaciaIdFarmacia !== null) {
-            queryParameters = queryParameters.set('farmacia.idFarmacia', <any>farmaciaIdFarmacia);
-        }
-        if (farmaciaIdProducto !== undefined && farmaciaIdProducto !== null) {
-            queryParameters = queryParameters.set('farmacia.idProducto', <any>farmaciaIdProducto);
-        }
-        if (farmaciaSucursalCorreoSuc !== undefined && farmaciaSucursalCorreoSuc !== null) {
-            queryParameters = queryParameters.set('farmacia.sucursal.correoSuc', <any>farmaciaSucursalCorreoSuc);
-        }
-        if (farmaciaSucursalDireccionSuc !== undefined && farmaciaSucursalDireccionSuc !== null) {
-            queryParameters = queryParameters.set('farmacia.sucursal.direccionSuc', <any>farmaciaSucursalDireccionSuc);
-        }
-        if (farmaciaSucursalIdSucursal !== undefined && farmaciaSucursalIdSucursal !== null) {
-            queryParameters = queryParameters.set('farmacia.sucursal.idSucursal', <any>farmaciaSucursalIdSucursal);
-        }
-        if (farmaciaSucursalNombreSuc !== undefined && farmaciaSucursalNombreSuc !== null) {
-            queryParameters = queryParameters.set('farmacia.sucursal.nombreSuc', <any>farmaciaSucursalNombreSuc);
-        }
-        if (farmaciaSucursalTelefonoSuc !== undefined && farmaciaSucursalTelefonoSuc !== null) {
-            queryParameters = queryParameters.set('farmacia.sucursal.telefonoSuc', <any>farmaciaSucursalTelefonoSuc);
-        }
-        if (idSucursal !== undefined && idSucursal !== null) {
-            queryParameters = queryParameters.set('idSucursal', <any>idSucursal);
-        }
-        if (nombreSuc !== undefined && nombreSuc !== null) {
-            queryParameters = queryParameters.set('nombreSuc', <any>nombreSuc);
-        }
-        if (telefonoSuc !== undefined && telefonoSuc !== null) {
-            queryParameters = queryParameters.set('telefonoSuc', <any>telefonoSuc);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (JWT) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<GenericResponsestring>('put',`${this.basePath}/sucursal/updateSucursal`,
-            {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

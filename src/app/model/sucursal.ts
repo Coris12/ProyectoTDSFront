@@ -15,5 +15,5 @@ export interface Sucursal {
     direccionSuc?: string;
     idSucursal?: number;
     nombreSuc?: string;
-    telefonoSuc?: number;
+    telefonoSuc?: string;
 }

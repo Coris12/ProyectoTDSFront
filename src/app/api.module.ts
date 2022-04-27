@@ -9,7 +9,6 @@ import { ClienteControllerService } from './api/clienteController.service';
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
 import { EmpleadoControllerService } from './api/empleadoController.service';
 import { FacturaControllerService } from './api/facturaController.service';
-import { FaramaciaControllerService } from './api/faramaciaController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
 import { SucursalControllerService } from './api/sucursalController.service';
@@ -25,7 +24,6 @@ import { SucursalControllerService } from './api/sucursalController.service';
     CuerpoFacturaControllerService,
     EmpleadoControllerService,
     FacturaControllerService,
-    FaramaciaControllerService,
     ProductoControllerService,
     ProveedorControllerService,
     SucursalControllerService ]
