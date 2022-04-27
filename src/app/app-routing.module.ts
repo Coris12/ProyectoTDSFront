@@ -20,6 +20,7 @@ import { LoginComponent } from './modulos/user/componentes/login/login.component
 import { UsuariosComponent } from './modulos/usuarios/usuarios/usuarios.component';
 import { RegistrarUserComponent } from './modulos/user/componentes/registrar-user/registrar-user.component';
 import { UbicacionesComponent } from './modulos/componentes/ubicaciones/ubicaciones.component';
+import { SucursalComponent } from './modulos/sucursal/sucursal.component';
 
 
 
@@ -35,10 +36,14 @@ const routes: Routes = [
   // { path: 'detallePro/:id', component: DetallesProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'nuevo-pro', component: RegistrarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   { path: 'lista-usuarios', component: UsuariosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
+  
+  { path: 'lista-sucursales', component: SucursalComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'editar/:id', component: EditarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   // { path: 'editarPro/:id', component: EditarProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   //{ path: 'entregar', component: ControlUserComponent, canActivate: [ProdGuardService], data: { expectedRol: ['tribunal'] } },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: '**', redirectTo: '', pathMatch: 'full' },
+
+  
 ];
 
 @NgModule({

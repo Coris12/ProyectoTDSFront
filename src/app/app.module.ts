@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from './modulos/componentes/inicio/inicio.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './modulos/componentes/footer/footer.component';
@@ -59,6 +59,8 @@ import { FacturaControllerService } from './api/facturaController.service';
 import { FaramaciaControllerService } from './api/faramaciaController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { SucursalControllerService } from './api/sucursalController.service';
+import { SucursalComponent } from './modulos/sucursal/sucursal.component';
+import { interceptorProvider } from './interceptor/prod-interceptor.service';
 
 
 
@@ -75,13 +77,14 @@ import { SucursalControllerService } from './api/sucursalController.service';
     RegistrarUserComponent,
     UsuariosComponent,
     UbicacionesComponent,
-
+    SucursalComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     FormsModule,
     BrowserAnimationsModule,
@@ -122,6 +125,7 @@ import { SucursalControllerService } from './api/sucursalController.service';
 
   ],
   providers: [
+    interceptorProvider,
     MessageService,
     ConfirmationService,
     AuthControllerService,

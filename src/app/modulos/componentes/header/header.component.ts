@@ -46,6 +46,14 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isPaciente
       },
 
+       //! opciones sucursal
+       {
+        label: 'Sucursal',
+        icon: 'pi pi-fw pi-briefcase',
+        routerLink: ['/lista-sucursales'],
+        visible: this.isLogged && this.isAdmin
+      },
+      
       //! fin opciones para el paciente 
       
       {

@@ -160,3 +160,7 @@ export class ClienteControllerService {
     }
 
 }
+function idCliente(idCliente: any): string | number | boolean {
+    throw new Error('Function not implemented.');
+}
+
