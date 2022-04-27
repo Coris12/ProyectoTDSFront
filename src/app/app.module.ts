@@ -52,6 +52,13 @@ import { AuthControllerService } from './api/authController.service';
 import { LoginComponent } from './modulos/user/componentes/login/login.component';
 import { UsuariosComponent } from './modulos/usuarios/usuarios/usuarios.component';
 import { UbicacionesComponent } from './modulos/componentes/ubicaciones/ubicaciones.component';
+import { ClienteControllerService } from './api/clienteController.service';
+import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
+import { EmpleadoControllerService } from './api/empleadoController.service';
+import { FacturaControllerService } from './api/facturaController.service';
+import { FaramaciaControllerService } from './api/faramaciaController.service';
+import { ProductoControllerService } from './api/productoController.service';
+import { SucursalControllerService } from './api/sucursalController.service';
 
 
 
@@ -117,7 +124,14 @@ import { UbicacionesComponent } from './modulos/componentes/ubicaciones/ubicacio
   providers: [
     MessageService,
     ConfirmationService,
-    AuthControllerService
+    AuthControllerService,
+    ClienteControllerService,
+    CuerpoFacturaControllerService,
+    EmpleadoControllerService,
+    FacturaControllerService,
+    FaramaciaControllerService,
+    ProductoControllerService,
+    SucursalControllerService
   ],
   bootstrap: [AppComponent]
 })
