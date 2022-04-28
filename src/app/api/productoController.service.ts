@@ -18,7 +18,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { Producto } from '../model/producto';
-import { ProductoDto } from '../model/productoDto';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -27,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProductoControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -109,24 +108,24 @@ export class ProductoControllerService {
     }
 
     /**
-     * deleteLogic
+     * Eliminado logico del producto
      * 
-     * @param body productoDto
-     * @param id id
+     * @param idProducto id_producto
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteLogicUsingPATCH(body: ProductoDto, id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteLogicUsingPATCH(body: ProductoDto, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteLogicUsingPATCH(body: ProductoDto, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteLogicUsingPATCH(body: ProductoDto, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteEmpleadoUsingPATCH1(idProducto: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteEmpleadoUsingPATCH1(idProducto: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteEmpleadoUsingPATCH1(idProducto: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteEmpleadoUsingPATCH1(idProducto: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling deleteLogicUsingPATCH.');
+        if (idProducto === null || idProducto === undefined) {
+            throw new Error('Required parameter idProducto was null or undefined when calling deleteEmpleadoUsingPATCH1.');
         }
 
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteLogicUsingPATCH.');
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idProducto !== undefined && idProducto !== null) {
+            queryParameters = queryParameters.set('id_producto', <any>idProducto);
         }
 
         let headers = this.defaultHeaders;
@@ -147,16 +146,11 @@ export class ProductoControllerService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
         ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
 
-        return this.httpClient.request<any>('patch',`${this.basePath}/producto/deleteLogic/${encodeURIComponent(String(id))}`,
+        return this.httpClient.request<any>('patch',`${this.basePath}/producto/deleteProducto/${encodeURIComponent(String(idProducto))}`,
             {
-                body: body,
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

@@ -17,6 +17,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { Factura } from '../model/factura';
 import { GenericResponseListFactura } from '../model/genericResponseListFactura';
 import { GenericResponsestring } from '../model/genericResponsestring';
 
@@ -100,289 +101,17 @@ export class FacturaControllerService {
     /**
      * saveFactura
      * 
-     * @param clienteEstado 
-     * @param clienteIdCliente 
-     * @param clienteObservaciones 
-     * @param clienteUsuarioCelular 
-     * @param clienteUsuarioCiudad 
-     * @param clienteUsuarioDireccion 
-     * @param clienteUsuarioEmail 
-     * @param clienteUsuarioEstado 
-     * @param clienteUsuarioId 
-     * @param clienteUsuarioIdentificacion 
-     * @param clienteUsuarioNombres 
-     * @param clienteUsuarioNombreUsuario 
-     * @param clienteUsuarioPassword 
-     * @param clienteUsuarioProfesion 
-     * @param clienteUsuarioRoles0Id 
-     * @param clienteUsuarioRoles0RolNombre 
-     * @param clienteUsuarioSexo 
-     * @param cuerpoFactura0Cantidad 
-     * @param cuerpoFactura0Descuento 
-     * @param cuerpoFactura0IdCuerpo 
-     * @param cuerpoFactura0Iva 
-     * @param cuerpoFactura0ProductoCategoriaProducto 
-     * @param cuerpoFactura0ProductoCodBarra 
-     * @param cuerpoFactura0ProductoCodigoRef 
-     * @param cuerpoFactura0ProductoDescripcionProducto 
-     * @param cuerpoFactura0ProductoEstadoProducto 
-     * @param cuerpoFactura0ProductoFechaExp 
-     * @param cuerpoFactura0ProductoIdProducto 
-     * @param cuerpoFactura0ProductoInventarioProducto 
-     * @param cuerpoFactura0ProductoNombreProducto 
-     * @param cuerpoFactura0ProductoPrecioProducto 
-     * @param cuerpoFactura0ProductoProveedorEstado 
-     * @param cuerpoFactura0ProductoProveedorIdProveedor 
-     * @param cuerpoFactura0ProductoProveedorNombreComercialPro 
-     * @param cuerpoFactura0ProductoProveedorUsuarioCelular 
-     * @param cuerpoFactura0ProductoProveedorUsuarioCiudad 
-     * @param cuerpoFactura0ProductoProveedorUsuarioDireccion 
-     * @param cuerpoFactura0ProductoProveedorUsuarioEmail 
-     * @param cuerpoFactura0ProductoProveedorUsuarioEstado 
-     * @param cuerpoFactura0ProductoProveedorUsuarioId 
-     * @param cuerpoFactura0ProductoProveedorUsuarioIdentificacion 
-     * @param cuerpoFactura0ProductoProveedorUsuarioNombres 
-     * @param cuerpoFactura0ProductoProveedorUsuarioNombreUsuario 
-     * @param cuerpoFactura0ProductoProveedorUsuarioPassword 
-     * @param cuerpoFactura0ProductoProveedorUsuarioProfesion 
-     * @param cuerpoFactura0ProductoProveedorUsuarioRoles0Id 
-     * @param cuerpoFactura0ProductoProveedorUsuarioRoles0RolNombre 
-     * @param cuerpoFactura0ProductoProveedorUsuarioSexo 
-     * @param cuerpoFactura0ProductoRegSanitario 
-     * @param cuerpoFactura0ProductoStockProducto 
-     * @param cuerpoFactura0Subtotal 
-     * @param cuerpoFactura0Total 
-     * @param fecha 
-     * @param idFactura 
-     * @param tipoFactura 
+     * @param body factura
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveFacturaUsingPOST(clienteEstado?: number, clienteIdCliente?: number, clienteObservaciones?: string, clienteUsuarioCelular?: string, clienteUsuarioCiudad?: string, clienteUsuarioDireccion?: string, clienteUsuarioEmail?: string, clienteUsuarioEstado?: number, clienteUsuarioId?: number, clienteUsuarioIdentificacion?: string, clienteUsuarioNombres?: string, clienteUsuarioNombreUsuario?: string, clienteUsuarioPassword?: string, clienteUsuarioProfesion?: string, clienteUsuarioRoles0Id?: number, clienteUsuarioRoles0RolNombre?: string, clienteUsuarioSexo?: string, cuerpoFactura0Cantidad?: number, cuerpoFactura0Descuento?: number, cuerpoFactura0IdCuerpo?: number, cuerpoFactura0Iva?: number, cuerpoFactura0ProductoCategoriaProducto?: string, cuerpoFactura0ProductoCodBarra?: string, cuerpoFactura0ProductoCodigoRef?: string, cuerpoFactura0ProductoDescripcionProducto?: string, cuerpoFactura0ProductoEstadoProducto?: number, cuerpoFactura0ProductoFechaExp?: string, cuerpoFactura0ProductoIdProducto?: number, cuerpoFactura0ProductoInventarioProducto?: string, cuerpoFactura0ProductoNombreProducto?: string, cuerpoFactura0ProductoPrecioProducto?: number, cuerpoFactura0ProductoProveedorEstado?: number, cuerpoFactura0ProductoProveedorIdProveedor?: number, cuerpoFactura0ProductoProveedorNombreComercialPro?: string, cuerpoFactura0ProductoProveedorUsuarioCelular?: string, cuerpoFactura0ProductoProveedorUsuarioCiudad?: string, cuerpoFactura0ProductoProveedorUsuarioDireccion?: string, cuerpoFactura0ProductoProveedorUsuarioEmail?: string, cuerpoFactura0ProductoProveedorUsuarioEstado?: number, cuerpoFactura0ProductoProveedorUsuarioId?: number, cuerpoFactura0ProductoProveedorUsuarioIdentificacion?: string, cuerpoFactura0ProductoProveedorUsuarioNombres?: string, cuerpoFactura0ProductoProveedorUsuarioNombreUsuario?: string, cuerpoFactura0ProductoProveedorUsuarioPassword?: string, cuerpoFactura0ProductoProveedorUsuarioProfesion?: string, cuerpoFactura0ProductoProveedorUsuarioRoles0Id?: number, cuerpoFactura0ProductoProveedorUsuarioRoles0RolNombre?: string, cuerpoFactura0ProductoProveedorUsuarioSexo?: string, cuerpoFactura0ProductoRegSanitario?: string, cuerpoFactura0ProductoStockProducto?: number, cuerpoFactura0Subtotal?: number, cuerpoFactura0Total?: number, fecha?: Date, idFactura?: number, tipoFactura?: string, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public saveFacturaUsingPOST(clienteEstado?: number, clienteIdCliente?: number, clienteObservaciones?: string, clienteUsuarioCelular?: string, clienteUsuarioCiudad?: string, clienteUsuarioDireccion?: string, clienteUsuarioEmail?: string, clienteUsuarioEstado?: number, clienteUsuarioId?: number, clienteUsuarioIdentificacion?: string, clienteUsuarioNombres?: string, clienteUsuarioNombreUsuario?: string, clienteUsuarioPassword?: string, clienteUsuarioProfesion?: string, clienteUsuarioRoles0Id?: number, clienteUsuarioRoles0RolNombre?: string, clienteUsuarioSexo?: string, cuerpoFactura0Cantidad?: number, cuerpoFactura0Descuento?: number, cuerpoFactura0IdCuerpo?: number, cuerpoFactura0Iva?: number, cuerpoFactura0ProductoCategoriaProducto?: string, cuerpoFactura0ProductoCodBarra?: string, cuerpoFactura0ProductoCodigoRef?: string, cuerpoFactura0ProductoDescripcionProducto?: string, cuerpoFactura0ProductoEstadoProducto?: number, cuerpoFactura0ProductoFechaExp?: string, cuerpoFactura0ProductoIdProducto?: number, cuerpoFactura0ProductoInventarioProducto?: string, cuerpoFactura0ProductoNombreProducto?: string, cuerpoFactura0ProductoPrecioProducto?: number, cuerpoFactura0ProductoProveedorEstado?: number, cuerpoFactura0ProductoProveedorIdProveedor?: number, cuerpoFactura0ProductoProveedorNombreComercialPro?: string, cuerpoFactura0ProductoProveedorUsuarioCelular?: string, cuerpoFactura0ProductoProveedorUsuarioCiudad?: string, cuerpoFactura0ProductoProveedorUsuarioDireccion?: string, cuerpoFactura0ProductoProveedorUsuarioEmail?: string, cuerpoFactura0ProductoProveedorUsuarioEstado?: number, cuerpoFactura0ProductoProveedorUsuarioId?: number, cuerpoFactura0ProductoProveedorUsuarioIdentificacion?: string, cuerpoFactura0ProductoProveedorUsuarioNombres?: string, cuerpoFactura0ProductoProveedorUsuarioNombreUsuario?: string, cuerpoFactura0ProductoProveedorUsuarioPassword?: string, cuerpoFactura0ProductoProveedorUsuarioProfesion?: string, cuerpoFactura0ProductoProveedorUsuarioRoles0Id?: number, cuerpoFactura0ProductoProveedorUsuarioRoles0RolNombre?: string, cuerpoFactura0ProductoProveedorUsuarioSexo?: string, cuerpoFactura0ProductoRegSanitario?: string, cuerpoFactura0ProductoStockProducto?: number, cuerpoFactura0Subtotal?: number, cuerpoFactura0Total?: number, fecha?: Date, idFactura?: number, tipoFactura?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public saveFacturaUsingPOST(clienteEstado?: number, clienteIdCliente?: number, clienteObservaciones?: string, clienteUsuarioCelular?: string, clienteUsuarioCiudad?: string, clienteUsuarioDireccion?: string, clienteUsuarioEmail?: string, clienteUsuarioEstado?: number, clienteUsuarioId?: number, clienteUsuarioIdentificacion?: string, clienteUsuarioNombres?: string, clienteUsuarioNombreUsuario?: string, clienteUsuarioPassword?: string, clienteUsuarioProfesion?: string, clienteUsuarioRoles0Id?: number, clienteUsuarioRoles0RolNombre?: string, clienteUsuarioSexo?: string, cuerpoFactura0Cantidad?: number, cuerpoFactura0Descuento?: number, cuerpoFactura0IdCuerpo?: number, cuerpoFactura0Iva?: number, cuerpoFactura0ProductoCategoriaProducto?: string, cuerpoFactura0ProductoCodBarra?: string, cuerpoFactura0ProductoCodigoRef?: string, cuerpoFactura0ProductoDescripcionProducto?: string, cuerpoFactura0ProductoEstadoProducto?: number, cuerpoFactura0ProductoFechaExp?: string, cuerpoFactura0ProductoIdProducto?: number, cuerpoFactura0ProductoInventarioProducto?: string, cuerpoFactura0ProductoNombreProducto?: string, cuerpoFactura0ProductoPrecioProducto?: number, cuerpoFactura0ProductoProveedorEstado?: number, cuerpoFactura0ProductoProveedorIdProveedor?: number, cuerpoFactura0ProductoProveedorNombreComercialPro?: string, cuerpoFactura0ProductoProveedorUsuarioCelular?: string, cuerpoFactura0ProductoProveedorUsuarioCiudad?: string, cuerpoFactura0ProductoProveedorUsuarioDireccion?: string, cuerpoFactura0ProductoProveedorUsuarioEmail?: string, cuerpoFactura0ProductoProveedorUsuarioEstado?: number, cuerpoFactura0ProductoProveedorUsuarioId?: number, cuerpoFactura0ProductoProveedorUsuarioIdentificacion?: string, cuerpoFactura0ProductoProveedorUsuarioNombres?: string, cuerpoFactura0ProductoProveedorUsuarioNombreUsuario?: string, cuerpoFactura0ProductoProveedorUsuarioPassword?: string, cuerpoFactura0ProductoProveedorUsuarioProfesion?: string, cuerpoFactura0ProductoProveedorUsuarioRoles0Id?: number, cuerpoFactura0ProductoProveedorUsuarioRoles0RolNombre?: string, cuerpoFactura0ProductoProveedorUsuarioSexo?: string, cuerpoFactura0ProductoRegSanitario?: string, cuerpoFactura0ProductoStockProducto?: number, cuerpoFactura0Subtotal?: number, cuerpoFactura0Total?: number, fecha?: Date, idFactura?: number, tipoFactura?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public saveFacturaUsingPOST(clienteEstado?: number, clienteIdCliente?: number, clienteObservaciones?: string, clienteUsuarioCelular?: string, clienteUsuarioCiudad?: string, clienteUsuarioDireccion?: string, clienteUsuarioEmail?: string, clienteUsuarioEstado?: number, clienteUsuarioId?: number, clienteUsuarioIdentificacion?: string, clienteUsuarioNombres?: string, clienteUsuarioNombreUsuario?: string, clienteUsuarioPassword?: string, clienteUsuarioProfesion?: string, clienteUsuarioRoles0Id?: number, clienteUsuarioRoles0RolNombre?: string, clienteUsuarioSexo?: string, cuerpoFactura0Cantidad?: number, cuerpoFactura0Descuento?: number, cuerpoFactura0IdCuerpo?: number, cuerpoFactura0Iva?: number, cuerpoFactura0ProductoCategoriaProducto?: string, cuerpoFactura0ProductoCodBarra?: string, cuerpoFactura0ProductoCodigoRef?: string, cuerpoFactura0ProductoDescripcionProducto?: string, cuerpoFactura0ProductoEstadoProducto?: number, cuerpoFactura0ProductoFechaExp?: string, cuerpoFactura0ProductoIdProducto?: number, cuerpoFactura0ProductoInventarioProducto?: string, cuerpoFactura0ProductoNombreProducto?: string, cuerpoFactura0ProductoPrecioProducto?: number, cuerpoFactura0ProductoProveedorEstado?: number, cuerpoFactura0ProductoProveedorIdProveedor?: number, cuerpoFactura0ProductoProveedorNombreComercialPro?: string, cuerpoFactura0ProductoProveedorUsuarioCelular?: string, cuerpoFactura0ProductoProveedorUsuarioCiudad?: string, cuerpoFactura0ProductoProveedorUsuarioDireccion?: string, cuerpoFactura0ProductoProveedorUsuarioEmail?: string, cuerpoFactura0ProductoProveedorUsuarioEstado?: number, cuerpoFactura0ProductoProveedorUsuarioId?: number, cuerpoFactura0ProductoProveedorUsuarioIdentificacion?: string, cuerpoFactura0ProductoProveedorUsuarioNombres?: string, cuerpoFactura0ProductoProveedorUsuarioNombreUsuario?: string, cuerpoFactura0ProductoProveedorUsuarioPassword?: string, cuerpoFactura0ProductoProveedorUsuarioProfesion?: string, cuerpoFactura0ProductoProveedorUsuarioRoles0Id?: number, cuerpoFactura0ProductoProveedorUsuarioRoles0RolNombre?: string, cuerpoFactura0ProductoProveedorUsuarioSexo?: string, cuerpoFactura0ProductoRegSanitario?: string, cuerpoFactura0ProductoStockProducto?: number, cuerpoFactura0Subtotal?: number, cuerpoFactura0Total?: number, fecha?: Date, idFactura?: number, tipoFactura?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public saveFacturaUsingPOST(body: Factura, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public saveFacturaUsingPOST(body: Factura, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public saveFacturaUsingPOST(body: Factura, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public saveFacturaUsingPOST(body: Factura, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (clienteEstado !== undefined && clienteEstado !== null) {
-            queryParameters = queryParameters.set('cliente.estado', <any>clienteEstado);
-        }
-        if (clienteIdCliente !== undefined && clienteIdCliente !== null) {
-            queryParameters = queryParameters.set('cliente.id_cliente', <any>clienteIdCliente);
-        }
-        if (clienteObservaciones !== undefined && clienteObservaciones !== null) {
-            queryParameters = queryParameters.set('cliente.observaciones', <any>clienteObservaciones);
-        }
-        if (clienteUsuarioCelular !== undefined && clienteUsuarioCelular !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.celular', <any>clienteUsuarioCelular);
-        }
-        if (clienteUsuarioCiudad !== undefined && clienteUsuarioCiudad !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.ciudad', <any>clienteUsuarioCiudad);
-        }
-        if (clienteUsuarioDireccion !== undefined && clienteUsuarioDireccion !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.direccion', <any>clienteUsuarioDireccion);
-        }
-        if (clienteUsuarioEmail !== undefined && clienteUsuarioEmail !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.email', <any>clienteUsuarioEmail);
-        }
-        if (clienteUsuarioEstado !== undefined && clienteUsuarioEstado !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.estado', <any>clienteUsuarioEstado);
-        }
-        if (clienteUsuarioId !== undefined && clienteUsuarioId !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.id', <any>clienteUsuarioId);
-        }
-        if (clienteUsuarioIdentificacion !== undefined && clienteUsuarioIdentificacion !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.identificacion', <any>clienteUsuarioIdentificacion);
-        }
-        if (clienteUsuarioNombres !== undefined && clienteUsuarioNombres !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.nombres', <any>clienteUsuarioNombres);
-        }
-        if (clienteUsuarioNombreUsuario !== undefined && clienteUsuarioNombreUsuario !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.nombreUsuario', <any>clienteUsuarioNombreUsuario);
-        }
-        if (clienteUsuarioPassword !== undefined && clienteUsuarioPassword !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.password', <any>clienteUsuarioPassword);
-        }
-        if (clienteUsuarioProfesion !== undefined && clienteUsuarioProfesion !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.profesion', <any>clienteUsuarioProfesion);
-        }
-        if (clienteUsuarioRoles0Id !== undefined && clienteUsuarioRoles0Id !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.roles[0].id', <any>clienteUsuarioRoles0Id);
-        }
-        if (clienteUsuarioRoles0RolNombre !== undefined && clienteUsuarioRoles0RolNombre !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.roles[0].rolNombre', <any>clienteUsuarioRoles0RolNombre);
-        }
-        if (clienteUsuarioSexo !== undefined && clienteUsuarioSexo !== null) {
-            queryParameters = queryParameters.set('cliente.usuario.sexo', <any>clienteUsuarioSexo);
-        }
-        if (cuerpoFactura0Cantidad !== undefined && cuerpoFactura0Cantidad !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].cantidad', <any>cuerpoFactura0Cantidad);
-        }
-        if (cuerpoFactura0Descuento !== undefined && cuerpoFactura0Descuento !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].descuento', <any>cuerpoFactura0Descuento);
-        }
-        if (cuerpoFactura0IdCuerpo !== undefined && cuerpoFactura0IdCuerpo !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].idCuerpo', <any>cuerpoFactura0IdCuerpo);
-        }
-        if (cuerpoFactura0Iva !== undefined && cuerpoFactura0Iva !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].iva', <any>cuerpoFactura0Iva);
-        }
-        if (cuerpoFactura0ProductoCategoriaProducto !== undefined && cuerpoFactura0ProductoCategoriaProducto !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.categoriaProducto', <any>cuerpoFactura0ProductoCategoriaProducto);
-        }
-        if (cuerpoFactura0ProductoCodBarra !== undefined && cuerpoFactura0ProductoCodBarra !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.codBarra', <any>cuerpoFactura0ProductoCodBarra);
-        }
-        if (cuerpoFactura0ProductoCodigoRef !== undefined && cuerpoFactura0ProductoCodigoRef !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.codigoRef', <any>cuerpoFactura0ProductoCodigoRef);
-        }
-        if (cuerpoFactura0ProductoDescripcionProducto !== undefined && cuerpoFactura0ProductoDescripcionProducto !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.descripcionProducto', <any>cuerpoFactura0ProductoDescripcionProducto);
-        }
-        if (cuerpoFactura0ProductoEstadoProducto !== undefined && cuerpoFactura0ProductoEstadoProducto !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.estadoProducto', <any>cuerpoFactura0ProductoEstadoProducto);
-        }
-        if (cuerpoFactura0ProductoFechaExp !== undefined && cuerpoFactura0ProductoFechaExp !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.fechaExp', <any>cuerpoFactura0ProductoFechaExp);
-        }
-        if (cuerpoFactura0ProductoIdProducto !== undefined && cuerpoFactura0ProductoIdProducto !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.idProducto', <any>cuerpoFactura0ProductoIdProducto);
-        }
-        if (cuerpoFactura0ProductoInventarioProducto !== undefined && cuerpoFactura0ProductoInventarioProducto !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.inventarioProducto', <any>cuerpoFactura0ProductoInventarioProducto);
-        }
-        if (cuerpoFactura0ProductoNombreProducto !== undefined && cuerpoFactura0ProductoNombreProducto !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.nombreProducto', <any>cuerpoFactura0ProductoNombreProducto);
-        }
-        if (cuerpoFactura0ProductoPrecioProducto !== undefined && cuerpoFactura0ProductoPrecioProducto !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.precioProducto', <any>cuerpoFactura0ProductoPrecioProducto);
-        }
-        if (cuerpoFactura0ProductoProveedorEstado !== undefined && cuerpoFactura0ProductoProveedorEstado !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.estado', <any>cuerpoFactura0ProductoProveedorEstado);
-        }
-        if (cuerpoFactura0ProductoProveedorIdProveedor !== undefined && cuerpoFactura0ProductoProveedorIdProveedor !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.id_proveedor', <any>cuerpoFactura0ProductoProveedorIdProveedor);
-        }
-        if (cuerpoFactura0ProductoProveedorNombreComercialPro !== undefined && cuerpoFactura0ProductoProveedorNombreComercialPro !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.nombre_comercial_pro', <any>cuerpoFactura0ProductoProveedorNombreComercialPro);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioCelular !== undefined && cuerpoFactura0ProductoProveedorUsuarioCelular !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.celular', <any>cuerpoFactura0ProductoProveedorUsuarioCelular);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioCiudad !== undefined && cuerpoFactura0ProductoProveedorUsuarioCiudad !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.ciudad', <any>cuerpoFactura0ProductoProveedorUsuarioCiudad);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioDireccion !== undefined && cuerpoFactura0ProductoProveedorUsuarioDireccion !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.direccion', <any>cuerpoFactura0ProductoProveedorUsuarioDireccion);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioEmail !== undefined && cuerpoFactura0ProductoProveedorUsuarioEmail !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.email', <any>cuerpoFactura0ProductoProveedorUsuarioEmail);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioEstado !== undefined && cuerpoFactura0ProductoProveedorUsuarioEstado !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.estado', <any>cuerpoFactura0ProductoProveedorUsuarioEstado);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioId !== undefined && cuerpoFactura0ProductoProveedorUsuarioId !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.id', <any>cuerpoFactura0ProductoProveedorUsuarioId);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioIdentificacion !== undefined && cuerpoFactura0ProductoProveedorUsuarioIdentificacion !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.identificacion', <any>cuerpoFactura0ProductoProveedorUsuarioIdentificacion);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioNombres !== undefined && cuerpoFactura0ProductoProveedorUsuarioNombres !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.nombres', <any>cuerpoFactura0ProductoProveedorUsuarioNombres);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioNombreUsuario !== undefined && cuerpoFactura0ProductoProveedorUsuarioNombreUsuario !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.nombreUsuario', <any>cuerpoFactura0ProductoProveedorUsuarioNombreUsuario);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioPassword !== undefined && cuerpoFactura0ProductoProveedorUsuarioPassword !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.password', <any>cuerpoFactura0ProductoProveedorUsuarioPassword);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioProfesion !== undefined && cuerpoFactura0ProductoProveedorUsuarioProfesion !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.profesion', <any>cuerpoFactura0ProductoProveedorUsuarioProfesion);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioRoles0Id !== undefined && cuerpoFactura0ProductoProveedorUsuarioRoles0Id !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.roles[0].id', <any>cuerpoFactura0ProductoProveedorUsuarioRoles0Id);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioRoles0RolNombre !== undefined && cuerpoFactura0ProductoProveedorUsuarioRoles0RolNombre !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.roles[0].rolNombre', <any>cuerpoFactura0ProductoProveedorUsuarioRoles0RolNombre);
-        }
-        if (cuerpoFactura0ProductoProveedorUsuarioSexo !== undefined && cuerpoFactura0ProductoProveedorUsuarioSexo !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.proveedor.usuario.sexo', <any>cuerpoFactura0ProductoProveedorUsuarioSexo);
-        }
-        if (cuerpoFactura0ProductoRegSanitario !== undefined && cuerpoFactura0ProductoRegSanitario !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.regSanitario', <any>cuerpoFactura0ProductoRegSanitario);
-        }
-        if (cuerpoFactura0ProductoStockProducto !== undefined && cuerpoFactura0ProductoStockProducto !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].producto.stockProducto', <any>cuerpoFactura0ProductoStockProducto);
-        }
-        if (cuerpoFactura0Subtotal !== undefined && cuerpoFactura0Subtotal !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].subtotal', <any>cuerpoFactura0Subtotal);
-        }
-        if (cuerpoFactura0Total !== undefined && cuerpoFactura0Total !== null) {
-            queryParameters = queryParameters.set('cuerpoFactura[0].total', <any>cuerpoFactura0Total);
-        }
-        if (fecha !== undefined && fecha !== null) {
-            queryParameters = queryParameters.set('fecha', <any>fecha.toISOString());
-        }
-        if (idFactura !== undefined && idFactura !== null) {
-            queryParameters = queryParameters.set('id_factura', <any>idFactura);
-        }
-        if (tipoFactura !== undefined && tipoFactura !== null) {
-            queryParameters = queryParameters.set('tipo_factura', <any>tipoFactura);
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling saveFacturaUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -403,11 +132,16 @@ export class FacturaControllerService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
+            'application/json'
         ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
 
         return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/factura/saveFactura`,
             {
-                params: queryParameters,
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

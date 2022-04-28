@@ -11,8 +11,8 @@
  */
 import { Sucursal } from './sucursal';
 
-export interface Farmacia { 
-    idFarmacia?: number;
-    idProducto?: number;
-    sucursal?: Sucursal;
+export interface GenericResponseSucursal { 
+    message?: string;
+    object?: Sucursal;
+    status?: number;
 }

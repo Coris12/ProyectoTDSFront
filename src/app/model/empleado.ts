@@ -9,11 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Farmacia } from './farmacia';
 import { Usuario } from './usuario';
 
 export interface Empleado { 
     cargoEmple?: string;
     estado?: number;
+    farmacia?: Farmacia;
     idEmpleado?: number;
     usuario?: Usuario;
 }
