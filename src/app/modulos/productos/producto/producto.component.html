@@ -57,9 +57,9 @@
                     <td>{{productos.precioProducto}}</td>
                     <td>{{productos.regSanitario}}</td>
                     <td>{{productos.stockProducto}}</td>
-                    <td>{{productos.proveedor.idProveedor}}</td>
+                    <td>{{productos.proveedor.nombreComercialPro}}</td>
 
-                    <td><button pButton pRipple type="button" label="eliminar" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="eliminarProducto(idProducto)"></button></td>
+                    <td><button pButton pRipple type="button" label="eliminar" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="borrar(productos.idProducto)"></button></td>
 
                 </tr>
             </ng-template>
@@ -74,9 +74,10 @@
 
         <div class="form-group col">
             <label for="requisitos ">Categoria producto</label>
-            <div class="p-inputgroup">
-                <input type="text"  formControlName="categoriaProducto">
-            </div>
+            <p-dropdown
+            input type="text"  formControlName="categoriaProducto"
+            [options]="categoria" placeholder="Seleccione"></p-dropdown>
+            
         </div>
         <div class="form-group col">
             <label for="requisitos ">Codigo Barras</label>
@@ -137,7 +138,7 @@
         <div class="form-group col ">
             <label for="requisitos ">Proveedor</label>
             <div class="p-inputgroup">
-                <input type="text"  formControlName="proveedor">
+               
             </div>
         </div>
       

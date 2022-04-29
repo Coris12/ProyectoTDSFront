@@ -18,17 +18,17 @@ export class ProductoComponent implements OnInit {
     categoriaProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     codBarra: new FormControl(null, [Validators.nullValidator, Validators.required]),
     codigoRef: new FormControl(null, [Validators.nullValidator, Validators.required]),
-    descripcionProducto:new FormControl(null, [Validators.nullValidator, Validators.required]),
-    fechaExp:new FormControl(null, [Validators.nullValidator, Validators.required]),
-    inventarioProducto:new FormControl(null, [Validators.nullValidator, Validators.required]),
-    nombreProducto:new FormControl(null, [Validators.nullValidator, Validators.required]),
-    precioProducto:new FormControl(null, [Validators.nullValidator, Validators.required]),
+    descripcionProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    fechaExp: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    inventarioProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    nombreProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    precioProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     regSanitario: new FormControl(null, [Validators.nullValidator, Validators.required]),
-    stockProducto :new FormControl(null, [Validators.nullValidator, Validators.required]),
-    proveedor:new FormControl(null, [Validators.nullValidator, Validators.required]),
-    
-    
-  
+    stockProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
+   
+
+
+
   })
 
   //!! Buscar de la tabla
@@ -36,7 +36,7 @@ export class ProductoComponent implements OnInit {
   //! variables
   columnas: any[];
   productos: Producto[] = [];
-  producto: Producto= {};
+  producto: Producto = {};
   idProducto: number;
 
 
@@ -44,22 +44,31 @@ export class ProductoComponent implements OnInit {
   loading: boolean;
   totalRecords: number
   proveedor: Proveedor[];
+  codRefe:any;
 
   //! abre el dialogo de producto
-  productoDialog : boolean;
-
-  constructor(private productoController: ProductoControllerService,private messageService: MessageService) { }
+  productoDialog: boolean;
+  categoria: any[];
+  categorias: string;
+  constructor(private productoController: ProductoControllerService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-
+    this.categoria = [
+      { label: 'Medicamentos', value: 'Medicamentos' },
+      { label: 'Insumos', value: 'Insumos' },
+      { label: 'Odontologia', value: 'Odontologia' }
+    ];
+    this.categorias = this.categoria[0];
     this.cargarProductos();
+   
+
   }
 
   cargarProductos(event?: LazyLoadEvent): void {
     this.loading = true;
 
     setTimeout(() => {
-      this.productoController.listUsingGET1().subscribe(
+      this.productoController.searchUsingGET().subscribe(
         data => {
           this.productos = data;
           this.totalRecords = this.productos.length;
@@ -81,23 +90,21 @@ export class ProductoComponent implements OnInit {
       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto creado .' });
 
     },
-    error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+      error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
   }
 
+  //metodo de borrado logico
+  borrar(idProducto: number) {
+    this.productoController.deleteEmpleadoUsingPATCH1(idProducto).subscribe(
+      data => {
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'eliminar.' });
 
+      },
 
+      error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+    this.cargarProductos();
+  }
+  // fin del metodo
 
-
-eliminarProducto(idProducto:number) {
-  this.productoController
-      .deleteUsingDELETE1(idProducto)
-      .subscribe((data) => {
-          this.messageService.add({
-              severity: "success",
-              summary: " Eliminado Correctamente",
-          });
-          this.cargarProductos();
-      });
-}
 
 }
