@@ -44,22 +44,22 @@
                     <th>Opciones</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-productos>
+            <ng-template pTemplate="body" let-producto>
                 <tr>
-                    <td>{{productos.idProducto}}</td>
-                    <td>{{productos.nombreProducto}}</td>
-                    <td>{{productos.categoriaProducto}}</td>
-                    <td>{{productos.codBarra}}</td>
-                    <td>{{productos.codigoRef}}</td>
-                    <td>{{productos.descripcionProducto}}</td>
-                    <td>{{productos.fechaExp}}</td>
-                    <td>{{productos.inventarioProducto}}</td>
-                    <td>{{productos.precioProducto}}</td>
-                    <td>{{productos.regSanitario}}</td>
-                    <td>{{productos.stockProducto}}</td>
-                    <td>{{productos.proveedor.nombreComercialPro}}</td>
+                    <td>{{producto.idProducto}}</td>
+                    <td>{{producto.nombreProducto}}</td>
+                    <td>{{producto.categoriaProducto}}</td>
+                    <td>{{producto.codBarra}}</td>
+                    <td>{{producto.codigoRef}}</td>
+                    <td>{{producto.descripcionProducto}}</td>
+                    <td>{{producto.fechaExp}}</td>
+                    <td>{{producto.inventarioProducto}}</td>
+                    <td>{{producto.precioProducto}}</td>
+                    <td>{{producto.regSanitario}}</td>
+                    <td>{{producto.stockProducto}}</td>
+                    <td>{{producto.proveedor.id_proveedor}}</td>
 
-                    <td><button pButton pRipple type="button" label="eliminar" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="borrar(productos.idProducto)"></button></td>
+                    <td><button pButton pRipple type="button" label="eliminar" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="borrar(producto.idProducto)"></button></td>
 
                 </tr>
             </ng-template>

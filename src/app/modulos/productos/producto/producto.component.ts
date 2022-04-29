@@ -69,8 +69,10 @@ export class ProductoComponent implements OnInit {
 
     setTimeout(() => {
       this.productoController.searchUsingGET().subscribe(
+        
         data => {
           this.productos = data;
+          console.log(data);
           this.totalRecords = this.productos.length;
           this.loading = false;
         },
