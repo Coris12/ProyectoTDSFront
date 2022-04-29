@@ -110,22 +110,22 @@ export class ClienteControllerService {
     /**
      * Eliminado logico de cliente
      * 
-     * @param idempresa idempresa
+     * @param idCliente id_cliente
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteClienteUsingPATCH(idempresa: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteClienteUsingPATCH(idempresa: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteClienteUsingPATCH(idempresa: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteClienteUsingPATCH(idempresa: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteClienteUsingPATCH(idCliente: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteClienteUsingPATCH(idCliente: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteClienteUsingPATCH(idCliente: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteClienteUsingPATCH(idCliente: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (idempresa === null || idempresa === undefined) {
-            throw new Error('Required parameter idempresa was null or undefined when calling deleteClienteUsingPATCH.');
+        if (idCliente === null || idCliente === undefined) {
+            throw new Error('Required parameter idCliente was null or undefined when calling deleteClienteUsingPATCH.');
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (idempresa !== undefined && idempresa !== null) {
-            queryParameters = queryParameters.set('idempresa', <any>idempresa);
+        if (idCliente !== undefined && idCliente !== null) {
+            queryParameters = queryParameters.set('id_cliente', <any>idCliente);
         }
 
         let headers = this.defaultHeaders;
