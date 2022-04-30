@@ -74,6 +74,7 @@ export class ProductoComponent implements OnInit {
           this.productos = data;
           console.log(data);
           this.totalRecords = this.productos.length;
+          console.log(this.totalRecords);
           this.loading = false;
         },
         err => {

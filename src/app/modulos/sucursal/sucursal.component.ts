@@ -44,7 +44,7 @@ export class SucursalComponent implements OnInit {
   }
 
   guardarSucursal() {
-    this.sucursalController.createUsingPOST5(
+    this.sucursalController.guardarFacturaUsingPOST(
       this.sucursalForm.value
     ).subscribe(data => {
       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Convocatoria guardada.' });

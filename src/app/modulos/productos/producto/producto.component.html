@@ -1,147 +1,163 @@
 <app-header></app-header>
 <p-toast></p-toast>
-
-<div class="p-5 bg-light container mt-4">
-    <div class="col animated fadeIn">
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
             <div class="p-2">
-                <h1>Productos</h1>
+                <h1>Gestión de Insumos</h1>
+            </div>
+            <div class="ml-auto p-2">
+                <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay" class="p-button-rounded p-button-text red" (click)="cargarProductos()">
+                </button>
             </div>
         </div>
+
         <p-toolbar>
             <div class="p-toolbar-group-left">
                 <!-- (click)="showDialog()" -->
-                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text"
-                    label="Nuevo Producto" icon="pi pi-file-o" (click)="productoDialog=true"></button>
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text" label="Nuevo Producto" icon="pi pi-file-o" (click)="productoDialog=true"></button>
+                <!--  (click)="showCatalogosEliminados()" 
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Papelera" icon="pi pi-trash" (click)="papeleraConvocatorias=true"></button>
+-->
             </div>
             <div class="p-toolbar-group-right">
             </div>
         </p-toolbar>
-    </div>
-    <div class="row">
-        <p-table #dt [value]="productos" [paginator]="true" [rows]="10">
-            <ng-template pTemplate="caption">
-                <div class="flex">
-                    <span class="p-input-icon-left ml-auto">
+        <div class="content-section implementation mt-2">
+            <p-table #dt [value]="productos" [paginator]="true" responsiveLayout="scroll" [loading]="loading" [rows]="10" styleClass="p-datatable-gridlines" [globalFilterFields]="['codBarra', 'nombreProducto', 'id_proveedor']">
+                <ng-template pTemplate="caption">
+                    <div class="table-header">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Buscar convocatorias" />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Id </th>
+                        <th>Nombre Producto</th>
+                        <th>Categoria</th>
+                        <th>Codigo barras</th>
+                        <th>Codigo referencia</th>
+                        <th>Descripcion</th>
+                        <th>Fecha Expiracion</th>
+                        <th>Inventario</th>
+                        <th>Precio</th>
+                        <th>Registro Sanitario</th>
+                        <th>Stock</th>
+                        <th>Proveedor</th>
+                        <th>Opciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-producto>
+                    <tr>
+                        <td>{{producto.idProducto}}</td>
+                        <td>{{producto.nombreProducto}}</td>
+                        <td>{{producto.categoriaProducto}}</td>
+                        <td>{{producto.codBarra}}</td>
+                        <td>{{producto.codigoRef}}</td>
+                        <td>{{producto.descripcionProducto}}</td>
+                        <td>{{producto.fechaExp}}</td>
+                        <td>{{producto.inventarioProducto}}</td>
+                        <td>{{producto.precioProducto}}</td>
+                        <td>{{producto.regSanitario}}</td>
+                        <td>{{producto.stockProducto}}</td>
+                        <td>{{producto.proveedor.id_proveedor}}</td>
 
-                    </span>
-                </div>
-            </ng-template>
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Id </th>
-                    <th>Nombre Producto</th>
-                    <th>Categoria</th>
-                    <th>Codigo barras</th>
-                    <th>Codigo referencia</th>
-                    <th>Descripcion</th>
-                    <th>Fecha Expiracion</th>
-                    <th>Inventario</th>
-                    <th>Precio</th>
-                    <th>Registro Sanitario</th>
-                    <th>Stock</th>
-                    <th>Proveedor</th>
-                    <th>Opciones</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-producto>
-                <tr>
-                    <td>{{producto.idProducto}}</td>
-                    <td>{{producto.nombreProducto}}</td>
-                    <td>{{producto.categoriaProducto}}</td>
-                    <td>{{producto.codBarra}}</td>
-                    <td>{{producto.codigoRef}}</td>
-                    <td>{{producto.descripcionProducto}}</td>
-                    <td>{{producto.fechaExp}}</td>
-                    <td>{{producto.inventarioProducto}}</td>
-                    <td>{{producto.precioProducto}}</td>
-                    <td>{{producto.regSanitario}}</td>
-                    <td>{{producto.stockProducto}}</td>
-                    <td>{{producto.proveedor.id_proveedor}}</td>
+                        <td><button pButton pRipple type="button" label="eliminar" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="borrar(producto.idProducto)"></button>
+                        </td>
 
-                    <td><button pButton pRipple type="button" label="eliminar" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="borrar(producto.idProducto)"></button></td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En total hay {{totalRecords}} registros.
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="8">Ningun registro.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
 
-                </tr>
-            </ng-template>
-        </p-table>
     </div>
 </div>
 
-
-<p-dialog header="Crear Producto." [(visible)]="productoDialog" [modal]="true" [style]="{width: '50vw', height: '30vw'}"
-    [draggable]="false" [resizable]="false" class="p-fluid">
+<p-dialog header="Crear Producto." [(visible)]="productoDialog" [modal]="true" [style]="{width: '50vw', height: '30vw'}" [draggable]="false" [resizable]="false" class="p-fluid">
     <form [formGroup]="productoForm" (ngSubmit)="saveProducto()">
 
         <div class="form-group col">
             <label for="requisitos ">Categoria producto</label>
-            <p-dropdown
-            input type="text"  formControlName="categoriaProducto"
-            [options]="categoria" placeholder="Seleccione"></p-dropdown>
-            
+            <p-dropdown input type="text" formControlName="categoriaProducto" [options]="categoria" placeholder="Seleccione"></p-dropdown>
+
         </div>
         <div class="form-group col">
             <label for="requisitos ">Codigo Barras</label>
             <div class="p-inputgroup">
-                <input type="text"  formControlName="codBarra">
+                <input type="text" formControlName="codBarra">
             </div>
         </div>
         <div class="form-group col ">
             <label for="requisitos ">Codigo referencia</label>
             <div class="p-inputgroup">
-                <input type="text"  formControlName="codigoRef">
+                <input type="text" formControlName="codigoRef">
             </div>
         </div>
         <div class="form-group col ">
             <label for="requisitos ">Descripcion</label>
             <div class="p-inputgroup">
-                <input type="text"  formControlName="descripcionProducto">
+                <input type="text" formControlName="descripcionProducto">
             </div>
         </div>
         <div class="form-group col ">
             <label for="requisitos ">Fecha Expiracion</label>
             <div class="p-inputgroup">
-                <input type="date"  formControlName="fechaExp">
+                <input type="date" formControlName="fechaExp">
             </div>
         </div>
         <div class="form-group col ">
             <label for="requisitos ">Inventario</label>
             <div class="p-inputgroup">
-                <input type="number"  formControlName="inventarioProducto">
+                <input type="number" formControlName="inventarioProducto">
             </div>
         </div>
         <div class="form-group col ">
             <label for="requisitos ">Nombre producto</label>
             <div class="p-inputgroup">
-                <input type="text"  formControlName="nombreProducto">
+                <input type="text" formControlName="nombreProducto">
             </div>
         </div>
 
         <div class="form-group col ">
             <label for="requisitos ">Precio</label>
             <div class="p-inputgroup">
-                <input type="number"  formControlName="precioProducto">
+                <input type="number" formControlName="precioProducto">
             </div>
         </div>
         <div class="form-group col ">
             <label for="requisitos ">Registro Sanitario</label>
             <div class="p-inputgroup">
-                <input type="text"  formControlName="regSanitario">
+                <input type="text" formControlName="regSanitario">
             </div>
         </div>
-        
+
         <div class="form-group col ">
             <label for="requisitos ">Stock</label>
             <div class="p-inputgroup">
-                <input type="number"  formControlName="stockProducto">
+                <input type="number" formControlName="stockProducto">
             </div>
         </div>
         <div class="form-group col ">
             <label for="requisitos ">Proveedor</label>
             <div class="p-inputgroup">
-               
+
             </div>
         </div>
-      
+
         <div style="text-align:right">
             <p-button type="submit" icon="pi pi-check" label="Guardar" styleClass="p-button-text"></p-button>
         </div>
