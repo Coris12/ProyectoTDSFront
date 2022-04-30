@@ -26,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProductoControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -114,13 +114,13 @@ export class ProductoControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteEmpleadoUsingPATCH1(idProducto: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteEmpleadoUsingPATCH1(idProducto: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteEmpleadoUsingPATCH1(idProducto: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteEmpleadoUsingPATCH1(idProducto: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteProductoUsingPATCH(idProducto: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteProductoUsingPATCH(idProducto: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteProductoUsingPATCH(idProducto: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteProductoUsingPATCH(idProducto: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (idProducto === null || idProducto === undefined) {
-            throw new Error('Required parameter idProducto was null or undefined when calling deleteEmpleadoUsingPATCH1.');
+            throw new Error('Required parameter idProducto was null or undefined when calling deleteProductoUsingPATCH.');
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});

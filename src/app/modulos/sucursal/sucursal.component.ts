@@ -37,32 +37,37 @@ export class SucursalComponent implements OnInit {
   //! lista las convocatorias
   sucursal: Sucursal []= [];
 
-  user : Usuario []= [];
-  constructor(private sucursalController: SucursalControllerService, private messageService: MessageService, private authController: AuthControllerService) { }
+
+  constructor(private sucursalController: SucursalControllerService, private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.cargarSucursales();
   }
 
   guardarSucursal() {
     this.sucursalController.guardarFacturaUsingPOST(
       this.sucursalForm.value
     ).subscribe(data => {
-      this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Convocatoria guardada.' });
+      this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Sucursal creada con exito.' });
 
     },
     error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
   }
 
   cargarSucursales() {
-    this.authController.listaUsingGET().subscribe(
+    this.sucursalController.listaUsingGET1().subscribe(
       data => {
-        this.user = data;
+        this.sucursal = data;
         this.totalRecords = this.sucursal.length;
       },
       err => {
         this.messageService.add({ severity: 'danger', summary: 'Error', detail: err });
       }
     );
+  }
+
+  borrarSucursal(){
+
   }
 
 }

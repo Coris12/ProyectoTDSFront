@@ -98,7 +98,7 @@ export class ProductoComponent implements OnInit {
 
   //metodo de borrado logico
   borrar(idProducto: number) {
-    this.productoController.deleteEmpleadoUsingPATCH1(idProducto).subscribe(
+    this.productoController.deleteProductoUsingPATCH(idProducto).subscribe(
       data => {
         this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'eliminar.' });
 

@@ -1,58 +1,77 @@
 <app-header></app-header>
-<div class="p-5 bg-light container mt-4">
-    <div class="col animated fadeIn">
+<p-toast></p-toast>
+
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
             <div class="p-2">
-                <h1>Lista de usuarios</h1>
+                <h1>Gestión de sucursales</h1>
             </div>
             <div class="ml-auto p-2">
                 <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay" class="p-button-rounded p-button-text red" (click)="cargarUsuarios()">
                 </button>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <p-table #dt [value]="usuarios" [paginator]="true" [rows]="10" styleClass="p-datatable-responsive-demo p-datatable-lg p-datatable-striped" [loading]="loading" [totalRecords]="totalRecords" [rowsPerPageOptions]="[10, 20, 30]" (onLazyLoad)="cargarUsuarios($event)"
-            [globalFilterFields]="['nombre', 'id']">
-            <ng-template pTemplate="caption">
-                <div class="flex">
-                    <button pButton label="Limpiar campos" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
-                    <span class="p-input-icon-left ml-auto">
+        <p-toolbar>
+            <div class="p-toolbar-group-left">
+                <!-- (click)="showDialog()" -->
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text" label="Crear" icon="pi pi-plus" (click)="dialogo=true"></button>
+                <!--  (click)="showCatalogosEliminados()" 
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Papelera" icon="pi pi-trash" (click)="papeleraConvocatorias=true"></button>
+-->
+            </div>
+            <div class="p-toolbar-group-right">
+            </div>
+        </p-toolbar>
+        <div class="content-section implementation">
+            <p-table #dt [value]="usuarios" [paginator]="true" [rows]="10" [scrollable]="true" scrollHeight="400px" styleClass="p-datatable-responsive-demo p-datatable-lg p-datatable-striped" [loading]="loading" [totalRecords]="totalRecords" [rowsPerPageOptions]="[10, 20, 30]"
+                (onLazyLoad)="cargarUsuarios($event)" [globalFilterFields]="['nombres', 'identificacion']" responsiveLayout="scroll">
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        <button pButton label="Limpiar campos" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+                        <span class="p-input-icon-left ml-auto">
                         <i class="pi pi-search"></i>
                         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Buscar usuario" />
                     </span>
-                </div>
-            </ng-template>
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Cedula/Ruc</th>
-                    <th>Nombres</th>
-                    <th>Usuario</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    <th>Opciones</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-usuarios>
-                <tr>
-                    <td>{{usuarios.id}}</td>
-                    <td>{{usuarios.nombre}}</td>
-                    <td>{{usuarios.nombreUsuario}}</td>
-                    <td>{{usuarios.email}}</td>
-                    <td>{{usuarios.roles[0].rolNombre}}</td>
-                    <td><button pButton pRipple type="button" label="Editar" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="editarRoles(usuarios)"></button></td>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage">
-
-                <td colspan="2" style="text-align:center">Roles no encontrados.</td>
-
-            </ng-template>
-        </p-table>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Identificacion</th>
+                        <th>Nombres</th>
+                        <th>Usuario</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Opciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-usuarios>
+                    <tr>
+                        <td>{{usuarios.identificacion}}</td>
+                        <td>{{usuarios.nombres}}</td>
+                        <td>{{usuarios.nombreUsuario}}</td>
+                        <td>{{usuarios.email}}</td>
+                        <td>{{usuarios.roles[0].rolNombre}}</td>
+                        <td><button pButton pRipple type="button" label="Editar" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="editarRoles(usuarios)"></button></td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En total hay {{totalRecords}} registros.
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="8">Ningun registro.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
     </div>
 </div>
 
-<p-dialog header="Gestion de roles" [(visible)]="dialogo" [style]="{width: '25vw', height: '50vh'}">
+
+<p-dialog header="Gestion de roles" [(visible)]="dialogo" [style]="{width: '50vw'}">
     <label for="requisitos" class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0 p-fluid">Rol del usuario:</label>
     <p-dropdown [options]="roles" [(ngModel)]="nuevoRol"></p-dropdown>
     <ng-template pTemplate="footer">

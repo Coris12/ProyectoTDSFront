@@ -114,13 +114,13 @@ export class ProveedorControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteEmpleadoUsingPATCH2(idProveedor: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteEmpleadoUsingPATCH2(idProveedor: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteEmpleadoUsingPATCH2(idProveedor: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteEmpleadoUsingPATCH2(idProveedor: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteEmpleadoUsingPATCH1(idProveedor: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteEmpleadoUsingPATCH1(idProveedor: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteEmpleadoUsingPATCH1(idProveedor: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteEmpleadoUsingPATCH1(idProveedor: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (idProveedor === null || idProveedor === undefined) {
-            throw new Error('Required parameter idProveedor was null or undefined when calling deleteEmpleadoUsingPATCH2.');
+            throw new Error('Required parameter idProveedor was null or undefined when calling deleteEmpleadoUsingPATCH1.');
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});

@@ -46,6 +46,7 @@ import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
 import {CarouselModule} from 'primeng/carousel';
 import {GMapModule} from 'primeng/gmap';
+import {InputMaskModule} from 'primeng/inputmask';
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthControllerService } from './api/authController.service';
@@ -94,6 +95,7 @@ import { ProductoComponent } from './modulos/productos/producto/producto.compone
     Ng2SearchPipeModule,
     FileUploadModule,
     // *primeng
+    InputMaskModule,
     SelectButtonModule,
     CarouselModule,
     GMapModule,

@@ -4,7 +4,6 @@ export * from './empleado';
 export * from './factura';
 export * from './farmacia';
 export * from './genericResponseListFactura';
-export * from './genericResponseListSucursal';
 export * from './genericResponseSucursal';
 export * from './genericResponseobject';
 export * from './genericResponsestring';

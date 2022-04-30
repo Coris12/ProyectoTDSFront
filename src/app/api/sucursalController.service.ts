@@ -17,7 +17,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { GenericResponseListSucursal } from '../model/genericResponseListSucursal';
 import { GenericResponseSucursal } from '../model/genericResponseSucursal';
 import { GenericResponsestring } from '../model/genericResponsestring';
 import { Sucursal } from '../model/sucursal';
@@ -29,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class SucursalControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -163,15 +162,15 @@ export class SucursalControllerService {
     }
 
     /**
-     * Listar todas las sucursales
+     * Muestra la lista de usuarios en el sistema
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listAllSucursalesUsingGET(observe?: 'body', reportProgress?: boolean): Observable<GenericResponseListSucursal>;
-    public listAllSucursalesUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseListSucursal>>;
-    public listAllSucursalesUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseListSucursal>>;
-    public listAllSucursalesUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listaUsingGET1(observe?: 'body', reportProgress?: boolean): Observable<Array<Sucursal>>;
+    public listaUsingGET1(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Sucursal>>>;
+    public listaUsingGET1(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Sucursal>>>;
+    public listaUsingGET1(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -193,7 +192,7 @@ export class SucursalControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<GenericResponseListSucursal>('get',`${this.basePath}/sucursal/getAllSucursales`,
+        return this.httpClient.request<Array<Sucursal>>('get',`${this.basePath}/sucursal/listaUsuarios`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Lista Usuarios',
         icon: 'pi pi-fw pi-list',
-        routerLink: ['/'],
+        routerLink: ['/lista-usuarios'],
         visible: this.isLogged && this.isAdmin
       },
       //-! fin opciones para el administrador 
