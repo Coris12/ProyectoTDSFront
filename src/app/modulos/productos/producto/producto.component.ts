@@ -26,7 +26,7 @@ export class ProductoComponent implements OnInit {
    nombreProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     precioProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     regSanitario: new FormControl(null, [Validators.nullValidator, Validators.required]),
-    stock: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    stock_producto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     proveedornombre: new FormControl(null, [Validators.nullValidator, Validators.required]),
   })
 //variables producto
@@ -34,9 +34,9 @@ export class ProductoComponent implements OnInit {
   categoriaProd: any//<---- guardeles asi
   codigo: string
 
-
   //!! Buscar de la tabla
   @ViewChild('dt') table: Table;
+
   //! variables
   columnas: any[];
   productos: Producto[] = [];
@@ -83,7 +83,7 @@ export class ProductoComponent implements OnInit {
     var codigo2: any
     var letra1, letra2, letra3, letra4: string
     var i: number = 0
-    console.log(this.categoriaProd);//cosa ahi de una le puedes cojer el valor que se guarda 
+    console.log(this.categoriaProd); 
   //  console.log(this.proveedor_select);
     for (let datos of this.categoriaProd) {
       i++
@@ -138,16 +138,11 @@ export class ProductoComponent implements OnInit {
 
 
   saveProducto() {
-    //le guardas asi
-
-
-
+   
     // aqui iria     proveedor service.listar(  )   for (let datos of data)              if(datos.nombre_provee == productoform(traer solo proveedor nombre nose como sera de sacar del form))    y le guatdas el id
     this.productoController.createUsingPOST3(
+     
       this.productoForm.value
-      
-      //ya si le haces con el nuevo producto le pones aqui en ves del producform this.nuevoproducto//
-
     ).subscribe(data => {
       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto creado .' });
 
@@ -171,12 +166,14 @@ export class ProductoComponent implements OnInit {
 
 //metodo etitar
 editar(producto:Producto){
-  this.productoController.updateUsingPUT1(producto,producto.idProducto)
-  .subscribe(data=>{
+  this.productoController.updateUsingPUT1(producto,producto.idProducto).subscribe(
+    data=>{
     this.productos=data;
-    this.productoForm.value
+    
   })
 }
+
+
 
 
 }

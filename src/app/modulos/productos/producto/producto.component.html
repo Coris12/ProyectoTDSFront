@@ -121,7 +121,7 @@
         <div class="form-group col ">
             <label for="requisitos ">Codigo referencia</label>
             <div class="p-inputgroup">
-                <input type="text" value={{codigo}} formControlName="codigoRef">
+                <input type="text" [(ngModel)]="codigo" value={{codigo}} formControlName="codigoRef">
             </div>
         </div>
         <div class="form-group col ">
@@ -165,7 +165,7 @@
         <div class="form-group col ">
             <label for="requisitos ">Stock</label>
             <div class="p-inputgroup">
-                <input type="number" formControlName="stock">
+                <input type="text" formControlName="stock_producto">
             </div>
         </div>
         <div class="form-group col ">
