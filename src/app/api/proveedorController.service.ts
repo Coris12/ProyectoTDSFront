@@ -148,7 +148,7 @@ export class ProveedorControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('patch',`${this.basePath}/proveedor/deleteProveedor/${encodeURIComponent(String(idEmpleado))}`,
+        return this.httpClient.request<any>('patch',`${this.basePath}/proveedor/deleteProveedor/${encodeURIComponent(String(idProveedor))}`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
