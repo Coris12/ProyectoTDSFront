@@ -65,7 +65,14 @@ export class HeaderComponent implements OnInit {
       },
 
       //! fin opciones para el paciente 
-
+      
+      //! opciones para el proveedor
+      {
+        label: 'Gestion de proveedores',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/proveedores'],
+        visible: this.isLogged && this.isAdmin
+      },
       {
         label: 'Cerrar Sesión',
         icon: 'pi pi-fw pi-user-minus',
@@ -74,7 +81,9 @@ export class HeaderComponent implements OnInit {
         command: () => {
           this.onLogOut();
         },
-      }
+      },
+
+
     ];
 
   }

@@ -63,6 +63,8 @@ import { SucursalControllerService } from './api/sucursalController.service';
 import { SucursalComponent } from './modulos/sucursal/sucursal.component';
 import { interceptorProvider } from './interceptor/prod-interceptor.service';
 import { ProductoComponent } from './modulos/productos/producto/producto.component';
+import { ProveedorComponent } from './modulos/proveedor/proveedor.component';
+import { ProveedorControllerService } from './api/proveedorController.service';
 
 
 
@@ -81,6 +83,7 @@ import { ProductoComponent } from './modulos/productos/producto/producto.compone
     UbicacionesComponent,
     SucursalComponent,
     ProductoComponent,
+    ProveedorComponent,
 
   ],
   imports: [
@@ -139,7 +142,8 @@ import { ProductoComponent } from './modulos/productos/producto/producto.compone
     FacturaControllerService,
     FaramaciaControllerService,
     ProductoControllerService,
-    SucursalControllerService
+    SucursalControllerService,
+    ProveedorControllerService
   ],
   bootstrap: [AppComponent]
 })

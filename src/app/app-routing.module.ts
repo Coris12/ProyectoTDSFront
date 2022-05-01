@@ -22,6 +22,7 @@ import { RegistrarUserComponent } from './modulos/user/componentes/registrar-use
 import { UbicacionesComponent } from './modulos/componentes/ubicaciones/ubicaciones.component';
 import { SucursalComponent } from './modulos/sucursal/sucursal.component';
 import { ProductoComponent } from './modulos/productos/producto/producto.component';
+import { ProveedorComponent } from './modulos/proveedor/proveedor.component';
 
 
 
@@ -39,6 +40,8 @@ const routes: Routes = [
   // { path: 'nuevo-pro', component: RegistrarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   { path: 'lista-usuarios', component: UsuariosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lista-productos', component: ProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  
+  { path: 'proveedores', component: ProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
   { path: 'lista-sucursales', component: SucursalComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'editar/:id', component: EditarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
