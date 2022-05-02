@@ -15,6 +15,7 @@ export interface Producto {
     categoriaProducto?: string;
     codBarra?: string;
     codigoRef?: string;
+    costoPromedio?: number;
     descripcionProducto?: string;
     estadoProducto?: number;
     fechaExp?: string;
@@ -24,5 +25,6 @@ export interface Producto {
     precioProducto?: number;
     proveedor?: Proveedor;
     regSanitario?: string;
-    stockProducto?: number;
+    stock?: number;
+    ultimoCosto?: number;
 }

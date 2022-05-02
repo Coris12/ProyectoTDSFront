@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductoControllerService } from 'src/app/api/productoController.service';
 import { ProveedorControllerService } from 'src/app/api/proveedorController.service';
@@ -23,14 +23,17 @@ export class ProductoComponent implements OnInit {
     descripcionProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     fechaExp: new FormControl(null, [Validators.nullValidator, Validators.required]),
     inventarioProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
-   nombreProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    nombreProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     precioProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     regSanitario: new FormControl(null, [Validators.nullValidator, Validators.required]),
-    stock_producto: new FormControl(null, [Validators.nullValidator, Validators.required]),
-    proveedornombre: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    stockPro: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    proveedor: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    costoPromedio: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    ultimoCosto: new FormControl(null, [Validators.nullValidator, Validators.required]),
   })
-//variables producto
- 
+  //variables producto
+  categoria: any[];
+
   categoriaProd: any//<---- guardeles asi
   codigo: string
 
@@ -41,50 +44,44 @@ export class ProductoComponent implements OnInit {
   columnas: any[];
   productos: Producto[] = [];
   produc: any[];
-  
-  listaproveedores: any[] = []
+  proveedores: Proveedor[] = [];
 
   // * lazy load
   loading: boolean;
   totalRecords: number
   proveedor: Proveedor[];
   codRefe: any;
-  proveedor_select: any
+
 
   //! abre el dialogo de producto
   productoDialog: boolean;
-  categoria: any[];
-  categorias: string;
-  constructor(private productoController: ProductoControllerService,
-    private messageService: MessageService) { }
+
+  constructor(private productoController: ProductoControllerService, private proveedorController: ProveedorControllerService,
+    private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.categoria = [
       { label: 'MEDICAMENTOS', value: 'MEDICAMENTOS' },
       { label: 'INSUMOS', value: 'INSUMOS' },
-      { label: 'ODONTOLOGIA', value: 'ODONTOLOGIA' }
+      { label: 'ODONTOLOGIA', value: 'ODONTOLOGIA' },
+      { label: 'EQUIPOS', value: 'EQUIPOS' }
     ];
 
     this.productoController.searchUsingGET().subscribe((data: any) => {
       this.produc = data;
-      for (let datos of data) {
-        this.listaproveedores.push(datos.proveedor)
-      }
       console.log(this.produc);
-      console.log(this.listaproveedores);
-
-
     })
 
     this.cargarProductos();
+    this.cargarProveedores();
   }
 
   generarcodigo() {
     var codigo2: any
     var letra1, letra2, letra3, letra4: string
     var i: number = 0
-    console.log(this.categoriaProd); 
-  //  console.log(this.proveedor_select);
+    console.log(this.categoriaProd);
+    //  console.log(this.proveedor_select);
     for (let datos of this.categoriaProd) {
       i++
       //console.log(datos);
@@ -133,47 +130,83 @@ export class ProductoComponent implements OnInit {
 
       );
     }, 1000);
-
   }
 
-
-  saveProducto() {
+  //metodo de guardar
+  async saveProducto() {
+    console.log(this.productoForm.value)
+    if (this.productoForm.value?.idProducto !== null) {
+      this.productoController.updateUsingPUT1(
+        this.productoForm.value,
+        this.productoForm.value?.producto.idProducto,
+      ).subscribe(data => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Confirmed',
+          detail: data.object
+        });
+      });
+    } else {
    
-    // aqui iria     proveedor service.listar(  )   for (let datos of data)              if(datos.nombre_provee == productoform(traer solo proveedor nombre nose como sera de sacar del form))    y le guatdas el id
-    this.productoController.createUsingPOST3(
-     
-      this.productoForm.value
+   await this.productoController.createUsingPOST3(
+      this.productoForm.value,
+      this.productoForm.value?.proveedor.idProveedor,
     ).subscribe(data => {
       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto creado .' });
-
     },
       error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+    this.productoDialog = false;
+    this.productoForm.setValue({
+      idProducto: null,
+      categoriaProducto: null,
+      codBarra: null,
+      codigoRef: null,
+      descripcionProducto: null,
+      fechaExp: null,
+      nombreProducto: null,
+      inventarioProducto: null,
+      precioProducto: null,
+      regSanitario: null,
+      stockPro: null,
+      costoPromedio: null,
+      ultimoCosto: null,
+      proveedor: null
+    })
   }
+  }
+  //fin del metodo 
 
   //metodo de borrado logico
   borrar(idProducto: number) {
-    this.productoController.deleteProductoUsingPATCH(idProducto).subscribe(
-      data => {
-        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'eliminar.' });
 
-      },
-
-      error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
-    this.cargarProductos();
+    this.confirmationService.confirm({
+      message: 'Esta seguro de eliminar el proveedor?',
+      accept: () => {
+        //Actual logic to perform a confirmation
+        this.productoController.deleteProductoUsingPATCH(idProducto).subscribe(
+          data => {
+            this.messageService.add({ severity: 'success', summary: 'Producto Eliminado', detail: 'Eliminado correctamente.' });
+            setTimeout(() => {
+              this.cargarProductos();
+            }, 1000);
+          },
+          error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+      }
+    });
   }
   // fin del metodo
 
 
-//metodo etitar
-editar(producto:Producto){
-  this.productoController.updateUsingPUT1(producto,producto.idProducto).subscribe(
-    data=>{
-    this.productos=data;
-    
-  })
+  //metodo cargar proveedores
+  cargarProveedores(): void {
+    this.proveedorController.listUsingGET2().subscribe(
+      data => {
+        this.proveedores = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }
-
-
-
-
-}
+// fin del metodo
