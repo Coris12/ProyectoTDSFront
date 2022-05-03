@@ -26,7 +26,7 @@ export class ProductoComponent implements OnInit {
     nombreProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     precioProducto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     regSanitario: new FormControl(null, [Validators.nullValidator, Validators.required]),
-    stockPro: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    stock: new FormControl(null, [Validators.nullValidator, Validators.required]),
     proveedor: new FormControl(null, [Validators.nullValidator, Validators.required]),
     costoPromedio: new FormControl(null, [Validators.nullValidator, Validators.required]),
     ultimoCosto: new FormControl(null, [Validators.nullValidator, Validators.required]),
@@ -34,6 +34,7 @@ export class ProductoComponent implements OnInit {
   //variables producto
   categoria: any[];
 
+  stock:any
   categoriaProd: any//<---- guardeles asi
   codigo: string
 
@@ -132,8 +133,8 @@ export class ProductoComponent implements OnInit {
     }, 1000);
   }
 
-   updateResponsablePPP(producto: Producto) {
-    this.productoController.getByIdUsingGET1(producto.idProducto)
+   updateProducto(idProducto:number) {
+    this.productoController.getByIdUsingGET1(idProducto)
       .subscribe( produc => {
         console.log (produc.idProducto)
         this.productoForm.setValue({
@@ -147,13 +148,14 @@ export class ProductoComponent implements OnInit {
           inventarioProducto: produc.inventarioProducto,
           precioProducto: produc.precioProducto,
           regSanitario: produc.regSanitario,
-          stockPro: produc.stock,
+          stock: produc.stock,
           costoPromedio: produc.costoPromedio,
           ultimoCosto: produc.ultimoCosto,
           proveedor: produc.proveedor,
         });
       });
       this.productoDialog = true;
+      
   }
 
   //metodo de guardar
@@ -166,10 +168,11 @@ export class ProductoComponent implements OnInit {
       ).subscribe(data => {
         this.messageService.add({
           severity: 'info',
-          summary: 'Confirmed',
+          summary: 'Producto Actualizado',
           detail: data.object
         });
         this.productoDialog = false;
+        this.cargarProductos();
       });
     } else {
     this.productoController.createUsingPOST3(
@@ -179,6 +182,7 @@ export class ProductoComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto creado .' });
       },
         error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+        
       this.productoDialog = false;
       this.productoForm.setValue({
         idProducto: null,
@@ -191,25 +195,26 @@ export class ProductoComponent implements OnInit {
         inventarioProducto: null,
         precioProducto: null,
         regSanitario: null,
-        stockPro: null,
+        stock: null,
         costoPromedio: null,
         ultimoCosto: null,
         proveedor: null
       })
+      
     }
   }
   //fin del metodo 
 
   //metodo de borrado logico
-  borrar(idProducto: number) {
+  borrarProducto(idProducto: number): void {
 
     this.confirmationService.confirm({
-      message: 'Esta seguro de eliminar el proveedor?',
+      message: 'Esta seguro de eliminar el producto?',
       accept: () => {
         //Actual logic to perform a confirmation
         this.productoController.deleteProductoUsingPATCH(idProducto).subscribe(
           data => {
-            this.messageService.add({ severity: 'success', summary: 'Producto Eliminado', detail: 'Eliminado correctamente.' });
+            this.messageService.add({ severity: 'success', summary: 'Producto Eliminado', detail: 'eliminar.' });
             setTimeout(() => {
               this.cargarProductos();
             }, 1000);
@@ -217,6 +222,7 @@ export class ProductoComponent implements OnInit {
           error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
       }
     });
+
   }
   // fin del metodo
 

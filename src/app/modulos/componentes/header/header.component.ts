@@ -15,13 +15,14 @@ export class HeaderComponent implements OnInit {
   isLogged = false;
   isAdmin = false;
   isPaciente = false;
-
+  isFarmacia = false;
   constructor(private tokenService: TokenService) { }
 
   ngOnInit() {
     this.isLogged = this.tokenService.isLogged();
     this.isAdmin = this.tokenService.isAdmin();
     this.isPaciente = this.tokenService.isPaciente();
+    this.isFarmacia = this.tokenService.isFarmacia();
     //items del menu
     this.items = [
       {
@@ -51,7 +52,7 @@ export class HeaderComponent implements OnInit {
         label: 'Productos',
         icon: 'pi pi-fw pi-list',
         routerLink: ['/lista-productos'],
-        visible: this.isLogged && this.isAdmin
+        visible: this.isLogged && this.isFarmacia
       },
 
       //! fin opciones para el paciente 

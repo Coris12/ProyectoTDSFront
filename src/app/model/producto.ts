@@ -25,6 +25,6 @@ export interface Producto {
     precioProducto?: number;
     proveedor?: Proveedor;
     regSanitario?: string;
-    stock?: number;
+    stock?: string;
     ultimoCosto?: number;
 }

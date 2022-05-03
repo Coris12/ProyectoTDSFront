@@ -1,5 +1,7 @@
 <app-header></app-header>
 <p-toast></p-toast>
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
 <div class="animated fadeIn mt-4">
     <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
@@ -38,7 +40,7 @@
                     <tr>
                         <th>Id </th>
                         <th>Nombre Producto</th>
-                        <th>Categoria</th>
+                        <th>Categoria</th> 
                         <th>Codigo barras</th>
                         <th>Codigo referencia</th>
                         <th>Descripcion</th>
@@ -70,8 +72,8 @@
                         <td>{{producto.ultimoCosto}}</td>
                         <td>{{producto.proveedor.nombre_comercial_pro}}</td>
 
-                        <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrar(producto.idProducto)"></button>
-                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="updateResponsablePPP(producto)"></button>
+                        <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrarProducto(producto.idProducto)"></button>
+                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="updateProducto(producto.idProducto)"></button>
                         </td>
 
                     </tr>
@@ -96,6 +98,7 @@
     <form [formGroup]="productoForm" (ngSubmit)="saveProducto()">
 
         <div class="form-group mt-2">
+            <label for="requisitos ">Categoria producto</label>
             <p-dropdown inputId="web" [(ngModel)]="categoriaProd" [options]="categoria" formControlName="categoriaProducto" placeholder="Seleccione la categoria del producto" (onChange)="generarcodigo()">
                 <ng-template let-option pTemplate="item">
                     <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
@@ -106,14 +109,14 @@
         </div>
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
-                
+                <label for="requisitos ">Codigo Barras</label>
                 <input type="text" pInputText placeholder="Codigo Barras" formControlName="codBarra">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
-               
+                <label for="requisitos ">Codigo Referencia</label>
                 <input type="text" pInputText placeholder="Codigo Referencia" [(ngModel)]="codigo" value={{codigo}}
                     formControlName="codigoRef">
             </span>
@@ -121,13 +124,14 @@
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
-                
+                <label for="requisitos ">Descripcion</label>
                 <input type="text" pInputText placeholder="Descripcion" formControlName="descripcionProducto">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
+                <label for="requisitos ">Fecha de expiracion</label>
                 <p-inputMask mask="99/99/9999" formControlName="fechaExp" placeholder=" Fecha Expiracion 99/99/9999"
                     slotChar="mm/dd/yyyy"></p-inputMask>
             </span>
@@ -135,48 +139,55 @@
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
-                
+                <label for="requisitos ">Inventario</label>
                 <input type="number" pInputText placeholder="Inventario" formControlName="inventarioProducto">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
+                <label for="requisitos ">"Nombre del producto</label>
                 <input type="text" pInputText placeholder="Nombre del producto" formControlName="nombreProducto">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
+                <label for="requisitos ">Precio</label>
                 <input type="number" pInputText placeholder="Precio" formControlName="precioProducto">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
+                <label for="requisitos ">Registro Sanitario</label>
                 <input type="text" pInputText placeholder="Registro Sanitario" formControlName="regSanitario">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
-                <input type="number" pInputText placeholder="Stock del Producto" formControlName="stockPro">
+                <label for="requisitos ">Stock del Producto</label>
+                <input type="number" pInputText placeholder="Stock del Producto" formControlName="stock">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
+                <label for="requisitos ">Costo Promedio</label>
                 <input type="number" pInputText placeholder="Costo Promedio" formControlName="costoPromedio">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
+                <label for="requisitos ">Ultimo costo</label>
                 <input type="number" pInputText placeholder="Ultimo costo" formControlName="ultimoCosto">
             </span>
         </div>
 
         <div class="form-group col ">
+            <label for="requisitos ">Proveedor</label>
             <p-dropdown [options]="proveedores" formControlName="proveedor" placeholder="Seleccione el proveedor" optionLabel="nombre_comercial_pro" [style]="{ width: '40vw' }" [showClear]="true"></p-dropdown>
 
         </div>
