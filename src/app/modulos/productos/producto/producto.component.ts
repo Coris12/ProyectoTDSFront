@@ -132,47 +132,71 @@ export class ProductoComponent implements OnInit {
     }, 1000);
   }
 
+   updateResponsablePPP(producto: Producto) {
+    this.productoController.getByIdUsingGET1(producto.idProducto)
+      .subscribe( produc => {
+        console.log (produc.idProducto)
+        this.productoForm.setValue({
+          idProducto: produc.idProducto,
+          categoriaProducto: produc.categoriaProducto,
+          codBarra: produc.codBarra,
+          codigoRef: produc.codigoRef,
+          descripcionProducto: produc.descripcionProducto,
+          fechaExp: produc.fechaExp,
+          nombreProducto: produc.nombreProducto,
+          inventarioProducto: produc.inventarioProducto,
+          precioProducto: produc.precioProducto,
+          regSanitario: produc.regSanitario,
+          stockPro: produc.stock,
+          costoPromedio: produc.costoPromedio,
+          ultimoCosto: produc.ultimoCosto,
+          proveedor: produc.proveedor,
+        });
+      });
+      this.productoDialog = true;
+  }
+
   //metodo de guardar
-  async saveProducto() {
+   saveProducto() {
     console.log(this.productoForm.value)
     if (this.productoForm.value?.idProducto !== null) {
       this.productoController.updateUsingPUT1(
         this.productoForm.value,
-        this.productoForm.value?.producto.idProducto,
+        this.productoForm.value?.idProducto,
       ).subscribe(data => {
         this.messageService.add({
           severity: 'info',
           summary: 'Confirmed',
           detail: data.object
         });
+        this.productoDialog = false;
       });
     } else {
-   
-   await this.productoController.createUsingPOST3(
-      this.productoForm.value,
-      this.productoForm.value?.proveedor.idProveedor,
-    ).subscribe(data => {
-      this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto creado .' });
-    },
-      error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
-    this.productoDialog = false;
-    this.productoForm.setValue({
-      idProducto: null,
-      categoriaProducto: null,
-      codBarra: null,
-      codigoRef: null,
-      descripcionProducto: null,
-      fechaExp: null,
-      nombreProducto: null,
-      inventarioProducto: null,
-      precioProducto: null,
-      regSanitario: null,
-      stockPro: null,
-      costoPromedio: null,
-      ultimoCosto: null,
-      proveedor: null
-    })
-  }
+    this.productoController.createUsingPOST3(
+        this.productoForm.value,
+        this.productoForm.value?.proveedor.idProveedor,
+      ).subscribe(data => {
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto creado .' });
+      },
+        error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+      this.productoDialog = false;
+      this.productoForm.setValue({
+        idProducto: null,
+        categoriaProducto: null,
+        codBarra: null,
+        codigoRef: null,
+        descripcionProducto: null,
+        fechaExp: null,
+        nombreProducto: null,
+        inventarioProducto: null,
+        precioProducto: null,
+        regSanitario: null,
+        stockPro: null,
+        costoPromedio: null,
+        ultimoCosto: null,
+        proveedor: null
+      })
+    }
   }
   //fin del metodo 
 
