@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isFarmacia
       },
 
-      //! fin opciones para el paciente 
+      //! fin opciones para el producto 
 
       //! opciones sucursal
       {

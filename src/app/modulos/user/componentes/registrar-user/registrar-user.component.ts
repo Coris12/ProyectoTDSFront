@@ -52,7 +52,7 @@ export class RegistrarUserComponent implements OnInit {
        this.ciudad,
       this.nombreUsuario,
       this.password,
-      this.profesion,
+     
       );
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
