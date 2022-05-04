@@ -15,15 +15,18 @@ import { AuthService } from '../../service/auth.service';
 export class RegistrarUserComponent implements OnInit {
 
   nuevoUsuario: NuevoUsuario;
-  identificacion?: string;
-  nombres?: string;
-  direccion?: string;
-  celular?: string;
-  sexo?:string;
-  email?:string;
-  ciudad?:string;
-  nombreUsuario?: string;
-  password?: string;
+
+  celular: string;
+  ciudad: string;
+  direccion: string;
+  email: string;
+  estado: number;
+  identificacion: string;
+  nombreUsuario: string;
+  nombres: string;
+  password: string;
+  profesion: string;
+  sexo: string;
 
   errMsj: string;
 
@@ -41,16 +44,24 @@ export class RegistrarUserComponent implements OnInit {
   onRegister(): void {
     this.nuevoUsuario = new NuevoUsuario( 
       this.identificacion,
-      this.nombres ,
-      this.direccion, 
-      this.celular, 
-      this.sexo ,
-      this.ciudad,
+      this.nombres,
+      this.direccion,
+      this.celular,
+      this.sexo,
+      this.email,
+       this.ciudad,
       this.nombreUsuario,
-      this.email ,
-      this.password);
+      this.password,
+      this.profesion,
+      );
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
+        this.messageService.add({
+          severity: 'Cuenta creada',
+          summary: 'La se ha creado con exito:',
+          detail: data.message,
+          life: 3000,
+        });
         this.router.navigate(['/login']);
       },
       err => {
