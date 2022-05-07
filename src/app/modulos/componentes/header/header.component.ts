@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/lista-usuarios'],
         visible: this.isLogged && this.isAdmin
       },
-      //-! fin opciones para el administrador 
+      //-! fin opciones para el administrador
 
       //! opciones para el paciente
       {
@@ -55,7 +55,16 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isFarmacia
       },
 
-      //! fin opciones para el producto 
+      //! fin opciones para el producto
+      {
+        label: 'Facturas',
+        icon: 'pi pi-fw pi-book',
+        items: [
+          {label: 'Factura venta', icon: 'pi pi-fw pi-arrow-left', routerLink: ['/lista-facturasVenta']},
+          {label: 'Factura compras', icon: 'pi pi-fw pi-arrow-right', routerLink: ['/lista-facturasCompra']}
+      ],
+        visible: this.isLogged && this.isAdmin
+      },
 
       //! opciones sucursal
       {
@@ -65,8 +74,8 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isAdmin
       },
 
-      //! fin opciones para el paciente 
-      
+      //! fin opciones para el paciente
+
       //! opciones para el proveedor
       {
         label: 'Gestion de proveedores',

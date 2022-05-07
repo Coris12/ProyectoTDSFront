@@ -17,6 +17,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { GenericResponseUsuario } from '../model/genericResponseUsuario';
 import { GenericResponseobject } from '../model/genericResponseobject';
 import { JwtDto } from '../model/jwtDto';
 import { LoginUsuario } from '../model/loginUsuario';
@@ -60,8 +61,60 @@ export class AuthControllerService {
 
 
     /**
+     * getPersonaByIdentificacion
+     *
+     * @param identificacion identificacion
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getPersonaByIdentificacionUsingGET(identificacion: string, observe?: 'body', reportProgress?: boolean): Observable<GenericResponseUsuario>;
+    public getPersonaByIdentificacionUsingGET(identificacion: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseUsuario>>;
+    public getPersonaByIdentificacionUsingGET(identificacion: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseUsuario>>;
+    public getPersonaByIdentificacionUsingGET(identificacion: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (identificacion === null || identificacion === undefined) {
+            throw new Error('Required parameter identificacion was null or undefined when calling getPersonaByIdentificacionUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (identificacion !== undefined && identificacion !== null) {
+            queryParameters = queryParameters.set('identificacion', <any>identificacion);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GenericResponseUsuario>('get',`${this.basePath}/auth/get-persona`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Muestra la lista de usuarios en el sistema
-     * 
+     *
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -102,7 +155,7 @@ export class AuthControllerService {
 
     /**
      * login
-     * 
+     *
      * @param body loginUsuario
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -154,7 +207,7 @@ export class AuthControllerService {
 
     /**
      * nuevo
-     * 
+     *
      * @param body nuevoUsuario
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -206,7 +259,7 @@ export class AuthControllerService {
 
     /**
      * putArrendatario
-     * 
+     *
      * @param idpersona idpersona
      * @param rol rol
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -266,7 +319,7 @@ export class AuthControllerService {
 
     /**
      * refresh
-     * 
+     *
      * @param body jwtDto
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.

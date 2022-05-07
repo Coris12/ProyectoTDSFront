@@ -18,6 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { Cliente } from '../model/cliente';
+import { GenericResponseCliente } from '../model/genericResponseCliente';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -56,8 +57,60 @@ export class ClienteControllerService {
 
 
     /**
+     * Buscar cliente por id
+     *
+     * @param idCliente idCliente
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public buscarPorIdClienteUsingGET(idCliente: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponseCliente>;
+    public buscarPorIdClienteUsingGET(idCliente: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseCliente>>;
+    public buscarPorIdClienteUsingGET(idCliente: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseCliente>>;
+    public buscarPorIdClienteUsingGET(idCliente: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (idCliente === null || idCliente === undefined) {
+            throw new Error('Required parameter idCliente was null or undefined when calling buscarPorIdClienteUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idCliente !== undefined && idCliente !== null) {
+            queryParameters = queryParameters.set('idCliente', <any>idCliente);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GenericResponseCliente>('get',`${this.basePath}/cliente/findByIdCliente`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Crea al cliente
-     * 
+     *
      * @param body cliente
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -109,7 +162,7 @@ export class ClienteControllerService {
 
     /**
      * Eliminado logico de cliente
-     * 
+     *
      * @param idCliente id_cliente
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.

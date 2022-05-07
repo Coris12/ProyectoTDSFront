@@ -47,6 +47,11 @@ import { ButtonModule } from 'primeng/button';
 import {CarouselModule} from 'primeng/carousel';
 import {GMapModule} from 'primeng/gmap';
 import {InputMaskModule} from 'primeng/inputmask';
+import { SidebarModule } from 'primeng/sidebar';
+import {CheckboxModule} from 'primeng/checkbox';
+import { FieldsetModule, } from 'primeng/fieldset';
+
+
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthControllerService } from './api/authController.service';
@@ -65,6 +70,9 @@ import { interceptorProvider } from './interceptor/prod-interceptor.service';
 import { ProductoComponent } from './modulos/productos/producto/producto.component';
 import { ProveedorComponent } from './modulos/proveedor/proveedor.component';
 import { ProveedorControllerService } from './api/proveedorController.service';
+import { FacturaVentaComponent } from './modulos/Facturas/factura-venta/factura-venta.component';
+import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factura-compra.component';
+import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/factura-producto.component';
 
 
 
@@ -84,6 +92,9 @@ import { ProveedorControllerService } from './api/proveedorController.service';
     SucursalComponent,
     ProductoComponent,
     ProveedorComponent,
+    FacturaVentaComponent,
+    FacturaCompraComponent,
+    FacturaProductoComponent,
 
   ],
   imports: [
@@ -126,7 +137,10 @@ import { ProveedorControllerService } from './api/proveedorController.service';
     MenubarModule,
     SkeletonModule,
     PasswordModule,
-    DividerModule
+    DividerModule,
+    SidebarModule,
+    CheckboxModule,
+    FieldsetModule,
     // ! primeng
 
 
