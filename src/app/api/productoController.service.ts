@@ -17,8 +17,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { GenericResponsestring } from '../model/genericResponsestring';
 import { Producto } from '../model/producto';
-import { ProductoDto } from '../model/productoDto';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProductoControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -57,8 +57,123 @@ export class ProductoControllerService {
 
 
     /**
+     * actualizarFarmacia
+     *
+     * @param body producto
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public actualizarFarmaciaUsingPUT1(body: Producto, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public actualizarFarmaciaUsingPUT1(body: Producto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public actualizarFarmaciaUsingPUT1(body: Producto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public actualizarFarmaciaUsingPUT1(body: Producto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling actualizarFarmaciaUsingPUT1.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<GenericResponsestring>('put',`${this.basePath}/producto/update-producto2`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * actualizarStock
+     *
+     * @param body producto
+     * @param idProd idProd
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public actualizarStockUsingPUT(body: Producto, idProd: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public actualizarStockUsingPUT(body: Producto, idProd: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public actualizarStockUsingPUT(body: Producto, idProd: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public actualizarStockUsingPUT(body: Producto, idProd: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling actualizarStockUsingPUT.');
+        }
+
+        if (idProd === null || idProd === undefined) {
+            throw new Error('Required parameter idProd was null or undefined when calling actualizarStockUsingPUT.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idProd !== undefined && idProd !== null) {
+            queryParameters = queryParameters.set('idProd', <any>idProd);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<GenericResponsestring>('put',`${this.basePath}/producto/update-productoStock`,
+            {
+                body: body,
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * create
-     * 
+     *
      * @param body productos
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -109,24 +224,24 @@ export class ProductoControllerService {
     }
 
     /**
-     * deleteLogic
-     * 
-     * @param body productoDto
-     * @param id id
+     * Eliminado logico del producto
+     *
+     * @param idProducto id_producto
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteLogicUsingPATCH(body: ProductoDto, id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteLogicUsingPATCH(body: ProductoDto, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteLogicUsingPATCH(body: ProductoDto, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteLogicUsingPATCH(body: ProductoDto, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteProductoUsingPATCH(idProducto: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteProductoUsingPATCH(idProducto: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteProductoUsingPATCH(idProducto: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteProductoUsingPATCH(idProducto: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling deleteLogicUsingPATCH.');
+        if (idProducto === null || idProducto === undefined) {
+            throw new Error('Required parameter idProducto was null or undefined when calling deleteProductoUsingPATCH.');
         }
 
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteLogicUsingPATCH.');
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idProducto !== undefined && idProducto !== null) {
+            queryParameters = queryParameters.set('id_producto', <any>idProducto);
         }
 
         let headers = this.defaultHeaders;
@@ -147,16 +262,11 @@ export class ProductoControllerService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
         ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
 
-        return this.httpClient.request<any>('patch',`${this.basePath}/producto/deleteLogic/${encodeURIComponent(String(id))}`,
+        return this.httpClient.request<any>('patch',`${this.basePath}/producto/deleteProducto/${encodeURIComponent(String(idProducto))}`,
             {
-                body: body,
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -167,7 +277,7 @@ export class ProductoControllerService {
 
     /**
      * delete
-     * 
+     *
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -212,8 +322,54 @@ export class ProductoControllerService {
     }
 
     /**
+     * getById
+     *
+     * @param id id
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getByIdUsingGET1(id: number, observe?: 'body', reportProgress?: boolean): Observable<Producto>;
+    public getByIdUsingGET1(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Producto>>;
+    public getByIdUsingGET1(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Producto>>;
+    public getByIdUsingGET1(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET1.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Producto>('get',`${this.basePath}/producto/detail/${encodeURIComponent(String(id))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Muestra una lista de productos
-     * 
+     *
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -254,7 +410,7 @@ export class ProductoControllerService {
 
     /**
      * search
-     * 
+     *
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -295,8 +451,8 @@ export class ProductoControllerService {
 
     /**
      * update
-     * 
-     * @param body productoDto
+     *
+     * @param body producto
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.

@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class CuerpoFacturaControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -58,7 +58,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Crear el cuerpo de la factura
-     * 
+     *
      * @param body cuerpos
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -110,7 +110,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Eliminar el cuerpo de la factura
-     * 
+     *
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -156,7 +156,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Detalle del cuerpo de la Factura
-     * 
+     *
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -201,8 +201,60 @@ export class CuerpoFacturaControllerService {
     }
 
     /**
+     * guardarCuerpoFact2
+     *
+     * @param body cuerpoFactura
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public guardarCuerpoFact2UsingPOST(body: CuerpoFactura, observe?: 'body', reportProgress?: boolean): Observable<CuerpoFactura>;
+    public guardarCuerpoFact2UsingPOST(body: CuerpoFactura, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CuerpoFactura>>;
+    public guardarCuerpoFact2UsingPOST(body: CuerpoFactura, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CuerpoFactura>>;
+    public guardarCuerpoFact2UsingPOST(body: CuerpoFactura, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling guardarCuerpoFact2UsingPOST.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<CuerpoFactura>('post',`${this.basePath}/CuerpoFactura/GuardarCuerpoFactura2`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Guardar producto en cuerpo de factura
-     * 
+     *
      * @param body cuerpoFactura
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -254,7 +306,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * lista del cuerpo Factura
-     * 
+     *
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -295,7 +347,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Actualizar el cuerpo de la factura
-     * 
+     *
      * @param body cuerpo
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.

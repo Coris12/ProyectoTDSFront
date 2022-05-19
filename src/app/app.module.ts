@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from './modulos/componentes/inicio/inicio.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './modulos/componentes/footer/footer.component';
@@ -46,6 +46,11 @@ import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
 import {CarouselModule} from 'primeng/carousel';
 import {GMapModule} from 'primeng/gmap';
+import {InputMaskModule} from 'primeng/inputmask';
+import { SidebarModule } from 'primeng/sidebar';
+import {CheckboxModule} from 'primeng/checkbox';
+import { FieldsetModule, } from 'primeng/fieldset';
+
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthControllerService } from './api/authController.service';
@@ -59,6 +64,14 @@ import { FacturaControllerService } from './api/facturaController.service';
 import { FaramaciaControllerService } from './api/faramaciaController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { SucursalControllerService } from './api/sucursalController.service';
+import { SucursalComponent } from './modulos/sucursal/sucursal.component';
+import { interceptorProvider } from './interceptor/prod-interceptor.service';
+import { ProductoComponent } from './modulos/productos/producto/producto.component';
+import { ProveedorComponent } from './modulos/proveedor/proveedor.component';
+import { ProveedorControllerService } from './api/proveedorController.service';
+import { FacturaVentaComponent } from './modulos/Facturas/factura-venta/factura-venta.component';
+import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factura-compra.component';
+import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/factura-producto.component';
 
 
 
@@ -75,13 +88,19 @@ import { SucursalControllerService } from './api/sucursalController.service';
     RegistrarUserComponent,
     UsuariosComponent,
     UbicacionesComponent,
-
+    SucursalComponent,
+    ProductoComponent,
+    ProveedorComponent,
+    FacturaVentaComponent,
+    FacturaCompraComponent,
+    FacturaProductoComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     FormsModule,
     BrowserAnimationsModule,
@@ -89,6 +108,7 @@ import { SucursalControllerService } from './api/sucursalController.service';
     Ng2SearchPipeModule,
     FileUploadModule,
     // *primeng
+    InputMaskModule,
     SelectButtonModule,
     CarouselModule,
     GMapModule,
@@ -116,12 +136,16 @@ import { SucursalControllerService } from './api/sucursalController.service';
     MenubarModule,
     SkeletonModule,
     PasswordModule,
-    DividerModule
+    DividerModule,
+    SidebarModule,
+    CheckboxModule,
+    FieldsetModule,
     // ! primeng
 
 
   ],
   providers: [
+    interceptorProvider,
     MessageService,
     ConfirmationService,
     AuthControllerService,
@@ -131,7 +155,8 @@ import { SucursalControllerService } from './api/sucursalController.service';
     FacturaControllerService,
     FaramaciaControllerService,
     ProductoControllerService,
-    SucursalControllerService
+    SucursalControllerService,
+    ProveedorControllerService
   ],
   bootstrap: [AppComponent]
 })

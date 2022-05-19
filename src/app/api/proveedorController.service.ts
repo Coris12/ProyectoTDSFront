@@ -148,9 +148,91 @@ export class ProveedorControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('patch',`${this.basePath}/proveedor/deleteProveedor/${encodeURIComponent(String(idEmpleado))}`,
+        return this.httpClient.request<any>('patch',`${this.basePath}/proveedor/deleteProveedor/${encodeURIComponent(String(idProveedor))}`,
             {
                 params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Muestra una lista de proveedores
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public listUsingGET2(observe?: 'body', reportProgress?: boolean): Observable<Array<Proveedor>>;
+    public listUsingGET2(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Proveedor>>>;
+    public listUsingGET2(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Proveedor>>>;
+    public listUsingGET2(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Proveedor>>('get',`${this.basePath}/proveedor/listaProveedores`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Lista los proveedores con estado 1
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public searchUsingGET1(observe?: 'body', reportProgress?: boolean): Observable<Array<Proveedor>>;
+    public searchUsingGET1(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Proveedor>>>;
+    public searchUsingGET1(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Proveedor>>>;
+    public searchUsingGET1(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Proveedor>>('get',`${this.basePath}/proveedor/proveedoresActivos`,
+            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

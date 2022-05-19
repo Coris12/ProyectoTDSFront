@@ -17,7 +17,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { GenericResponseListSucursal } from '../model/genericResponseListSucursal';
+import { GenericResponseSucursal } from '../model/genericResponseSucursal';
+import { GenericResponsestring } from '../model/genericResponsestring';
 import { Sucursal } from '../model/sucursal';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -27,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class SucursalControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -57,19 +58,71 @@ export class SucursalControllerService {
 
 
     /**
+     * Obtener sucursal por id
+     * 
+     * @param id id
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getSucursalByIdUsingGET(id: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponseSucursal>;
+    public getSucursalByIdUsingGET(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseSucursal>>;
+    public getSucursalByIdUsingGET(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseSucursal>>;
+    public getSucursalByIdUsingGET(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getSucursalByIdUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (id !== undefined && id !== null) {
+            queryParameters = queryParameters.set('id', <any>id);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GenericResponseSucursal>('get',`${this.basePath}/sucursal/getSucursalById`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Crear sucursal
      * 
      * @param body sucursal
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createUsingPOST5(body: Sucursal, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public createUsingPOST5(body: Sucursal, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public createUsingPOST5(body: Sucursal, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public createUsingPOST5(body: Sucursal, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public guardarFacturaUsingPOST(body: Sucursal, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public guardarFacturaUsingPOST(body: Sucursal, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public guardarFacturaUsingPOST(body: Sucursal, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public guardarFacturaUsingPOST(body: Sucursal, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createUsingPOST5.');
+            throw new Error('Required parameter body was null or undefined when calling guardarFacturaUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -97,7 +150,7 @@ export class SucursalControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/sucursal/crearSucursal`,
+        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/sucursal/crearSucursal`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -109,15 +162,15 @@ export class SucursalControllerService {
     }
 
     /**
-     * Listar todas las sucursales
+     * Muestra la lista de usuarios en el sistema
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listAllSucursalesUsingGET(observe?: 'body', reportProgress?: boolean): Observable<GenericResponseListSucursal>;
-    public listAllSucursalesUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseListSucursal>>;
-    public listAllSucursalesUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseListSucursal>>;
-    public listAllSucursalesUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listaUsingGET1(observe?: 'body', reportProgress?: boolean): Observable<Array<Sucursal>>;
+    public listaUsingGET1(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Sucursal>>>;
+    public listaUsingGET1(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Sucursal>>>;
+    public listaUsingGET1(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -139,7 +192,7 @@ export class SucursalControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<GenericResponseListSucursal>('get',`${this.basePath}/sucursal/getAllSucursales`,
+        return this.httpClient.request<Array<Sucursal>>('get',`${this.basePath}/sucursal/listaUsuarios`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

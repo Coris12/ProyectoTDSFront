@@ -18,6 +18,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { Cliente } from '../model/cliente';
+import { GenericResponseCliente } from '../model/genericResponseCliente';
+import { GenericResponsestring } from '../model/genericResponsestring';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -26,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ClienteControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -56,8 +58,112 @@ export class ClienteControllerService {
 
 
     /**
+     * Buscar cliente por id
+     *
+     * @param idCliente idCliente
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public buscarPorIdClienteUsingGET(idCliente: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponseCliente>;
+    public buscarPorIdClienteUsingGET(idCliente: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseCliente>>;
+    public buscarPorIdClienteUsingGET(idCliente: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseCliente>>;
+    public buscarPorIdClienteUsingGET(idCliente: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (idCliente === null || idCliente === undefined) {
+            throw new Error('Required parameter idCliente was null or undefined when calling buscarPorIdClienteUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idCliente !== undefined && idCliente !== null) {
+            queryParameters = queryParameters.set('idCliente', <any>idCliente);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GenericResponseCliente>('get',`${this.basePath}/cliente/findByIdCliente`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Buscar cliente por id
+     *
+     * @param idPersona idPersona
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public buscarPorIdPersonaClienteUsingGET(idPersona: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Cliente>>;
+    public buscarPorIdPersonaClienteUsingGET(idPersona: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Cliente>>>;
+    public buscarPorIdPersonaClienteUsingGET(idPersona: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Cliente>>>;
+    public buscarPorIdPersonaClienteUsingGET(idPersona: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (idPersona === null || idPersona === undefined) {
+            throw new Error('Required parameter idPersona was null or undefined when calling buscarPorIdPersonaClienteUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idPersona !== undefined && idPersona !== null) {
+            queryParameters = queryParameters.set('idPersona', <any>idPersona);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Cliente>>('get',`${this.basePath}/cliente/findByIdPersonaCliente`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Crea al cliente
-     * 
+     *
      * @param body cliente
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -109,23 +215,23 @@ export class ClienteControllerService {
 
     /**
      * Eliminado logico de cliente
-     * 
-     * @param idempresa idempresa
+     *
+     * @param idCliente id_cliente
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteClienteUsingPATCH(idempresa: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deleteClienteUsingPATCH(idempresa: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deleteClienteUsingPATCH(idempresa: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deleteClienteUsingPATCH(idempresa: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteClienteUsingPATCH(idCliente: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteClienteUsingPATCH(idCliente: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteClienteUsingPATCH(idCliente: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteClienteUsingPATCH(idCliente: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (idempresa === null || idempresa === undefined) {
-            throw new Error('Required parameter idempresa was null or undefined when calling deleteClienteUsingPATCH.');
+        if (idCliente === null || idCliente === undefined) {
+            throw new Error('Required parameter idCliente was null or undefined when calling deleteClienteUsingPATCH.');
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (idempresa !== undefined && idempresa !== null) {
-            queryParameters = queryParameters.set('idempresa', <any>idempresa);
+        if (idCliente !== undefined && idCliente !== null) {
+            queryParameters = queryParameters.set('id_cliente', <any>idCliente);
         }
 
         let headers = this.defaultHeaders;
@@ -149,6 +255,63 @@ export class ClienteControllerService {
         ];
 
         return this.httpClient.request<any>('patch',`${this.basePath}/cliente/deleteCliente/${encodeURIComponent(String(idCliente))}`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Actualizar observaciones del cliente
+     *
+     * @param observaciones observaciones
+     * @param idCliente idCliente
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateClienteObservacionUsingPUT(observaciones: string, idCliente?: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public updateClienteObservacionUsingPUT(observaciones: string, idCliente?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public updateClienteObservacionUsingPUT(observaciones: string, idCliente?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public updateClienteObservacionUsingPUT(observaciones: string, idCliente?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (observaciones === null || observaciones === undefined) {
+            throw new Error('Required parameter observaciones was null or undefined when calling updateClienteObservacionUsingPUT.');
+        }
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idCliente !== undefined && idCliente !== null) {
+            queryParameters = queryParameters.set('idCliente', <any>idCliente);
+        }
+        if (observaciones !== undefined && observaciones !== null) {
+            queryParameters = queryParameters.set('observaciones', <any>observaciones);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GenericResponsestring>('put',`${this.basePath}/cliente/updateClienteObservacion`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

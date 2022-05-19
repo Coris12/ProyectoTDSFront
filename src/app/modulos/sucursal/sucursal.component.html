@@ -1,0 +1,102 @@
+<app-header></app-header>
+<p-toast></p-toast>
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light ">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Gestión de sucursales</h1>
+            </div>
+            <div class="ml-auto p-2">
+                <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay" class="p-button-rounded p-button-text red" (click)="cargarSucursales()">
+                </button>
+            </div>
+        </div>
+        <p-toolbar>
+            <div class="p-toolbar-group-left">
+                <!-- (click)="showDialog()" -->
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text" label="Crear" icon="pi pi-plus" (click)="sucursalDialog=true"></button>
+                <!--  (click)="showCatalogosEliminados()" 
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Papelera" icon="pi pi-trash" (click)="papeleraConvocatorias=true"></button>
+-->
+            </div>
+            <div class="p-toolbar-group-right">
+            </div>
+        </p-toolbar>
+
+        <div class="content-section implementation">
+            <p-table #dt [value]="sucursal" [globalFilterFields]="['nombreSuc']" styleClass="p-datatable-gridlines">
+                <ng-template pTemplate="caption">
+                    <div class="table-header">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Buscar convocatorias" />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Direcciom</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>Opciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-sucu>
+                    <tr>
+                        <td>{{sucu.nombreSuc}}</td>
+                        <td>{{sucu.direccionSuc}}</td>
+                        <td>{{sucu.telefonoSuc}} </td>
+                        <td>{{sucu.correoSuc}}</td>
+                        <td><button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Borrar" icon="pi pi-trash" (click)="borrarSucursal()"></button>
+                        </td>
+                        <td><button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Editar" icon="pi pi-trash" (click)="borrarSucursal()"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En total hay {{totalRecords}} registros.
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="8">Ningun registro.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Gestión de convocatorias." [(visible)]="sucursalDialog" [modal]="true" [draggable]="false" [style]="{width: '450px'}" [resizable]="false" class="p-fluid">
+    <form [formGroup]="sucursalForm" (ngSubmit)="guardarSucursal()">
+        <div class="form-group mt-2">
+            <span class="p-input-icon-left">
+                <i class="pi pi-flag"></i>
+                <input type="text" pInputText placeholder="Nombre sucursal" formControlName="nombreSuc">
+            </span>
+        </div>
+        <div class="form-group mt-2"><span class="p-input-icon-left">
+                <i class="pi pi-map-marker"></i>
+                <input type="text" pInputText placeholder="Direccion Sucursal" formControlName="direccionSuc" />
+            </span>
+        </div>
+        <div class="form-group mt-2"> <span class="p-input-icon-left">
+                <i class="pi pi-envelope"></i>
+                <input type="text" pInputText placeholder="Correo Sucursal" formControlName="correoSuc" />
+            </span>
+        </div>
+        <div class="form-group mt-2">
+            <span class="p-input-icon-left">
+                    <p-inputMask mask="9999999999" formControlName="telefonoSuc" placeholder="Telefono Sucursal">
+                    </p-inputMask>
+                </span>
+        </div>
+
+        <div style="text-align:right">
+            <p-button type="submit" icon="pi pi-check" [disabled]="sucursalForm.invalid" label="Guardar" styleClass="p-button-text"></p-button>
+        </div>
+    </form>
+</p-dialog>

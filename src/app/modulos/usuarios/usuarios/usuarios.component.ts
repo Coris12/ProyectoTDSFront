@@ -32,7 +32,7 @@ export class UsuariosComponent implements OnInit {
     this.loading = true;
 
     //carga de roles
-    this.roles = ['ROLE_ADMINISTRADOR', 'ROLE_COORDINADOR', 'ROLE_ESTUDIANTE', 'ROLE_TRIBUNAL', 'ROLE_TUTOR'];
+    this.roles = ['ROLE_ADMIN', 'ROLE_PACIENTE', 'ROLE_LABORATORIO', 'ROLE_DOCTOR', 'ROLE_FARMACIA', 'ROLE_CONTABILIDAD'];
     this.cargarUsuarios();
   }
   clear(table: Table) {

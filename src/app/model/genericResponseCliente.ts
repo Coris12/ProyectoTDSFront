@@ -9,10 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Sucursal } from './sucursal';
+import { Cliente } from './cliente';
 
-export interface Farmacia { 
-    idFarmacia?: number;
-    idProducto?: number;
-    sucursal?: Sucursal;
+export interface GenericResponseCliente { 
+    message?: string;
+    object?: Cliente;
+    status?: number;
 }
