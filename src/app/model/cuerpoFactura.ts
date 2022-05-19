@@ -9,11 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Factura } from './factura';
 import { Producto } from './producto';
 
 export interface CuerpoFactura { 
     cantidad?: number;
     descuento?: number;
+    factura?: Factura;
     idCuerpo?: number;
     iva?: number;
     producto?: Producto;

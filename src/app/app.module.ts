@@ -51,7 +51,6 @@ import { SidebarModule } from 'primeng/sidebar';
 import {CheckboxModule} from 'primeng/checkbox';
 import { FieldsetModule, } from 'primeng/fieldset';
 
-
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthControllerService } from './api/authController.service';

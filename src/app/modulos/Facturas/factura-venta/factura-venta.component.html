@@ -3,19 +3,12 @@
 <div class="mt-3 ml-3 mr-3">
   <h5>FACTURACIÓN EN VENTAS</h5>
   <div class="grid p-fluid">
-    <div class="col-12 md:col-2">
+    <!-- <div class="col-12 md:col-2">
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">Cod</span>
-        <input type="text" pInputText placeholder="Cod" [disabled]="disabled"  [(ngModel)]="usuarioObj.id">
+        <input type="text" pInputText placeholder="Cod" [disabled]="disabled" [(ngModel)]="usuarioObj.id">
       </div>
-    </div>
-
-    <div class="col-12 md:col-2">
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon">CodCliente</span>
-        <input type="text" pInputText placeholder="Cod" [disabled]="disabled"  [(ngModel)]="clienteObj.idCliente">
-      </div>
-    </div>
+    </div> -->
 
     <div class="col-12 md:col-4">
       <button pButton pRipple type="button" label="Nuevo cliente"></button>
@@ -24,7 +17,7 @@
 
   <!--Fecha-->
   <div class="grid p-fluid">
-    <div class="col-12 md:col-2">
+    <div class="col-12 md:col-3">
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">Fecha</span>
         <input type="text" pInputText placeholder="Fecha" [disabled]="disabled" [(ngModel)]="putFechVist">
@@ -59,14 +52,16 @@
     <div class="col-12 md:col-4">
       <div class="p-inputgroup">
         <button type="button" pButton pRipple label="Buscar" (click)="buscarPersonaIdentificacion();"></button>
-        <input type="text" pInputText placeholder="Cédula/Ruc" [(ngModel)]="identificacionPer">
+        <input type="text" id="ingCedula" pInputText placeholder="Cédula/Ruc" (keypress)="onKeypressEvent($event)"
+          [(ngModel)]="identificacionPer">
       </div>
     </div>
 
     <div class="col-12 md:col-4">
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">Cliente</span>
-        <input type="text" pInputText placeholder="cliente" [disabled]="disabled" [(ngModel)]="usuarioObj.nombres">
+        <input type="text" #nombreCliente pInputText placeholder="CONSUMIDOR FINAL" [disabled]="disabled"
+          [(ngModel)]="usuarioObj.nombres">
       </div>
     </div>
 
@@ -100,10 +95,12 @@
       </div>
     </div>
 
-    <div class="col-12 md:col-6">
+    <div *ngIf="showMostrar" class="col-12 md:col-6">
       <div class="p-inputgroup">
-        <button type="button" pButton pRipple label="Observación"></button>
-        <input type="text" pInputText placeholder="Observación">
+        <button type="button" pButton pRipple label="Observación" (click)="updateObserClient();"></button>
+        <textarea class="textarea" rows="2" cols="50" style="resize: both;"
+          [(ngModel)]="clienteObj.observaciones"></textarea>
+        <!-- <input type="text" pInputText placeholder="Observación" style="resize: both;" [(ngModel)]="clienteObj.observaciones"> -->
       </div>
     </div>
   </div>
@@ -111,10 +108,12 @@
   <div class="grid p-fluid">
     <div class="col-12">
       <div class="card">
+        <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+        </p-confirmDialog>
         <button (click)="openNew(); listarProductos2();" type="button" pButton pRipple
           label="Agregar productos al cliente"></button>
         <!---TABLA DE FACTURACIÓN EN VENTAS-->
-        <div *ngIf="productosFact == null; else elseBlock">
+        <div *ngIf="productDatTabArray == null; else elseBlock">
           <ng-template pTemplate="emptymessage">
             <section>
               <p-messages severity="info">No se encontraron registros</p-messages>
@@ -122,36 +121,105 @@
           </ng-template>
         </div>
         <ng-template #elseBlock>
-          <p-table #dt1 [value]="productosFact" dataKey="id" responsiveLayout="scroll">
+          <!-- <p-table #dt1 [value]="productDatTabArray" selectionMode="single" [(selection)]="SelectProductoDto"
+            dataKey="id" [resizableColumns]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll"
+            (onRowSelect)="onRowSelect2($event)"> -->
+          <p-table #dt1 [value]="productDatTabArray" dataKey="id" [resizableColumns]="true"
+            [(selection)]="SelectProductoDto" [rowHover]="true" styleClass="p-datatable-gridlines"
+            responsiveLayout="scroll">
             <ng-template pTemplate="header">
               <tr>
-                <th>Cant</th>
-                <th>Descripción</th>
-                <th>U</th>
-                <th>P.V.P</th>
-                <th>%</th>
-                <th>Descuento</th>
-                <th>Total</th>
+                <th style="width: 2rem" class="text-center">
+                  <div class="flex justify-content-center align-items-center">IVA</div>
+                </th>
+                <th pResizableColumn style="width:100px">
+                  <div class="flex justify-content-center align-items-center"> CANT.</div>
+                </th>
+                <th pResizableColumn style="width:300px">
+                  <div class="flex justify-content-center align-items-center"> PRODUCTO</div>
+                </th>
+                <th pResizableColumn style="width:300px">
+                  <div class="flex justify-content-center align-items-center"> DESCRIPCIÓN</div>
+                </th>
+                <th pResizableColumn style="width:50px">
+                  <div class="flex justify-content-center align-items-center"> U</div>
+                </th>
+                <th pResizableColumn style="width:80px">
+                  <div class="flex justify-content-center align-items-center"> P.V.P</div>
+                </th>
+                <th pResizableColumn style="width:75px">
+                  <div class="flex justify-content-center align-items-center"> %</div>
+                </th>
+                <th pResizableColumn style="width:85px">
+                  <div class="flex justify-content-center align-items-center"> DTO. $$</div>
+                </th>
+                <th pResizableColumn style="width:100px">
+                  <div class="flex justify-content-center align-items-center"> TOTAL</div>
+                </th>
+                <th pResizableColumn style="width:80px">
+                  <div class="flex justify-content-center align-items-center"> QUITAR</div>
+                </th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-productosFac>
+              <!-- <tr [pSelectableRow]="productosFac"> -->
               <tr>
+                <td>
+                  <div class="flex justify-content-center align-items-center">
+                    <input type="checkbox" (change)="CheckedAlgunos($event.target.checked)"
+                      [(ngModel)]="productosFac.check">
+                  </div>
+                </td>
                 <td pEditableColumn>
                   <p-cellEditor>
                     <ng-template pTemplate="input">
-                      <input pInputText type="text" [(ngModel)]="dateTable.cantidadProd">
+                      <p-inputNumber pInputText type="text" placeholder="0"
+                        (keydown.enter)="CalcularTotalTabFactu($event)" [(ngModel)]="productosFac.cantidad">
+                      </p-inputNumber>
                     </ng-template>
                     <ng-template pTemplate="output">
-                      {{dateTable.cantidadProd}}
-                  </ng-template>
+                      {{productosFac.cantidad}}
+                    </ng-template>
                   </p-cellEditor>
                 </td>
+                <td>{{productosFac.nombreProducto}}</td>
                 <td>{{productosFac.descripcionProducto}}</td>
-                <td>{{productosFac.descripcionProducto}}</td>
-                <td>{{productosFac.precioProducto}}</td>
-                <td>{{productosFac.precioProducto}}</td>
-                <td>{{productosFac.precioProducto}}</td>
-                <td>{{productosFac.precioProducto}}</td>
+                <td>{{productosFac.inventarioProducto}}</td>
+                <td><b>{{productosFac.precioProducto}}</b></td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <p-inputNumber pInputText type="text" placeholder="0.0"
+                        (keydown.enter)="CalcularTotalTabFactu($event)" [(ngModel)]="productosFac.porcentaje">
+                      </p-inputNumber>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{productosFac.porcentaje}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <p-inputNumber pInputText type="text" [useGrouping]="false" mode="decimal" locale="en-US"
+                        [minFractionDigits]="2" placeholder="0.0" (keydown.enter)="CalcularTotalTabFactu($event)"
+                        [(ngModel)]="productosFac.descuento">
+                      </p-inputNumber>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{productosFac.descuento}}
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td>
+                  <div class="colVerde">
+                    {{productosFac.total}}
+                  </div>
+                </td>
+                <td style="text-align:center">
+                  <button pButton pRipple type="button" icon="pi pi-times" (click)="confirmacion(productosFac)"
+                    class="p-button-rounded p-button-text p-button-danger"></button>
+                </td>
               </tr>
             </ng-template>
           </p-table>
@@ -164,33 +232,40 @@
     <div class="col-12 md:col-4">
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">Son</span>
-        <input type="text" pInputText placeholder="0.0" [disabled]="disabled">
+        <input type="text" pInputText placeholder="0.0" [disabled]="disabled" style="color:green;"
+          [(ngModel)]="valorPagar">
+        <span class="p-inputgroup-addon">$$</span>
       </div>
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">Para</span>
-        <input type="text" pInputText placeholder="Productos" [disabled]="disabled">
+        <input type="text" pInputText placeholder="Productos" [disabled]="disabled" [(ngModel)]="totalProductos">
+        <span class="p-inputgroup-addon">Productos</span>
       </div>
       <button class="mt-1" pButton pRipple type="button" label="Grabar" (click)="guardarFactura();"></button>
 
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">TOTAL PRODS</span>
-        <input type="text" pInputText [disabled]="disabled" placeholder="TOTAL PRODS">
+        <input type="text" pInputText [disabled]="disabled" placeholder="TOTAL PRODS" [(ngModel)]="totalProductos">
       </div>
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">TOTAL</span>
-        <input type="text" pInputText [disabled]="disabled" placeholder="TOTAL">
+        <input type="text" pInputText [disabled]="disabled" placeholder="TOTAL" style="color:green;"
+          [(ngModel)]="valorPagar">
       </div>
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">RECIBO</span>
-        <input type="text" pInputText [disabled]="disabled" placeholder="RECIBO">
+        <p-inputNumber type="text" pInputText placeholder="RECIBO" (keydown.enter)="darCambio($event)"
+          [useGrouping]="false" mode="decimal" locale="en-US" [minFractionDigits]="2" [(ngModel)]="recibeDinero">
+        </p-inputNumber>
       </div>
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">VUELTO</span>
-        <input type="text" pInputText [disabled]="disabled" placeholder="VUELTO">
+        <p-inputNumber type="text" pInputText [disabled]="disabled" placeholder="VUELTO" mode="decimal" locale="en-US"
+          [(ngModel)]="darVuelto"></p-inputNumber>
       </div>
     </div>
 
-    <div class="col-12 md:col-4">
+    <!-- <div class="col-12 md:col-4">
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">SubTotal sin Desc</span>
         <input type="text" pInputText placeholder="0" [disabled]="disabled">
@@ -225,7 +300,7 @@
         <span class="p-inputgroup-addon">Cambio</span>
         <input type="text" pInputText placeholder="0" [disabled]="disabled">
       </div>
-    </div>
+    </div> -->
 
     <div class="col-12 md:col-4">
       <button pButton pRipple type="button" label="Asigna a Pend. FACT"></button>
@@ -312,7 +387,8 @@
           <!--<p-button type="button" class="mr-2" (click)="visibleSidebar2 = true" icon="pi pi-search"></p-button>-->
           <!-- <p-button [label]="selectedProduct ? selectedProduct.nombreProducto : 'Buscar'" icon="pi pi-search"
             (click)="visibleSidebar2 = true"></p-button> -->
-          <p-button label="Buscar" icon="pi pi-search" (click)="visibleSidebar2 = true"></p-button>
+          <p-button label="Buscar" icon="pi pi-search" (click)="visibleSidebar2 = true" [disabled]="disabled">
+          </p-button>
         </div>
         <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="10000" [style]="{width:'40em'}"
           [modal]="false">
@@ -321,8 +397,8 @@
           <!--Inicio Tabla de buscar productos-->
           <p-table #dt2 [value]="productos" selectionMode="single" [(selection)]="selectedProduct"
             (onRowSelect)="onRowSelect($event)" responsiveLayout="scroll" [resizableColumns]="true"
-            styleClass="p-datatable-gridlines"
-            [globalFilterFields]="['descripcionProducto', 'categoriaProducto', 'codigoRef']"
+            styleClass="p-datatable-gridlines" [globalFilterFields]="['descripcionProducto',
+            'categoriaProducto', 'codigoRef']"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
 
             <ng-template pTemplate="caption">
@@ -342,39 +418,39 @@
                 <th pResizableColumn>
                   <div class="flex justify-content-center align-items-center">
                     Descripción
-                    <p-columnFilter type="text" field="descripcionProducto" display="menu"></p-columnFilter>
+                    <p-columnFilter type="text" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pResizableColumn pSortableColumn="price">Cod.<p-sortIcon field="price"></p-sortIcon>
-                </th>
-                <th pResizableColumn pSortableColumn="price">Unidad<p-sortIcon field="price"></p-sortIcon>
-                </th>
-                <th pResizableColumn pSortableColumn="price">Cant.<p-sortIcon field="price"></p-sortIcon>
-                </th>
-                <th pResizableColumn pSortableColumn="price">Precio<p-sortIcon field="price"></p-sortIcon>
-                </th>
+                <th pResizableColumn>Cod.</th>
+                <th pResizableColumn>Unidad</th>
+                <th pResizableColumn>Cant.</th>
+                <th pResizableColumn>Precio</th>
                 <th pResizableColumn>
                   <div class="flex justify-content-center align-items-center">
                     Categoria
-                    <p-columnFilter type="text" field="categoriaProducto" display="menu"></p-columnFilter>
+                    <p-columnFilter type="text" display="menu"></p-columnFilter>
                   </div>
                 </th>
                 <th pResizableColumn>
                   <div class="flex justify-content-center align-items-center">
                     Cod Refer.
-                    <p-columnFilter type="text" field="codigoRef" display="menu"></p-columnFilter>
+                    <p-columnFilter type="text" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pResizableColumn pSortableColumn="price">Ubicación<p-sortIcon field="price"></p-sortIcon>
-                </th>
+                <th pResizableColumn>Ubicación</th>
               </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-rowData let-product>
-              <tr [pSelectableRow]="rowData">
+            <ng-template pTemplate="body" let-product>
+              <tr [pSelectableRow]="product">
                 <td>{{product.descripcionProducto}}</td>
                 <td>{{product.idProducto}}</td>
                 <td>{{product.idProducto}}</td>
-                <td>{{product.stockProducto}}</td>
+                <td>
+                  <div
+                    [ngClass]="{'outofstock': product.stock === 0, 'lowstock': (product.stock > 0 && product.stockProducto < 10),'instock': product.stock > 10}">
+                    {{product.stock}}
+                  </div>
+                </td>
                 <td>{{product.precioProducto}}</td>
                 <td>{{product.categoriaProducto}}</td>
                 <td>{{product.codigoRef}}</td>
@@ -389,104 +465,40 @@
         <div class="col-12 md:col-2">
           <span class="p-inputgroup-addon">Con IVA</span>
           <div class="p-inputgroup">
-            <p-inputNumber placeholder="0.00" mode="decimal" locale="en-US" [minFractionDigits]="2"
-              [(ngModel)]="precioIva"></p-inputNumber>
+            <p-inputNumber placeholder="0.00" mode="decimal" [disabled]="disabled" locale="en-US"
+              [minFractionDigits]="2" [(ngModel)]="precioIva"></p-inputNumber>
           </div>
-          <div class="p-inputgroup">
+          <!-- <div class="p-inputgroup">
             <p-inputNumber [(ngModel)]="value4" placeholder="0.00" mode="decimal" locale="en-US"
               [minFractionDigits]="2"></p-inputNumber>
-          </div>
+          </div> -->
         </div>
 
         <div class="col-12 md:col-2">
           <span class="p-inputgroup-addon">Sin IVA</span>
           <div class="p-inputgroup">
-            <p-inputNumber [(ngModel)]="producto.precioProducto" placeholder="0.00" mode="decimal" locale="en-US"
-              [minFractionDigits]="2"></p-inputNumber>
+            <p-inputNumber [(ngModel)]="producto.precioProducto" [disabled]="disabled" placeholder="0.00" mode="decimal"
+              locale="en-US" [minFractionDigits]="2"></p-inputNumber>
           </div>
-          <div class="p-inputgroup">
+          <!-- <div class="p-inputgroup">
             <p-inputNumber [(ngModel)]="value6" placeholder="0.00" mode="decimal" locale="en-US"
               [minFractionDigits]="2"></p-inputNumber>
-          </div>
+          </div> -->
         </div>
 
-        <!--SECCIÓN TABLA PRODUCTOS-->
-        <div class="col-12 md:col-8">
-          <p-table #dt1 [value]="productos" [resizableColumns]="true" styleClass="p-datatable-gridlines"
-            responsiveLayout="scroll" selectionMode="single" [(selection)]="selectedProductTP" dataKey="idProducto"
-            responsiveLayout="scroll" (onRowSelect)="onRowSelectFProduct($event)"
-            [globalFilterFields]="['descripcionProducto', 'categoriaProducto', 'codigoRef']"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
-            <ng-template pTemplate="caption">
-              <div class="flex">
-                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
-                  (click)="clear(dt1)"></button>
-                <span class="p-input-icon-left ml-auto">
-                  <i class="pi pi-search"></i>
-                  <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
-                    placeholder="Search keyword" />
-                </span>
-              </div>
-            </ng-template>
-            <ng-template pTemplate="header">
-              <tr>
-                <th pResizableColumn style="width:200px">
-                  <div class="flex justify-content-center align-items-center">
-                    Descripción
-                    <p-columnFilter type="text" field="descripcionProducto" display="menu"></p-columnFilter>
-                  </div>
-                </th>
-                <th pResizableColumn style="width:50px">
-                  <div class="flex justify-content-center align-items-center">Cod.</div>
-                </th>
-                <th pResizableColumn style="display:none;">Unidad</th>
-                <th pResizableColumn style="width:70px">
-                  <div class="flex justify-content-center align-items-center">Cant.</div>
-                </th>
-                <th pResizableColumn>Precio</th>
-                <th pResizableColumn>
-                  <div class="flex justify-content-center align-items-center">
-                    Categoria
-                    <p-columnFilter type="text" field="categoriaProducto" display="menu"></p-columnFilter>
-                  </div>
-                </th>
-                <th pResizableColumn>
-                  <div class="flex justify-content-center align-items-center">
-                    Cod Refer.
-                    <p-columnFilter type="text" field="codigoRef" display="menu"></p-columnFilter>
-                  </div>
-                </th>
-                <th pResizableColumn>Ubicación</th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-product>
-              <tr [pSelectableRow]="product">
-                <td>{{product.descripcionProducto}}</td>
-                <td>{{product.idProducto}}</td>
-                <td style="display:none;">{{product.idProducto}}</td>
-                <td>{{product.stockProducto}}</td>
-                <td>{{product.precioProducto}}</td>
-                <td>{{product.categoriaProducto}}</td>
-                <td>{{product.codigoRef}}</td>
-                <td>{{product.precioProducto}}</td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
-      </div>
-      <div class="grid p-fluid">
         <div class="col-12 md:col-4">
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon">Último costo</span>
-            <input type="text" pInputText placeholder="Último costo">
+            <input type="text" pInputText placeholder="Último costo" [disabled]="disabled"
+              [(ngModel)]="producto.ultimoCosto">
           </div>
           <div class="p-inputgroup">
             <span class="p-inputgroup-addon">Costo promedio</span>
-            <input type="text" pInputText placeholder="Costo promedio">
+            <input type="text" pInputText placeholder="Costo promedio" [disabled]="disabled"
+              [(ngModel)]="producto.costoPromedio">
           </div>
         </div>
-      </div>
-      <div class="grid p-fluid">
+
         <div class="col-12 md:col-4">
           <span class="p-inputgroup-addon">Código de Barras</span>
           <div class="p-inputgroup">
@@ -498,9 +510,7 @@
             <button type="button" pButton pRipple icon="pi pi-times" Class="p-button-danger"></button>
           </div>
         </div>
-      </div>
 
-      <div class="grid p-fluid">
         <div class="col-12 md:col-1">
           <div class="field-checkbox">
             <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
@@ -517,19 +527,97 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="grid p-fluid">
-        <div class="col-12 md:col-1">
-          <div class="field-checkbox">
-            <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
-            <label for="binary">Activo</label>
+        <!-- <div class="grid p-fluid">
+          <div class="col-12 md:col-1">
+            <div class="field-checkbox">
+              <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
+              <label for="binary">Activo</label>
+            </div>
           </div>
+        </div> -->
+
+        <!--SECCIÓN TABLA PRODUCTOS PDIALOG-->
+        <div class="col-12">
+          <p-table #dt1 [value]="productos" [resizableColumns]="true" styleClass="p-datatable-gridlines"
+            responsiveLayout="scroll" selectionMode="single" [(selection)]="selectedProductTP" dataKey="idProducto"
+            responsiveLayout="scroll" (onRowSelect)="onRowSelectFProduct($event)"
+            [globalFilterFields]="['nombreProducto','descripcionProducto', 'categoriaProducto', 'codigoRef']"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+            <ng-template pTemplate="caption">
+              <div class="flex">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                  (click)="clear(dt1)"></button>
+                <span class="p-input-icon-left ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Buscar" />
+                </span>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th pResizableColumn style="width:300px">
+                  <div class="flex justify-content-center align-items-center">
+                    PRODUCTO
+                    <p-columnFilter type="text" field="nombreProducto" display="menu"></p-columnFilter>
+                  </div>
+                </th>
+                <th pResizableColumn style="width:300px">
+                  <div class="flex justify-content-center align-items-center">
+                    Descripción
+                    <p-columnFilter type="text" field="descripcionProducto" display="menu"></p-columnFilter>
+                  </div>
+                </th>
+                <th pResizableColumn style="width:50px">
+                  <div class="flex justify-content-center align-items-center">Cod.</div>
+                </th>
+                <th pResizableColumn style="display:none;">Unidad</th>
+                <th pResizableColumn style="width:60px">
+                  <div class="flex justify-content-center align-items-center">Cant.</div>
+                </th>
+                <th pResizableColumn style="width:70px">Precio</th>
+                <th pResizableColumn style="width:100px">
+                  <div class="flex justify-content-center align-items-center">
+                    Categoria
+                    <p-columnFilter type="text" field="categoriaProducto" display="menu"></p-columnFilter>
+                  </div>
+                </th>
+                <th pResizableColumn style="width:100px">
+                  <div class="flex justify-content-center align-items-center">
+                    Cod Refer.
+                    <p-columnFilter type="text" field="codigoRef" display="menu"></p-columnFilter>
+                  </div>
+                </th>
+                <th style="width:100px" pResizableColumn>Ubicación</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+              <tr [pSelectableRow]="product">
+                <td>{{product.nombreProducto}}</td>
+                <td>{{product.descripcionProducto}}</td>
+                <td>{{product.idProducto}}</td>
+                <td style="display:none;">{{product.idProducto}}</td>
+                <td>
+                  <div
+                    [ngClass]="{'outofstock': product.stock == 0, 'lowstock': (product.stock > 0 && product.stock < 10),'instock': product.stock > 10}">
+                    {{product.stock}}
+                  </div>
+                </td>
+
+                <td><b>{{product.precioProducto}}</b></td>
+                <td>{{product.categoriaProducto}}</td>
+                <td>{{product.codigoRef}}</td>
+                <td>{{product.precioProducto}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
         </div>
       </div>
 
+
       <div class="grid p-fluid">
-        <div class="col-12  md:col-6">
+        <!-- <div class="col-12  md:col-6">
           <p-fieldset legend="Cambio de precios" [toggleable]="true">
             <div class="grid p-fluid">
 
@@ -591,7 +679,7 @@
               </div>
             </div>
           </p-fieldset>
-        </div>
+        </div> -->
 
         <div class="col-12  md:col-6">
           <p-fieldset legend="Stickers" [toggleable]="true">
@@ -617,7 +705,7 @@
         </div>
       </div>
 
-      <div class="grid p-fluid">
+      <!-- <div class="grid p-fluid">
         <div class="col-12 md:col-2">
           <button pButton pRipple type="button" label="Nuevo"></button>
           <button class="mt-1" pButton pRipple type="button" label="Eliminar"></button>
@@ -626,7 +714,7 @@
           <button pButton pRipple type="button" label="Modificar"></button>
           <button class="mt-1" pButton pRipple type="button" label="Limpiar Campos"></button>
         </div>
-      </div>
+      </div> -->
     </div>
     <!--FIN-->
   </ng-template>
@@ -636,4 +724,3 @@
       (click)="cargarProductosFacturacion()"></button>
   </ng-template>
 </p-dialog>
-
