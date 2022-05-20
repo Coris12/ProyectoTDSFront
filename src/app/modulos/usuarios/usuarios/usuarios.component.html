@@ -5,7 +5,7 @@
     <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
             <div class="p-2">
-                <h1>Gestión de sucursales</h1>
+                <h1>Gestión de Usuarios</h1>
             </div>
             <div class="ml-auto p-2">
                 <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay" class="p-button-rounded p-button-text red" (click)="cargarUsuarios()">
@@ -15,7 +15,7 @@
         <p-toolbar>
             <div class="p-toolbar-group-left">
                 <!-- (click)="showDialog()" -->
-                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text" label="Crear" icon="pi pi-plus" (click)="dialogo=true"></button>
+                <!-- <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text" label="Crear" icon="pi pi-plus" (click)="dialogo=true"></button>-->
                 <!--  (click)="showCatalogosEliminados()" 
                 <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Papelera" icon="pi pi-trash" (click)="papeleraConvocatorias=true"></button>
 -->
@@ -71,11 +71,3 @@
 </div>
 
 
-<p-dialog header="Gestion de roles" [(visible)]="dialogo" [style]="{width: '50vw'}">
-    <label for="requisitos" class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0 p-fluid">Rol del usuario:</label>
-    <p-dropdown [options]="roles" [(ngModel)]="nuevoRol"></p-dropdown>
-    <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="save()" label="Guardar" styleClass="p-button-text">
-        </p-button>
-    </ng-template>
-</p-dialog>
