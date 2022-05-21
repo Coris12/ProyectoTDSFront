@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   isAdmin = false;
   isPaciente = false;
   isFarmacia = false;
+  isDoctor = false;
   constructor(private tokenService: TokenService) { }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
     this.isAdmin = this.tokenService.isAdmin();
     this.isPaciente = this.tokenService.isPaciente();
     this.isFarmacia = this.tokenService.isFarmacia();
+    this.isDoctor = this.tokenService.isDoctor();
     //items del menu
     this.items = [
       {
@@ -39,14 +41,6 @@ export class HeaderComponent implements OnInit {
       },
       //-! fin opciones para el administrador
 
-      //! opciones para el paciente
-      {
-        label: 'Testpaciente',
-        icon: 'pi pi-fw pi-list',
-        routerLink: ['/lista-usuarios'],
-        visible: this.isLogged && this.isPaciente
-      },
-
       //! opciones productos
       {
         label: 'Productos',
@@ -60,9 +54,9 @@ export class HeaderComponent implements OnInit {
         label: 'Facturas',
         icon: 'pi pi-fw pi-book',
         items: [
-          {label: 'Factura venta', icon: 'pi pi-fw pi-arrow-left', routerLink: ['/lista-facturasVenta']},
-          {label: 'Factura compras', icon: 'pi pi-fw pi-arrow-right', routerLink: ['/lista-facturasCompra']}
-      ],
+          { label: 'Factura venta', icon: 'pi pi-fw pi-arrow-left', routerLink: ['/lista-facturasVenta'] },
+          { label: 'Factura compras', icon: 'pi pi-fw pi-arrow-right', routerLink: ['/lista-facturasCompra'] }
+        ],
         visible: this.isLogged && this.isFarmacia
       },
 
@@ -74,7 +68,16 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isAdmin
       },
 
-      //! fin opciones para el paciente
+      //! opciones para el doctor
+      {
+        label: 'Gestion de counter',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/pacientes'],
+        visible: this.isLogged && this.isDoctor
+      },
+      //! fin opciones para el doctor
+
+    
 
       //! opciones para el proveedor
       {

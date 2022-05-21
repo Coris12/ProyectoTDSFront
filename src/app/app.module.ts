@@ -72,6 +72,7 @@ import { ProveedorControllerService } from './api/proveedorController.service';
 import { FacturaVentaComponent } from './modulos/Facturas/factura-venta/factura-venta.component';
 import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factura-compra.component';
 import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/factura-producto.component';
+import { CounterComponent } from './modulos/counter/counter.component';
 
 
 
@@ -94,6 +95,7 @@ import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/fa
     FacturaVentaComponent,
     FacturaCompraComponent,
     FacturaProductoComponent,
+    CounterComponent,
 
   ],
   imports: [

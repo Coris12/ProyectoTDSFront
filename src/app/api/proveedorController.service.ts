@@ -26,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProveedorControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -206,10 +206,10 @@ export class ProveedorControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public searchUsingGET1(observe?: 'body', reportProgress?: boolean): Observable<Array<Proveedor>>;
-    public searchUsingGET1(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Proveedor>>>;
-    public searchUsingGET1(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Proveedor>>>;
-    public searchUsingGET1(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public searchUsingGET2(observe?: 'body', reportProgress?: boolean): Observable<Array<Proveedor>>;
+    public searchUsingGET2(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Proveedor>>>;
+    public searchUsingGET2(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Proveedor>>>;
+    public searchUsingGET2(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 

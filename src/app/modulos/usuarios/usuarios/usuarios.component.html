@@ -71,3 +71,11 @@
 </div>
 
 
+<p-dialog header="Gestion de roles" [(visible)]="dialogo" [style]="{width: '50vw'}">
+    <label for="requisitos" class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0 p-fluid">Rol del usuario:</label>
+    <p-dropdown [options]="roles" [(ngModel)]="nuevoRol"></p-dropdown>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="save()" label="Guardar" styleClass="p-button-text">
+        </p-button>
+    </ng-template>
+</p-dialog>

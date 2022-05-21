@@ -1,0 +1,181 @@
+<app-header></app-header>
+<p-toast></p-toast>
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Gestión de Insumos</h1>
+            </div>
+            <div class="ml-auto p-2">
+                <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay" class="p-button-rounded p-button-text red" (click)="cargarUsuarios()">
+                </button>
+            </div>
+        </div>
+
+        <p-toolbar>
+            <div class="p-toolbar-group-left">
+                <!-- (click)="showDialog()" -->
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text" label="Nuevo Producto" icon="pi pi-file-o" (click)="counterDialog=true"></button>
+                <!--  (click)="showCatalogosEliminados()" 
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Papelera" icon="pi pi-trash" (click)="papeleraConvocatorias=true"></button>
+-->
+            </div>
+            <div class="p-toolbar-group-right">
+            </div>
+        </p-toolbar>
+        <div class="content-section implementation mt-2">
+            <p-table #dt [value]="usuarios" [paginator]="true" [rows]="10" [scrollable]="true" scrollHeight="400px" styleClass="p-datatable-responsive-demo p-datatable-lg p-datatable-striped" [loading]="loading" [totalRecords]="totalRecords" [rowsPerPageOptions]="[10, 20, 30]"
+                (onLazyLoad)="cargarUsuarios($event)" [globalFilterFields]="['nombres', 'identificacion']" responsiveLayout="scroll">
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        <button pButton label="Limpiar campos" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+                        <span class="p-input-icon-left ml-auto">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Buscar usuario" />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Identificacion</th>
+                        <th>Nombres</th>
+                        <th>Direccion</th>
+                        <th>Celular</th>
+                        <th>Ciudad</th>
+                        <th>Email</th>
+                        <th>sexo</th>
+                        <th>Opciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-usuarios>
+                    <tr>
+                        <td>{{usuarios.identificacion}}</td>
+                        <td>{{usuarios.nombres}}</td>
+                        <td>{{usuarios.direccion}}</td>
+                        <td>{{usuarios.celular}}</td>
+                        <td>{{usuarios.ciudad}}</td>
+                        <td>{{usuarios.email}}</td>
+                        <td>{{usuarios.sexo}}</td>
+                        <td><button pButton pRipple type="button" label="Facturar" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="buscarCliente(usuarios.identificacion)"></button></td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En total hay {{totalRecords}} registros.
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="8">Ningun registro.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+    </div>
+</div>
+
+<p-dialog header="Crear Factura" [(visible)]="counterDialog" [draggable]="false" [resizable]="false" class="p-fluid">
+    <form [formGroup]="usuarioForm" (ngSubmit)="save()" novalidate>
+        <br>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>Informacion del paciente</b>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user-plus"></i>
+                    <input type="text" id="identificacion" pInputText formControlName="identificacion"
+                        name="identificacion">
+                    <label for="inputtext-left">Identificacion</label>
+                </span>
+            </div>
+
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user-plus"></i>
+                    <input type="text" id="nombres" pInputText formControlName="nombres">
+                    <label for="inputtext-left">Nombres</label>
+                </span>
+            </div>
+
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user-plus"></i>
+                    <input type="text" id="direccion" pInputText formControlName="direccion">
+                    <label for="inputtext-left">Direccion</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user-plus"></i>
+                    <input type="text" id="celular" pInputText formControlName="celular">
+                    <label for="inputtext-left">Celular</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user-plus"></i>
+                    <input type="text" id="sexo" pInputText formControlName="sexo">
+                    <label for="inputtext-left">Sexo</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user-plus"></i>
+                    <input type="text" id="email" pInputText formControlName="email">
+                    <label for="inputtext-left">Email</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user-plus"></i>
+                    <input type="text" id="ciudad" pInputText formControlName="ciudad">
+                    <label for="inputtext-left">Ciudad</label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-book mr-2"></i>
+                <b>Tratamiento</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fluid">
+            <div class="p-field p-col-12 p-md-3">
+                <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-money-bill"></i>
+                    <input type="text" id="ciudad" pInputText >
+                    <label for="inputtext-left">Valor</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group  mt-4" align='center'>
+            <p-button icon="pi pi-check" (click)="counterDialog=false" label="Imprimir" styleClass="p-button-text">
+            </p-button>
+        </div>
+
+
+    </form>
+
+</p-dialog>

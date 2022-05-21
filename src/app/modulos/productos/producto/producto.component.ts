@@ -68,7 +68,7 @@ export class ProductoComponent implements OnInit {
       { label: 'EQUIPOS', value: 'EQUIPOS' }
     ];
 
-    this.productoController.searchUsingGET().subscribe((data: any) => {
+    this.productoController.searchUsingGET1().subscribe((data: any) => {
       this.produc = data;
       console.log(this.produc);
     })
@@ -117,7 +117,7 @@ export class ProductoComponent implements OnInit {
     this.loading = true;
 
     setTimeout(() => {
-      this.productoController.searchUsingGET().subscribe(
+      this.productoController.searchUsingGET1().subscribe(
 
         data => {
           this.productos = data;
