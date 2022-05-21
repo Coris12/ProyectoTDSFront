@@ -52,7 +52,7 @@ const routes: Routes = [
   //{ path: 'entregar', component: ControlUserComponent, canActivate: [ProdGuardService], data: { expectedRol: ['tribunal'] } },
 
   //Facturas
-{ path: 'lista-facturasVenta', component: FacturaVentaComponent, data: { expectedRol: ['admin', 'user'] } },
+{ path: 'lista-facturasVenta', component: FacturaVentaComponent, data: { expectedRol: ['farmacia', 'user'] } },
 { path: 'Product-List', component: FacturaProductoComponent},
 { path: 'lista-facturasCompra', component: FacturaCompraComponent, data: { expectedRol: ['admin', 'user'] } },
   { path: '**', redirectTo: '', pathMatch: 'full' },
