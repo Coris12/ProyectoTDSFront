@@ -10,9 +10,15 @@
  * Do not edit the class manually.
  */
 import { FacturaRes } from './facturaRes';
+import { Producto } from './producto';
 
-export interface GenericResponseListFactura { 
-    message?: string;
-    object?: Array<FacturaRes>;
-    status?: number;
+export interface CuerpoFacturaRes { 
+    cantidad?: number;
+    descuento?: number;
+    factura?: FacturaRes;
+    idCuerpo?: number;
+    iva?: number;
+    producto?: Producto;
+    subtotal?: number;
+    total?: number;
 }

@@ -57,7 +57,8 @@ export class HeaderComponent implements OnInit {
           { label: 'Factura venta', icon: 'pi pi-fw pi-arrow-left', routerLink: ['/lista-facturasVenta'] },
           { label: 'Factura compras', icon: 'pi pi-fw pi-arrow-right', routerLink: ['/lista-facturasCompra'] }
         ],
-        visible: this.isLogged && this.isFarmacia
+        //visible: this.isLogged && this.isFarmacia
+        visible: this.isLogged && this.isAdmin
       },
 
       //! opciones sucursal
@@ -77,7 +78,7 @@ export class HeaderComponent implements OnInit {
       },
       //! fin opciones para el doctor
 
-    
+
 
       //! opciones para el proveedor
       {

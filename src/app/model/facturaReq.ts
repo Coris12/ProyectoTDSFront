@@ -9,10 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { FacturaRes } from './facturaRes';
+import { Cliente } from './cliente';
+import { CuerpoFacturaReq } from './cuerpoFacturaReq';
 
-export interface GenericResponseListFactura { 
-    message?: string;
-    object?: Array<FacturaRes>;
-    status?: number;
+export interface FacturaReq { 
+    cliente?: Cliente;
+    cuerpoFactura?: Array<CuerpoFacturaReq>;
+    fecha?: Date;
+    idFactura?: number;
+    tipoFactura?: string;
 }

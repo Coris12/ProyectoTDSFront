@@ -17,7 +17,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { CuerpoFactura } from '../model/cuerpoFactura';
+import { CuerpoFacturaReq } from '../model/cuerpoFacturaReq';
+import { CuerpoFacturaRes } from '../model/cuerpoFacturaRes';
 import { GenericResponsestring } from '../model/genericResponsestring';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -27,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class CuerpoFacturaControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -58,15 +59,15 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Crear el cuerpo de la factura
-     * 
+     *
      * @param body cuerpos
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createUsingPOST1(body: CuerpoFactura, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public createUsingPOST1(body: CuerpoFactura, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public createUsingPOST1(body: CuerpoFactura, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public createUsingPOST1(body: CuerpoFactura, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createUsingPOST1(body: CuerpoFacturaReq, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public createUsingPOST1(body: CuerpoFacturaReq, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public createUsingPOST1(body: CuerpoFacturaReq, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public createUsingPOST1(body: CuerpoFacturaReq, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling createUsingPOST1.');
@@ -110,7 +111,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Eliminar el cuerpo de la factura
-     * 
+     *
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -156,14 +157,14 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Detalle del cuerpo de la Factura
-     * 
+     *
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET(id: number, observe?: 'body', reportProgress?: boolean): Observable<CuerpoFactura>;
-    public getByIdUsingGET(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CuerpoFactura>>;
-    public getByIdUsingGET(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CuerpoFactura>>;
+    public getByIdUsingGET(id: number, observe?: 'body', reportProgress?: boolean): Observable<CuerpoFacturaRes>;
+    public getByIdUsingGET(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CuerpoFacturaRes>>;
+    public getByIdUsingGET(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CuerpoFacturaRes>>;
     public getByIdUsingGET(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
@@ -190,7 +191,7 @@ export class CuerpoFacturaControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<CuerpoFactura>('get',`${this.basePath}/CuerpoFactura/detail/${encodeURIComponent(String(id))}`,
+        return this.httpClient.request<CuerpoFacturaRes>('get',`${this.basePath}/CuerpoFactura/detail/${encodeURIComponent(String(id))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -202,15 +203,15 @@ export class CuerpoFacturaControllerService {
 
     /**
      * guardarCuerpoFact2
-     * 
+     *
      * @param body cuerpoFactura
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public guardarCuerpoFact2UsingPOST(body: CuerpoFactura, observe?: 'body', reportProgress?: boolean): Observable<CuerpoFactura>;
-    public guardarCuerpoFact2UsingPOST(body: CuerpoFactura, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CuerpoFactura>>;
-    public guardarCuerpoFact2UsingPOST(body: CuerpoFactura, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CuerpoFactura>>;
-    public guardarCuerpoFact2UsingPOST(body: CuerpoFactura, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public guardarCuerpoFact2UsingPOST(body: CuerpoFacturaReq, observe?: 'body', reportProgress?: boolean): Observable<CuerpoFacturaRes>;
+    public guardarCuerpoFact2UsingPOST(body: CuerpoFacturaReq, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CuerpoFacturaRes>>;
+    public guardarCuerpoFact2UsingPOST(body: CuerpoFacturaReq, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CuerpoFacturaRes>>;
+    public guardarCuerpoFact2UsingPOST(body: CuerpoFacturaReq, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling guardarCuerpoFact2UsingPOST.');
@@ -241,7 +242,7 @@ export class CuerpoFacturaControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<CuerpoFactura>('post',`${this.basePath}/CuerpoFactura/GuardarCuerpoFactura2`,
+        return this.httpClient.request<CuerpoFacturaRes>('post',`${this.basePath}/CuerpoFactura/GuardarCuerpoFactura2`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -254,15 +255,15 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Guardar producto en cuerpo de factura
-     * 
+     *
      * @param body cuerpoFactura
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public guardarCuerpoFacturaUsingPOST(body: CuerpoFactura, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public guardarCuerpoFacturaUsingPOST(body: CuerpoFactura, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public guardarCuerpoFacturaUsingPOST(body: CuerpoFactura, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public guardarCuerpoFacturaUsingPOST(body: CuerpoFactura, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public guardarCuerpoFacturaUsingPOST(body: CuerpoFacturaReq, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public guardarCuerpoFacturaUsingPOST(body: CuerpoFacturaReq, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public guardarCuerpoFacturaUsingPOST(body: CuerpoFacturaReq, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public guardarCuerpoFacturaUsingPOST(body: CuerpoFacturaReq, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling guardarCuerpoFacturaUsingPOST.');
@@ -306,13 +307,13 @@ export class CuerpoFacturaControllerService {
 
     /**
      * lista del cuerpo Factura
-     * 
+     *
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<CuerpoFactura>>;
-    public listUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<CuerpoFactura>>>;
-    public listUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<CuerpoFactura>>>;
+    public listUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<CuerpoFacturaRes>>;
+    public listUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<CuerpoFacturaRes>>>;
+    public listUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<CuerpoFacturaRes>>>;
     public listUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -335,7 +336,7 @@ export class CuerpoFacturaControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<CuerpoFactura>>('get',`${this.basePath}/CuerpoFactura/lista`,
+        return this.httpClient.request<Array<CuerpoFacturaRes>>('get',`${this.basePath}/CuerpoFactura/lista`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -347,16 +348,16 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Actualizar el cuerpo de la factura
-     * 
+     *
      * @param body cuerpo
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateUsingPUT(body: CuerpoFactura, id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public updateUsingPUT(body: CuerpoFactura, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public updateUsingPUT(body: CuerpoFactura, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public updateUsingPUT(body: CuerpoFactura, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateUsingPUT(body: CuerpoFacturaReq, id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateUsingPUT(body: CuerpoFacturaReq, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateUsingPUT(body: CuerpoFacturaReq, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateUsingPUT(body: CuerpoFacturaReq, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling updateUsingPUT.');

@@ -26,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProveedorControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -57,7 +57,7 @@ export class ProveedorControllerService {
 
     /**
      * Crea al proveedor
-     * 
+     *
      * @param body proveedor
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -109,7 +109,7 @@ export class ProveedorControllerService {
 
     /**
      * Eliminado logico del proveedor
-     * 
+     *
      * @param idProveedor id_proveedor
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -161,7 +161,7 @@ export class ProveedorControllerService {
 
     /**
      * Muestra una lista de proveedores
-     * 
+     *
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -202,7 +202,7 @@ export class ProveedorControllerService {
 
     /**
      * Lista los proveedores con estado 1
-     * 
+     *
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
