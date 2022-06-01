@@ -64,9 +64,9 @@ export class FacturaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public generarPdfFacturaUsuarioUsingGET(idFactura: number, observe?: 'body', reportProgress?: boolean): Observable<Blob>;
-    public generarPdfFacturaUsuarioUsingGET(idFactura: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Blob>>;
-    public generarPdfFacturaUsuarioUsingGET(idFactura: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Blob>>;
+    public generarPdfFacturaUsuarioUsingGET(idFactura: number, observe?: 'body', reportProgress?: boolean): Observable<string>;
+    public generarPdfFacturaUsuarioUsingGET(idFactura: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<string>>;
+    public generarPdfFacturaUsuarioUsingGET(idFactura: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<string>>;
     public generarPdfFacturaUsuarioUsingGET(idFactura: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (idFactura === null || idFactura === undefined) {
@@ -87,7 +87,7 @@ export class FacturaControllerService {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'application/pdf'
+            '*/*'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {

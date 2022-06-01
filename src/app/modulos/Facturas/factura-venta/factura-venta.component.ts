@@ -777,7 +777,6 @@ export class FacturaVentaComponent implements OnInit {
     let numAlea = this.createId();
     var blob = new Blob([pdf], { type: 'application/pdf' });
     var url = window.URL.createObjectURL(blob);
-
     //Extraer fecha y hora
     let fech = this.facturaObj.fecha;
     let fecha = fech.getDate() + "/" + (fech.getMonth() + 1) + "/" + fech.getFullYear();
@@ -786,10 +785,9 @@ export class FacturaVentaComponent implements OnInit {
     var link = document.createElement('a');
     link.href = url;
     link.download = 'FacturaFarmacia-'+this.idFact+'-'+fecha+'-h'+hora+'-'+numAlea+'.pdf';
-    //link.click();
+    link.click();
     window.open(url);
   }
-
 
   GenerarPdfFactUseConsFinal() {
     this.serviceFactManual.generarPdfFacturaUsuario(this.idFact).subscribe((data) => {
