@@ -63,7 +63,7 @@ export class ProveedorComponent implements OnInit {
   cargarProveedores(event?: LazyLoadEvent): void {
     this.loading = true;
     setTimeout(() => {
-      this.proveedorController.searchUsingGET2().subscribe(
+      this.proveedorController.searchUsingGET3().subscribe(
         data => {
           this.proveedor = data;
           this.totalRecords = this.proveedor.length;
