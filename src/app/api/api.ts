@@ -18,4 +18,6 @@ export * from './proveedorController.service';
 import { ProveedorControllerService } from './proveedorController.service';
 export * from './sucursalController.service';
 import { SucursalControllerService } from './sucursalController.service';
-export const APIS = [AuthControllerService, BasicErrorControllerService, ClienteControllerService, CuerpoFacturaControllerService, EmpleadoControllerService, FacturaControllerService, FaramaciaControllerService, ProductoControllerService, ProveedorControllerService, SucursalControllerService];
+export * from './tratamientoController.service';
+import { TratamientoControllerService } from './tratamientoController.service';
+export const APIS = [AuthControllerService, BasicErrorControllerService, ClienteControllerService, CuerpoFacturaControllerService, EmpleadoControllerService, FacturaControllerService, FaramaciaControllerService, ProductoControllerService, ProveedorControllerService, SucursalControllerService, TratamientoControllerService];

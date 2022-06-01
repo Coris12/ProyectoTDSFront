@@ -19,5 +19,6 @@ export * from './producto';
 export * from './proveedor';
 export * from './rol';
 export * from './sucursal';
+export * from './tratamiento';
 export * from './usuario';
 export * from './view';

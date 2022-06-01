@@ -26,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class EmpleadoControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -57,7 +57,7 @@ export class EmpleadoControllerService {
 
     /**
      * Crea al empleado
-     *
+     * 
      * @param body empleado
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -109,7 +109,7 @@ export class EmpleadoControllerService {
 
     /**
      * Eliminado logico del empleado
-     *
+     * 
      * @param idEmpleado id_empleado
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -151,6 +151,47 @@ export class EmpleadoControllerService {
         return this.httpClient.request<any>('patch',`${this.basePath}/empleado/deleteEmpleado/${encodeURIComponent(String(idEmpleado))}`,
             {
                 params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Lista los empleados  con estado 1
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public searchUsingGET1(observe?: 'body', reportProgress?: boolean): Observable<Array<Empleado>>;
+    public searchUsingGET1(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Empleado>>>;
+    public searchUsingGET1(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Empleado>>>;
+    public searchUsingGET1(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Empleado>>('get',`${this.basePath}/empleado/empleadosActivos`,
+            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
