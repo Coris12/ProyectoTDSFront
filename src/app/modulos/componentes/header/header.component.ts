@@ -41,6 +41,15 @@ export class HeaderComponent implements OnInit {
       },
       //-! fin opciones para el administrador
 
+      //! opciones para los empleados
+      {
+        label: 'Gestion de Empleados',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/lista-empleados'],
+        visible: this.isLogged && this.isAdmin
+      },
+      //-! fin opciones para el administrador
+
       //! opciones productos
       {
         label: 'Productos',

@@ -1,1 +1,32 @@
-<p>empleado works!</p>
+<app-header></app-header>
+<p-toast></p-toast>
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Gestión de Empleados</h1>
+            </div>
+            <div class="ml-auto p-2">
+                <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay" class="p-button-rounded p-button-text red" >
+                </button>
+            </div>
+        </div>
+
+        <p-toolbar>
+            <div class="p-toolbar-group-left">
+                <!-- (click)="showDialog()" -->
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text" label="Nuevo tratamiento" icon="pi pi-file-o" ></button>
+                <!--  (click)="showCatalogosEliminados()" 
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Papelera" icon="pi pi-trash" (click)="papeleraConvocatorias=true"></button>
+-->
+            </div>
+            <div class="p-toolbar-group-right">
+            </div>
+        </p-toolbar>
+     
+
+    </div>
+</div>
+
