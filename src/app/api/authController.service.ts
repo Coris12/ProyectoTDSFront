@@ -31,7 +31,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class AuthControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -59,6 +59,47 @@ export class AuthControllerService {
         return false;
     }
 
+
+    /**
+     * Muestra la lista de usuarios en el sistema
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public buscarEmpleaUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<Usuario>>;
+    public buscarEmpleaUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Usuario>>>;
+    public buscarEmpleaUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Usuario>>>;
+    public buscarEmpleaUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Usuario>>('get',`${this.basePath}/auth/empleados`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
     /**
      * getPersonaByIdentificacion
@@ -361,47 +402,6 @@ export class AuthControllerService {
         return this.httpClient.request<JwtDto>('post',`${this.basePath}/auth/refresh`,
             {
                 body: body,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Muestra la lista de usuarios en el sistema
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public searchEUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<Usuario>>;
-    public searchEUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Usuario>>>;
-    public searchEUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Usuario>>>;
-    public searchEUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (JWT) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<Array<Usuario>>('get',`${this.basePath}/auth/empleados`,
-            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
