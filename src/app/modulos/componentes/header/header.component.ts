@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/lista-empleados'],
         visible: this.isLogged && this.isAdmin
       },
-      //-! fin opciones para el administrador
+      //-! fin opciones para los empleados
 
       //! opciones productos
       {

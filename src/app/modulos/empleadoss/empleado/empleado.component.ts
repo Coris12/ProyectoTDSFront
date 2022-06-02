@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./empleado.component.css']
 })
 export class EmpleadoComponent implements OnInit {
+ EmpleadoDialog: boolean;
+ loading: boolean;
+
+ empleados:any;
+
+  totalRecords: number
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  
+  cargarEmpleados() {
+
+  }
 }
