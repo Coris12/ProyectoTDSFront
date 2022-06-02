@@ -74,6 +74,7 @@ import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factur
 import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/factura-producto.component';
 import { CounterComponent } from './modulos/counter/counter.component';
 import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
+import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
 
 
 
@@ -98,6 +99,7 @@ import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.compon
     FacturaProductoComponent,
     CounterComponent,
     EmpleadoComponent,
+    TratamientoComponent,
 
   ],
   imports: [

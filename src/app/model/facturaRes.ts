@@ -17,6 +17,5 @@ export interface FacturaRes {
     cuerpoFactura?: Array<CuerpoFacturaRes>;
     fecha?: Date;
     idFactura?: number;
-    idFactura?: number;
     tipoFactura?: string;
 }

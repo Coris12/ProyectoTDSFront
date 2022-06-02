@@ -87,6 +87,16 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/proveedores'],
         visible: this.isLogged && this.isAdmin
       },
+
+
+      {
+        label: 'Gestion de tratamientos',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/tratamientos'],
+        visible: this.isLogged && this.isFarmacia
+      },
+
+
       {
         label: 'Cerrar Sesión',
         icon: 'pi pi-fw pi-user-minus',

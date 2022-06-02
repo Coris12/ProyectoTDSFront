@@ -27,6 +27,7 @@ import { FacturaVentaComponent } from './modulos/Facturas/factura-venta/factura-
 import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/factura-producto.component';
 import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factura-compra.component';
 import { CounterComponent } from './modulos/counter/counter.component';
+import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
 
 
 
@@ -49,6 +50,7 @@ const routes: Routes = [
   
   { path: 'pacientes', component: CounterComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
+  { path: 'tratamientos', component: TratamientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lista-sucursales', component: SucursalComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'editar/:id', component: EditarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   // { path: 'editarPro/:id', component: EditarProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
