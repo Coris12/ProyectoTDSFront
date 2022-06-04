@@ -121,9 +121,6 @@
           </ng-template>
         </div>
         <ng-template #elseBlock>
-          <!-- <p-table #dt1 [value]="productDatTabArray" selectionMode="single" [(selection)]="SelectProductoDto"
-            dataKey="id" [resizableColumns]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll"
-            (onRowSelect)="onRowSelect2($event)"> -->
           <p-table #dt1 [value]="productDatTabArray" dataKey="id" [resizableColumns]="true"
             [(selection)]="SelectProductoDto" [rowHover]="true" styleClass="p-datatable-gridlines"
             responsiveLayout="scroll">
@@ -541,7 +538,7 @@
         <div class="col-12">
           <p-table #dt1 [value]="productos" [resizableColumns]="true" styleClass="p-datatable-gridlines"
             responsiveLayout="scroll" selectionMode="single" [(selection)]="selectedProductTP" dataKey="idProducto"
-            responsiveLayout="scroll" (onRowSelect)="onRowSelectFProduct($event)"
+            (onRowSelect)="onRowSelectFProduct($event)"
             [globalFilterFields]="['nombreProducto','descripcionProducto', 'categoriaProducto', 'codigoRef']"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
             <ng-template pTemplate="caption">

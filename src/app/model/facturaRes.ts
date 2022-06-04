@@ -12,11 +12,11 @@
 import { Cliente } from './cliente';
 import { CuerpoFacturaRes } from './cuerpoFacturaRes';
 
-export interface FacturaRes { 
+export interface FacturaRes {
     cliente?: Cliente;
     cuerpoFactura?: Array<CuerpoFacturaRes>;
     fecha?: Date;
-    idFactura?: number;
+    //idFactura?: number;
     idFactura?: number;
     tipoFactura?: string;
 }

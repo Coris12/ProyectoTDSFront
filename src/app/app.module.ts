@@ -74,6 +74,7 @@ import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factur
 import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/factura-producto.component';
 import { CounterComponent } from './modulos/counter/counter.component';
 import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
+import { TratamientoControllerService } from './api/tratamientoController.service';
 
 
 
@@ -160,7 +161,8 @@ import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.compon
     FaramaciaControllerService,
     ProductoControllerService,
     SucursalControllerService,
-    ProveedorControllerService
+    ProveedorControllerService,
+    TratamientoControllerService,
   ],
   bootstrap: [AppComponent]
 })

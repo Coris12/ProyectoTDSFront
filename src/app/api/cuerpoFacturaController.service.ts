@@ -28,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class CuerpoFacturaControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -59,7 +59,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Crear el cuerpo de la factura
-     * 
+     *
      * @param body cuerpos
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -111,7 +111,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Eliminar el cuerpo de la factura
-     * 
+     *
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -157,7 +157,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Detalle del cuerpo de la Factura
-     * 
+     *
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -203,7 +203,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * guardarCuerpoFact2
-     * 
+     *
      * @param body cuerpoFactura
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -255,7 +255,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Guardar producto en cuerpo de factura
-     * 
+     *
      * @param body cuerpoFactura
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -307,7 +307,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * lista del cuerpo Factura
-     * 
+     *
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -348,7 +348,7 @@ export class CuerpoFacturaControllerService {
 
     /**
      * Actualizar el cuerpo de la factura
-     * 
+     *
      * @param body cuerpo
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.

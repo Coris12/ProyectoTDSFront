@@ -243,7 +243,7 @@ export class FacturaVentaComponent implements OnInit {
     stock: null,
   }
 
-  constructor(private router: Router, private messageService: MessageService, private primeNGConfig: PrimeNGConfig,
+  constructor(private router: Router, private messageService: MessageService,
     private serviceProduct: ProductoControllerService, private serviceCliente: ClienteControllerService,
     private servicePersona: AuthControllerService, private serviceDetallFact: CuerpoFacturaControllerService,
     private serviceFact: FacturaControllerService, private confirmationService: ConfirmationService,
