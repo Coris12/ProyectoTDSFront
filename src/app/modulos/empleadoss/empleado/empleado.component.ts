@@ -137,7 +137,6 @@ export class EmpleadoComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Esta seguro de eliminar al Empleado?',
       accept: () => {
-
         this.empleadoController.deleteEmpleadoUsingPATCH(idEmpleado).subscribe(
           data => {
             this.messageService.add({ severity: 'success', summary: 'Empleado Eliminado', detail: 'eliminar.' });

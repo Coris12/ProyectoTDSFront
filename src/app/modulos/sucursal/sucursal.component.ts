@@ -94,9 +94,9 @@ export class SucursalComponent implements OnInit {
       this.sucursalForm.setValue({
         idSucursal: null,
         correoSuc: null,
-        direccionSuc:null,
+        direccionSuc: null,
         nombreSuc: null,
-        telefonoSuc:null
+        telefonoSuc: null
       })
 
     }
@@ -115,17 +115,17 @@ export class SucursalComponent implements OnInit {
     );
   }
 
- 
-  //metodo de borrado logico
-  borrarSucursal(idSucursal: number): void {
 
+  //metodo de borrado logico
+borrarSucursal(idSucursal: number): void {
+console.log(idSucursal)
     this.confirmationService.confirm({
-      message: 'Esta seguro de eliminar la Sucursal?',
+      message: 'Esta seguro de eliminar la sucursal?',
       accept: () => {
         //Actual logic to perform a confirmation
         this.sucursalController.deleletSucursalUsingPATCH(idSucursal).subscribe(
           data => {
-            this.messageService.add({ severity: 'success', summary: 'Sucursal Eliminado', detail: 'eliminar.' });
+            this.messageService.add({ severity: 'success', summary: 'Producto Eliminado', detail: 'eliminar.' });
             setTimeout(() => {
               this.cargarSucursales();
             }, 1000);
