@@ -13,6 +13,7 @@
 export interface Sucursal { 
     correoSuc?: string;
     direccionSuc?: string;
+    estado?: number;
     idSucursal?: number;
     nombreSuc?: string;
     telefonoSuc?: string;
