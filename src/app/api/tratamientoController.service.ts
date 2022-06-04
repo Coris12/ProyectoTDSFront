@@ -166,13 +166,13 @@ export class TratamientoControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET3(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tratamiento>;
-    public getByIdUsingGET3(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tratamiento>>;
-    public getByIdUsingGET3(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tratamiento>>;
-    public getByIdUsingGET3(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET4(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tratamiento>;
+    public getByIdUsingGET4(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tratamiento>>;
+    public getByIdUsingGET4(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tratamiento>>;
+    public getByIdUsingGET4(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET3.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET4.');
         }
 
         let headers = this.defaultHeaders;
@@ -295,17 +295,17 @@ export class TratamientoControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateUsingPUT3(body: Tratamiento, id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public updateUsingPUT3(body: Tratamiento, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public updateUsingPUT3(body: Tratamiento, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public updateUsingPUT3(body: Tratamiento, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateUsingPUT5(body: Tratamiento, id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateUsingPUT5(body: Tratamiento, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateUsingPUT5(body: Tratamiento, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateUsingPUT5(body: Tratamiento, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling updateUsingPUT3.');
+            throw new Error('Required parameter body was null or undefined when calling updateUsingPUT5.');
         }
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateUsingPUT3.');
+            throw new Error('Required parameter id was null or undefined when calling updateUsingPUT5.');
         }
 
         let headers = this.defaultHeaders;

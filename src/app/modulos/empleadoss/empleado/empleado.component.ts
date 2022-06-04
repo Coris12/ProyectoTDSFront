@@ -25,7 +25,7 @@ export class EmpleadoComponent implements OnInit {
   EmpleadoDialog: boolean;
   loading: boolean;
 
-  empleado: any;
+  emple: any;
   usuarios: Usuario[] = [];
   empleados: Empleado[] = [];
   farmacia: Farmacia[] = [];
@@ -42,8 +42,8 @@ export class EmpleadoComponent implements OnInit {
     this.cargarUsuarios();
 
     this.empleadoController.searchUsingGET1().subscribe((data: any) => {
-      this.empleado = data;
-      console.log(this.empleado);
+      this.emple = data;
+      console.log(this.emple);
     })
   }
 
@@ -65,19 +65,59 @@ export class EmpleadoComponent implements OnInit {
     }, 1000);
   }
 
-  saveEmpleado() {
-    this.empleadoController.createUsingPOST2(
-      this.empleForm.value,
-      this.empleForm.value?.usuario.idUsuario,
-    ).subscribe(data => {
-      this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Proveedor creado con exito.' });
-      setTimeout(() => {
-        this.cargarEmpleados();
-      }, 1000);
-      this.EmpleadoDialog = false;
+  updateEmpleado(idEmpleado: number) {
+    this.empleadoController.getByIdUsingGET1(idEmpleado)
+      .subscribe(emple => {
+        console.log(emple.idEmpleado)
+        this.empleForm.setValue({
+          idEmpleado:emple.idEmpleado,
+          estado:emple.estado ,
+          farmacia:emple.farmacia,
+          cargoEmple:emple.cargoEmple,
+          usuario:emple.usuario
+          
+        });
+      });
+    this.EmpleadoDialog = true;
 
-    },
-      error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+  }
+
+  saveEmpleado(): void {
+    console.log(this.empleForm.value)
+    if (this.empleForm.value?.idEmpleado !== null) {
+      this.empleadoController.updateUsingPUT1(
+        this.empleForm.value,
+        this.empleForm.value?.idEmpleado,
+      ).subscribe(data => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Producto Actualizado',
+          detail: data.object
+        });
+        this.EmpleadoDialog = false;
+        this.cargarEmpleados();
+      });
+    } else {
+      this.empleadoController.createUsingPOST2(
+        this.empleForm.value,
+        this.empleForm.value?.usuario.idUsuario
+      ).subscribe(data => {
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Sucursal creada con exito.' });
+
+      },
+        error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+
+        this.EmpleadoDialog = false;
+
+        this.empleForm.setValue({
+          idEmpleado: null,
+          estado: null,
+          farmacia: null,
+          cargoEmple: null,
+          usuario: null
+      })
+
+    }
   }
 
   cargarUsuarios(): void {
@@ -97,7 +137,7 @@ export class EmpleadoComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Esta seguro de eliminar al Empleado?',
       accept: () => {
-       
+
         this.empleadoController.deleteEmpleadoUsingPATCH(idEmpleado).subscribe(
           data => {
             this.messageService.add({ severity: 'success', summary: 'Empleado Eliminado', detail: 'eliminar.' });

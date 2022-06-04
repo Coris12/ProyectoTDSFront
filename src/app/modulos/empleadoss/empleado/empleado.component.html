@@ -60,14 +60,13 @@
                         <td>{{empleados. usuario.ciudad}}</td>
                         <td>{{empleados. usuario.email}}</td>
                         <td>{{empleados. usuario.sexo}}</td>
-                        <td>{{empleados. cargo_emple}}</td>
+                        <td>{{empleados. cargoEmple}}</td>
                         <td>{{empleados. usuario.roles[0].rolNombre}}</td>
                         <td><button pButton pRipple type="button" style="margin: 10px"
                             class="p-button-raised p-button-text p-button-danger" icon="pi pi-trash"
                             (click)="borrarEmple(empleados.id_empleado)"></button>
-                            <button pButton pRipple type="button" style="margin: 10px"
-                            class="p-button-pencil p-button-text p-button-danger" icon="pi pi-trash"
-                            ></button>
+                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="updateEmpleado(empleados.id_empleado)"></button>
+
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">

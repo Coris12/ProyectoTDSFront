@@ -134,7 +134,7 @@ export class ProductoComponent implements OnInit {
   }
 
    updateProducto(idProducto:number) {
-    this.productoController.getByIdUsingGET1(idProducto)
+    this.productoController.getByIdUsingGET2(idProducto)
       .subscribe( produc => {
         console.log (produc.idProducto)
         this.productoForm.setValue({
@@ -162,7 +162,7 @@ export class ProductoComponent implements OnInit {
    saveProducto() {
     console.log(this.productoForm.value)
     if (this.productoForm.value?.idProducto !== null) {
-      this.productoController.updateUsingPUT1(
+      this.productoController.updateUsingPUT2(
         this.productoForm.value,
         this.productoForm.value?.idProducto,
       ).subscribe(data => {
