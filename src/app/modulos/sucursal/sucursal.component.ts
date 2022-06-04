@@ -1,11 +1,9 @@
 import { SucursalControllerService } from './../../api/sucursalController.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Sucursal } from '../../model/sucursal';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthControllerService } from 'src/app/api/authController.service';
-import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-sucursal',
@@ -27,21 +25,28 @@ export class SucursalComponent implements OnInit {
   @ViewChild('dt') table: Table;
   //! variables
   columnas: any[];
-  
+  suc: any[];
+
   loading: boolean; // * lazy load
   totalRecords: number
 
   //! abre el dialo de sucursal
-  sucursalDialog : boolean;
+  sucursalDialog: boolean;
 
   //! lista las convocatorias
-  sucursal: Sucursal []= [];
+  sucursal: Sucursal[] = [];
 
 
-  constructor(private sucursalController: SucursalControllerService, private messageService: MessageService) { }
+  constructor(private sucursalController: SucursalControllerService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.cargarSucursales();
+    this.sucursalController.searchUsingGET4().subscribe((data: any) => {
+      this.suc = data;
+      console.log(this.suc);
+    })
   }
 
   guardarSucursal() {
@@ -51,11 +56,11 @@ export class SucursalComponent implements OnInit {
       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Sucursal creada con exito.' });
 
     },
-    error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+      error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
   }
 
   cargarSucursales() {
-    this.sucursalController.listaUsingGET1().subscribe(
+    this.sucursalController.searchUsingGET4().subscribe(
       data => {
         this.sucursal = data;
         this.totalRecords = this.sucursal.length;
@@ -66,8 +71,22 @@ export class SucursalComponent implements OnInit {
     );
   }
 
-  borrarSucursal(){
-
+  borrarSucursal(idSucursal: number) {
+    this.confirmationService.confirm({
+      message: 'Esta seguro de eliminar la Sucursal?',
+      
+      accept: () => {
+        //Actual logic to perform a confirmation
+        this.sucursalController.deleletSucursalUsingPATCH(idSucursal).subscribe(
+          data => {
+            this.messageService.add({ severity: 'success', summary: 'Sucursal Eliminado', detail: 'eliminar.' });
+            setTimeout(() => {
+              this.cargarSucursales();
+            }, 1000);
+          },
+          error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+      }
+    });
   }
 
 }

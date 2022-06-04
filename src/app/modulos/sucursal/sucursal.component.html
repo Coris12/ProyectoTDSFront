@@ -49,9 +49,10 @@
                         <td>{{sucu.direccionSuc}}</td>
                         <td>{{sucu.telefonoSuc}} </td>
                         <td>{{sucu.correoSuc}}</td>
-                        <td><button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Borrar" icon="pi pi-trash" (click)="borrarSucursal()"></button>
-                        </td>
-                        <td><button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Editar" icon="pi pi-trash" (click)="borrarSucursal()"></button>
+                        <td><button pButton pRipple type="button" style="margin: 10px"
+                            class="p-button-raised p-button-text p-button-danger"label="Borrar" icon="pi pi-trash"
+                            (click)="borrarSucursal(sucu.id_sucursal)"></button>
+                        <td><button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Editar" icon="pi pi-trash" ></button>
                         </td>
                     </tr>
                 </ng-template>

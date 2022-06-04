@@ -27,6 +27,8 @@ import { FacturaVentaComponent } from './modulos/Facturas/factura-venta/factura-
 import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/factura-producto.component';
 import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factura-compra.component';
 import { CounterComponent } from './modulos/counter/counter.component';
+import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
+import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
 
 
 
@@ -44,11 +46,13 @@ const routes: Routes = [
   // { path: 'nuevo-pro', component: RegistrarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   { path: 'lista-usuarios', component: UsuariosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lista-productos', component: ProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['farmacia','user'] } },
+  { path: 'lista-empleados', component: EmpleadoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin','user'] } },
 
   { path: 'proveedores', component: ProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   
   { path: 'pacientes', component: CounterComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
+  { path: 'tratamientos', component: TratamientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lista-sucursales', component: SucursalComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'editar/:id', component: EditarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   // { path: 'editarPro/:id', component: EditarProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },

@@ -75,6 +75,7 @@ import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/fa
 import { CounterComponent } from './modulos/counter/counter.component';
 import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
 import { TratamientoControllerService } from './api/tratamientoController.service';
+import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
 
 
 
@@ -99,6 +100,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     FacturaProductoComponent,
     CounterComponent,
     EmpleadoComponent,
+    TratamientoComponent,
 
   ],
   imports: [

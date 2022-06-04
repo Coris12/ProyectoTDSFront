@@ -1,1 +1,109 @@
-<p>empleado works!</p>
+<app-header></app-header>
+<p-toast></p-toast>
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Gestión de Empleados</h1>
+            </div>
+            <div class="ml-auto p-2">
+                <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay"
+                    class="p-button-rounded p-button-text red">
+                </button>
+            </div>
+        </div>
+
+        <p-toolbar>
+            <div class="p-toolbar-group-left">
+                <!-- (click)="showDialog()" -->
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text"
+                    label="Nuevo Empleado" icon="pi pi-file-o" (click)="EmpleadoDialog=true"></button>
+                <!--  (click)="showCatalogosEliminados()" 
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Papelera" icon="pi pi-trash" (click)="papeleraConvocatorias=true"></button>-->
+            </div>
+            <div class="p-toolbar-group-right">
+            </div>
+        </p-toolbar>
+
+        <div class="content-section implementation mt-2">
+            <p-table #dt [value]="empleados" [paginator]="true" responsiveLayout="scroll" [loading]="loading"
+                [rows]="10" styleClass="p-datatable-gridlines" [globalFilterFields]="['id_empleado','nombres']">
+                <ng-template pTemplate="caption">
+                    <div class="table-header">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Buscar insumos" />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombres</th>
+                        <th>Celular</th>
+                        <th>Ciudad</th>
+                        <th>Email</th>
+                        <th>Sexo</th>
+                        <th>Cargo</th>
+                        <th>Rol</th>
+                        <th>Opciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-empleados>
+                    <tr>
+                        <td>{{empleados.id_empleado}}</td>
+                        <td>{{empleados. usuario.nombres}}</td>
+                        <td>{{empleados. usuario.celular}}</td>
+                        <td>{{empleados. usuario.ciudad}}</td>
+                        <td>{{empleados. usuario.email}}</td>
+                        <td>{{empleados. usuario.sexo}}</td>
+                        <td>{{empleados. cargo_emple}}</td>
+                        <td>{{empleados. usuario.roles[0].rolNombre}}</td>
+                        <td><button pButton pRipple type="button" style="margin: 10px"
+                            class="p-button-raised p-button-text p-button-danger" icon="pi pi-trash"
+                            (click)="borrarEmple(empleados.id_empleado)"></button>
+                            <button pButton pRipple type="button" style="margin: 10px"
+                            class="p-button-pencil p-button-text p-button-danger" icon="pi pi-trash"
+                            ></button>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En total hay {{totalRecords}} registros.
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="8">Ningun registro.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Gestión de Empleados." [(visible)]="EmpleadoDialog" [modal]="true" [draggable]="false"
+    [resizable]="false" class="p-fluid">
+    <form [formGroup]="empleForm" (ngSubmit)="saveEmpleado()">
+        <div class="form-group mt-2">
+            <span class="p-input-icon-left">
+                <label for="requisitos ">Cargo Empleado</label>
+                <input type="text" pInputText placeholder="cargo empleado" formControlName="cargoEmple">
+            </span>
+        </div>
+        <div class="form-group mt-2"><span class="p-input-icon-left">
+                <i class="pi pi-user"></i>
+                <p-dropdown [options]="usuarios" formControlName="usuario" placeholder="Seleccione "
+                    optionLabel="nombres" [style]="{ width: '40vw' }" [showClear]="true"></p-dropdown>
+
+            </span>
+        </div>
+
+        <div style="text-align:right">
+            <p-button type="submit" icon="pi pi-check" label="Guardar" styleClass="p-button-text"></p-button>
+        </div>
+    </form>
+</p-dialog>

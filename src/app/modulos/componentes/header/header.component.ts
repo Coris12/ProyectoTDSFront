@@ -41,6 +41,15 @@ export class HeaderComponent implements OnInit {
       },
       //-! fin opciones para el administrador
 
+      //! opciones para los empleados
+      {
+        label: 'Gestion de Empleados',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/lista-empleados'],
+        visible: this.isLogged && this.isAdmin
+      },
+      //-! fin opciones para los empleados
+
       //! opciones productos
       {
         label: 'Productos',
@@ -87,6 +96,16 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/proveedores'],
         visible: this.isLogged && this.isAdmin
       },
+
+
+      {
+        label: 'Gestion de tratamientos',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/tratamientos'],
+        visible: this.isLogged && this.isFarmacia
+      },
+
+
       {
         label: 'Cerrar Sesión',
         icon: 'pi pi-fw pi-user-minus',
