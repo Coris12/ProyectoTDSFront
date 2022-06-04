@@ -12,7 +12,7 @@
 import { Cliente } from './cliente';
 import { Empleado } from './empleado';
 
-export interface Tratamiento { 
+export interface Tratamiento {
     cantidad?: number;
     categoria?: string;
     cliente?: Cliente;
@@ -24,5 +24,5 @@ export interface Tratamiento {
     nombre?: string;
     subtotal?: number;
     total?: number;
-    valorUnitario?: number;
+    valor_unitario?: number;
 }
