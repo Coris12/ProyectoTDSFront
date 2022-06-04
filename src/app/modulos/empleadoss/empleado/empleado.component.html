@@ -41,7 +41,6 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Id</th>
                         <th>Nombres</th>
                         <th>Celular</th>
                         <th>Ciudad</th>
@@ -54,7 +53,6 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-empleados>
                     <tr>
-                        <td>{{empleados.id_empleado}}</td>
                         <td>{{empleados. usuario.nombres}}</td>
                         <td>{{empleados. usuario.celular}}</td>
                         <td>{{empleados. usuario.ciudad}}</td>
@@ -62,7 +60,7 @@
                         <td>{{empleados. usuario.sexo}}</td>
                         <td>{{empleados. cargoEmple}}</td>
                         <td>{{empleados. usuario.roles[0].rolNombre}}</td>
-                        <td><button pButton pRipple type="button" style="margin: 10px"
+                        <td><button pButton pRipple type="button" 
                             class="p-button-raised p-button-text p-button-danger" icon="pi pi-trash"
                             (click)="borrarEmple(empleados.id_empleado)"></button>
                             <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="updateEmpleado(empleados.id_empleado)"></button>

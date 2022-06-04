@@ -71,8 +71,6 @@ export class EmpleadoComponent implements OnInit {
         console.log(emple.idEmpleado)
         this.empleForm.setValue({
           idEmpleado:emple.idEmpleado,
-          estado:emple.estado ,
-          farmacia:emple.farmacia,
           cargoEmple:emple.cargoEmple,
           usuario:emple.usuario
           
@@ -111,8 +109,6 @@ export class EmpleadoComponent implements OnInit {
 
         this.empleForm.setValue({
           idEmpleado: null,
-          estado: null,
-          farmacia: null,
           cargoEmple: null,
           usuario: null
       })
