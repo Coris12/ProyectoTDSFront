@@ -49,15 +49,59 @@ export class SucursalComponent implements OnInit {
     })
   }
 
-  guardarSucursal() {
-    this.sucursalController.guardarFacturaUsingPOST(
-      this.sucursalForm.value
-    ).subscribe(data => {
-      this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Sucursal creada con exito.' });
 
-    },
-      error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+  updateSucursal(idSucursal: number) {
+    this.sucursalController.getSucursalByIdUsingGET(idSucursal)
+      .subscribe(suc => {
+        console.log(suc.object.idSucursal)
+        this.sucursalForm.setValue({
+          idSucursal: suc.object.idSucursal,
+          correoSuc: suc.object.correoSuc,
+          direccionSuc: suc.object.direccionSuc,
+          nombreSuc: suc.object.nombreSuc,
+          telefonoSuc: suc.object.telefonoSuc,
+        });
+      });
+    this.sucursalDialog = true;
+
   }
+
+  guardarSucursal() {
+    console.log(this.sucursalForm.value)
+    if (this.sucursalForm.value?.idSucursal !== null) {
+      this.sucursalController.updateUsingPUT4(
+        this.sucursalForm.value,
+        this.sucursalForm.value?.idSucursal,
+      ).subscribe(data => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Producto Actualizado',
+          detail: data.object
+        });
+        this.sucursalDialog = false;
+        this.cargarSucursales();
+      });
+    } else {
+      this.sucursalController.guardarFacturaUsingPOST(
+        this.sucursalForm.value
+      ).subscribe(data => {
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Sucursal creada con exito.' });
+
+      },
+        error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+
+      this.sucursalDialog = false;
+      this.sucursalForm.setValue({
+        idSucursal: null,
+        correoSuc: null,
+        direccionSuc:null,
+        nombreSuc: null,
+        telefonoSuc:null
+      })
+
+    }
+  }
+
 
   cargarSucursales() {
     this.sucursalController.searchUsingGET4().subscribe(
@@ -71,10 +115,12 @@ export class SucursalComponent implements OnInit {
     );
   }
 
-  borrarSucursal(idSucursal: number) {
+ 
+  //metodo de borrado logico
+  borrarSucursal(idSucursal: number): void {
+
     this.confirmationService.confirm({
       message: 'Esta seguro de eliminar la Sucursal?',
-      
       accept: () => {
         //Actual logic to perform a confirmation
         this.sucursalController.deleletSucursalUsingPATCH(idSucursal).subscribe(
@@ -87,6 +133,8 @@ export class SucursalComponent implements OnInit {
           error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
       }
     });
+
   }
+  // fin del metodo
 
 }

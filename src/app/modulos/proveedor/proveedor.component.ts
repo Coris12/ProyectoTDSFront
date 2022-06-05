@@ -36,57 +36,16 @@ export class ProveedorComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarProveedores();
+
     this.proveedorController.searchUsingGET3().subscribe((data: any) => {
       this.prove = data;
       console.log(this.prove);
     })
+
     this.cargarUsuarios();
   }
 
   guardarProveedor() {
-    console.log(this.proveForm.value)
-    if (this.proveForm.value?.idProveedor !== null) {
-      this.proveedorController.updateUsingPUT2(
-        this.proveForm.value,
-        this.proveForm.value?.idProveedor,
-      ).subscribe(data => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Proveedor Actualizado',
-          detail: data.object
-        });
-        this.dialgoProveedor = false;
-        this.cargarProveedores();
-      });
-    } else {
-   
-      this.proveedorController.createUsingPOST4(
-        this.proveForm.value,
-        this.proveForm.value?.usuario.idUsuario,
-      ).subscribe(data => {
-        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Proveedor creado con exito.' });
-        setTimeout(() => {
-          this.cargarProveedores();
-        }, 1000);
-        this.dialgoProveedor = false;
-  
-        this.proveForm.setValue({
-          idProveedor: null,
-          estado: null,
-          nombre_comercial_pro: null,
-          usuario: null
-        })
-  
-      },
-        error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
-        
-      this.dialgoProveedor = false;
-      
-      
-    }
-  }
-
- /* guardarProveedor(): void {
     this.proveedorController.createUsingPOST4(
       this.proveForm.value,
       this.proveForm.value?.usuario.idUsuario,
@@ -106,22 +65,49 @@ export class ProveedorComponent implements OnInit {
 
     },
       error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
-  }*/
+
+    this.dialgoProveedor = false;
 
 
-  updateProveedor(idProveedor:number) {
-    this.proveedorController.getByIdUsingGET2(idProveedor)
-      .subscribe( prove => {
-        console.log (prove.proveedor.idProveedor)
+
+  }
+
+  /* guardarProveedor(): void {
+     this.proveedorController.createUsingPOST4(
+       this.proveForm.value,
+       this.proveForm.value?.usuario.idUsuario,
+     ).subscribe(data => {
+       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Proveedor creado con exito.' });
+       setTimeout(() => {
+         this.cargarProveedores();
+       }, 1000);
+       this.dialgoProveedor = false;
+ 
+       this.proveForm.setValue({
+         idProveedor: null,
+         estado: null,
+         nombre_comercial_pro: null,
+         usuario: null
+       })
+ 
+     },
+       error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+   }*/
+
+
+  updateProveedor(idProveedor: number) {
+    this.proveedorController.getByIdUsingGET3(idProveedor)
+      .subscribe(prove => {
+        console.log(this.proveedor)
         this.proveForm.setValue({
-          idProveedor:prove.proveedor. idProveedor,
-          nombre_comercial_pro:  prove.proveedor.nombreComercialPro,
-          usuario:  prove.proveedor.usuario,
-          estado:prove.proveedor.estado,
+          idProveedor: prove.proveedor.idProveedor,
+          nombre_comercial_pro: prove.proveedor.nombreComercialPro,
+          usuario: prove.proveedor.usuario,
+          estado: prove.proveedor.estado,
         });
       });
-      this.dialgoProveedor = true;
-      
+    this.dialgoProveedor = true;
+
   }
 
   cargarProveedores(event?: LazyLoadEvent): void {
