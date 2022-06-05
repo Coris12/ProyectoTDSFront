@@ -288,15 +288,8 @@
       <ng-template pTemplate="body" let-tto>
         <tr [pSelectableRow]="tto">
           <td>{{tto.nombre}}</td>
-          <td>{{tto.idProducto}}</td>
-          <td style="display:none;">{{tto.idProducto}}</td>
-          <td>
-            <div
-              [ngClass]="{'outofstock': tto.cantidad == 0, 'lowstock': (tto.cantidad > 0 && tto.cantidad < 10),'instock': tto.cantidad > 10}">
-              {{tto.cantidad}}
-            </div>
-          </td>
-
+          <td>{{tto.descripcion}}</td>
+          <td><b>{{tto.valor_unitario}}</b></td>
           <td><b>{{tto.valor_unitario}}</b></td>
           <td>{{tto.categoria}}</td>
           <td>{{tto.codigo}}</td>
@@ -304,29 +297,6 @@
         </tr>
       </ng-template>
     </p-table>
-
-
-    <h5>Events</h5>
-    <p>onRowSelect and onRowUnselect are available as selection events.</p>
-    <!-- <p-table [value]="products" selectionMode="single" [(selection)]="selectedProduct2" dataKey="code" responsiveLayout="scroll"
-        (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Quantity</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-            <tr [pSelectableRow]="product">
-                <td>{{product.code}}</td>
-                <td>{{product.name}}</td>
-                <td>{{product.category}}</td>
-                <td>{{product.quantity}}</td>
-            </tr>
-        </ng-template>
-    </p-table> -->
 
   </ng-template>
   <ng-template pTemplate="footer">

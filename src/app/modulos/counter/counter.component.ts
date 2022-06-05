@@ -264,15 +264,4 @@ export class CounterComponent implements OnInit {
       this.usuarioForm.patchValue({ total: this.totalDes });
     }
   }
-
-  total: number;
-  calcularTotal() {
-    this.total = 0;
-    for (let i = 0; i < this.TtoDatTabArray.length; i++) {
-      this.total = +this.total + +this.TtoDatTabArray[i].valor_unitario;
-    }
-    this.total = this.total - this.totalDes;
-    this.total = this.round(this.total);
-    this.usuarioForm.patchValue({ total: this.total });
-  }
 }
