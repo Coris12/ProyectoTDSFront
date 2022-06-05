@@ -399,14 +399,6 @@ export class FacturaVentaComponent implements OnInit {
       element.check = event);
   }
 
-  onKeypressEvent(event: any) {
-    console.log(event.target.value);
-    if (event.target.value.length <= 0) {
-      this.showMostrar = false;
-      console.log("espacio en blanco");
-    }
-  }
-
   confirmacion(product: ProductosDto) {
     this.confirmationService.confirm({
       message: 'Quitar este producto de la lista?',
@@ -415,6 +407,7 @@ export class FacturaVentaComponent implements OnInit {
       accept: () => {
         this.productDatTabArray.splice(this.productDatTabArray.indexOf(product), 1);
         this.messageService.add({ severity: 'info', summary: 'Producto quitado de la lista!!', detail: product.nombreProducto });
+        this.CalcularTotalTabFactu(event);
       },
       reject: (type) => {
         switch (type) {
@@ -761,13 +754,14 @@ export class FacturaVentaComponent implements OnInit {
               }
             });
             this.mensajeSatisfactorio('Detalle factura guardado correctamente');
-            this.GenerarPdfFactUseConsFinal();
+
           } else {
             this.mensajesError('Error al guardar el detalle factura');
           }
         });
       }
     }
+    this.GenerarPdfFactUseConsFinal();
     //this.detalleFactObj.subtotal = precioTotal; //falta
     //this.limpiarcampos();
   }
@@ -793,6 +787,7 @@ export class FacturaVentaComponent implements OnInit {
     this.serviceFactManual.generarPdfFacturaUsuario(this.idFact).subscribe((data) => {
       if (data) {
         this.descargarPdf(data);
+        this.limpiarcampos();
       } else {
         this.mensajesError('Error al mostrar el pdf');
       }
