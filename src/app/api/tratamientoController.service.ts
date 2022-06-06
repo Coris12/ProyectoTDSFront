@@ -26,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class TratamientoControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -57,7 +57,7 @@ export class TratamientoControllerService {
 
     /**
      * Crea el tratamiento
-     *
+     * 
      * @param body tratamiento
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -109,7 +109,7 @@ export class TratamientoControllerService {
 
     /**
      * Eliminado logico del tratamiento
-     *
+     * 
      * @param idTratamiento id_tratamiento
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -161,18 +161,18 @@ export class TratamientoControllerService {
 
     /**
      * Detalles de los tratamientos
-     *
+     * 
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET4(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tratamiento>;
-    public getByIdUsingGET4(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tratamiento>>;
-    public getByIdUsingGET4(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tratamiento>>;
-    public getByIdUsingGET4(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET5(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tratamiento>;
+    public getByIdUsingGET5(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tratamiento>>;
+    public getByIdUsingGET5(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tratamiento>>;
+    public getByIdUsingGET5(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET4.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET5.');
         }
 
         let headers = this.defaultHeaders;
@@ -207,7 +207,7 @@ export class TratamientoControllerService {
 
     /**
      * Muestra una lista de tratamientos
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -248,7 +248,7 @@ export class TratamientoControllerService {
 
     /**
      * Lista los tratamientos con estado 1
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -289,7 +289,7 @@ export class TratamientoControllerService {
 
     /**
      * Actualizacion de los tratamientos
-     *
+     * 
      * @param body tratamiento
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.

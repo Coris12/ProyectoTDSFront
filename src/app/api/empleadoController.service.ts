@@ -195,7 +195,7 @@ export class EmpleadoControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Empleado>('get',`${this.basePath}/empleado/detail/${encodeURIComponent(String(id))}`,
+        return this.httpClient.request<Empleado>('get',`${this.basePath}/empleado/detailEmpleado/${encodeURIComponent(String(id))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -247,7 +247,7 @@ export class EmpleadoControllerService {
     }
 
     /**
-     * Actualizar de Empleado
+     * Actualiza los empleados
      * 
      * @param body empleado
      * @param id id
@@ -292,7 +292,7 @@ export class EmpleadoControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('put',`${this.basePath}/empleado/updateEmpleado/${encodeURIComponent(String(id))}`,
+        return this.httpClient.request<any>('put',`${this.basePath}/empleado/update Empleado/${encodeURIComponent(String(id))}`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

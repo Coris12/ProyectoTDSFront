@@ -110,6 +110,52 @@ export class SucursalControllerService {
     }
 
     /**
+     * getById
+     * 
+     * @param id id
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getByIdUsingGET4(id: number, observe?: 'body', reportProgress?: boolean): Observable<Sucursal>;
+    public getByIdUsingGET4(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Sucursal>>;
+    public getByIdUsingGET4(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Sucursal>>;
+    public getByIdUsingGET4(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET4.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Sucursal>('get',`${this.basePath}/sucursal/detail/${encodeURIComponent(String(id))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Obtener sucursal por id
      * 
      * @param id id
@@ -244,7 +290,7 @@ export class SucursalControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<Sucursal>>('get',`${this.basePath}/sucursal/listaUsuarios`,
+        return this.httpClient.request<Array<Sucursal>>('get',`${this.basePath}/sucursal/listaSucursal`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -296,7 +342,7 @@ export class SucursalControllerService {
     }
 
     /**
-     * Actualizar de Sucursal
+     * Actualiza las sucursales
      * 
      * @param body sucursal
      * @param id id

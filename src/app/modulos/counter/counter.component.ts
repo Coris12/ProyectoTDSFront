@@ -125,7 +125,7 @@ export class CounterComponent implements OnInit {
     nombre: null,
     subtotal: null,
     total: null,
-    valor_unitario: null,
+    valorUnitario: null,
   }
 
   tratamiento: Tratamiento = {
@@ -140,7 +140,7 @@ export class CounterComponent implements OnInit {
     nombre: null,
     subtotal: null,
     total: null,
-    valor_unitario: null,
+    valorUnitario: null,
   };
 
   onRowSelectFProduct(event) {
@@ -246,7 +246,7 @@ export class CounterComponent implements OnInit {
   calcularSubtotal() {
     this.subTotal = 0;
     for (let i = 0; i < this.TtoDatTabArray.length; i++) {
-      this.subTotal = +this.subTotal + +this.TtoDatTabArray[i].valor_unitario;
+      this.subTotal = +this.subTotal + +this.TtoDatTabArray[i].valorUnitario;
     }
     this.subTotal = this.round(this.subTotal);
     this.usuarioForm.patchValue({ subTotal: this.subTotal });

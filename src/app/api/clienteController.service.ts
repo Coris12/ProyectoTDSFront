@@ -59,7 +59,7 @@ export class ClienteControllerService {
 
     /**
      * Buscar cliente por id
-     *
+     * 
      * @param idCliente idCliente
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -111,7 +111,7 @@ export class ClienteControllerService {
 
     /**
      * Buscar cliente por id
-     *
+     * 
      * @param idPersona idPersona
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -163,7 +163,7 @@ export class ClienteControllerService {
 
     /**
      * Crea al cliente
-     *
+     * 
      * @param body cliente
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -215,7 +215,7 @@ export class ClienteControllerService {
 
     /**
      * Eliminado logico de cliente
-     *
+     * 
      * @param idCliente id_cliente
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -267,7 +267,7 @@ export class ClienteControllerService {
 
     /**
      * Actualizar observaciones del cliente
-     *
+     * 
      * @param observaciones observaciones
      * @param idCliente idCliente
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
