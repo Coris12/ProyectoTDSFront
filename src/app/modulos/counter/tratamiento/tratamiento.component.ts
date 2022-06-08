@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { TratamientoControllerService } from 'src/app/api/tratamientoController.service';
 import { EmpleadoControllerService } from '../../../api/empleadoController.service';
 import { ClienteControllerService } from '../../../api/clienteController.service';
 import { Cliente } from '../../../model/cliente';
 import { Empleado } from '../../../model/empleado';
 import { AuthControllerService } from 'src/app/api/authController.service';
+import { Tratamiento } from 'src/app/model/tratamiento';
 
 @Component({
   selector: 'app-tratamiento',
@@ -25,18 +26,17 @@ export class TratamientoComponent implements OnInit {
 
   empleado: Empleado []=[];
   cliente: Cliente[] =[];
+  tratamiento : Tratamiento [] =[];
 
   public tratamientoForm = new FormGroup({
     idTratamiento: new FormControl(null),
     nombre: new FormControl(null, [Validators.nullValidator, Validators.required]),
     cantidad: new FormControl(null, [Validators.nullValidator, Validators.required]),
     categoria: new FormControl(null, [Validators.nullValidator, Validators.required]),
-    cliente: new FormControl(null, [Validators.nullValidator, Validators.required]),
     codigo: new FormControl(null, [Validators.nullValidator, Validators.required]),
     descripcion: new FormControl(null, [Validators.nullValidator, Validators.required]),
-    empleado: new FormControl(null, [Validators.nullValidator, Validators.required]),
     estado: new FormControl(null, [Validators.nullValidator, Validators.required]),
-    subTotal: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    subtotal: new FormControl(null, [Validators.nullValidator, Validators.required]),
     total: new FormControl(null, [Validators.nullValidator, Validators.required]),
     valorUnitario: new FormControl(null, [Validators.nullValidator, Validators.required]),
   })
@@ -45,21 +45,36 @@ export class TratamientoComponent implements OnInit {
     private tratamientoController: TratamientoControllerService,
     private messageService: MessageService,
     private empleadoController: EmpleadoControllerService,
-    private usuarioController: AuthControllerService
+    private clienteCntroller: ClienteControllerService
   ) { }
 
   ngOnInit(): void {
-    this.cargarEmpleado();
     
-    this.cargarCliente();
+    this.cargarTratamientos();
   }
 
-  cargarTratamientos() {
+  cargarTratamientos(event?: LazyLoadEvent): void  {
+    this.loading = true;
 
+    setTimeout(() => {
+      this.tratamientoController.listUsingGET4().subscribe(
+
+        data => {
+          this.tratamiento = data;
+          console.log(data);
+          this.totalRecords = this.tratamiento.length;
+          this.loading = false;
+        },
+        err => {
+          console.log(err);
+        }
+
+      );
+    }, 1000);
   }
 
   cargarCliente() {
-    this.usuarioController.searchUsingGET().subscribe(
+    this.clienteCntroller.listUsingGET().subscribe(
       data => {
         console.log(data)
         this.cliente = data;
@@ -86,8 +101,6 @@ export class TratamientoComponent implements OnInit {
   saveTratamiento() {
     this.tratamientoController.createUsingPOST5(
       this.tratamientoForm.value,
-      this.tratamientoForm.value?.empleado.idEmpleado,
-      this.tratamientoForm.value?.cliente.idCliente,
     ).subscribe(data => {
       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Tratamiento creado .' });
     },

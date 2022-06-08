@@ -558,7 +558,7 @@ export class FacturaVentaComponent implements OnInit {
   listarProductos2(event?: LazyLoadEvent): void {
     this.loadTabFV = true;
     setTimeout(() => {
-      this.serviceProduct.listUsingGET1().subscribe(
+      this.serviceProduct.listUsingGET2().subscribe(
         data => {
           if (data) {
             this.productos = data;

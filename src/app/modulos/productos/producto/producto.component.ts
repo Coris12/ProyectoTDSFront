@@ -229,7 +229,7 @@ export class ProductoComponent implements OnInit {
 
   //metodo cargar proveedores
   cargarProveedores(): void {
-    this.proveedorController.listUsingGET2().subscribe(
+    this.proveedorController.listUsingGET3().subscribe(
       data => {
         this.proveedores = data;
       },

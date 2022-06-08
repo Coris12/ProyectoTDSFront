@@ -9,16 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Cliente } from './cliente';
-import { Empleado } from './empleado';
 
 export interface Tratamiento { 
     cantidad?: number;
     categoria?: string;
-    cliente?: Cliente;
     codigo?: string;
     descripcion?: string;
-    empleado?: Empleado;
     estado?: number;
     idTratamiento?: number;
     nombre?: string;

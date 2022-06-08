@@ -116,10 +116,8 @@ export class CounterComponent implements OnInit {
   seleccionadoTto: Tratamiento = {
     cantidad: null,
     categoria: null,
-    cliente: null,
     codigo: null,
     descripcion: null,
-    empleado: null,
     estado: null,
     idTratamiento: null,
     nombre: null,
@@ -131,10 +129,8 @@ export class CounterComponent implements OnInit {
   tratamiento: Tratamiento = {
     cantidad: null,
     categoria: null,
-    cliente: null,
     codigo: null,
     descripcion: null,
-    empleado: null,
     estado: null,
     idTratamiento: null,
     nombre: null,
@@ -211,7 +207,7 @@ export class CounterComponent implements OnInit {
   listarTratamientos(event?: LazyLoadEvent): void {
     //this.loadTabFV = true;
     setTimeout(() => {
-      this.serviceTto.listUsingGET3().subscribe(
+      this.serviceTto.listUsingGET4().subscribe(
         data => {
           if (data) {
             this.tratamientos = data;

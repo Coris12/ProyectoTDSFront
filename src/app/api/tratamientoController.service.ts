@@ -211,10 +211,10 @@ export class TratamientoControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET3(observe?: 'body', reportProgress?: boolean): Observable<Array<Tratamiento>>;
-    public listUsingGET3(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tratamiento>>>;
-    public listUsingGET3(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tratamiento>>>;
-    public listUsingGET3(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET4(observe?: 'body', reportProgress?: boolean): Observable<Array<Tratamiento>>;
+    public listUsingGET4(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tratamiento>>>;
+    public listUsingGET4(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tratamiento>>>;
+    public listUsingGET4(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 

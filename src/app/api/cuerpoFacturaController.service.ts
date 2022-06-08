@@ -28,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class CuerpoFacturaControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -311,10 +311,10 @@ export class CuerpoFacturaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<CuerpoFacturaRes>>;
-    public listUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<CuerpoFacturaRes>>>;
-    public listUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<CuerpoFacturaRes>>>;
-    public listUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET1(observe?: 'body', reportProgress?: boolean): Observable<Array<CuerpoFacturaRes>>;
+    public listUsingGET1(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<CuerpoFacturaRes>>>;
+    public listUsingGET1(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<CuerpoFacturaRes>>>;
+    public listUsingGET1(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
