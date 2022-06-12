@@ -29,6 +29,7 @@ import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factur
 import { CounterComponent } from './modulos/counter/counter.component';
 import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
 import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
+import { DatosComponent } from './modulos/formulario/datos/datos.component';
 
 
 
@@ -51,7 +52,7 @@ const routes: Routes = [
   { path: 'proveedores', component: ProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   
   { path: 'pacientes', component: CounterComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
-
+  { path: 'formulario', component: DatosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'tratamientos', component: TratamientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lista-sucursales', component: SucursalComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'editar/:id', component: EditarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },

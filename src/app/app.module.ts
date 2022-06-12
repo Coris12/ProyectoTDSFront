@@ -50,7 +50,7 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { SidebarModule } from 'primeng/sidebar';
 import {CheckboxModule} from 'primeng/checkbox';
 import { FieldsetModule, } from 'primeng/fieldset';
-
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthControllerService } from './api/authController.service';
@@ -76,6 +76,7 @@ import { CounterComponent } from './modulos/counter/counter.component';
 import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
 import { TratamientoControllerService } from './api/tratamientoController.service';
 import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
+import { DatosComponent } from './modulos/formulario/datos/datos.component';
 
 
 
@@ -101,6 +102,7 @@ import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.
     CounterComponent,
     EmpleadoComponent,
     TratamientoComponent,
+    DatosComponent,
 
   ],
   imports: [
@@ -116,6 +118,7 @@ import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.
     FileUploadModule,
     // *primeng
     InputMaskModule,
+    ScrollPanelModule,
     SelectButtonModule,
     CarouselModule,
     GMapModule,
