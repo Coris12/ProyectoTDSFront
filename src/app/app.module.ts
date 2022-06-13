@@ -77,6 +77,7 @@ import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.compon
 import { TratamientoControllerService } from './api/tratamientoController.service';
 import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
 import { DatosComponent } from './modulos/formulario/datos/datos.component';
+import { MedicamentosComponent } from './modulos/AdmMedicamentos/medicamentos/medicamentos.component';
 
 
 
@@ -103,6 +104,7 @@ import { DatosComponent } from './modulos/formulario/datos/datos.component';
     EmpleadoComponent,
     TratamientoComponent,
     DatosComponent,
+    MedicamentosComponent,
 
   ],
   imports: [

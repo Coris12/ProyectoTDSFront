@@ -45,6 +45,13 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/formulario'],
         visible: this.isLogged && this.isAdmin
       },
+
+      {
+        label: 'Medicamentos',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/medicamentos'],
+        visible: this.isLogged && this.isAdmin
+      },
       //-! fin opciones para el administrador
 
       //! opciones para los empleados
