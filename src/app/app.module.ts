@@ -78,6 +78,8 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
 import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
 import { DatosComponent } from './modulos/formulario/datos/datos.component';
 import { MedicamentosComponent } from './modulos/AdmMedicamentos/medicamentos/medicamentos.component';
+import { EvolucionComponent } from './modulos/EvolucionPre/evolucion/evolucion.component';
+import { AutorizacionComponent } from './modulos/AutoExoRe/autorizacion/autorizacion.component';
 
 
 
@@ -105,6 +107,8 @@ import { MedicamentosComponent } from './modulos/AdmMedicamentos/medicamentos/me
     TratamientoComponent,
     DatosComponent,
     MedicamentosComponent,
+    EvolucionComponent,
+    AutorizacionComponent,
 
   ],
   imports: [

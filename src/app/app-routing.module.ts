@@ -31,6 +31,8 @@ import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.
 import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
 import { DatosComponent } from './modulos/formulario/datos/datos.component';
 import { MedicamentosComponent } from './modulos/AdmMedicamentos/medicamentos/medicamentos.component';
+import { EvolucionComponent } from './modulos/EvolucionPre/evolucion/evolucion.component';
+import { AutorizacionComponent } from './modulos/AutoExoRe/autorizacion/autorizacion.component';
 
 
 
@@ -52,6 +54,9 @@ const routes: Routes = [
 
   { path: 'proveedores', component: ProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'medicamentos', component: MedicamentosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'evolucion', component: EvolucionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'autorizacion', component: AutorizacionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+
 
   { path: 'pacientes', component: CounterComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'formulario', component: DatosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },

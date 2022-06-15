@@ -52,6 +52,19 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/medicamentos'],
         visible: this.isLogged && this.isAdmin
       },
+
+      {
+        label: 'Autorización',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/autorizacion'],
+        visible: this.isLogged && this.isAdmin
+      },
+      {
+        label: 'Evolucion y Prescripciones',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/evolucion'],
+        visible: this.isLogged && this.isAdmin
+      },
       //-! fin opciones para el administrador
 
       //! opciones para los empleados
