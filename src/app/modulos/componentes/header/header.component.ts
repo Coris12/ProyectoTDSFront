@@ -40,12 +40,24 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isAdmin
       },
       {
+        label: 'Registro de admision',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/admision'],
+        visible: this.isLogged && this.isFarmacia
+      },
+      {
         label: 'Formulario',
         icon: 'pi pi-fw pi-list',
         routerLink: ['/formulario'],
         visible: this.isLogged && this.isAdmin
       },
 
+      {
+        label: 'Consentimiento',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/consentimiento'],
+        visible: this.isLogged && this.isAdmin
+      },
       {
         label: 'Medicamentos',
         icon: 'pi pi-fw pi-list',

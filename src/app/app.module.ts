@@ -80,6 +80,8 @@ import { DatosComponent } from './modulos/formulario/datos/datos.component';
 import { MedicamentosComponent } from './modulos/AdmMedicamentos/medicamentos/medicamentos.component';
 import { EvolucionComponent } from './modulos/EvolucionPre/evolucion/evolucion.component';
 import { AutorizacionComponent } from './modulos/AutoExoRe/autorizacion/autorizacion.component';
+import { ConsentimientoComponent } from './modulos/Consentimiento/consentimiento/consentimiento.component';
+import { AdmisionComponent } from './modulos/RegistroAdm/admision/admision.component';
 
 
 
@@ -109,6 +111,8 @@ import { AutorizacionComponent } from './modulos/AutoExoRe/autorizacion/autoriza
     MedicamentosComponent,
     EvolucionComponent,
     AutorizacionComponent,
+    ConsentimientoComponent,
+    AdmisionComponent,
 
   ],
   imports: [
