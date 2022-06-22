@@ -104,8 +104,7 @@ export class HeaderComponent implements OnInit {
           { label: 'Factura venta', icon: 'pi pi-fw pi-arrow-left', routerLink: ['/lista-facturasVenta'] },
           { label: 'Factura compras', icon: 'pi pi-fw pi-arrow-right', routerLink: ['/lista-facturasCompra'] }
         ],
-        //visible: this.isLogged && this.isFarmacia
-        visible: this.isLogged && this.isAdmin
+        visible: this.isLogged && this.isFarmacia
       },
 
       //! opciones sucursal
@@ -121,6 +120,13 @@ export class HeaderComponent implements OnInit {
         label: 'Gestion de counter',
         icon: 'pi pi-fw pi-users',
         routerLink: ['/pacientes'],
+        visible: this.isLogged && this.isDoctor
+      },
+
+      {
+        label: 'CONSULTA EXTERNA',
+        icon: 'pi pi-fw pi-file-o',
+        routerLink: ['/ConsultaExterna'],
         visible: this.isLogged && this.isDoctor
       },
       //! fin opciones para el doctor

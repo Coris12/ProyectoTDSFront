@@ -17,7 +17,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { FacturaReq } from '../model/facturaReq';
+import { Factura } from '../model/factura';
 import { GenericResponseListFactura } from '../model/genericResponseListFactura';
 import { GenericResponsestring } from '../model/genericResponsestring';
 
@@ -28,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class FacturaControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -157,10 +157,10 @@ export class FacturaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveFacturaUsingPOST(body: FacturaReq, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public saveFacturaUsingPOST(body: FacturaReq, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public saveFacturaUsingPOST(body: FacturaReq, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public saveFacturaUsingPOST(body: FacturaReq, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public saveFacturaUsingPOST(body: Factura, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public saveFacturaUsingPOST(body: Factura, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public saveFacturaUsingPOST(body: Factura, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public saveFacturaUsingPOST(body: Factura, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling saveFacturaUsingPOST.');

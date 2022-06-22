@@ -103,7 +103,7 @@ export class ProductoComponent implements OnInit {
         if (i == 4) {
 
           this.codigo = letra1 + letra2 + letra3 + letra4
-          console.log(this.codigo);// asi seria para mas o menos hacer el codigo ya y como le mando a que me visualice 
+          console.log(this.codigo);// asi seria para mas o menos hacer el codigo ya y como le mando a que me visualice
 
         }
 
@@ -155,7 +155,7 @@ export class ProductoComponent implements OnInit {
         });
       });
       this.productoDialog = true;
-      
+
   }
 
   //metodo de guardar
@@ -182,7 +182,7 @@ export class ProductoComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto creado .' });
       },
         error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
-        
+
       this.productoDialog = false;
       this.productoForm.setValue({
         idProducto: null,
@@ -200,10 +200,10 @@ export class ProductoComponent implements OnInit {
         ultimoCosto: null,
         proveedor: null
       })
-      
+
     }
   }
-  //fin del metodo 
+  //fin del metodo
 
   //metodo de borrado logico
   borrarProducto(idProducto: number): void {

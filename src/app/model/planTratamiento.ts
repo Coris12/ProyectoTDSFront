@@ -9,10 +9,16 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Factura } from './factura';
+import { ConsultaExterna } from './consultaExterna';
 
-export interface GenericResponseListFactura { 
-    message?: string;
-    object?: Array<Factura>;
-    status?: number;
+export interface PlanTratamiento { 
+    c?: string;
+    consultaExterna?: ConsultaExterna;
+    i?: string;
+    idPlanTratamiento?: number;
+    l?: string;
+    m?: string;
+    o?: string;
+    r?: string;
+    t?: string;
 }

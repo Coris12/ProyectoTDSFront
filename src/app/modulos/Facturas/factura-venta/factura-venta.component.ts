@@ -27,7 +27,6 @@ export class FacturaVentaComponent implements OnInit {
   @ViewChild('nombreCliente') inputName;
   @ViewChild('ingCedula') inputIngCed;
 
-  loadTabFV: boolean;
   disabled: boolean = true;
   productDialog: boolean;
   product: any;
@@ -37,6 +36,7 @@ export class FacturaVentaComponent implements OnInit {
   showMostrar: boolean = false;
   identificacionPer: any;
   putFechVist = new Date();
+  loadTabFV: boolean = true;
 
   TipoProdFP: any[];
   TipoForPag: any[];
@@ -556,7 +556,6 @@ export class FacturaVentaComponent implements OnInit {
   }
 
   listarProductos2(event?: LazyLoadEvent): void {
-    this.loadTabFV = true;
     setTimeout(() => {
       this.serviceProduct.listUsingGET2().subscribe(
         data => {

@@ -3,15 +3,23 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
+import { AntecFamiliaresControllerService } from './api/antecFamiliaresController.service';
+import { AntecPersonalesControllerService } from './api/antecPersonalesController.service';
 import { AuthControllerService } from './api/authController.service';
 import { BasicErrorControllerService } from './api/basicErrorController.service';
 import { ClienteControllerService } from './api/clienteController.service';
+import { ConsultaExternaControllerService } from './api/consultaExternaController.service';
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
+import { DiagnosticoControllerService } from './api/diagnosticoController.service';
 import { EmpleadoControllerService } from './api/empleadoController.service';
+import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalController.service';
 import { FacturaControllerService } from './api/facturaController.service';
 import { FaramaciaControllerService } from './api/faramaciaController.service';
+import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
+import { RevOrganoSistemControllerService } from './api/revOrganoSistemController.service';
+import { SigVitAntropometriaControllerService } from './api/sigVitAntropometriaController.service';
 import { SucursalControllerService } from './api/sucursalController.service';
 import { TratamientoControllerService } from './api/tratamientoController.service';
 
@@ -20,15 +28,23 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
   declarations: [],
   exports:      [],
   providers: [
+    AntecFamiliaresControllerService,
+    AntecPersonalesControllerService,
     AuthControllerService,
     BasicErrorControllerService,
     ClienteControllerService,
+    ConsultaExternaControllerService,
     CuerpoFacturaControllerService,
+    DiagnosticoControllerService,
     EmpleadoControllerService,
+    ExamFisicoRegionalControllerService,
     FacturaControllerService,
     FaramaciaControllerService,
+    PlanTratamientoControllerService,
     ProductoControllerService,
     ProveedorControllerService,
+    RevOrganoSistemControllerService,
+    SigVitAntropometriaControllerService,
     SucursalControllerService,
     TratamientoControllerService ]
 })

@@ -9,10 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Factura } from './factura';
+import { ConstExternaListDTO } from './constExternaListDTO';
 
-export interface GenericResponseListFactura { 
+export interface GenericResponseListConstExternaListDTO { 
     message?: string;
-    object?: Array<Factura>;
+    object?: Array<ConstExternaListDTO>;
     status?: number;
 }

@@ -116,8 +116,15 @@ export class CounterComponent implements OnInit {
   seleccionadoTto: Tratamiento = {
     cantidad: null,
     categoria: null,
+<<<<<<< Updated upstream
     codigo: null,
     descripcion: null,
+=======
+    //cliente: null,
+    codigo: null,
+    descripcion: null,
+    //empleado: null,
+>>>>>>> Stashed changes
     estado: null,
     idTratamiento: null,
     nombre: null,
@@ -129,8 +136,15 @@ export class CounterComponent implements OnInit {
   tratamiento: Tratamiento = {
     cantidad: null,
     categoria: null,
+<<<<<<< Updated upstream
     codigo: null,
     descripcion: null,
+=======
+    //cliente: null,
+    codigo: null,
+    descripcion: null,
+    //empleado: null,
+>>>>>>> Stashed changes
     estado: null,
     idTratamiento: null,
     nombre: null,

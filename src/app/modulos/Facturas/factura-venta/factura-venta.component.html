@@ -3,13 +3,6 @@
 <div class="mt-3 ml-3 mr-3">
   <h5>FACTURACIÓN EN VENTAS</h5>
   <div class="grid p-fluid">
-    <!-- <div class="col-12 md:col-2">
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon">Cod</span>
-        <input type="text" pInputText placeholder="Cod" [disabled]="disabled" [(ngModel)]="usuarioObj.id">
-      </div>
-    </div> -->
-
     <div class="col-12 md:col-4">
       <button pButton pRipple type="button" label="Nuevo cliente" routerlink="/registro"></button>
     </div>
@@ -122,7 +115,7 @@
         </div>
         <ng-template #elseBlock>
           <p-table #dt1 [value]="productDatTabArray" dataKey="id" [resizableColumns]="true"
-            [(selection)]="SelectProductoDto" [rowHover]="true" styleClass="p-datatable-gridlines"
+            [(selection)]="SelectProductoDto" [rowHover]="true" styleClass="p-datatable-gridlines p-datatable-sm"
             responsiveLayout="scroll">
             <ng-template pTemplate="header">
               <tr>
@@ -381,9 +374,6 @@
         </div>
 
         <div class="col-12 md:col-2">
-          <!--<p-button type="button" class="mr-2" (click)="visibleSidebar2 = true" icon="pi pi-search"></p-button>-->
-          <!-- <p-button [label]="selectedProduct ? selectedProduct.nombreProducto : 'Buscar'" icon="pi pi-search"
-            (click)="visibleSidebar2 = true"></p-button> -->
           <p-button label="Buscar" icon="pi pi-search" (click)="visibleSidebar2 = true" [disabled]="disabled">
           </p-button>
         </div>
@@ -394,7 +384,7 @@
           <!--Inicio Tabla de buscar productos-->
           <p-table #dt2 [value]="productos" selectionMode="single" [(selection)]="selectedProduct"
             (onRowSelect)="onRowSelect($event)" responsiveLayout="scroll" [resizableColumns]="true"
-            styleClass="p-datatable-gridlines" [globalFilterFields]="['descripcionProducto',
+            styleClass="p-datatable-gridlines p-datatable-sm" [globalFilterFields]="['descripcionProducto',
             'categoriaProducto', 'codigoRef']"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
 
@@ -536,7 +526,7 @@
 
         <!--SECCIÓN TABLA PRODUCTOS PDIALOG-->
         <div class="col-12">
-          <p-table #dt1 [value]="productos" [resizableColumns]="true" styleClass="p-datatable-gridlines"
+          <p-table #dt1 [value]="productos" [resizableColumns]="true" [loading]="loadTabFV" styleClass="p-datatable-gridlines p-datatable-sm"
             responsiveLayout="scroll" selectionMode="single" [(selection)]="selectedProductTP" dataKey="idProducto"
             (onRowSelect)="onRowSelectFProduct($event)"
             [globalFilterFields]="['nombreProducto','descripcionProducto', 'categoriaProducto', 'codigoRef']"
