@@ -29,16 +29,13 @@ import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factur
 import { CounterComponent } from './modulos/counter/counter.component';
 import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
 import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
-<<<<<<< Updated upstream
 import { DatosComponent } from './modulos/formulario/datos/datos.component';
 import { MedicamentosComponent } from './modulos/AdmMedicamentos/medicamentos/medicamentos.component';
 import { EvolucionComponent } from './modulos/EvolucionPre/evolucion/evolucion.component';
 import { AutorizacionComponent } from './modulos/AutoExoRe/autorizacion/autorizacion.component';
 import { ConsentimientoComponent } from './modulos/Consentimiento/consentimiento/consentimiento.component';
 import { AdmisionComponent } from './modulos/RegistroAdm/admision/admision.component';
-=======
 import { ConsultaExternaAnamnesisComponent } from './modulos/consulta-externa-anamnesis/consulta-externa-anamnesis.component';
->>>>>>> Stashed changes
 
 
 
@@ -59,18 +56,15 @@ const routes: Routes = [
   { path: 'lista-empleados', component: EmpleadoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin','user'] } },
 
   { path: 'proveedores', component: ProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
-<<<<<<< Updated upstream
   { path: 'medicamentos', component: MedicamentosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'evolucion', component: EvolucionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'autorizacion', component: AutorizacionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'admision', component: AdmisionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'consentimiento', component: ConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
-=======
 
   { path: 'pacientes', component: CounterComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'ConsultaExterna', component: ConsultaExternaAnamnesisComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
->>>>>>> Stashed changes
 
 
   { path: 'pacientes', component: CounterComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },

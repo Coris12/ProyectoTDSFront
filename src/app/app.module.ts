@@ -50,14 +50,11 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { SidebarModule } from 'primeng/sidebar';
 import {CheckboxModule} from 'primeng/checkbox';
 import { FieldsetModule, } from 'primeng/fieldset';
-<<<<<<< Updated upstream
 import {ScrollPanelModule} from 'primeng/scrollpanel';
-=======
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {EditorModule} from 'primeng/editor';
 import {KeyFilterModule} from 'primeng/keyfilter';
 
->>>>>>> Stashed changes
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthControllerService } from './api/authController.service';
@@ -83,7 +80,6 @@ import { CounterComponent } from './modulos/counter/counter.component';
 import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
 import { TratamientoControllerService } from './api/tratamientoController.service';
 import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
-<<<<<<< Updated upstream
 import { DatosComponent } from './modulos/formulario/datos/datos.component';
 import { MedicamentosComponent } from './modulos/AdmMedicamentos/medicamentos/medicamentos.component';
 import { EvolucionComponent } from './modulos/EvolucionPre/evolucion/evolucion.component';
@@ -95,7 +91,6 @@ import { AdmisionComponent } from './modulos/RegistroAdm/admision/admision.compo
 
 
 
-=======
 import { ConsultaExternaAnamnesisComponent } from './modulos/consulta-externa-anamnesis/consulta-externa-anamnesis.component';
 import { ConsultaExternaControllerService } from './api/consultaExternaController.service';
 import { AntecPersonalesControllerService } from './api/antecPersonalesController.service';
@@ -107,7 +102,6 @@ import { DiagnosticoControllerService } from './api/diagnosticoController.servic
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { MessagesModule } from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
->>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -128,16 +122,13 @@ import {MessageModule} from 'primeng/message';
     CounterComponent,
     EmpleadoComponent,
     TratamientoComponent,
-<<<<<<< Updated upstream
     DatosComponent,
     MedicamentosComponent,
     EvolucionComponent,
     AutorizacionComponent,
     ConsentimientoComponent,
     AdmisionComponent,
-=======
     ConsultaExternaAnamnesisComponent,
->>>>>>> Stashed changes
 
   ],
   imports: [
