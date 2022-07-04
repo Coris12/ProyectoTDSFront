@@ -102,6 +102,9 @@ import { DiagnosticoControllerService } from './api/diagnosticoController.servic
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { MessagesModule } from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import { LectorComponent } from './modulos/tarjeta/lector/lector.component';
+import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-tarjetas.component';
+import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +132,9 @@ import {MessageModule} from 'primeng/message';
     ConsentimientoComponent,
     AdmisionComponent,
     ConsultaExternaAnamnesisComponent,
+    LectorComponent,
+    ListaTarjetasComponent,
+    FormularioTarjetaComponent,
 
   ],
   imports: [

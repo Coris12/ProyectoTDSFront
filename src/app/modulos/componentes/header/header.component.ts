@@ -131,7 +131,27 @@ export class HeaderComponent implements OnInit {
       },
       //! fin opciones para el doctor
 
+      //! opciones para el paciente
+      {
+        label: 'Formulario tarjeta',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/formularioTarjeta'],
+        visible: this.isLogged && this.isPaciente
+      },
 
+      {
+        label: 'Lector Qr',
+        icon: 'pi pi-fw pi-file-o',
+        routerLink: ['/lectorQr'],
+        visible: this.isLogged && this.isPaciente
+      },
+      {
+        label: 'Admiistrar tarjetas',
+        icon: 'pi pi-fw pi-file-o',
+        routerLink: ['/listaTarjetas'],
+        visible: this.isLogged && this.isPaciente
+      },
+      //! fin opciones para el paciente
 
       //! opciones para el proveedor
       {

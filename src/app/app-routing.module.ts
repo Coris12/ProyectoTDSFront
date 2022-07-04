@@ -36,6 +36,9 @@ import { AutorizacionComponent } from './modulos/AutoExoRe/autorizacion/autoriza
 import { ConsentimientoComponent } from './modulos/Consentimiento/consentimiento/consentimiento.component';
 import { AdmisionComponent } from './modulos/RegistroAdm/admision/admision.component';
 import { ConsultaExternaAnamnesisComponent } from './modulos/consulta-externa-anamnesis/consulta-externa-anamnesis.component';
+import { LectorComponent } from './modulos/tarjeta/lector/lector.component';
+import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-tarjetas.component';
+import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
 
 
 
@@ -61,6 +64,11 @@ const routes: Routes = [
   { path: 'autorizacion', component: AutorizacionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'admision', component: AdmisionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'consentimiento', component: ConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+
+  
+  { path: 'formularioTarjeta', component: FormularioTarjetaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'lectorQr', component: LectorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'listaTarjetas', component: ListaTarjetasComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
 
   { path: 'pacientes', component: CounterComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
