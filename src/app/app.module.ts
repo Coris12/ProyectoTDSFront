@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './modulos/componentes/footer/footer.component';
 import { HeaderComponent } from './modulos/componentes/header/header.component';
-
+import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 
 //*servicios primeng
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -141,6 +141,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxScannerQrcodeModule,
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
