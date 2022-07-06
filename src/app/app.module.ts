@@ -105,6 +105,7 @@ import {MessageModule} from 'primeng/message';
 import { LectorComponent } from './modulos/tarjeta/lector/lector.component';
 import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-tarjetas.component';
 import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   declarations: [
@@ -186,7 +187,8 @@ import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta
     EditorModule,
     MessagesModule,
     MessageModule,
-    KeyFilterModule
+    KeyFilterModule,
+    NgxQRCodeModule
     // ! primeng
 
 

@@ -21,6 +21,7 @@
         "@angular/platform-browser": "~9.1.13",
         "@angular/platform-browser-dynamic": "~9.1.13",
         "@angular/router": "~9.1.13",
+        "@techiediaries/ngx-qrcode": "^9.1.0",
         "@types/quill": "^2.0.6",
         "chart.js": "^3.2.1",
         "ng2-search-filter": "^0.5.1",
