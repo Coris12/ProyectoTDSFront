@@ -8,7 +8,4 @@ import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiedi
 })
 export class AppComponent {
   title = 'ProyectoTDSFrontend';
-  elementType = NgxQrcodeElementTypes.URL;
-  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
-  value = 'https://www.techiediaries.com/';
-}
+  }

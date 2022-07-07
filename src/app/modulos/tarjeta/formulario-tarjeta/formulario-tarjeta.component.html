@@ -106,6 +106,9 @@
                         <b>Qr Generado</b>
                     </div>
                 </p-divider>
+                <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value" cssClass="bshadow">
+                </ngx-qrcode>
+                <textarea [(ngModel)]="value"></textarea>
             </p-scrollPanel>
         </div>
     </div>
