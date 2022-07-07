@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './modulos/componentes/inicio/inicio.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -143,7 +142,6 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
     FormsModule,
     BrowserAnimationsModule,
     RouterModule,
