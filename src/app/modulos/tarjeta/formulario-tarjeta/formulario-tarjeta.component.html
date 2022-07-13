@@ -1,5 +1,5 @@
 <app-header></app-header>
-
+<p-toast></p-toast>
 <div class="animated fadeIn mt-4">
     <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
@@ -13,12 +13,12 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="value" name="value" pInputText > 
+                                <input type="text" id="inputtext" [(ngModel)]="buscarPerIdent" name="value" pInputText >
                                 <label for="inputtext">Cedula</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
-                            <button pButton type="button" label="Buscar"></button>
+                            <button pButton type="button" label="Buscar" (click)="buscarPersonaPorIdentificacion()"></button>
                         </div>
                         <div class="field col-12 md:col-4" align='center'>
                             <ngx-qrcode rcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value">
@@ -35,22 +35,22 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.nombres">
                                 <label for="inputtext">Nombres</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
+                                <input type="text" id="inputtext" pInputText >
                                 <label for="inputtext">Fecha de nacimiento</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
-                                <label for="inputtext">Fecha</label>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.parroquia">
+                                <label for="inputtext">Parroquia</label>
                             </span>
                         </div>
                     </div>
@@ -58,22 +58,22 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.nacionalidad">
                                 <label for="inputtext">Nacionalidad</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.pais">
                                 <label for="inputtext">Pais</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
-                                <label for="inputtext">Lugar de recidencia</label>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.provincia">
+                                <label for="inputtext">Provincia</label>
                             </span>
                         </div>
                     </div>
@@ -81,22 +81,22 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
-                                <label for="inputtext">Domicilio</label>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.direccion">
+                                <label for="inputtext">Dirección Domicilio</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.celular">
                                 <label for="inputtext">Numero telefono/celular</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
-                                <label for="inputtext">Lugar de recidencia</label>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.canton">
+                                <label for="inputtext">Cantón</label>
                             </span>
                         </div>
                     </div>

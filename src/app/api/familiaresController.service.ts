@@ -17,15 +17,16 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { Familiares } from '../model/familiares';
+import { FamiliaresAllDTO } from '../model/familiaresAllDTO';
 import { GenericResponsestring } from '../model/genericResponsestring';
-import { RevOrganoSistem } from '../model/revOrganoSistem';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class RevOrganoSistemControllerService {
+export class FamiliaresControllerService {
 
     protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
@@ -57,19 +58,71 @@ export class RevOrganoSistemControllerService {
 
 
     /**
-     * saveRevOrganoSistem
+     * listfamiliares
      * 
-     * @param body revOrganoSistem
+     * @param usuarioId usuarioId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveRevOrganoSistemUsingPOST(body: RevOrganoSistem, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public saveRevOrganoSistemUsingPOST(body: RevOrganoSistem, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public saveRevOrganoSistemUsingPOST(body: RevOrganoSistem, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public saveRevOrganoSistemUsingPOST(body: RevOrganoSistem, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listfamiliaresUsingGET(usuarioId: number, observe?: 'body', reportProgress?: boolean): Observable<Array<FamiliaresAllDTO>>;
+    public listfamiliaresUsingGET(usuarioId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<FamiliaresAllDTO>>>;
+    public listfamiliaresUsingGET(usuarioId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<FamiliaresAllDTO>>>;
+    public listfamiliaresUsingGET(usuarioId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (usuarioId === null || usuarioId === undefined) {
+            throw new Error('Required parameter usuarioId was null or undefined when calling listfamiliaresUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (usuarioId !== undefined && usuarioId !== null) {
+            queryParameters = queryParameters.set('usuarioId', <any>usuarioId);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<FamiliaresAllDTO>>('get',`${this.basePath}/familiares/listfamiliares`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * savefamiliares
+     * 
+     * @param body familiares
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public savefamiliaresUsingPOST(body: Familiares, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public savefamiliaresUsingPOST(body: Familiares, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public savefamiliaresUsingPOST(body: Familiares, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public savefamiliaresUsingPOST(body: Familiares, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling saveRevOrganoSistemUsingPOST.');
+            throw new Error('Required parameter body was null or undefined when calling savefamiliaresUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -97,7 +150,7 @@ export class RevOrganoSistemControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/RevOrganoSistem/saveRevOrganoSistem`,
+        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/familiares/savefamiliares`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

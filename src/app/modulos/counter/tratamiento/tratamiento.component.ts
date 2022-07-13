@@ -49,7 +49,7 @@ export class TratamientoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     this.cargarTratamientos();
   }
 
@@ -57,7 +57,7 @@ export class TratamientoComponent implements OnInit {
     this.loading = true;
 
     setTimeout(() => {
-      this.tratamientoController.listUsingGET4().subscribe(
+      this.tratamientoController.listUsingGET5().subscribe(
 
         data => {
           this.tratamiento = data;
@@ -99,7 +99,7 @@ export class TratamientoComponent implements OnInit {
   }
 
   saveTratamiento() {
-    this.tratamientoController.createUsingPOST5(
+    this.tratamientoController.createUsingPOST6(
       this.tratamientoForm.value,
     ).subscribe(data => {
       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Tratamiento creado .' });

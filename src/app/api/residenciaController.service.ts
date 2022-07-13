@@ -18,14 +18,14 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { GenericResponsestring } from '../model/genericResponsestring';
-import { RevOrganoSistem } from '../model/revOrganoSistem';
+import { ResidenciaDto } from '../model/residenciaDto';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class RevOrganoSistemControllerService {
+export class ResidenciaControllerService {
 
     protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
@@ -57,19 +57,19 @@ export class RevOrganoSistemControllerService {
 
 
     /**
-     * saveRevOrganoSistem
+     * guardarMenu
      * 
-     * @param body revOrganoSistem
+     * @param body residenciaDto
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveRevOrganoSistemUsingPOST(body: RevOrganoSistem, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public saveRevOrganoSistemUsingPOST(body: RevOrganoSistem, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public saveRevOrganoSistemUsingPOST(body: RevOrganoSistem, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public saveRevOrganoSistemUsingPOST(body: RevOrganoSistem, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public guardarMenuUsingPOST(body: ResidenciaDto, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public guardarMenuUsingPOST(body: ResidenciaDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public guardarMenuUsingPOST(body: ResidenciaDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public guardarMenuUsingPOST(body: ResidenciaDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling saveRevOrganoSistemUsingPOST.');
+            throw new Error('Required parameter body was null or undefined when calling guardarMenuUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -97,7 +97,59 @@ export class RevOrganoSistemControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/RevOrganoSistem/saveRevOrganoSistem`,
+        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/residencia/save`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * updatePost
+     * 
+     * @param body residenciaDto
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updatePostUsingPUT(body: ResidenciaDto, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public updatePostUsingPUT(body: ResidenciaDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public updatePostUsingPUT(body: ResidenciaDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public updatePostUsingPUT(body: ResidenciaDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling updatePostUsingPUT.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<GenericResponsestring>('put',`${this.basePath}/residencia/updateResidencia`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

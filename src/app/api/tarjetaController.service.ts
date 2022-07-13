@@ -17,13 +17,14 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { Tarjeta } from '../model/tarjeta';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class BasicErrorControllerService {
+export class TarjetaControllerService {
 
     protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
@@ -55,15 +56,77 @@ export class BasicErrorControllerService {
 
 
     /**
-     * error
+     * Crea la tarjeta
      * 
+     * @param body tarjeta
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public errorUsingDELETE(observe?: 'body', reportProgress?: boolean): Observable<{ [key: string]: any; }>;
-    public errorUsingDELETE(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<{ [key: string]: any; }>>;
-    public errorUsingDELETE(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<{ [key: string]: any; }>>;
-    public errorUsingDELETE(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createUsingPOST5(body: Tarjeta, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public createUsingPOST5(body: Tarjeta, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public createUsingPOST5(body: Tarjeta, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public createUsingPOST5(body: Tarjeta, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling createUsingPOST5.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/tarjeta/creaTarjeta`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Eliminado logico del tarjeta
+     * 
+     * @param idTarjeta id_tarjeta
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public deleteTratamientoUsingPATCH(idTarjeta: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteTratamientoUsingPATCH(idTarjeta: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteTratamientoUsingPATCH(idTarjeta: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteTratamientoUsingPATCH(idTarjeta: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (idTarjeta === null || idTarjeta === undefined) {
+            throw new Error('Required parameter idTarjeta was null or undefined when calling deleteTratamientoUsingPATCH.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idTarjeta !== undefined && idTarjeta !== null) {
+            queryParameters = queryParameters.set('id_tarjeta', <any>idTarjeta);
+        }
 
         let headers = this.defaultHeaders;
 
@@ -85,7 +148,54 @@ export class BasicErrorControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<{ [key: string]: any; }>('delete',`${this.basePath}/error`,
+        return this.httpClient.request<any>('patch',`${this.basePath}/tarjeta/deleteTarjeta/${encodeURIComponent(String(idTarjeta))}`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Detalles de las tarjetas
+     * 
+     * @param id id
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getByIdUsingGET5(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tarjeta>;
+    public getByIdUsingGET5(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tarjeta>>;
+    public getByIdUsingGET5(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tarjeta>>;
+    public getByIdUsingGET5(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET5.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Tarjeta>('get',`${this.basePath}/tarjeta/detallesTarjetas/${encodeURIComponent(String(id))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -96,15 +206,15 @@ export class BasicErrorControllerService {
     }
 
     /**
-     * error
+     * Muestra una lista de tarjetas
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public errorUsingGET(observe?: 'body', reportProgress?: boolean): Observable<{ [key: string]: any; }>;
-    public errorUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<{ [key: string]: any; }>>;
-    public errorUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<{ [key: string]: any; }>>;
-    public errorUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET4(observe?: 'body', reportProgress?: boolean): Observable<Array<Tarjeta>>;
+    public listUsingGET4(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tarjeta>>>;
+    public listUsingGET4(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tarjeta>>>;
+    public listUsingGET4(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -126,7 +236,7 @@ export class BasicErrorControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<{ [key: string]: any; }>('get',`${this.basePath}/error`,
+        return this.httpClient.request<Array<Tarjeta>>('get',`${this.basePath}/tarjeta/listaTarjetas`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -137,15 +247,15 @@ export class BasicErrorControllerService {
     }
 
     /**
-     * error
+     * Lista de tarjetas con estado 1
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public errorUsingHEAD(observe?: 'body', reportProgress?: boolean): Observable<{ [key: string]: any; }>;
-    public errorUsingHEAD(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<{ [key: string]: any; }>>;
-    public errorUsingHEAD(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<{ [key: string]: any; }>>;
-    public errorUsingHEAD(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listaTarjetasAUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<Tarjeta>>;
+    public listaTarjetasAUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tarjeta>>>;
+    public listaTarjetasAUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tarjeta>>>;
+    public listaTarjetasAUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -167,7 +277,7 @@ export class BasicErrorControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<{ [key: string]: any; }>('head',`${this.basePath}/error`,
+        return this.httpClient.request<Array<Tarjeta>>('get',`${this.basePath}/tarjeta/tarjetasActivas`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -178,15 +288,25 @@ export class BasicErrorControllerService {
     }
 
     /**
-     * error
+     * Actualizacion de la Tarjeta
      * 
+     * @param body tarjeta
+     * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public errorUsingOPTIONS(observe?: 'body', reportProgress?: boolean): Observable<{ [key: string]: any; }>;
-    public errorUsingOPTIONS(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<{ [key: string]: any; }>>;
-    public errorUsingOPTIONS(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<{ [key: string]: any; }>>;
-    public errorUsingOPTIONS(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateUsingPUT5(body: Tarjeta, id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateUsingPUT5(body: Tarjeta, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateUsingPUT5(body: Tarjeta, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateUsingPUT5(body: Tarjeta, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling updateUsingPUT5.');
+        }
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateUsingPUT5.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -206,133 +326,16 @@ export class BasicErrorControllerService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
+            'application/json'
         ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
 
-        return this.httpClient.request<{ [key: string]: any; }>('options',`${this.basePath}/error`,
+        return this.httpClient.request<any>('put',`${this.basePath}/tarjeta/update/${encodeURIComponent(String(id))}`,
             {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * error
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public errorUsingPATCH(observe?: 'body', reportProgress?: boolean): Observable<{ [key: string]: any; }>;
-    public errorUsingPATCH(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<{ [key: string]: any; }>>;
-    public errorUsingPATCH(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<{ [key: string]: any; }>>;
-    public errorUsingPATCH(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (JWT) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<{ [key: string]: any; }>('patch',`${this.basePath}/error`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * error
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public errorUsingPOST(observe?: 'body', reportProgress?: boolean): Observable<{ [key: string]: any; }>;
-    public errorUsingPOST(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<{ [key: string]: any; }>>;
-    public errorUsingPOST(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<{ [key: string]: any; }>>;
-    public errorUsingPOST(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (JWT) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<{ [key: string]: any; }>('post',`${this.basePath}/error`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * error
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public errorUsingPUT(observe?: 'body', reportProgress?: boolean): Observable<{ [key: string]: any; }>;
-    public errorUsingPUT(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<{ [key: string]: any; }>>;
-    public errorUsingPUT(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<{ [key: string]: any; }>>;
-    public errorUsingPUT(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (JWT) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<{ [key: string]: any; }>('put',`${this.basePath}/error`,
-            {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

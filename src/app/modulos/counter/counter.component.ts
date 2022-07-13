@@ -215,7 +215,7 @@ export class CounterComponent implements OnInit {
   listarTratamientos(event?: LazyLoadEvent): void {
     //this.loadTabFV = true;
     setTimeout(() => {
-      this.serviceTto.listUsingGET4().subscribe(
+      this.serviceTto.listUsingGET5().subscribe(
         data => {
           if (data) {
             this.tratamientos = data;

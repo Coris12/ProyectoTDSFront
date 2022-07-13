@@ -9,7 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Familiares } from './familiares';
 import { Rol } from './rol';
+import { Tarjeta } from './tarjeta';
 
 export interface Usuario { 
     celular?: string;
@@ -17,6 +19,7 @@ export interface Usuario {
     direccion?: string;
     email?: string;
     estado?: number;
+    familiares?: Array<Familiares>;
     id?: number;
     identificacion?: string;
     nombreUsuario?: string;
@@ -25,4 +28,5 @@ export interface Usuario {
     profesion?: string;
     roles?: Array<Rol>;
     sexo?: string;
+    tarjeta?: Tarjeta;
 }
