@@ -48,6 +48,7 @@ export class UsuariosComponent implements OnInit {
           this.usuarios = data;
           this.totalRecords = this.usuarios.length;
           this.loading = false;
+          
         },
         err => {
           console.log(err);

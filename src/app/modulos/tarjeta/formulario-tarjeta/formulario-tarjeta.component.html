@@ -13,15 +13,17 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="buscarPerIdent" name="value" pInputText >
+                                <input type="text" id="inputtext" [(ngModel)]="value" [(ngModel)]="buscarPerIdent" name="value" pInputText>
                                 <label for="inputtext">Cedula</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
-                            <button pButton type="button" label="Buscar" (click)="buscarPersonaPorIdentificacion()"></button>
+                            <button pButton type="button" label="Buscar"
+                                (click)="buscarPersonaPorIdentificacion()"></button>
                         </div>
                         <div class="field col-12 md:col-4" align='center'>
-                            <ngx-qrcode rcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value">
+                            <ngx-qrcode rcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel"
+                                [value]="value">
                             </ngx-qrcode>
                         </div>
                     </div>
@@ -42,7 +44,7 @@
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText >
+                                <input type="text" id="inputtext" pInputText>
                                 <label for="inputtext">Fecha de nacimiento</label>
                             </span>
                         </div>
@@ -113,7 +115,9 @@
                 <div class="field col-12 md:col-4">
                     <button pButton type="button" label="Agregar familiar" (click)="display=true"></button>
                 </div>
-                <p-table #dt [value]="familiares" [paginator]="true" responsiveLayout="scroll" [loading]="loading" [rows]="10" styleClass="p-datatable-gridlines" [globalFilterFields]="['codBarra', 'nombreProducto', 'nombre_comercial_pro']">
+                <p-table #dt [value]="familiares" [paginator]="true" responsiveLayout="scroll" [loading]="loading"
+                    [rows]="10" styleClass="p-datatable-gridlines"
+                    [globalFilterFields]="['codBarra', 'nombreProducto', 'nombre_comercial_pro']">
                     <ng-template pTemplate="caption">
                         <div class="table-header">
                             <span class="p-input-icon-left">
@@ -159,6 +163,22 @@
 
 <p-dialog header="Datos del familiar" [(visible)]="display">
     <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+        
+        <div class="mt-4">
+            <div class="grid p-fluid">
+                <div class="field col-12 md:col-4">
+            
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="buscar" name="value" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            
+            </div>
+            <div class="field col-12 md:col-4">
+                <button pButton type="button" label="Buscar" (click)="buscarPersonaPorIdentificacion()"></button>
+            </div>
+        </div>
+        </div>
         <div class="grid p-fluid">
             <div class="p-field p-col-12 p-md-3">
                 <span class="p-float-label p-input-icon-left">
@@ -220,9 +240,15 @@
             <div class="p-field p-col-12 p-md-3">
                 <span class="p-float-label p-input-icon-left">
                     <i class="pi pi-user-plus"></i>
-                    <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario"
-                        name="nombreUsuario">
+                    <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario" name="nombreUsuario">
                     <label for="inputtext-left">Nombre usuario</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user-plus"></i>
+                    <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario" name="nombreUsuario">
+                    <label for="inputtext-left">Parentesco</label>
                 </span>
             </div>
             <div class="p-field p-col-12 p-md-3">
