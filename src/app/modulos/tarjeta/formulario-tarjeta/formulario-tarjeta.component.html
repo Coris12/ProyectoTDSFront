@@ -136,12 +136,12 @@
 
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-producto>
+                    <ng-template pTemplate="body" let-familiar>
                         <tr>
-                            <td>{{producto.idProducto}}</td>
-                            <td>{{producto.nombreProducto}}</td>
-                            <td>{{producto.categoriaProducto}}</td>
-                            <td>{{producto.codBarra}}</td>
+                            <td>{{familiar.idFamiliares}}</td>
+                            <td>{{familiar.usuario.nombres}}</td>
+                            <td>{{familiar.usuario.telefono}}</td>
+                            <td>{{familiar.tipoFamiliar}}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
@@ -240,17 +240,18 @@
             <div class="p-field p-col-12 p-md-3">
                 <span class="p-float-label p-input-icon-left">
                     <i class="pi pi-user-plus"></i>
-                    <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario" name="nombreUsuario">
-                    <label for="inputtext-left">Nombre usuario</label>
+                    <input type="text" id="ciudad" pInputText [(ngModel)]="parentesco" name="ciudad">
+                    <label for="inputtext-left">Parentesco</label>
                 </span>
             </div>
             <div class="p-field p-col-12 p-md-3">
                 <span class="p-float-label p-input-icon-left">
                     <i class="pi pi-user-plus"></i>
                     <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario" name="nombreUsuario">
-                    <label for="inputtext-left">Parentesco</label>
+                    <label for="inputtext-left">Nombre usuario</label>
                 </span>
             </div>
+            
             <div class="p-field p-col-12 p-md-3">
                 <span class="p-float-label p-input-icon-left">
                     <i class="pi pi-user-plus"></i>
