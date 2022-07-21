@@ -149,7 +149,4 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
       this.mensajeError("ERROR AL BUSCAR!!");
     });
   }
-
-
-
 }
