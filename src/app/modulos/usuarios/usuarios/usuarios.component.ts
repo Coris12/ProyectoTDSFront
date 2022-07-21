@@ -43,11 +43,12 @@ export class UsuariosComponent implements OnInit {
     this.loading = true;
 
     setTimeout(() => {
-      this.authController.listaUsingGET().subscribe(
-        data => {
+        this.authController.listaUsingGET().subscribe(
+          data => {
           this.usuarios = data;
           this.totalRecords = this.usuarios.length;
           this.loading = false;
+          
         },
         err => {
           console.log(err);

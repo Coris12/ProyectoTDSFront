@@ -32,7 +32,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class AuthControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -63,7 +63,7 @@ export class AuthControllerService {
 
     /**
      * getPersonaByIdentificacion
-     *
+     * 
      * @param identificacion identificacion
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -115,7 +115,7 @@ export class AuthControllerService {
 
     /**
      * Muestra la lista de usuarios en el sistema
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -156,7 +156,7 @@ export class AuthControllerService {
 
     /**
      * login
-     *
+     * 
      * @param body loginUsuario
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -208,7 +208,7 @@ export class AuthControllerService {
 
     /**
      * nuevo
-     *
+     * 
      * @param body nuevoUsuario
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -260,7 +260,7 @@ export class AuthControllerService {
 
     /**
      * putArrendatario
-     *
+     * 
      * @param idpersona idpersona
      * @param rol rol
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -320,7 +320,7 @@ export class AuthControllerService {
 
     /**
      * refresh
-     *
+     * 
      * @param body jwtDto
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -372,7 +372,7 @@ export class AuthControllerService {
 
     /**
      * searchDateTarjetaUser
-     *
+     * 
      * @param identificacion identificacion
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -424,7 +424,7 @@ export class AuthControllerService {
 
     /**
      * Muestra la lista de usuarios en el sistema
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -465,7 +465,7 @@ export class AuthControllerService {
 
     /**
      * search
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
