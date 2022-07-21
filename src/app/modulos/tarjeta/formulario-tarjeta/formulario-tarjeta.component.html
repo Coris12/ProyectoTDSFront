@@ -13,8 +13,8 @@
           <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
               <span class="p-float-label">
-                <input type="text" id="inputtext" [(ngModel)]="value" [(ngModel)]="buscarPerIdent" name="value"
-                  pInputText>
+                <input type="text" id="inputtext" (keypress)="keyPress($event)" [(ngModel)]="buscarPerIdent"
+                  name="value" pInputText>
                 <label for="inputtext">Cedula</label>
               </span>
             </div>
@@ -135,12 +135,12 @@
 
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-familiar>
+          <ng-template pTemplate="body" let-producto>
             <tr>
-              <td>{{familiar.idFamiliares}}</td>
-              <td>{{familiar.usuario.nombres}}</td>
-              <td>{{familiar.usuario.telefono}}</td>
-              <td>{{familiar.tipoFamiliar}}</td>
+              <td>{{producto.idProducto}}</td>
+              <td>{{producto.nombreProducto}}</td>
+              <td>{{producto.categoriaProducto}}</td>
+              <td>{{producto.codBarra}}</td>
             </tr>
           </ng-template>
           <ng-template pTemplate="summary">
@@ -157,175 +157,11 @@
       </p-scrollPanel>
     </div>
   </div>
-  <div class="content-section implementation mt-2">
-    <p-scrollPanel [style]="{width: '100%', height: '700px'}">
-      <div class="mt-4">
-        <div class="grid p-fluid">
-          <div class="field col-12 md:col-4">
-            <span class="p-float-label">
-              <input type="text" id="inputtext" (keypress)="keyPress($event)" [(ngModel)]="buscarPerIdent" name="value"
-                pInputText>
-              <label for="inputtext">Cedula</label>
-            </span>
-          </div>
-          <div class="field col-12 md:col-4">
-            <button pButton type="button" label="Buscar" (click)="buscarPersonaPorIdentificacion()"></button>
-          </div>
-          <div class="field col-12 md:col-4" align='center'>
-            <ngx-qrcode rcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value">
-            </ngx-qrcode>
-          </div>
-        </div>
-        <p-divider align="left">
-          <div class="inline-flex align-items-center">
-            <i class="pi pi-user mr-2"></i>
-            <b>Datos</b>
-          </div>
-        </p-divider>
-        <br>
-        <div class="grid p-fluid">
-          <div class="field col-12 md:col-4">
-            <span class="p-float-label">
-              <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.nombres">
-              <label for="inputtext">Nombres</label>
-            </span>
-          </div>
 
-          <div class="field col-12 md:col-4">
-            <span class="p-float-label">
-              <input type="text" id="inputtext" pInputText>
-              <label for="inputtext">Fecha de nacimiento</label>
-            </span>
-          </div>
-
-          <div class="field col-12 md:col-4">
-            <span class="p-float-label">
-              <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.parroquia">
-              <label for="inputtext">Parroquia</label>
-            </span>
-          </div>
-        </div>
-        <!-- grupo de 3 para el formulario-->
-        <div class="grid p-fluid">
-          <div class="field col-12 md:col-4">
-            <span class="p-float-label">
-              <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.nacionalidad">
-              <label for="inputtext">Nacionalidad</label>
-            </span>
-          </div>
-
-          <div class="field col-12 md:col-4">
-            <span class="p-float-label">
-              <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.pais">
-              <label for="inputtext">Pais</label>
-            </span>
-          </div>
-
-          <div class="field col-12 md:col-4">
-            <span class="p-float-label">
-              <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.provincia">
-              <label for="inputtext">Provincia</label>
-            </span>
-          </div>
-        </div>
-        <!-- grupo de 3 para el formulario-->
-        <div class="grid p-fluid">
-          <div class="field col-12 md:col-4">
-            <span class="p-float-label">
-              <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.direccion">
-              <label for="inputtext">Dirección Domicilio</label>
-            </span>
-          </div>
-
-          <div class="field col-12 md:col-4">
-            <span class="p-float-label">
-              <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.celular">
-              <label for="inputtext">Numero telefono/celular</label>
-            </span>
-          </div>
-
-          <div class="field col-12 md:col-4">
-            <span class="p-float-label">
-              <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.canton">
-              <label for="inputtext">Cantón</label>
-            </span>
-          </div>
-        </div>
-        <!-- grupo de 3 para el formulario-->
-
-      </div>
-
-      <p-divider align="left">
-        <div class="inline-flex align-items-center">
-          <i class="pi pi-user mr-2"></i>
-          <b>Agregar familiar</b>
-        </div>
-      </p-divider>
-      <div class="field col-12 md:col-4">
-        <button pButton type="button" label="Agregar familiar" (click)="display=true"></button>
-      </div>
-      <p-table #dt [value]="familiares" [paginator]="true" responsiveLayout="scroll" [loading]="loading" [rows]="10"
-        styleClass="p-datatable-gridlines"
-        [globalFilterFields]="['codBarra', 'nombreProducto', 'nombre_comercial_pro']">
-        <ng-template pTemplate="caption">
-          <div class="table-header">
-            <span class="p-input-icon-left">
-              <i class="pi pi-search"></i>
-              <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                placeholder="Buscar insumos" />
-            </span>
-          </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Id </th>
-            <th>Nombres del familiar</th>
-            <th>Fecha de nacimiento</th>
-            <th>Parentesco</th>
-
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-producto>
-          <tr>
-            <td>{{producto.idProducto}}</td>
-            <td>{{producto.nombreProducto}}</td>
-            <td>{{producto.categoriaProducto}}</td>
-            <td>{{producto.codBarra}}</td>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="summary">
-          <div class="p-d-flex p-ai-center p-jc-between">
-            En total hay {{totalRecords}} registros.
-          </div>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="8">Ningun registro.</td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </p-scrollPanel>
-  </div>
 </div>
 
 <p-dialog header="Datos del familiar" [(visible)]="display">
   <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
-
-    <div class="mt-4">
-      <div class="grid p-fluid">
-        <div class="field col-12 md:col-4">
-
-          <span class="p-float-label">
-            <input type="text" id="inputtext" [(ngModel)]="buscar" name="value" pInputText>
-            <label for="inputtext">Cedula</label>
-          </span>
-
-        </div>
-        <div class="field col-12 md:col-4">
-          <button pButton type="button" label="Buscar" (click)="buscarPersonaPorIdentificacion()"></button>
-        </div>
-      </div>
-    </div>
     <div class="grid p-fluid">
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label p-input-icon-left">
@@ -386,18 +222,10 @@
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label p-input-icon-left">
           <i class="pi pi-user-plus"></i>
-          <input type="text" id="ciudad" pInputText [(ngModel)]="parentesco" name="ciudad">
-          <label for="inputtext-left">Parentesco</label>
-        </span>
-      </div>
-      <div class="p-field p-col-12 p-md-3">
-        <span class="p-float-label p-input-icon-left">
-          <i class="pi pi-user-plus"></i>
           <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario" name="nombreUsuario">
           <label for="inputtext-left">Nombre usuario</label>
         </span>
       </div>
-
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label p-input-icon-left">
           <i class="pi pi-user-plus"></i>
