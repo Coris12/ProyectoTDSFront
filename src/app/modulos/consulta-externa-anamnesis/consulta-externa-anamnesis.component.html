@@ -89,7 +89,6 @@
         [(ngModel)]="antecPersonalesObj.clinicos" formControlName="clinico" (keypress)="validacionAlfanumerica($event)">
       <label class="p-inputtext-sm" for="inputtext">CLÍNICOS</label>
     </span>
-    <div class="invalid-feedback">ES REQUERIDO.</div>
     <small class="p-error" *ngIf="submitted && !antecPersonalesObj.clinicos">ES REQUERIDO.</small>
   </div>
 
