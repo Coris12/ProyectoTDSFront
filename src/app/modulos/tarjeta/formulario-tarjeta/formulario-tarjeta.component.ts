@@ -11,6 +11,8 @@ import { NuevoUsuario } from '../../user/models/nuevo-usuario';
 import { AuthService } from '../../user/service/auth.service';
 import {takeUntil} from 'rxjs/operators';
 import { DatosTarjetaDto } from 'src/app/model/datosTarjetaDto';
+import { FamiliaresControllerService } from 'src/app/api/familiaresController.service';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-formulario-tarjeta',
@@ -37,7 +39,7 @@ export class FormularioTarjetaComponent implements OnInit , OnDestroy{
   correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   value: string;
   buscarPerIdent: string;
-
+  buscar:string;
   totalRecords:number;
   loading :boolean;
   familiares:any;
@@ -59,7 +61,13 @@ export class FormularioTarjetaComponent implements OnInit , OnDestroy{
   password: string;
   profesion: string;
   sexo: string;
-  constructor(
+
+
+  idUsuario: number;
+  usuarios: Usuario[] = [];
+  parentesco:string;
+
+    constructor(
     private tokenService: TokenService,
     private authService: AuthService,
     private router: Router,
@@ -110,6 +118,8 @@ export class FormularioTarjetaComponent implements OnInit , OnDestroy{
         });
       }
     );
+
+
   }
 
   mensajeError(msg: String) {
@@ -140,4 +150,7 @@ export class FormularioTarjetaComponent implements OnInit , OnDestroy{
       this.mensajeError("ERROR AL BUSCAR!!");
     });
   }
+
+
+
 }
