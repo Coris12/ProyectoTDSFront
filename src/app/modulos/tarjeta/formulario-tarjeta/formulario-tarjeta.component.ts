@@ -13,6 +13,7 @@ import {takeUntil} from 'rxjs/operators';
 import { DatosTarjetaDto } from 'src/app/model/datosTarjetaDto';
 import { FamiliaresControllerService } from 'src/app/api/familiaresController.service';
 import { Usuario } from 'src/app/model/usuario';
+import { Familiares } from 'src/app/model/familiares';
 
 @Component({
   selector: 'app-formulario-tarjeta',
@@ -33,6 +34,11 @@ export class FormularioTarjetaComponent implements OnInit , OnDestroy{
     pais:null,
     parroquia:null,
     provincia:null,
+}
+familia: Familiares = {
+  idenUsuarioFamiliar: null,
+  tipoFamiliar: null,
+  usuario: null,
 }
 
   elementType = NgxQrcodeElementTypes.URL;
@@ -63,9 +69,10 @@ export class FormularioTarjetaComponent implements OnInit , OnDestroy{
   sexo: string;
 
 
-  idUsuario: number;
-  usuarios: Usuario[] = [];
+  idUsuario: string;
   parentesco:string;
+  usuarioId: string
+
 
     constructor(
     private tokenService: TokenService,
@@ -73,7 +80,8 @@ export class FormularioTarjetaComponent implements OnInit , OnDestroy{
     private router: Router,
     private toastr: ToastrService,
     private messageService: MessageService,
-    private personaService: AuthControllerService
+    private personaService: AuthControllerService,
+    private familiarService: FamiliaresControllerService
   ) {
 
   }
@@ -119,6 +127,26 @@ export class FormularioTarjetaComponent implements OnInit , OnDestroy{
       }
     );
 
+
+  }
+
+  guardarFamiliar() {
+    this.familiarService.savefamiliaresUsingPOST(this.familia).subscribe((res) => {
+      this.familia.idenUsuarioFamiliar = this.usuarioId;
+      this.familia.tipoFamiliar = this.parentesco;
+      this.familia.usuario = this.ObjDatorTarj;
+      if (res.object != null) {
+        this.idUsuario = res.object;
+        console.log(res.object)
+        this.MessageSuccess("familiar creado");
+        console.log(this.familia);
+      } else {
+        this.mensajeError("error al crear familiar")
+
+        console.log(this.familia);
+      }
+
+    })
 
   }
 
