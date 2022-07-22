@@ -553,7 +553,7 @@ export class FacturaVentaComponent implements OnInit {
       summary: 'Resultado',
       detail: 'Correcto!: ' + msg,
     });
-  }
+  }///uhj
 
   listarProductos2(event?: LazyLoadEvent): void {
     setTimeout(() => {
