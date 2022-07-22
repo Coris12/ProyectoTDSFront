@@ -564,7 +564,7 @@ export class FacturaVentaComponent implements OnInit {
             this.loadTabFV = false;
           } else {
             this.mensajesError('Error al listar los productos');
-          }
+          }//
         },
         err => {
           console.log(err);
