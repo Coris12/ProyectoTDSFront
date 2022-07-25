@@ -9,12 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Usuario } from './usuario';
 
-export interface Familiares { 
+export interface ListaFamiliaresDTO { 
     estado?: string;
     idFamiliares?: number;
     idenUsuarioFamiliar?: number;
+    identificacion?: string;
+    nombres?: string;
     tipoFamiliar?: string;
-    usuario?: Usuario;
+    usuarioId?: number;
 }

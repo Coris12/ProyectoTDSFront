@@ -19,7 +19,9 @@ import { Observable }                                        from 'rxjs';
 
 import { Familiares } from '../model/familiares';
 import { FamiliaresAllDTO } from '../model/familiaresAllDTO';
+import { GenericResponseListListaFamiliaresDTO } from '../model/genericResponseListListaFamiliaresDTO';
 import { GenericResponsestring } from '../model/genericResponsestring';
+import { ListaFamiliaresDTO } from '../model/listaFamiliaresDTO';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -58,8 +60,60 @@ export class FamiliaresControllerService {
 
 
     /**
+     * deletefamiliares
+     *
+     * @param fId fId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public deletefamiliaresUsingPUT(fId: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public deletefamiliaresUsingPUT(fId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public deletefamiliaresUsingPUT(fId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public deletefamiliaresUsingPUT(fId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (fId === null || fId === undefined) {
+            throw new Error('Required parameter fId was null or undefined when calling deletefamiliaresUsingPUT.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (fId !== undefined && fId !== null) {
+            queryParameters = queryParameters.set('fId', <any>fId);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GenericResponsestring>('put',`${this.basePath}/familiares/deletefamiliares`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * listfamiliares
-     * 
+     *
      * @param usuarioId usuarioId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -110,8 +164,60 @@ export class FamiliaresControllerService {
     }
 
     /**
+     * listfamiliaresusuario
+     *
+     * @param ui ui
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public listfamiliaresusuarioUsingGET(ui: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponseListListaFamiliaresDTO>;
+    public listfamiliaresusuarioUsingGET(ui: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseListListaFamiliaresDTO>>;
+    public listfamiliaresusuarioUsingGET(ui: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseListListaFamiliaresDTO>>;
+    public listfamiliaresusuarioUsingGET(ui: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (ui === null || ui === undefined) {
+            throw new Error('Required parameter ui was null or undefined when calling listfamiliaresusuarioUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (ui !== undefined && ui !== null) {
+            queryParameters = queryParameters.set('ui', <any>ui);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GenericResponseListListaFamiliaresDTO>('get',`${this.basePath}/familiares/listfamiliaresusuario`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * savefamiliares
-     * 
+     *
      * @param body familiares
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -151,6 +257,58 @@ export class FamiliaresControllerService {
         }
 
         return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/familiares/savefamiliares`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * updatefamiliares
+     *
+     * @param body familiaresDTO
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updatefamiliaresUsingPUT(body: ListaFamiliaresDTO, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public updatefamiliaresUsingPUT(body: ListaFamiliaresDTO, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public updatefamiliaresUsingPUT(body: ListaFamiliaresDTO, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public updatefamiliaresUsingPUT(body: ListaFamiliaresDTO, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling updatefamiliaresUsingPUT.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<GenericResponsestring>('put',`${this.basePath}/familiares/updatefamiliares`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
