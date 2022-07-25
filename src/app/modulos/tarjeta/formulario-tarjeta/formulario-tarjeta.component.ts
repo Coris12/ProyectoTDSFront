@@ -37,9 +37,9 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
     provincia: null,
   }
   familia: Familiares = {
-    idenUsuarioFamiliar: null,
     tipoFamiliar: null,
     usuario: null,
+    idenUsuarioFamiliar: null,
   }
 
   elementType = NgxQrcodeElementTypes.URL;
@@ -72,7 +72,7 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
 
   idUsuario: string;
   parentesco: string;
-  usuarioId: string
+  usuarioId: string;
 
   //listar familiares de un usuario
   listFamily: ListaFamiliaresDTO[];
@@ -110,27 +110,22 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
       this.ciudad,
       this.nombreUsuario,
       this.password,
-
     );
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
-        this.messageService.add({
-          severity: 'Cuenta creada',
-          summary: 'La se ha creado con exito:',
-          detail: data.message,
-          life: 3000,
-        });
-        this.router.navigate(['/login']);
+        if (data.mensaje != null) {
+          this.usuarioId = data.mensaje
+          this.MessageSuccess("cuenta creada");
+          this.guardarFamiliar();
+        } else {
+          this.mensajeError("error al crear")
+          console.log(data.mensaje)
+        }
       },
       err => {
         this.errMsj = err.error.mensaje;
-        this.messageService.add({
-          severity: 'error',
-          summary: 'La cuenta no ha podido ser creada:',
-          detail: this.errMsj,
-          life: 3000,
-        });
-      });
+      }
+    );
   }
 
   guardarFamiliar() {
@@ -146,9 +141,10 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
       } else {
         this.mensajeError("error al crear familiar")
       }
-    })
-  }
 
+    })
+
+  }
   mensajeError(msg: String) {
     this.messageService.add({
       severity: 'error',
@@ -231,19 +227,19 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
       if (data.object == "FAMILIAR ELIMINADO") {
         this.MessageSuccess("FAMILIAR ELIMINADO");
         this.cargarFamiliar(this.idPerPrin);
-      }else{
+      } else {
         this.MessageSuccess("ERROR AL ELIMINAR FAMILIAR");
       }
     })
   }
 
-  editarFamiliar(event,listFml: ListaFamiliaresDTO) {
+  editarFamiliar(event, listFml: ListaFamiliaresDTO) {
     console.log(listFml);
     this.familiarService.updatefamiliaresUsingPUT(listFml).pipe(takeUntil(this.unsuscribes$)).subscribe(data => {
-      if (data){
+      if (data) {
         this.MessageSuccess("FAMILIAR EDITADO");
         this.cargarFamiliar(this.idPerPrin);
-      }else{
+      } else {
         this.MessageSuccess("ERROR AL EDITAR FAMILIAR");
       }
     })
