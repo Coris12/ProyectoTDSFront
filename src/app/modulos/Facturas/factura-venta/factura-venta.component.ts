@@ -553,7 +553,7 @@ export class FacturaVentaComponent implements OnInit {
       summary: 'Resultado',
       detail: 'Correcto!: ' + msg,
     });
-  }
+  }///uhj
 
   listarProductos2(event?: LazyLoadEvent): void {
     setTimeout(() => {
@@ -564,7 +564,7 @@ export class FacturaVentaComponent implements OnInit {
             this.loadTabFV = false;
           } else {
             this.mensajesError('Error al listar los productos');
-          }
+          }//
         },
         err => {
           console.log(err);

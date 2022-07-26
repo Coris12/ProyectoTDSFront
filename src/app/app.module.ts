@@ -207,7 +207,6 @@ import { TarjetaControllerService } from './api/tarjetaController.service';
     EmpleadoControllerService,
     FacturaControllerService,
     FaramaciaControllerService,
-    FamiliaresControllerService,
     ProductoControllerService,
     SucursalControllerService,
     ProveedorControllerService,

@@ -1,123 +1,121 @@
 <app-header></app-header>
 <p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+</p-confirmDialog>
 <div class="animated fadeIn mt-4">
-    <div class="p-5 bg-light">
-        <div class="d-flex justify-content-between">
-            <div class="p-2">
-                <h1>Datos para la tarjeta</h1>
+  <div class="p-5 bg-light">
+    <div class="d-flex justify-content-between">
+      <div class="p-2">
+        <h1>Datos para la tarjeta</h1>
+      </div>
+    </div>
+    <div class="content-section implementation mt-2">
+      <p-scrollPanel [style]="{width: '100%', height: '700px'}">
+        <div class="mt-4">
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input type="text" id="inputtext" [(ngModel)]="buscarPerIdent" name="value" pInputText>
+                <label for="inputtext">Cedula</label>
+              </span>
             </div>
+            <div class="field col-12 md:col-4">
+              <button pButton type="button" label="Buscar" (click)="buscarPersonaPorIdentificacion()"></button>
+            </div>
+            <div class="field col-12 md:col-4" align='center'>
+              <ngx-qrcode rcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value">
+              </ngx-qrcode>
+            </div>
+          </div>
+          <p-divider align="left">
+            <div class="inline-flex align-items-center">
+              <i class="pi pi-user mr-2"></i>
+              <b>Datos</b>
+            </div>
+          </p-divider>
+          <br>
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.nombres">
+                <label for="inputtext">Nombres</label>
+              </span>
+            </div>
+
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText>
+                <label for="inputtext">Fecha de nacimiento</label>
+              </span>
+            </div>
+
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.parroquia">
+                <label for="inputtext">Parroquia</label>
+              </span>
+            </div>
+          </div>
+          <!-- grupo de 3 para el formulario-->
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.nacionalidad">
+                <label for="inputtext">Nacionalidad</label>
+              </span>
+            </div>
+
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.pais">
+                <label for="inputtext">Pais</label>
+              </span>
+            </div>
+
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.provincia">
+                <label for="inputtext">Provincia</label>
+              </span>
+            </div>
+          </div>
+          <!-- grupo de 3 para el formulario-->
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.direccion">
+                <label for="inputtext">Dirección Domicilio</label>
+              </span>
+            </div>
+
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.celular">
+                <label for="inputtext">Numero telefono/celular</label>
+              </span>
+            </div>
+
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.canton">
+                <label for="inputtext">Cantón</label>
+              </span>
+            </div>
+          </div>
+          <!-- grupo de 3 para el formulario-->
+
         </div>
-        <div class="content-section implementation mt-2">
-            <p-scrollPanel [style]="{width: '100%', height: '700px'}">
-                <div class="mt-4">
-                    <div class="grid p-fluid">
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="value" [(ngModel)]="buscarPerIdent" name="value" pInputText>
-                                <label for="inputtext">Cedula</label>
-                            </span>
-                        </div>
-                        <div class="field col-12 md:col-4">
-                            <button pButton type="button" label="Buscar"
-                                (click)="buscarPersonaPorIdentificacion()"></button>
-                        </div>
-                        <div class="field col-12 md:col-4" align='center'>
-                            <ngx-qrcode rcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel"
-                                [value]="value">
-                            </ngx-qrcode>
-                        </div>
-                    </div>
-                    <p-divider align="left">
-                        <div class="inline-flex align-items-center">
-                            <i class="pi pi-user mr-2"></i>
-                            <b>Datos</b>
-                        </div>
-                    </p-divider>
-                    <br>
-                    <div class="grid p-fluid">
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.nombres">
-                                <label for="inputtext">Nombres</label>
-                            </span>
-                        </div>
 
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
-                                <label for="inputtext">Fecha de nacimiento</label>
-                            </span>
-                        </div>
-
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.parroquia">
-                                <label for="inputtext">Parroquia</label>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- grupo de 3 para el formulario-->
-                    <div class="grid p-fluid">
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.nacionalidad">
-                                <label for="inputtext">Nacionalidad</label>
-                            </span>
-                        </div>
-
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.pais">
-                                <label for="inputtext">Pais</label>
-                            </span>
-                        </div>
-
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.provincia">
-                                <label for="inputtext">Provincia</label>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- grupo de 3 para el formulario-->
-                    <div class="grid p-fluid">
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.direccion">
-                                <label for="inputtext">Dirección Domicilio</label>
-                            </span>
-                        </div>
-
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.celular">
-                                <label for="inputtext">Numero telefono/celular</label>
-                            </span>
-                        </div>
-
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.canton">
-                                <label for="inputtext">Cantón</label>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- grupo de 3 para el formulario-->
-
-                </div>
-
-                <p-divider align="left">
-                    <div class="inline-flex align-items-center">
-                        <i class="pi pi-user mr-2"></i>
-                        <b>Agregar familiar</b>
-                    </div>
-                </p-divider>
-                <div class="field col-12 md:col-4">
-                    <button pButton type="button" label="Agregar familiar" (click)="display=true"></button>
-                </div>
-                <p-table #dt [value]="familiares" [paginator]="true" responsiveLayout="scroll" [loading]="loading"
-                    [rows]="10" styleClass="p-datatable-gridlines"
-                    [globalFilterFields]="['codBarra', 'nombreProducto', 'nombre_comercial_pro']">
+        <p-divider align="left">
+          <div class="inline-flex align-items-center">
+            <i class="pi pi-user mr-2"></i>
+            <b>Agregar familiar</b>
+          </div>
+        </p-divider>
+        <div class="field col-12 md:col-4">
+          <button pButton type="button" label="Agregar familiar" (click)="display=true"></button>
+        </div>
+        <!-- <p-table #dt [value]="familiares" [paginator]="true" responsiveLayout="scroll" [loading]="loading" [rows]="10" styleClass="p-datatable-gridlines" [globalFilterFields]="['codBarra', 'nombreProducto', 'nombre_comercial_pro']">
                     <ng-template pTemplate="caption">
                         <div class="table-header">
                             <span class="p-input-icon-left">
@@ -136,12 +134,12 @@
 
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-familiar>
+                    <ng-template pTemplate="body" let-producto>
                         <tr>
-                            <td>{{familiar.idFamiliares}}</td>
-                            <td>{{familiar.usuario.nombres}}</td>
-                            <td>{{familiar.usuario.telefono}}</td>
-                            <td>{{familiar.tipoFamiliar}}</td>
+                            <td>{{producto.idProducto}}</td>
+                            <td>{{producto.nombreProducto}}</td>
+                            <td>{{producto.categoriaProducto}}</td>
+                            <td>{{producto.codBarra}}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
@@ -154,131 +152,179 @@
                             <td colspan="8">Ningun registro.</td>
                         </tr>
                     </ng-template>
-                </p-table>
-            </p-scrollPanel>
-        </div>
+                </p-table> -->
+        <p-table [value]="listFamily" responsiveLayout="scroll" styleClass="p-datatable-gridlines p-datatable-sm"
+          responsiveLayout="scroll">
+          <ng-template pTemplate="caption">
+            FAMILIARES DE {{ObjDatorTarj.nombres}}
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th>IDENTIFICACIÓN</th>
+              <th>NOMBRES FAMILIAR</th>
+              <th>PARENTESCO</th>
+              <th pResizableColumn style="width:80px">
+                <div class="flex justify-content-center align-items-center">ELIMINAR</div>
+              </th>
+              <th style="display:none;">IDFAMILIARES</th>
+              <th style="display:none;">USUARIOID</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-fm>
+            <tr>
+              <td>{{fm.identificacion}}</td>
+              <td pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" (keydown.enter)="editarFamiliar($event,fm)" [(ngModel)]="fm.nombres">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{fm.nombres}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" (keydown.enter)="editarFamiliar($event,fm)"
+                      [(ngModel)]="fm.tipoFamiliar">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{fm.tipoFamiliar}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td style="text-align:center">
+                <button pButton pRipple type="button" icon="pi pi-times" (click)="confirmacion(fm)"
+                  class="p-button-rounded p-button-text p-button-danger"></button>
+              </td>
+              <td style="display:none;">{{fm.idenUsuarioFamiliar}}</td>
+              <td style="display:none;">{{fm.usuarioId}}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            En total son {{listFamily ? listFamily.length : 0 }} familiares.
+          </ng-template>
+        </p-table>
+      </p-scrollPanel>
     </div>
+  </div>
 
 </div>
 
 <p-dialog header="Datos del familiar" [(visible)]="display">
-    <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
-        
-        <div class="mt-4">
-            <div class="grid p-fluid">
-                <div class="field col-12 md:col-4">
-            
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="buscar" name="value" pInputText>
-                    <label for="inputtext">Cedula</label>
-                </span>
-            
-            </div>
-            <div class="field col-12 md:col-4">
-                <button pButton type="button" label="Buscar" (click)="buscarPersonaPorIdentificacion()"></button>
-            </div>
-        </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="p-field p-col-12 p-md-3">
-                <span class="p-float-label p-input-icon-left">
-                    <i class="pi pi-user-plus"></i>
-                    <input type="text" id="identificacion" pInputText [(ngModel)]="identificacion"
-                        name="identificacion">
-                    <label for="inputtext-left">Identificacion</label>
-                </span>
-            </div>
+  <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+    <div class="grid p-fluid">
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label p-input-icon-left">
+          <i class="pi pi-user-plus"></i>
+          <input type="text" id="identificacion" pInputText [(ngModel)]="identificacion" name="identificacion">
+          <label for="inputtext-left">Identificacion</label>
+        </span>
+      </div>
 
-            <div class="p-field p-col-12 p-md-3">
-                <span class="p-float-label p-input-icon-left">
-                    <i class="pi pi-user-plus"></i>
-                    <input type="text" id="nombres" pInputText [(ngModel)]="nombres" name="nombres">
-                    <label for="inputtext-left">Nombres</label>
-                </span>
-            </div>
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label p-input-icon-left">
+          <i class="pi pi-user-plus"></i>
+          <input type="text" id="nombres" pInputText [(ngModel)]="nombres" name="nombres">
+          <label for="inputtext-left">Nombres</label>
+        </span>
+      </div>
 
-            <div class="p-field p-col-12 p-md-3">
-                <span class="p-float-label p-input-icon-left">
-                    <i class="pi pi-user-plus"></i>
-                    <input type="text" id="direccion" pInputText [(ngModel)]="direccion" name="direccion">
-                    <label for="inputtext-left">Direccion</label>
-                </span>
-            </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="p-field p-col-12 p-md-3">
-                <span class="p-float-label p-input-icon-left">
-                    <i class="pi pi-user-plus"></i>
-                    <input type="text" id="celular" pInputText [(ngModel)]="celular" name="celular">
-                    <label for="inputtext-left">Celular</label>
-                </span>
-            </div>
-            <div class="p-field p-col-12 p-md-3">
-                <span class="p-float-label p-input-icon-left">
-                    <i class="pi pi-user-plus"></i>
-                    <input type="text" id="sexo" pInputText [(ngModel)]="sexo" name="sexo">
-                    <label for="inputtext-left">Sexo</label>
-                </span>
-            </div>
-            <div class="p-field p-col-12 p-md-3">
-                <span class="p-float-label p-input-icon-left">
-                    <i class="pi pi-user-plus"></i>
-                    <input type="text" id="email" pInputText [(ngModel)]="email" name="email">
-                    <label for="inputtext-left">Email</label>
-                </span>
-            </div>
-        </div>
-        <div class="grid p-fluid">
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label p-input-icon-left">
+          <i class="pi pi-user-plus"></i>
+          <input type="text" id="direccion" pInputText [(ngModel)]="direccion" name="direccion">
+          <label for="inputtext-left">Direccion</label>
+        </span>
+      </div>
+    </div>
+    <div class="grid p-fluid">
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label p-input-icon-left">
+          <i class="pi pi-user-plus"></i>
+          <input type="text" id="celular" pInputText [(ngModel)]="celular" name="celular">
+          <label for="inputtext-left">Celular</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label p-input-icon-left">
+          <i class="pi pi-user-plus"></i>
+          <input type="text" id="sexo" pInputText [(ngModel)]="sexo" name="sexo">
+          <label for="inputtext-left">Sexo</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label p-input-icon-left">
+          <i class="pi pi-user-plus"></i>
+          <input type="text" id="email" pInputText [(ngModel)]="email" name="email">
+          <label for="inputtext-left">Email</label>
+        </span>
+      </div>
+    </div>
+    <div class="grid p-fluid">
 
-            <div class="p-field p-col-12 p-md-3">
-                <span class="p-float-label p-input-icon-left">
-                    <i class="pi pi-user-plus"></i>
-                    <input type="text" id="ciudad" pInputText [(ngModel)]="ciudad" name="ciudad">
-                    <label for="inputtext-left">Ciudad</label>
-                </span>
-            </div>
-            <div class="p-field p-col-12 p-md-3">
-                <span class="p-float-label p-input-icon-left">
-                    <i class="pi pi-user-plus"></i>
-                    <input type="text" id="ciudad" pInputText [(ngModel)]="parentesco" name="ciudad">
-                    <label for="inputtext-left">Parentesco</label>
-                </span>
-            </div>
-            <div class="p-field p-col-12 p-md-3">
-                <span class="p-float-label p-input-icon-left">
-                    <i class="pi pi-user-plus"></i>
-                    <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario" name="nombreUsuario">
-                    <label for="inputtext-left">Nombre usuario</label>
-                </span>
-            </div>
-            
-            <div class="p-field p-col-12 p-md-3">
-                <span class="p-float-label p-input-icon-left">
-                    <i class="pi pi-user-plus"></i>
-                    <p-password [(ngModel)]="password" name="password" required>
-                        <ng-template pTemplate="header">
-                            <h6>Ingrese una contraseña</h6>
-                        </ng-template>
-                        <ng-template pTemplate="footer">
-                            <p-divider></p-divider>
-                            <p class="p-mt-2">Sugerencias.</p>
-                            <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
-                                <li>Al menos una letra en minuscula.</li>
-                                <li>Al menos una letra en mayuscula.</li>
-                                <li>Al menos un numero.</li>
-                                <li>Minimo 8 caracteres.</li>
-                            </ul>
-                        </ng-template>
-                    </p-password>
-                    <label for="inputtext-left">Contrasena</label>
-                </span>
-            </div>
-        </div>
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label p-input-icon-left">
+          <i class="pi pi-user-plus"></i>
+          <input type="text" id="ciudad" pInputText [(ngModel)]="ciudad" name="ciudad">
+          <label for="inputtext-left">Ciudad</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label p-input-icon-left">
+          <i class="pi pi-user-plus"></i>
+          <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario" name="nombreUsuario">
+          <label for="inputtext-left">Nombre usuario</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label p-input-icon-left">
+          <i class="pi pi-user-plus"></i>
+          <input type="text" id="parentesco" pInputText [(ngModel)]="parentesco" name="parentesco">
+          <label for="inputtext-left">Parentesco</label>
+        </span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <span class="p-float-label p-input-icon-left">
+          <i class="pi pi-user-plus"></i>
+          <p-password [(ngModel)]="password" name="password" required>
+            <ng-template pTemplate="header">
+              <h6>Ingrese una contraseña</h6>
+            </ng-template>
+            <ng-template pTemplate="footer">
+              <p-divider></p-divider>
+              <p class="p-mt-2">Sugerencias.</p>
+              <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+                <li>Al menos una letra en minuscula.</li>
+                <li>Al menos una letra en mayuscula.</li>
+                <li>Al menos un numero.</li>
+                <li>Minimo 8 caracteres.</li>
+              </ul>
+            </ng-template>
+          </p-password>
+          <label for="inputtext-left">Contrasena</label>
+        </span>
+      </div>
+    </div>
 
-        <div class="form-group  mt-4" align='center'>
-            <p-button class="p-button-rounded" [disabled]="!f.valid" type="submit">
-                <i class="fas fa-sign-in-alt"></i> Agregar familiar
-            </p-button>
-        </div>
-    </form>
+    <div class="form-group  mt-4" align='center'>
+      <p-button class="p-button-rounded" [disabled]="!f.valid" type="submit">
+        <i class="fas fa-sign-in-alt"></i> Agregar familiar
+      </p-button>
+    </div>
+  </form>
+</p-dialog>
+
+<p-dialog [(visible)]="editDialog" [style]="{width: '1300px'}" header="EDITAR FAMILIAR" [modal]="true"
+  styleClass="p-fluid">
+  <p-toast></p-toast>
+  <ng-template pTemplate="content">
+    <!--INICIO-->
+    <!--FIN-->
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="EDITAR" icon="pi pi-check" class="p-button-text"></button>
+  </ng-template>
 </p-dialog>
