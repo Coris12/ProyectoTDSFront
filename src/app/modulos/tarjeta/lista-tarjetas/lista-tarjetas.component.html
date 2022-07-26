@@ -3,7 +3,7 @@
     <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
             <div class="p-2">
-                <h1>Gestión de Insumos</h1>
+                <h1>Gestión de tarjetas</h1>
             </div>
             <div class="ml-auto p-2">
                 <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay" class="p-button-rounded p-button-text red" (click)="cargarTarjetas()">
@@ -35,21 +35,25 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Cedula </th>
-                        <th>Nombres</th>
-                        <th>Fecha Adquirida
-                            <th>Fecha caducidad</th>
-                            <th>Tipo de tarjeta</th>
-                            <th>N de consultas adquiridas</th>
-                            <th>N de consultas totales</th>
-                            <th>Opciones</th>
+                        <th>Identificador </th>
+                        <th>Fecha inicio</th>
+                        <th>Fecha fin </th>
+                        <th>Numero de consultas</th>
+                        <th>QR</th>
+                        <th>Especialidad</th>
+                        <th>Tipo de afiliacion</th>
+                        <th>Opciones</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-producto>
+                <ng-template pTemplate="body" let-tarjeta>
                     <tr>
-                        <td>{{producto.idProducto}}</td>
-
-
+                        <td>{{tarjeta.idTarjeta}}</td>
+                        <td>{{tarjeta.fechaInicio}}</td>
+                        <td>{{tarjeta.fechaFin}}</td>
+                        <td>{{tarjeta.numConsultas}}</td>
+                        <td>{{tarjeta.qr}}</td>
+                        <td>{{tarjeta.tarjetaEspecialidad.tipoEspecialidad}}</td>
+                        <td>{{tarjeta.tipoaAfiliacion}}</td>
                         <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrarTarjeta()"></button>
                             <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="updateTarjeta()"></button>
                         </td>

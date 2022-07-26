@@ -108,6 +108,8 @@ import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { FamiliaresControllerService } from './api/familiaresController.service';
 
+import { TarjetaControllerService } from './api/tarjetaController.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -217,7 +219,8 @@ import { FamiliaresControllerService } from './api/familiaresController.service'
     SigVitAntropometriaControllerService,
     ExamFisicoRegionalControllerService,
     DiagnosticoControllerService,
-    PlanTratamientoControllerService
+    PlanTratamientoControllerService,
+    TarjetaControllerService,
   ],
   bootstrap: [AppComponent]
 })
