@@ -1,0 +1,45 @@
+.sinPadding{
+    padding: 0px;
+}
+
+.tamanioInput{
+    width: 208.328px;
+    height: 37px;
+}
+
+.quitarMarginSuperior{
+    margin-top: 0px;
+}
+
+.agregarEstilo{
+    width: 100%;
+    height: 37px;
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    padding: 7px;
+    font-size: 14px;
+}
+
+.letrasPequeñas{
+    font-size: 12px;
+}
+
+.letrasPequeñasNegrita{
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* hacer que el icono este centrado y mas grande */
+.fas{
+    font-size: 25px;
+    margin: 0px 21px;
+}
+
+/* TODOS LOS INPUTS Y P-EDITOR SON CONVERTIDOS A MAYÚSCULAS */
+input{
+  text-transform: uppercase;
+}
+
+p-editor{
+  text-transform: uppercase;
+}

@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LazyLoadEvent, ConfirmationService, ConfirmEventType, MessageService, PrimeNGConfig } from 'primeng/api';
@@ -14,6 +15,7 @@ import { NuevoUsuario } from 'src/app/model/nuevoUsuario';
 import { Producto } from 'src/app/model/producto';
 import { ProductosDto } from 'src/app/model/productosDto';
 import { Usuario } from 'src/app/model/usuario';
+import { FacturaService } from 'src/app/servicioManual/factura.service';
 
 @Component({
   selector: 'app-factura-venta',
@@ -25,7 +27,6 @@ export class FacturaVentaComponent implements OnInit {
   @ViewChild('nombreCliente') inputName;
   @ViewChild('ingCedula') inputIngCed;
 
-  loadTabFV: boolean;
   disabled: boolean = true;
   productDialog: boolean;
   product: any;
@@ -35,6 +36,7 @@ export class FacturaVentaComponent implements OnInit {
   showMostrar: boolean = false;
   identificacionPer: any;
   putFechVist = new Date();
+  loadTabFV: boolean = true;
 
   TipoProdFP: any[];
   TipoForPag: any[];
@@ -241,10 +243,11 @@ export class FacturaVentaComponent implements OnInit {
     stock: null,
   }
 
-  constructor(private router: Router, private messageService: MessageService, private primeNGConfig: PrimeNGConfig,
+  constructor(private router: Router, private messageService: MessageService,
     private serviceProduct: ProductoControllerService, private serviceCliente: ClienteControllerService,
     private servicePersona: AuthControllerService, private serviceDetallFact: CuerpoFacturaControllerService,
-    private serviceFact: FacturaControllerService, private confirmationService: ConfirmationService,) { }
+    private serviceFact: FacturaControllerService, private confirmationService: ConfirmationService,
+    private serviceFactManual: FacturaService) { }
 
   ngOnInit(): void {
     //this.inputName.nativeElement.value = 'CONSUMIDOR FINAL';
@@ -396,14 +399,6 @@ export class FacturaVentaComponent implements OnInit {
       element.check = event);
   }
 
-  onKeypressEvent(event: any) {
-    console.log(event.target.value);
-    if (event.target.value.length <= 0) {
-      this.showMostrar = false;
-      console.log("espacio en blanco");
-    }
-  }
-
   confirmacion(product: ProductosDto) {
     this.confirmationService.confirm({
       message: 'Quitar este producto de la lista?',
@@ -412,6 +407,7 @@ export class FacturaVentaComponent implements OnInit {
       accept: () => {
         this.productDatTabArray.splice(this.productDatTabArray.indexOf(product), 1);
         this.messageService.add({ severity: 'info', summary: 'Producto quitado de la lista!!', detail: product.nombreProducto });
+        this.CalcularTotalTabFactu(event);
       },
       reject: (type) => {
         switch (type) {
@@ -466,6 +462,11 @@ export class FacturaVentaComponent implements OnInit {
           } else if (this.productDatTabArray[i].check === true) {
             //calcular iva ecuador
             let iva = total * 0.12;
+            this.productDatTabArray[i].iva = iva;
+            total = total + iva;
+          }if (this.productDatTabArray[i].check === false) {
+            //quitar iva
+            let iva = 0
             this.productDatTabArray[i].iva = iva;
             total = total + iva;
           }
@@ -552,19 +553,18 @@ export class FacturaVentaComponent implements OnInit {
       summary: 'Resultado',
       detail: 'Correcto!: ' + msg,
     });
-  }
+  }///uhj
 
   listarProductos2(event?: LazyLoadEvent): void {
-    this.loadTabFV = true;
     setTimeout(() => {
-      this.serviceProduct.listUsingGET1().subscribe(
+      this.serviceProduct.listUsingGET2().subscribe(
         data => {
           if (data) {
             this.productos = data;
             this.loadTabFV = false;
           } else {
             this.mensajesError('Error al listar los productos');
-          }
+          }//
         },
         err => {
           console.log(err);
@@ -718,6 +718,7 @@ export class FacturaVentaComponent implements OnInit {
     let cantProdTotal: number = 0;
     for (let index = 0; index < this.productDatTabArray.length; index++) {
       this.detalleFactObj.cantidad = this.productDatTabArray[index].cantidad;
+      this.detalleFactObj.descuento = 0;
       if (this.productDatTabArray[index].descuento != null) {
         this.detalleFactObj.descuento = this.productDatTabArray[index].descuento;
       } else if (this.productDatTabArray[index].porcentaje != null) {
@@ -759,8 +760,40 @@ export class FacturaVentaComponent implements OnInit {
         });
       }
     }
-    this.detalleFactObj.subtotal = precioTotal; //falta
+    this.GenerarPdfFactUseConsFinal();
+    //this.detalleFactObj.subtotal = precioTotal; //falta
     //this.limpiarcampos();
+  }
+
+  descargarPdf(pdfSrc: any) {
+    let pdf: any = pdfSrc;
+    let numAlea = this.createId();
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var url = window.URL.createObjectURL(blob);
+    //Extraer fecha y hora
+    let fech = this.facturaObj.fecha;
+    let fecha = fech.getDate() + "/" + (fech.getMonth() + 1) + "/" + fech.getFullYear();
+    let hora = fech.getHours() + ":" + fech.getMinutes() + ":" + fech.getSeconds();
+    //Descarga el pdf automáticamente
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = 'FacturaFarmacia-'+this.idFact+'-'+fecha+'-h'+hora+'-'+numAlea+'.pdf';
+    link.click();
+    window.open(url);
+  }
+
+  GenerarPdfFactUseConsFinal() {
+    this.serviceFactManual.generarPdfFacturaUsuario(this.idFact).subscribe((data) => {
+      if (data) {
+        this.descargarPdf(data);
+        this.limpiarcampos();
+      } else {
+        this.mensajesError('Error al mostrar el pdf');
+      }
+    }, (err) => {
+      console.log(err);
+      this.mensajesError('Error al mostrar el pdf');
+    });
   }
 
   // CalFactGeneral(){

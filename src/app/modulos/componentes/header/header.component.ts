@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   isAdmin = false;
   isPaciente = false;
   isFarmacia = false;
+  isDoctor = false;
   constructor(private tokenService: TokenService) { }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
     this.isAdmin = this.tokenService.isAdmin();
     this.isPaciente = this.tokenService.isPaciente();
     this.isFarmacia = this.tokenService.isFarmacia();
+    this.isDoctor = this.tokenService.isDoctor();
     //items del menu
     this.items = [
       {
@@ -37,15 +39,54 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/lista-usuarios'],
         visible: this.isLogged && this.isAdmin
       },
+      {
+        label: 'Registro de admision',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/admision'],
+        visible: this.isLogged && this.isFarmacia
+      },
+      {
+        label: 'Formulario',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/formulario'],
+        visible: this.isLogged && this.isAdmin
+      },
+
+      {
+        label: 'Consentimiento',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/consentimiento'],
+        visible: this.isLogged && this.isAdmin
+      },
+      {
+        label: 'Medicamentos',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/medicamentos'],
+        visible: this.isLogged && this.isAdmin
+      },
+
+      {
+        label: 'Autorización',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/autorizacion'],
+        visible: this.isLogged && this.isAdmin
+      },
+      {
+        label: 'Evolucion y Prescripciones',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/evolucion'],
+        visible: this.isLogged && this.isAdmin
+      },
       //-! fin opciones para el administrador
 
-      //! opciones para el paciente
+      //! opciones para los empleados
       {
-        label: 'Testpaciente',
+        label: 'Gestion de Empleados',
         icon: 'pi pi-fw pi-list',
-        routerLink: ['/lista-usuarios'],
-        visible: this.isLogged && this.isPaciente
+        routerLink: ['/lista-empleados'],
+        visible: this.isLogged && this.isAdmin
       },
+      //-! fin opciones para los empleados
 
       //! opciones productos
       {
@@ -60,10 +101,10 @@ export class HeaderComponent implements OnInit {
         label: 'Facturas',
         icon: 'pi pi-fw pi-book',
         items: [
-          {label: 'Factura venta', icon: 'pi pi-fw pi-arrow-left', routerLink: ['/lista-facturasVenta']},
-          {label: 'Factura compras', icon: 'pi pi-fw pi-arrow-right', routerLink: ['/lista-facturasCompra']}
-      ],
-        visible: this.isLogged && this.isAdmin
+          { label: 'Factura venta', icon: 'pi pi-fw pi-arrow-left', routerLink: ['/lista-facturasVenta'] },
+          { label: 'Factura compras', icon: 'pi pi-fw pi-arrow-right', routerLink: ['/lista-facturasCompra'] }
+        ],
+        visible: this.isLogged && this.isFarmacia
       },
 
       //! opciones sucursal
@@ -74,6 +115,42 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isAdmin
       },
 
+      //! opciones para el doctor
+      {
+        label: 'Gestion de counter',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/pacientes'],
+        visible: this.isLogged && this.isDoctor
+      },
+
+      {
+        label: 'CONSULTA EXTERNA',
+        icon: 'pi pi-fw pi-file-o',
+        routerLink: ['/ConsultaExterna'],
+        visible: this.isLogged && this.isDoctor
+      },
+      //! fin opciones para el doctor
+
+      //! opciones para el paciente
+      {
+        label: 'Formulario tarjeta',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/formularioTarjeta'],
+        visible: this.isLogged && this.isPaciente
+      },
+
+      {
+        label: 'Lector Qr',
+        icon: 'pi pi-fw pi-file-o',
+        routerLink: ['/lectorQr'],
+        visible: this.isLogged && this.isPaciente
+      },
+      {
+        label: 'Admiistrar tarjetas',
+        icon: 'pi pi-fw pi-file-o',
+        routerLink: ['/listaTarjetas'],
+        visible: this.isLogged && this.isPaciente
+      },
       //! fin opciones para el paciente
 
       //! opciones para el proveedor
@@ -83,6 +160,16 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/proveedores'],
         visible: this.isLogged && this.isAdmin
       },
+
+
+      {
+        label: 'Gestion de tratamientos',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/tratamientos'],
+        visible: this.isLogged && this.isFarmacia
+      },
+
+
       {
         label: 'Cerrar Sesión',
         icon: 'pi pi-fw pi-user-minus',

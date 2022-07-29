@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './modulos/componentes/footer/footer.component';
 import { HeaderComponent } from './modulos/componentes/header/header.component';
-
+import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 
 //*servicios primeng
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -50,6 +50,10 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { SidebarModule } from 'primeng/sidebar';
 import {CheckboxModule} from 'primeng/checkbox';
 import { FieldsetModule, } from 'primeng/fieldset';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {EditorModule} from 'primeng/editor';
+import {KeyFilterModule} from 'primeng/keyfilter';
 
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -72,11 +76,39 @@ import { ProveedorControllerService } from './api/proveedorController.service';
 import { FacturaVentaComponent } from './modulos/Facturas/factura-venta/factura-venta.component';
 import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factura-compra.component';
 import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/factura-producto.component';
+import { CounterComponent } from './modulos/counter/counter.component';
+import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
+import { TratamientoControllerService } from './api/tratamientoController.service';
+import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
+import { DatosComponent } from './modulos/formulario/datos/datos.component';
+import { MedicamentosComponent } from './modulos/AdmMedicamentos/medicamentos/medicamentos.component';
+import { EvolucionComponent } from './modulos/EvolucionPre/evolucion/evolucion.component';
+import { AutorizacionComponent } from './modulos/AutoExoRe/autorizacion/autorizacion.component';
+import { ConsentimientoComponent } from './modulos/Consentimiento/consentimiento/consentimiento.component';
+import { AdmisionComponent } from './modulos/RegistroAdm/admision/admision.component';
 
 
 
 
 
+import { ConsultaExternaAnamnesisComponent } from './modulos/consulta-externa-anamnesis/consulta-externa-anamnesis.component';
+import { ConsultaExternaControllerService } from './api/consultaExternaController.service';
+import { AntecPersonalesControllerService } from './api/antecPersonalesController.service';
+import { AntecFamiliaresControllerService } from './api/antecFamiliaresController.service';
+import { RevOrganoSistemControllerService } from './api/revOrganoSistemController.service';
+import { SigVitAntropometriaControllerService } from './api/sigVitAntropometriaController.service';
+import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalController.service';
+import { DiagnosticoControllerService } from './api/diagnosticoController.service';
+import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
+import { MessagesModule } from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import { LectorComponent } from './modulos/tarjeta/lector/lector.component';
+import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-tarjetas.component';
+import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { FamiliaresControllerService } from './api/familiaresController.service';
+
+import { TarjetaControllerService } from './api/tarjetaController.service';
 
 @NgModule({
   declarations: [
@@ -94,11 +126,25 @@ import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/fa
     FacturaVentaComponent,
     FacturaCompraComponent,
     FacturaProductoComponent,
+    CounterComponent,
+    EmpleadoComponent,
+    TratamientoComponent,
+    DatosComponent,
+    MedicamentosComponent,
+    EvolucionComponent,
+    AutorizacionComponent,
+    ConsentimientoComponent,
+    AdmisionComponent,
+    ConsultaExternaAnamnesisComponent,
+    LectorComponent,
+    ListaTarjetasComponent,
+    FormularioTarjetaComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxScannerQrcodeModule,
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
@@ -109,6 +155,7 @@ import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/fa
     FileUploadModule,
     // *primeng
     InputMaskModule,
+    ScrollPanelModule,
     SelectButtonModule,
     CarouselModule,
     GMapModule,
@@ -140,6 +187,12 @@ import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/fa
     SidebarModule,
     CheckboxModule,
     FieldsetModule,
+    AutoCompleteModule,
+    EditorModule,
+    MessagesModule,
+    MessageModule,
+    KeyFilterModule,
+    NgxQRCodeModule
     // ! primeng
 
 
@@ -156,7 +209,17 @@ import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/fa
     FaramaciaControllerService,
     ProductoControllerService,
     SucursalControllerService,
-    ProveedorControllerService
+    ProveedorControllerService,
+    TratamientoControllerService,
+    ConsultaExternaControllerService,
+    AntecPersonalesControllerService,
+    AntecFamiliaresControllerService,
+    RevOrganoSistemControllerService,
+    SigVitAntropometriaControllerService,
+    ExamFisicoRegionalControllerService,
+    DiagnosticoControllerService,
+    PlanTratamientoControllerService,
+    TarjetaControllerService,
   ],
   bootstrap: [AppComponent]
 })

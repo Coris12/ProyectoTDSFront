@@ -58,6 +58,104 @@ export class SucursalControllerService {
 
 
     /**
+     * Eliminado logico de Sucursal
+     * 
+     * @param idSucursal id_sucursal
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public deleletSucursalUsingPATCH(idSucursal: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleletSucursalUsingPATCH(idSucursal: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleletSucursalUsingPATCH(idSucursal: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleletSucursalUsingPATCH(idSucursal: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (idSucursal === null || idSucursal === undefined) {
+            throw new Error('Required parameter idSucursal was null or undefined when calling deleletSucursalUsingPATCH.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idSucursal !== undefined && idSucursal !== null) {
+            queryParameters = queryParameters.set('id_sucursal', <any>idSucursal);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('patch',`${this.basePath}/sucursal/deleteSucursal/${encodeURIComponent(String(idSucursal))}`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * getById
+     * 
+     * @param id id
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getByIdUsingGET4(id: number, observe?: 'body', reportProgress?: boolean): Observable<Sucursal>;
+    public getByIdUsingGET4(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Sucursal>>;
+    public getByIdUsingGET4(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Sucursal>>;
+    public getByIdUsingGET4(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET4.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Sucursal>('get',`${this.basePath}/sucursal/detail/${encodeURIComponent(String(id))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Obtener sucursal por id
      * 
      * @param id id
@@ -192,8 +290,106 @@ export class SucursalControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<Sucursal>>('get',`${this.basePath}/sucursal/listaUsuarios`,
+        return this.httpClient.request<Array<Sucursal>>('get',`${this.basePath}/sucursal/listaSucursal`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Lista los sucursal con estado 1
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public searchUsingGET4(observe?: 'body', reportProgress?: boolean): Observable<Array<Sucursal>>;
+    public searchUsingGET4(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Sucursal>>>;
+    public searchUsingGET4(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Sucursal>>>;
+    public searchUsingGET4(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Sucursal>>('get',`${this.basePath}/sucursal/sucursalActivos`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Actualiza las sucursales
+     * 
+     * @param body sucursal
+     * @param id id
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateUsingPUT4(body: Sucursal, id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateUsingPUT4(body: Sucursal, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateUsingPUT4(body: Sucursal, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateUsingPUT4(body: Sucursal, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling updateUsingPUT4.');
+        }
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateUsingPUT4.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('put',`${this.basePath}/sucursal/updateSucursal/${encodeURIComponent(String(id))}`,
+            {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

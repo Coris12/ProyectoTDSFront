@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProductoControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -58,7 +58,7 @@ export class ProductoControllerService {
 
     /**
      * actualizarFarmacia
-     *
+     * 
      * @param body producto
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -110,7 +110,7 @@ export class ProductoControllerService {
 
     /**
      * actualizarStock
-     *
+     * 
      * @param body producto
      * @param idProd idProd
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -173,7 +173,7 @@ export class ProductoControllerService {
 
     /**
      * create
-     *
+     * 
      * @param body productos
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -225,7 +225,7 @@ export class ProductoControllerService {
 
     /**
      * Eliminado logico del producto
-     *
+     * 
      * @param idProducto id_producto
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -277,7 +277,7 @@ export class ProductoControllerService {
 
     /**
      * delete
-     *
+     * 
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -323,18 +323,18 @@ export class ProductoControllerService {
 
     /**
      * getById
-     *
+     * 
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET1(id: number, observe?: 'body', reportProgress?: boolean): Observable<Producto>;
-    public getByIdUsingGET1(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Producto>>;
-    public getByIdUsingGET1(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Producto>>;
-    public getByIdUsingGET1(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET2(id: number, observe?: 'body', reportProgress?: boolean): Observable<Producto>;
+    public getByIdUsingGET2(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Producto>>;
+    public getByIdUsingGET2(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Producto>>;
+    public getByIdUsingGET2(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET1.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET2.');
         }
 
         let headers = this.defaultHeaders;
@@ -369,14 +369,14 @@ export class ProductoControllerService {
 
     /**
      * Muestra una lista de productos
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET1(observe?: 'body', reportProgress?: boolean): Observable<Array<Producto>>;
-    public listUsingGET1(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Producto>>>;
-    public listUsingGET1(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Producto>>>;
-    public listUsingGET1(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET2(observe?: 'body', reportProgress?: boolean): Observable<Array<Producto>>;
+    public listUsingGET2(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Producto>>>;
+    public listUsingGET2(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Producto>>>;
+    public listUsingGET2(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -410,14 +410,14 @@ export class ProductoControllerService {
 
     /**
      * search
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public searchUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<Producto>>;
-    public searchUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Producto>>>;
-    public searchUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Producto>>>;
-    public searchUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public searchUsingGET2(observe?: 'body', reportProgress?: boolean): Observable<Array<Producto>>;
+    public searchUsingGET2(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Producto>>>;
+    public searchUsingGET2(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Producto>>>;
+    public searchUsingGET2(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -451,23 +451,23 @@ export class ProductoControllerService {
 
     /**
      * update
-     *
+     * 
      * @param body producto
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateUsingPUT1(body: Producto, id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public updateUsingPUT1(body: Producto, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public updateUsingPUT1(body: Producto, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public updateUsingPUT1(body: Producto, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateUsingPUT2(body: Producto, id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public updateUsingPUT2(body: Producto, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public updateUsingPUT2(body: Producto, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public updateUsingPUT2(body: Producto, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling updateUsingPUT1.');
+            throw new Error('Required parameter body was null or undefined when calling updateUsingPUT2.');
         }
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateUsingPUT1.');
+            throw new Error('Required parameter id was null or undefined when calling updateUsingPUT2.');
         }
 
         let headers = this.defaultHeaders;

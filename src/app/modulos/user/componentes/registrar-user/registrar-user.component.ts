@@ -42,18 +42,18 @@ export class RegistrarUserComponent implements OnInit {
   }
 
   onRegister(): void {
-    this.nuevoUsuario = new NuevoUsuario( 
+    this.nuevoUsuario = new NuevoUsuario(
       this.identificacion,
       this.nombres,
       this.direccion,
       this.celular,
       this.sexo,
       this.email,
-       this.ciudad,
+      this.ciudad,
       this.nombreUsuario,
       this.password,
-     
-      );
+
+    );
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
         this.messageService.add({
@@ -74,4 +74,5 @@ export class RegistrarUserComponent implements OnInit {
         });
       }
     );
-  }}
+  }
+}

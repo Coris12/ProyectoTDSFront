@@ -68,7 +68,7 @@ export class ProductoComponent implements OnInit {
       { label: 'EQUIPOS', value: 'EQUIPOS' }
     ];
 
-    this.productoController.searchUsingGET().subscribe((data: any) => {
+    this.productoController.searchUsingGET2().subscribe((data: any) => {
       this.produc = data;
       console.log(this.produc);
     })
@@ -103,7 +103,7 @@ export class ProductoComponent implements OnInit {
         if (i == 4) {
 
           this.codigo = letra1 + letra2 + letra3 + letra4
-          console.log(this.codigo);// asi seria para mas o menos hacer el codigo ya y como le mando a que me visualice 
+          console.log(this.codigo);// asi seria para mas o menos hacer el codigo ya y como le mando a que me visualice
 
         }
 
@@ -117,7 +117,7 @@ export class ProductoComponent implements OnInit {
     this.loading = true;
 
     setTimeout(() => {
-      this.productoController.searchUsingGET().subscribe(
+      this.productoController.searchUsingGET2().subscribe(
 
         data => {
           this.productos = data;
@@ -134,7 +134,7 @@ export class ProductoComponent implements OnInit {
   }
 
    updateProducto(idProducto:number) {
-    this.productoController.getByIdUsingGET1(idProducto)
+    this.productoController.getByIdUsingGET2(idProducto)
       .subscribe( produc => {
         console.log (produc.idProducto)
         this.productoForm.setValue({
@@ -155,14 +155,14 @@ export class ProductoComponent implements OnInit {
         });
       });
       this.productoDialog = true;
-      
+
   }
 
   //metodo de guardar
    saveProducto() {
     console.log(this.productoForm.value)
     if (this.productoForm.value?.idProducto !== null) {
-      this.productoController.updateUsingPUT1(
+      this.productoController.updateUsingPUT2(
         this.productoForm.value,
         this.productoForm.value?.idProducto,
       ).subscribe(data => {
@@ -182,7 +182,7 @@ export class ProductoComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto creado .' });
       },
         error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
-        
+
       this.productoDialog = false;
       this.productoForm.setValue({
         idProducto: null,
@@ -200,10 +200,10 @@ export class ProductoComponent implements OnInit {
         ultimoCosto: null,
         proveedor: null
       })
-      
+
     }
   }
-  //fin del metodo 
+  //fin del metodo
 
   //metodo de borrado logico
   borrarProducto(idProducto: number): void {
@@ -229,7 +229,7 @@ export class ProductoComponent implements OnInit {
 
   //metodo cargar proveedores
   cargarProveedores(): void {
-    this.proveedorController.listUsingGET2().subscribe(
+    this.proveedorController.listUsingGET3().subscribe(
       data => {
         this.proveedores = data;
       },

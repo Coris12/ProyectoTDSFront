@@ -1,0 +1,149 @@
+<app-header></app-header>
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Administrador de medicamentos</h1>
+            </div>
+        </div>
+        <div class="content-section implementation mt-2">
+
+            <div class="mt-4">
+                <div class="grid p-fluid">
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Cedula</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Nombres</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Sexo</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">N° Hoja</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">N° Historia Clinica</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <button pButton type="button" label="Buscar"></button>
+                    </div>
+                </div>
+                <br>
+                <div class="grid">
+                    <div class="col-2 flex align-items-center justify-content-center">
+                        <div class="p-fluid">
+                            <p-fieldset legend="1. Medicamentos">
+                                <h6>PRESENTACION,VÍA,</h6>
+                                <h6>DOSIS UNITARIA, </h6>
+                                <h6>FRECUENCIA</h6>
+                                <div class="field col-12 ">
+                                    <button pButton type="button" label="Agregar Medicamentos"
+                                        (click)="dialogo=true"></button>
+                                </div>
+                            </p-fieldset>
+                            
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <p-divider layout="vertical">
+
+                        </p-divider>
+                    </div>
+                    <div class="col-8 flex align-items-center justify-content-center">
+                        <div class="p-fluid">
+                            <p-table #dt [paginator]="true" responsiveLayout="scroll" [rows]="10"
+                                styleClass="p-datatable-gridlines">
+
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Medicamento</th>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>INI</th>
+                                        <th>FUN</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-empleados>
+                                    <tr>
+
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="summary">
+                                    <div class="p-d-flex p-ai-center p-jc-between">
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate="emptymessage">
+                                    <tr>
+                                        <td colspan="8">Ningun registro.</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p-dialog header="2.Administraciòn" [(visible)]="dialogo" [modal]="true" [style]="{width: '50vw', height: '30vw'}"
+    [draggable]="false" [resizable]="false" class="p-fluid">
+    <form [formGroup]="medicaForm" (ngSubmit)="saveMedicamento()">
+        <p-toolbar>
+            <h6>INI= INICIALES DEL RESPONSABLE</h6>
+            <br>
+            <h6>FUN= ABREVIATURA DE LA FUNCION</h6>
+        </p-toolbar>
+
+        <div class="form-group mt-2">
+            <span class="p-input-icon-left">
+                <label for="requisitos ">Nombre del medicamento</label>
+                <input type="text" pInputText placeholder="nombre medicamento">
+            </span>
+        </div>
+        <div class="form-group mt-2">
+            <span class="p-input-icon-left">
+                <label for="requisitos ">Dia y Mes</label>
+                <input type="date" pInputText placeholder="fecha">
+            </span>
+        </div>
+        <div class="form-group mt-2">
+            <span class="p-input-icon-left">
+                <label for="requisitos ">Hora</label>
+                <input type="time" pInputText placeholder="hora">
+            </span>
+        </div>
+        <div class="form-group mt-2">
+            <span class="p-input-icon-left">
+                <label for="requisitos ">INI</label>
+                <input type="text" pInputText placeholder="INI">
+            </span>
+        </div>
+        <div class="form-group mt-2">
+            <span class="p-input-icon-left">
+                <label for="requisitos ">FUN</label>
+                <input type="text" pInputText placeholder="FUN">
+            </span>
+        </div>
+    </form>
+
+    <div style="text-align:right">
+        <p-button type="submit" icon="pi pi-check" label="Guardar" styleClass="p-button-text"></p-button>
+    </div>
+
+</p-dialog>

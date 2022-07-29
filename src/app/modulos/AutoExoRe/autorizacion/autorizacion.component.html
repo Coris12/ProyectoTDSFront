@@ -1,0 +1,679 @@
+<app-header></app-header>
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h6>Autorización,Exoneración y Retiro</h6>
+            </div>
+        </div>
+        <div class="content-section implementation mt-2">
+            <div class="mt-4">
+                <div class="grid p-fluid">
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Cedula</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Nombres</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Servicio</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Sala</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Cama</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="date" id="inputtext" pInputText>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="time" id="inputtext" pInputText>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <button pButton type="button" label="Buscar"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>1.Autorizacion para ciriguia ,tratamiento o clinico o procedimiento diagnostico</b>
+            </div>
+            <div class="field-checkbox">
+                <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
+                <label for="ny">Autorizo al profesional tratante de este establecimiento de salud para reslizar las
+                    operaciones quirurgivas,procedimientos diagnosticos y tratamientos clinicod prpuestos y necesarios
+                    para el tratamiento de mi enfermedad</label>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del paciente</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del representante</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Parentesco</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+        <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>2.Exoneración de responsabilidad por aborto</b>
+            </div>
+            <div class="field-checkbox">
+                <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
+                <label for="ny">Declaro que ningun profesional o funcionario de este establecimiento de salud ha
+                    realizado procedimientos para provocar este aborto
+                    y que ingreso libre y voluntariamnete para recibir el tratamiento necesario para mi enfermedad
+                </label>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del paciente</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del representante</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Parentesco</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+        <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>3.Exoneración de responsabilidad por abandono de hospital sin autorizacion mèdica</b>
+            </div>
+            <div class="field-checkbox">
+                <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
+                <label for="ny">Declaro que me retiro voluntariamnete de este establecimiento de salud y exonero al
+                    profesional tratante
+                    y al personal administrativo por los riesgos a la salud qie me han advertido claramente
+                </label>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del paciente</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del representante</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Parentesco</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del profesinal de salud</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+        <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>4.Retiro de menor de edad o persona incapacitada</b>
+            </div>
+            <div class="field-checkbox">
+                <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
+                <label for="ny">Declaro que retiro al paciente de este establecimiento de salud ,bajo mi responsabilidad
+                    debidamnete certificada con la autorizacion
+                    medica correspondiente
+                </label>
+                <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
+                <label for="ny">Declaro que retiro al paciente de este establecimiento,bajo mi responsabilidad y sin la
+                    autorizacion del profesional tratante he sido
+                    advertido de las consecuencias de este acto no autorizado y asumo toda responsabilidad por las
+                    consecuencias negativas
+                </label>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del representante</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Parentesco</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del testigo</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Parentesco</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del medico</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+        <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>5.Autorizacion de extracion de organos para la donacion y/o transplante</b>
+            </div>
+            <div class="field-checkbox">
+                <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
+                <label for="ny">Autorizo al personal de salud de este establecimiento para que en vida se me extraiga el
+                    o
+                    los organos convenidos
+                    donados para el transplante en el receptor señalado
+                </label>
+                <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
+                <label for="ny">Autorizo para que una vez transcurridas 48 horas de mi muerte cerebal, mis organos sean
+                    extraidos para el transplante
+                </label>
+            </div>
+
+            <div class="grid p-fluid">
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Organos donados</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Nombre de los receptores</label>
+                    </span>
+                </div>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del representante</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Parentesco</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del testigo</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Parentesco</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Nombre del profesional tratante</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Cedula</label>
+                </span>
+            </div>
+            <div class="field col-2 md:col-2">
+                <span class="p-float-label">
+                    <textarea rows="2" cols="50" pInputTextarea></textarea>
+                    <label for="inputtext">Firma</label>
+                </span>
+            </div>
+            <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+            <p-divider align="left">
+                <div class="inline-flex align-items-center">
+                    <i class="pi pi-user mr-2"></i>
+                    <b>6.Autorizacion para necropsia</b>
+                </div>
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
+                    <label for="ny">Autorizo al medico autorizado de este hospital para que practique la necropsia al
+                        cadaver del fallecido
+                    </label>
+                </div>
+            </p-divider>
+            <br>
+            <div class="grid p-fluid">
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Nombre del representante</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Parentesco</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Telefono</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Cedula</label>
+                    </span>
+                </div>
+                <div class="field col-2 md:col-2">
+                    <span class="p-float-label">
+                        <textarea rows="2" cols="50" pInputTextarea></textarea>
+                        <label for="inputtext">Firma</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid p-fluid">
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Nombre del testigo</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Parentesco</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Telefono</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Cedula</label>
+                    </span>
+                </div>
+                <div class="field col-2 md:col-2">
+                    <span class="p-float-label">
+                        <textarea rows="2" cols="50" pInputTextarea></textarea>
+                        <label for="inputtext">Firma</label>
+                    </span>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Nombre del medico</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Telefono</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText>
+                        <label for="inputtext">Cedula</label>
+                    </span>
+                </div>
+                <div class="field col-2 md:col-2">
+                    <span class="p-float-label">
+                        <textarea rows="2" cols="50" pInputTextarea></textarea>
+                        <label for="inputtext">Firma</label>
+                    </span>
+                </div>
+            </div>
+
+        </div>

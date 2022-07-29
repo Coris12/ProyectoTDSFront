@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
 import { AuthControllerService } from 'src/app/api/authController.service';
+
 import { Proveedor } from 'src/app/model/proveedor';
 import { Usuario } from 'src/app/model/usuario';
 import { ProveedorControllerService } from '../../api/proveedorController.service';
@@ -26,7 +27,7 @@ export class ProveedorComponent implements OnInit {
   //! lista las convocatorias
   proveedor: Proveedor[] = [];
 
-
+  prove: any[];
   usuarios: Usuario[] = [];
 
   loading: boolean;
@@ -35,10 +36,16 @@ export class ProveedorComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarProveedores();
+
+    this.proveedorController.searchUsingGET3().subscribe((data: any) => {
+      this.prove = data;
+      console.log(this.prove);
+    })
+
     this.cargarUsuarios();
   }
 
-  guardarProveedor(): void {
+  guardarProveedor() {
     this.proveedorController.createUsingPOST4(
       this.proveForm.value,
       this.proveForm.value?.usuario.idUsuario,
@@ -58,12 +65,55 @@ export class ProveedorComponent implements OnInit {
 
     },
       error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+
+    this.dialgoProveedor = false;
+
+
+
+  }
+
+  /* guardarProveedor(): void {
+     this.proveedorController.createUsingPOST4(
+       this.proveForm.value,
+       this.proveForm.value?.usuario.idUsuario,
+     ).subscribe(data => {
+       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Proveedor creado con exito.' });
+       setTimeout(() => {
+         this.cargarProveedores();
+       }, 1000);
+       this.dialgoProveedor = false;
+ 
+       this.proveForm.setValue({
+         idProveedor: null,
+         estado: null,
+         nombre_comercial_pro: null,
+         usuario: null
+       })
+ 
+     },
+       error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+   }*/
+
+
+  updateProveedor(idProveedor: number) {
+    this.proveedorController.getByIdUsingGET3(idProveedor)
+      .subscribe(prove => {
+        console.log(this.proveedor)
+        this.proveForm.setValue({
+          idProveedor: prove.proveedor.idProveedor,
+          nombre_comercial_pro: prove.proveedor.nombreComercialPro,
+          usuario: prove.proveedor.usuario,
+          estado: prove.proveedor.estado,
+        });
+      });
+    this.dialgoProveedor = true;
+
   }
 
   cargarProveedores(event?: LazyLoadEvent): void {
     this.loading = true;
     setTimeout(() => {
-      this.proveedorController.searchUsingGET1().subscribe(
+      this.proveedorController.searchUsingGET3().subscribe(
         data => {
           this.proveedor = data;
           this.totalRecords = this.proveedor.length;

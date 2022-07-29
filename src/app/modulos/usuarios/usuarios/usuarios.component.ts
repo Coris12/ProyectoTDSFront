@@ -70,7 +70,6 @@ export class UsuariosComponent implements OnInit {
     this.nuevoRol = usuario.roles[0].rolNombre;
     this.idUsuario = usuario.id;
     this.dialogo = true;
-
   }
 
 }

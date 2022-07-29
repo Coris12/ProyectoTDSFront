@@ -25,7 +25,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class BasicErrorControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -56,7 +56,7 @@ export class BasicErrorControllerService {
 
     /**
      * error
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -97,7 +97,7 @@ export class BasicErrorControllerService {
 
     /**
      * error
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -138,7 +138,7 @@ export class BasicErrorControllerService {
 
     /**
      * error
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -179,7 +179,7 @@ export class BasicErrorControllerService {
 
     /**
      * error
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -220,7 +220,7 @@ export class BasicErrorControllerService {
 
     /**
      * error
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -261,7 +261,7 @@ export class BasicErrorControllerService {
 
     /**
      * error
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -302,7 +302,7 @@ export class BasicErrorControllerService {
 
     /**
      * error
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */

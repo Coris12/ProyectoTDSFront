@@ -1,0 +1,852 @@
+<app-header></app-header>
+<p-toast></p-toast>
+<div class="p-fluid grid mt-3 ml-1 mr-1" [formGroup]="formCabezera">
+  <div class="col-12 md:col-2">
+    <span class="p-float-label">
+      <input autocomplete="off" class="p-inputtext-sm" type="text" id="establecimiento"
+        (keypress)="validarLetrasYPunto($event)" pInputText [(ngModel)]="establecimiento" formControlName="est">
+      <label class="p-inputtext-sm" for="inputtext">ESTABLECIMIENTO</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !establecimiento">ESABLECIMIENTO ES REQUERIDO.</small>
+    <!-- [formControl]="formCabezera.controls['est']" -->
+  </div>
+
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <button class="agregarEstilo" type="button" pButton pRipple label="BUSCAR"
+        (click)="buscarPersonaByIdentificacion();"></button>
+      <input autocomplete="off" class="agregarEstilo" type="text" pInputText placeholder="CÉDULA"
+        [(ngModel)]="persona.identificacion" formControlName="identificacion" pKeyFilter="pint">
+    </div>
+    <small class="p-error" *ngIf="submitted && !persona.identificacion">CÉDULA ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-3">
+    <span class="p-float-label">
+      <input autocomplete="off" class="p-inputtext-sm" type="text" id="nombresApellidos" pInputText pInputText
+        [(ngModel)]="persona.nombresApellidos" formControlName="nombresApellidos" (keypress)="validarLetras($event)">
+      <label class="p-inputtext-sm" for="inputtext">NOMBRES Y APELLIDOS</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !persona.nombresApellidos">SON REQUERIDOS.</small>
+  </div>
+
+  <div class="field col-12 md:col-1">
+    <select class="agregarEstilo" [(ngModel)]="persona.sexo" id="selectOptions" formControlName="sexo">
+      <option value="" disabled selected hidden>--SELECCIONAR--</option>
+      <option *ngFor="let opt of options" [selected]="opt === ngSelect" [value]="opt">
+        {{ opt }}
+      </option>
+    </select>
+    <small class="p-error" *ngIf="submitted && !persona.sexo">SON REQUERIDOS.</small>
+  </div>
+  <div class="field col-12 md:col-1">
+    <span class="p-float-label letrasPequeñas">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="inputtext" pInputText
+        [(ngModel)]="ConsultaExternaObj.historiaClinica" formControlName="histCli" pKeyFilter="pint">
+      <label class="p-inputtext-sm" for="inputtext">HISTORIA CLÍNICA</label>
+    </span>
+
+    <small class="p-error" *ngIf="submitted && !ConsultaExternaObj.historiaClinica">HISTORIA CLÍNICA ES
+      REQUERIDO.</small>
+  </div>
+  <div class="field col-12 md:col-2">
+    <p-button label="VER REGISTROS" icon="pi pi-book" (onClick)="openNew(); listarConsultaExterna();"></p-button>
+  </div>
+  <div class="field col-12 md:col-1">
+    <p-button (onClick)="limpiarAll()"><i class="fas fa-eraser"></i></p-button>
+  </div>
+</div>
+
+<div class="p-fluid grid ml-1 mr-1" [formGroup]="formMotConst">
+  <div class=" col-12 md:col-12">
+    <p-divider align="left">
+      <b>1. MOTIVO DE CONSULTA</b>
+    </p-divider>
+    <p-editor [(ngModel)]="ConsultaExternaObj.motivoConsulta" [style]="{'height':'120px'}" formControlName="motCon"
+      (keypress)="validacionAlfanumerica($event)">
+      <ng-template pTemplate="header">
+        <span class="ql-formats">
+          <button type="button" class="ql-bold" aria-label="Bold"></button>
+          <button type="button" class="ql-italic" aria-label="Italic"></button>
+          <button type="button" class="ql-underline" aria-label="Underline"></button>
+        </span>
+      </ng-template>
+    </p-editor>
+  </div>
+  <small class="p-error" *ngIf="submitted && !ConsultaExternaObj.motivoConsulta">HISTORIA CLÍNICA ES REQUERIDO.</small>
+</div>
+
+<div class="p-fluid grid ml-1 mr-1" [formGroup]="formAntPer">
+  <div class="col-12 md:col-12">
+    <p-divider align="left">
+      <b>2. ANTECEDENTES PERSONALES</b>
+    </p-divider>
+    <p-divider></p-divider>
+  </div>
+  <div class="col-12 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="establecimiento" pInputText
+        [(ngModel)]="antecPersonalesObj.clinicos" formControlName="clinico" (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">CLÍNICOS</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !antecPersonalesObj.clinicos">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 mt-3 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="establecimiento" pInputText
+        [(ngModel)]="antecPersonalesObj.quirurgicos" formControlName="quirurgico"
+        (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">QUIRÚRGICOS</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !antecPersonalesObj.quirurgicos">ES REQUERIDO.</small>
+  </div>
+</div>
+
+<div class="p-fluid grid ml-1 mr-1" [formGroup]="AntFam">
+  <div class="col-12 md:col-12">
+    <p-divider align="left">
+      <b>3. ANTECEDENTES FAMILIARES</b>
+    </p-divider>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="field-checkbox">
+      <p-checkbox name="group1" [binary]="true" [(ngModel)]="antecFamiliaresObj.cardiopatia" inputId="ny"
+        [ngModelOptions]="{standalone: true}"></p-checkbox>
+      <label for="ny">CARDIOPATIA</label>
+    </div>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="field-checkbox">
+      <p-checkbox name="group1" [binary]="true" [(ngModel)]="antecFamiliaresObj.diabetes" inputId="sf"
+        [ngModelOptions]="{standalone: true}"></p-checkbox>
+      <label for="sf">DIABETES</label>
+    </div>
+  </div>
+
+  <div class="col-12 md:col-2">
+    <div class="field-checkbox">
+      <p-checkbox name="group1" [binary]="true" [(ngModel)]="antecFamiliaresObj.enfCardiovasculares" inputId="la"
+        [ngModelOptions]="{standalone: true}">
+      </p-checkbox>
+      <label for="la">ENF. CARDIOVASCULARES</label>
+    </div>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="field-checkbox">
+      <p-checkbox name="group1" [binary]="true" [(ngModel)]="antecFamiliaresObj.hipertension" inputId="ch"
+        [ngModelOptions]="{standalone: true}"></p-checkbox>
+      <label for="ch">HIPERTENSIÓN</label>
+    </div>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="field-checkbox">
+      <p-checkbox name="group1" [binary]="true" [(ngModel)]="antecFamiliaresObj.cancer" inputId="ch"
+        [ngModelOptions]="{standalone: true}"></p-checkbox>
+      <label for="ch">CÁNCER</label>
+    </div>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="field-checkbox">
+      <p-checkbox name="group1" [binary]="true" [(ngModel)]="antecFamiliaresObj.tuberculosis" inputId="ch"
+        [ngModelOptions]="{standalone: true}"></p-checkbox>
+      <label for="ch">TUBERCULOSIS</label>
+    </div>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="field-checkbox">
+      <p-checkbox name="group1" [binary]="true" [(ngModel)]="antecFamiliaresObj.enfInfecciosas" inputId="ch"
+        [ngModelOptions]="{standalone: true}">
+      </p-checkbox>
+      <label for="ch">ENF. INFECCIOSA</label>
+    </div>
+    {{antecFamiliaresObj.enfInfecciosas | json}}
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="field-checkbox">
+      <p-checkbox name="group1" [binary]="true" [(ngModel)]="antecFamiliaresObj.enfMentales" inputId="ch"
+        [ngModelOptions]="{standalone: true}">
+      </p-checkbox>
+      <label for="ch">ENF. MENTALES</label>
+    </div>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="field-checkbox">
+      <p-checkbox name="group1" [binary]="true" [(ngModel)]="antecFamiliaresObj.malformaciones" inputId="ch"
+        [ngModelOptions]="{standalone: true}">
+      </p-checkbox>
+      <label for="ch">MAL FORMACIÓN</label>
+    </div>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="field-checkbox">
+      <p-checkbox name="group1" [binary]="true" [(ngModel)]="antecFamiliaresObj.otros" inputId="ch"
+        [ngModelOptions]="{standalone: true}"></p-checkbox>
+      <label for="ch">OTROS</label>
+    </div>
+  </div>
+  <div class="col-12 mt-3 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="familiares" pInputText
+        [(ngModel)]="antecFamiliaresObj.familiares" formControlName="desFam"
+        (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">FAMILIARES</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !antecFamiliaresObj.familiares">ES REQUERIDO.</small>
+  </div>
+</div>
+
+<div class="p-fluid grid ml-1 mr-1" [formGroup]="enfAct">
+  <div class=" col-12 md:col-12">
+    <p-divider align="left">
+      <b>4. ENFERMEDAD O PROBLEMA ACTUAL</b>
+    </p-divider>
+    <p-editor [(ngModel)]="ConsultaExternaObj.enfermedadActual" [style]="{'height':'120px'}" formControlName="enfActual"
+      (keypress)="validacionAlfanumerica($event)">
+      <ng-template pTemplate="header">
+        <span class="ql-formats">
+          <button type="button" class="ql-bold" aria-label="Bold"></button>
+          <button type="button" class="ql-italic" aria-label="Italic"></button>
+          <button type="button" class="ql-underline" aria-label="Underline"></button>
+        </span>
+      </ng-template>
+    </p-editor>
+  </div>
+  <small class="p-error" *ngIf="submitted && !ConsultaExternaObj.enfermedadActual">ES REQUERIDO.</small>
+</div>
+
+<div class="p-fluid grid ml-1 mr-1" [formGroup]="RevActu">
+  <div class="col-12 md:col-12">
+    <p-divider align="left">
+      <b>5. REVISION ACTUAL DE ÓRGANOS Y SISTEMAS</b>
+    </p-divider>
+  </div>
+  <div class="col-12 md:col-3">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">ÓRGANOS DE LOS SENTIDOS</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="orgSent" value="CP" [(ngModel)]="revOrgSistemObj.organoSentido" inputId="city1"
+          formControlName="orgSent">
+        </p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="orgSent" value="SP" [(ngModel)]="revOrgSistemObj.organoSentido"
+          inputId="city2" formControlName="orgSent">
+        </p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !revOrgSistemObj.organoSentido">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-3">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">CARDIO VASCULAR</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="carVas" value="CP" [(ngModel)]="revOrgSistemObj.cardiovascular" inputId="city1"
+          formControlName="carVas">
+        </p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="carVas" value="SP" [(ngModel)]="revOrgSistemObj.cardiovascular"
+          inputId="city2" formControlName="carVas">
+        </p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !revOrgSistemObj.cardiovascular">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-3">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">HEMO LINFÁTICO</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="hemLinf" value="CP" [(ngModel)]="revOrgSistemObj.hemoLenfatico" inputId="city1"
+          formControlName="hemLinf">
+        </p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="hemLinf" value="SP" [(ngModel)]="revOrgSistemObj.hemoLenfatico"
+          inputId="city2" formControlName="hemLinf">
+        </p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !revOrgSistemObj.hemoLenfatico">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-3">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">MÚSCULO ESQUELÉTICO</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="musEsq" value="CP" [(ngModel)]="revOrgSistemObj.musculoEsqueletico" inputId="city1"
+          formControlName="musEsq">
+        </p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="musEsq" value="SP" [(ngModel)]="revOrgSistemObj.musculoEsqueletico"
+          inputId="city2" formControlName="musEsq"></p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !revOrgSistemObj.musculoEsqueletico">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">GENITAL</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="genital" value="CP" [(ngModel)]="revOrgSistemObj.genital" inputId="city1"
+          formControlName="genital"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="genital" value="SP" [(ngModel)]="revOrgSistemObj.genital" inputId="city2"
+          formControlName="genital">
+        </p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !revOrgSistemObj.genital">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">RESPIRATORIO</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="resp" value="CP" [(ngModel)]="revOrgSistemObj.respiratorio" inputId="city1"
+          formControlName="resp">
+        </p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="resp" value="SP" [(ngModel)]="revOrgSistemObj.respiratorio" inputId="city2"
+          formControlName="resp">
+        </p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !revOrgSistemObj.respiratorio">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">DIGESTIVO</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="dig" value="CP" [(ngModel)]="revOrgSistemObj.digestivo" inputId="city1"
+          formControlName="dig"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="dig" value="SP" [(ngModel)]="revOrgSistemObj.digestivo" inputId="city2"
+          formControlName="dig">
+        </p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !revOrgSistemObj.digestivo">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">URINARIO</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="urinario" value="CP" [(ngModel)]="revOrgSistemObj.urinario" inputId="city1"
+          formControlName="urinario"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="urinario" value="SP" [(ngModel)]="revOrgSistemObj.urinario" inputId="city2"
+          formControlName="urinario">
+        </p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !revOrgSistemObj.urinario">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">ENDOCRINO</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="endocrino" value="CP" [(ngModel)]="revOrgSistemObj.endocrino" inputId="city1"
+          formControlName="endocrino"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="endocrino" value="SP" [(ngModel)]="revOrgSistemObj.endocrino" inputId="city2"
+          formControlName="endocrino">
+        </p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !revOrgSistemObj.endocrino">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">NERVIOSO</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="nervioso" value="CP" [(ngModel)]="revOrgSistemObj.nervioso" inputId="city1"
+          formControlName="nervioso"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="nervioso" value="SP" [(ngModel)]="revOrgSistemObj.nervioso" inputId="city2"
+          formControlName="nervioso">
+        </p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !revOrgSistemObj.nervioso">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+        [(ngModel)]="revOrgSistemObj.descripcion" [ngModelOptions]="{standalone: true}"
+        (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">OBSERVACIONES</label>
+    </span>
+  </div>
+</div>
+
+<!--6 SIGNOS VITALES-->
+<div class="p-fluid grid ml-1 mr-1" [formGroup]="sigVital">
+  <div class="col-12 md:col-12">
+    <p-divider align="left">
+      <b>6. SIGNOS VITALES Y ANTROPOMETRIA</b>
+    </p-divider>
+  </div>
+
+  <div class="field col-12 md:col-2">
+    <span class="p-float-label">
+      <p-calendar class="p-inputtext-sm" inputId="FECHA DE MEDICIÓN" [(ngModel)]="signosVitalesObj.fechaMedicion"
+        formControlName="fecha"></p-calendar>
+      <label for="basic">FECHA DE MEDICIÓN</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !signosVitalesObj.fechaMedicion">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-2">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="temperatura" pInputText
+        [(ngModel)]="signosVitalesObj.temperatura" formControlName="temp" pKeyFilter="num">
+      <label class="p-inputtext-sm" for="inputtext">TEMPERATURA °C</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !signosVitalesObj.temperatura">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-2">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="nombresApellidos" pInputText
+        [(ngModel)]="signosVitalesObj.presionArterial" formControlName="preArt"
+        (keypress)="validadcionPresionArterial($event)">
+      <label class="p-inputtext-sm" for="inputtext">PRESIÓN ARTERIAL</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !signosVitalesObj.presionArterial">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-2">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="nombresApellidos" pInputText
+        [(ngModel)]="signosVitalesObj.pulso" formControlName="pulso" pKeyFilter="num">
+      <label class="p-inputtext-sm" for="inputtext">PULSO/MIN</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !signosVitalesObj.pulso">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-2">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="nombresApellidos" pInputText
+        [(ngModel)]="signosVitalesObj.frecRespiratoria" formControlName="freResp" pKeyFilter="num">
+      <label class="p-inputtext-sm letrasPequeñas" for="inputtext">FRECUENCIA RESPIRATORIA</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !signosVitalesObj.frecRespiratoria">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-1">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="nombresApellidos" pInputText
+        [(ngModel)]="signosVitalesObj.peso" formControlName="peso" pKeyFilter="num">
+      <label class="p-inputtext-sm" for="inputtext">PESO/KG</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !signosVitalesObj.peso">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-1">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="nombresApellidos" pInputText
+        [(ngModel)]="signosVitalesObj.talla" formControlName="talla" pKeyFilter="num">
+      <label class="p-inputtext-sm" for="inputtext">TALLA/CM</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !signosVitalesObj.talla">ES REQUERIDO.</small>
+  </div>
+</div>
+
+<!--7 EXAMEN FISICO REGIONAL-->
+<div class="p-fluid grid ml-1 mr-1" [formGroup]="exaFisReg">
+  <div class="col-12 md:col-12">
+    <p-divider align="left">
+      <b>7. EXAMEN FÍSICO REGIONAL</b>
+    </p-divider>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">CABEZA</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="cabeza" value="CP" [(ngModel)]="examFisRegObj.cabeza" inputId="city1"
+          formControlName="cabeza"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="cabeza" value="SP" [(ngModel)]="examFisRegObj.cabeza" inputId="city2"
+          formControlName="cabeza"></p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !examFisRegObj.cabeza">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">CUELLO</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="cuello" value="CP" [(ngModel)]="examFisRegObj.cuello" inputId="city1"
+          formControlName="cuello"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="cuello" value="SP" [(ngModel)]="examFisRegObj.cuello" inputId="city2"
+          formControlName="cuello"></p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !examFisRegObj.cuello">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">TORAX</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="torax" value="CP" [(ngModel)]="examFisRegObj.torax" inputId="city1"
+          formControlName="torax"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="torax" value="SP" [(ngModel)]="examFisRegObj.torax" inputId="city2"
+          formControlName="torax"></p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !examFisRegObj.torax">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">ABDOMEN</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="abdomen" value="CP" [(ngModel)]="examFisRegObj.abdomen" inputId="city1"
+          formControlName="abdomen"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="abdomen" value="SP" [(ngModel)]="examFisRegObj.abdomen" inputId="city2"
+          formControlName="abdomen"></p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !examFisRegObj.abdomen">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">PELVIS</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="pelvis" value="CP" [(ngModel)]="examFisRegObj.pelvis" inputId="city1"
+          formControlName="pelvis"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="pelvis" value="SP" [(ngModel)]="examFisRegObj.pelvis" inputId="city2"
+          formControlName="pelvis"></p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !examFisRegObj.pelvis">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-2">
+    <div class="p-inputgroup">
+      <label class="p-inputtext-sm">EXTREMIDADES</label>
+      <div class="field-radiobutton">
+        <p-radioButton name="extremidades" value="CP" [(ngModel)]="examFisRegObj.extremidades" inputId="city1"
+          formControlName="extremidades"></p-radioButton>
+        <label for="city1">CP</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="extremidades" value="SP" [(ngModel)]="examFisRegObj.extremidades"
+          inputId="city2" formControlName="extremidades"></p-radioButton>
+        <label for="city2">SP</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !examFisRegObj.extremidades">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-12">
+    <label for="">DESCRIPCIÓN</label>
+    <p-editor [(ngModel)]="examFisRegObj.observaciones" [style]="{'height':'100px'}" formControlName="observacion"
+      (keypress)="validacionAlfanumerica($event)">
+      <ng-template pTemplate="header">
+        <span class="ql-formats">
+          <button type="button" class="ql-bold" aria-label="Bold"></button>
+          <button type="button" class="ql-italic" aria-label="Italic"></button>
+          <button type="button" class="ql-underline" aria-label="Underline"></button>
+        </span>
+      </ng-template>
+    </p-editor>
+    <small class="p-error" *ngIf="submitted && !examFisRegObj.observaciones">ES REQUERIDO.</small>
+  </div>
+</div>
+
+<!--8 DIAGNOSTICO-->
+<div class="p-fluid grid ml-1 mr-1" [formGroup]="diagnostic">
+  <div class="col-12 md:col-12">
+    <p-divider align="left">
+      <b>8. DIAGNOSTICO</b>
+    </p-divider>
+  </div>
+  <div class="col-12 md:col-5">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="descripcionDiagnosticos" pInputText
+        [(ngModel)]="diagnosticoObj.descripcionDiagnostico" formControlName="descDiag"
+        (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">DESCRIPCIÓN DIAGNOSTICO</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !diagnosticoObj.descripcionDiagnostico">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-1">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="cie" pInputText [(ngModel)]="diagnosticoObj.cie"
+        formControlName="cie" (keypress)="validacionsoloLetrasNumeros($event)">
+      <label class="p-inputtext-sm" for="inputtext">CIE</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !diagnosticoObj.cie">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 md:col-3">
+    <div class="p-inputgroup">
+      <div class="field-radiobutton">
+        <p-radioButton name="preDef" value="PRE" [(ngModel)]="diagnosticoObj.preDef" inputId="city1"
+          formControlName="preDef"></p-radioButton>
+        <label for="city1">PRE</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="preDef" value="DEF" [(ngModel)]="diagnosticoObj.preDef" inputId="city2"
+          formControlName="preDef"></p-radioButton>
+        <label for="city2">DEF</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !diagnosticoObj.preDef">ES REQUERIDO.</small>
+  </div>
+</div>
+
+<div class="p-fluid grid ml-1 mr-1" [formGroup]="PresuntivoDef">
+  <div class="col-12 mt-3 md:col-5">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="descripcionDiagnosticos" pInputText
+        [(ngModel)]="diagnosticoObj.descripcionPreDef" formControlName="DescPreDef"
+        (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">PRE=PRESUNTIVO / DEF=DEFINITIVO</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !diagnosticoObj.descripcionPreDef">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 mt-3 md:col-1">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="cie" pInputText
+        [(ngModel)]="diagnosticoObj.descripcionPreDefCie" formControlName="DescPreDefCie"
+        (keypress)="validacionsoloLetrasNumeros($event)">
+      <label class="p-inputtext-sm" for="inputtext">CIE</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !diagnosticoObj.descripcionPreDefCie">ES REQUERIDO.</small>
+  </div>
+
+  <div class="col-12 mt-3 md:col-3">
+    <div class="p-inputgroup">
+      <div class="field-radiobutton">
+        <p-radioButton name="DescPreDefPreDef" value="PRE" [(ngModel)]="diagnosticoObj.descripcionPreDefPreDef"
+          inputId="city1" formControlName="DescPreDefPreDef"></p-radioButton>
+        <label for="city1">PRE</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton class="ml-1" name="DescPreDefPreDef" value="DEF"
+          [(ngModel)]="diagnosticoObj.descripcionPreDefPreDef" inputId="city2" formControlName="DescPreDefPreDef">
+        </p-radioButton>
+        <label for="city2">DEF</label>
+      </div>
+    </div>
+    <small class="p-error" *ngIf="submitted && !diagnosticoObj.descripcionPreDefPreDef">ES REQUERIDO.</small>
+  </div>
+</div>
+
+<!--9 PLANES DE TRATAMIENTO-->
+<div class="p-fluid grid ml-1 mr-1">
+  <div class="col-12 md:col-12">
+    <p-divider align="left">
+      <b>9. PLANES DE TRATAMIENTO</b>
+    </p-divider>
+  </div>
+  <div class="col-12 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+        [(ngModel)]="planTratamientoObj.m" (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">M:</label>
+    </span>
+  </div>
+  <div class="col-12 mt-1 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+        [(ngModel)]="planTratamientoObj.i" (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">I:</label>
+    </span>
+  </div>
+  <div class="col-12 mt-1 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+        [(ngModel)]="planTratamientoObj.l" (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">L:</label>
+    </span>
+  </div>
+  <div class="col-12 mt-1 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+        [(ngModel)]="planTratamientoObj.r" (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">R:</label>
+    </span>
+  </div>
+  <div class="col-12 mt-1 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+        [(ngModel)]="planTratamientoObj.c" (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">C:</label>
+    </span>
+  </div>
+  <div class="col-12 mt-1 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+        [(ngModel)]="planTratamientoObj.t" (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">T:</label>
+    </span>
+  </div>
+  <div class="col-12 mt-1 md:col-12">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+        [(ngModel)]="planTratamientoObj.o" (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">O:</label>
+    </span>
+  </div>
+</div>
+
+<!--10 FIN-->
+<div class="p-fluid grid mt-3 ml-1 mr-1" [formGroup]="footer">
+  <div class="field col-12 md:col-2">
+    <span class="p-float-label">
+      <p-calendar class="p-inputtext-sm" [(ngModel)]="ConsultaExternaObj.fecha" [showTime]="true" [showSeconds]="true"
+        inputId="time" formControlName="fecHora"></p-calendar>
+      <label for="time">FECHA / HORA 24H</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !ConsultaExternaObj.fecha">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-3">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" pInputText
+        [(ngModel)]="ConsultaExternaObj.nombresProfesional" formControlName="nomProf"
+        (keypress)="validarLetras($event)">
+      <label class="p-inputtext-sm" for="inputtext">NOMBRE DEL PROFESIONAL</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !ConsultaExternaObj.nombresProfesional">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-3">
+    <span class="p-float-label">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" pInputText
+        [(ngModel)]="ConsultaExternaObj.duracionConsulta" formControlName="DuracionConsult"
+        (keypress)="validacionAlfanumerica($event)">
+      <label class="p-inputtext-sm" for="inputtext">DURACIÓN DE LA CONSULTA</label>
+    </span>
+    <small class="p-error" *ngIf="submitted && !ConsultaExternaObj.duracionConsulta">ES REQUERIDO.</small>
+  </div>
+  <div class="col-12 md:col-3">
+    <p-button [label]="updateSi ? 'ACTUALIZAR' : 'GUARDAR'" icon="pi pi-check"
+      (click)="updateSi ? updateConsultaExterna(): crearConsultaExterna()"></p-button>
+  </div>
+</div>
+
+
+<!--PDIALOG-->
+<p-sidebar [(visible)]="listConsExteDialog" position="right" [baseZIndex]="10000" [style]="{width:'40em'}"
+  [modal]="false">
+  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+  </p-confirmDialog>
+  <p-toast></p-toast>
+  <p-table #dt1 [value]="listConsExterna" selectionMode="single" [loading]="loading" [(selection)]="selectedConExt"
+    (onRowSelect)="onRowSelect($event)" responsiveLayout="scroll" [resizableColumns]="true"
+    styleClass="p-datatable-gridlines p-datatable-sm" [globalFilterFields]="['nombres','historia_clinica']"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true" [rows]="50">
+
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" autocomplete="off" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+            placeholder="BUSCAR" />
+        </span>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th pResizableColumn>
+          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+            NOMBRES
+          </div>
+        </th>
+        <th pResizableColumn style="width:70px">
+          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+            HCI
+          </div>
+        </th>
+        <th pResizableColumn style="width:70px">
+          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+            FECHA
+          </div>
+        </th>
+        <th pResizableColumn>
+          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+            NOMBRE DEL PROFESIONAL
+          </div>
+        </th>
+        <th pResizableColumn style="width:60px">
+          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+            ELIMINAR
+          </div>
+        </th>
+        <th pResizableColumn style="width:50px">
+          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+            PRINT
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-conExt>
+      <tr [pSelectableRow]="conExt">
+        <td>{{conExt.nombres}}</td>
+        <td style="text-align:center">{{conExt.historia_clinica}}</td>
+        <td>{{conExt.fecha}}</td>
+        <td>{{conExt.nombresProfesional}}</td>
+        <td style="text-align:center">
+          <button pButton pRipple type="button" icon="pi pi-times" (click)="confirmacion(conExt.id_consexterna)"
+            class="p-button-rounded p-button-text p-button-danger"></button>
+        </td>
+        <td style="text-align:center">
+          <button pButton pRipple type="button" icon="pi pi-print" (click)="imprimirPDFSinceButton(conExt.id_consexterna)"
+          class="p-button-rounded p-button-text">
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-sidebar>

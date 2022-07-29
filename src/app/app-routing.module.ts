@@ -26,6 +26,19 @@ import { ProveedorComponent } from './modulos/proveedor/proveedor.component';
 import { FacturaVentaComponent } from './modulos/Facturas/factura-venta/factura-venta.component';
 import { FacturaProductoComponent } from './modulos/Facturas/factura-producto/factura-producto.component';
 import { FacturaCompraComponent } from './modulos/Facturas/factura-compra/factura-compra.component';
+import { CounterComponent } from './modulos/counter/counter.component';
+import { TratamientoComponent } from './modulos/counter/tratamiento/tratamiento.component';
+import { EmpleadoComponent } from './modulos/empleadoss/empleado/empleado.component';
+import { DatosComponent } from './modulos/formulario/datos/datos.component';
+import { MedicamentosComponent } from './modulos/AdmMedicamentos/medicamentos/medicamentos.component';
+import { EvolucionComponent } from './modulos/EvolucionPre/evolucion/evolucion.component';
+import { AutorizacionComponent } from './modulos/AutoExoRe/autorizacion/autorizacion.component';
+import { ConsentimientoComponent } from './modulos/Consentimiento/consentimiento/consentimiento.component';
+import { AdmisionComponent } from './modulos/RegistroAdm/admision/admision.component';
+import { ConsultaExternaAnamnesisComponent } from './modulos/consulta-externa-anamnesis/consulta-externa-anamnesis.component';
+import { LectorComponent } from './modulos/tarjeta/lector/lector.component';
+import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-tarjetas.component';
+import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
 
 
 
@@ -43,16 +56,35 @@ const routes: Routes = [
   // { path: 'nuevo-pro', component: RegistrarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   { path: 'lista-usuarios', component: UsuariosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lista-productos', component: ProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['farmacia','user'] } },
+  { path: 'lista-empleados', component: EmpleadoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin','user'] } },
 
   { path: 'proveedores', component: ProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'medicamentos', component: MedicamentosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'evolucion', component: EvolucionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'autorizacion', component: AutorizacionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'admision', component: AdmisionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'consentimiento', component: ConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
+  
+  { path: 'formularioTarjeta', component: FormularioTarjetaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'lectorQr', component: LectorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'listaTarjetas', component: ListaTarjetasComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+
+
+  { path: 'pacientes', component: CounterComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'ConsultaExterna', component: ConsultaExternaAnamnesisComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+
+
+  { path: 'pacientes', component: CounterComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'formulario', component: DatosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'tratamientos', component: TratamientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lista-sucursales', component: SucursalComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'editar/:id', component: EditarProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   // { path: 'editarPro/:id', component: EditarProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin'] } },
   //{ path: 'entregar', component: ControlUserComponent, canActivate: [ProdGuardService], data: { expectedRol: ['tribunal'] } },
 
   //Facturas
-{ path: 'lista-facturasVenta', component: FacturaVentaComponent, data: { expectedRol: ['admin', 'user'] } },
+{ path: 'lista-facturasVenta', component: FacturaVentaComponent, data: { expectedRol: ['farmacia', 'user'] } },
 { path: 'Product-List', component: FacturaProductoComponent},
 { path: 'lista-facturasCompra', component: FacturaCompraComponent, data: { expectedRol: ['admin', 'user'] } },
   { path: '**', redirectTo: '', pathMatch: 'full' },
