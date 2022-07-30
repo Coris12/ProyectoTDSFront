@@ -220,6 +220,7 @@ import { TarjetaControllerService } from './api/tarjetaController.service';
     DiagnosticoControllerService,
     PlanTratamientoControllerService,
     TarjetaControllerService,
+    FamiliaresControllerService,
   ],
   bootstrap: [AppComponent]
 })

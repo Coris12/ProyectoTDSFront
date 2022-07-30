@@ -129,17 +129,21 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
   }
 
   guardarFamiliar() {
-    this.familiarService.savefamiliaresUsingPOST(this.familia).subscribe((res) => {
-      this.familia.idenUsuarioFamiliar = +this.usuarioId;
+    this.familia.idenUsuarioFamiliar = +this.usuarioId;
       this.familia.tipoFamiliar = this.parentesco;
       this.familia.usuario = this.ObjDatorTarj;
+    this.familiarService.savefamiliaresUsingPOST(this.familia).subscribe((res) => {
+      
       if (res.object != null) {
         this.idUsuario = res.object;
-        console.log(res.object)
+        console.log(this.idUsuario)
         this.MessageSuccess("familiar creado");
         console.log(this.familia);
       } else {
         this.mensajeError("error al crear familiar")
+        console.log("error"+ this.errMsj)
+        console.log(res.object);
+        
       }
 
     })
