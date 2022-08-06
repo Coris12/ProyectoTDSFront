@@ -11,14 +11,8 @@
  */
 import { TarjetaEspecialidad } from './tarjetaEspecialidad';
 
-export interface Tarjeta { 
-    estado?: number;
-    fechaFin?: Date;
-    fechaInicio?: Date;
-    idTarjeta?: number;
-    idTarjetaEspecialidad?: number;
-    numConsultas?: number;
-    qr?: string;
-    tarjetaEspecialidad?: TarjetaEspecialidad;
-    tipoaAfiliacion?: string;
+export interface GenericResponseListTarjetaEspecialidad { 
+    message?: string;
+    object?: Array<TarjetaEspecialidad>;
+    status?: number;
 }

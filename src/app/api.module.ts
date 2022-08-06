@@ -24,6 +24,7 @@ import { RevOrganoSistemControllerService } from './api/revOrganoSistemControlle
 import { SigVitAntropometriaControllerService } from './api/sigVitAntropometriaController.service';
 import { SucursalControllerService } from './api/sucursalController.service';
 import { TarjetaControllerService } from './api/tarjetaController.service';
+import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadController.service';
 import { TratamientoControllerService } from './api/tratamientoController.service';
 
 @NgModule({
@@ -52,6 +53,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     SigVitAntropometriaControllerService,
     SucursalControllerService,
     TarjetaControllerService,
+    TarjetaEspecialidadControllerService,
     TratamientoControllerService ]
 })
 export class ApiModule {

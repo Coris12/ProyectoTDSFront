@@ -109,6 +109,8 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { FamiliaresControllerService } from './api/familiaresController.service';
 
 import { TarjetaControllerService } from './api/tarjetaController.service';
+import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadController.service';
+import { ResidenciaControllerService } from './api/residenciaController.service';
 
 @NgModule({
   declarations: [
@@ -221,6 +223,8 @@ import { TarjetaControllerService } from './api/tarjetaController.service';
     PlanTratamientoControllerService,
     TarjetaControllerService,
     FamiliaresControllerService,
+    TarjetaEspecialidadControllerService,
+    ResidenciaControllerService
   ],
   bootstrap: [AppComponent]
 })

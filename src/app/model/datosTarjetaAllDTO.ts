@@ -9,16 +9,24 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { TarjetaEspecialidad } from './tarjetaEspecialidad';
 
-export interface Tarjeta { 
+export interface DatosTarjetaAllDTO { 
+    afiliacion?: string;
+    canton?: string;
+    celular?: string;
+    consultas?: number;
+    direccion?: string;
     estado?: number;
     fechaFin?: Date;
     fechaInicio?: Date;
+    id?: number;
+    idRecidencia?: number;
     idTarjeta?: number;
     idTarjetaEspecialidad?: number;
-    numConsultas?: number;
-    qr?: string;
-    tarjetaEspecialidad?: TarjetaEspecialidad;
-    tipoaAfiliacion?: string;
+    nacionalidad?: string;
+    nombres?: string;
+    pais?: string;
+    parroquia?: string;
+    provincia?: string;
+    tipoEspecialidad?: string;
 }

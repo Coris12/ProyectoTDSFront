@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ResidenciaControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -57,19 +57,19 @@ export class ResidenciaControllerService {
 
 
     /**
-     * guardarMenu
-     * 
+     * guardarResidencia
+     *
      * @param body residenciaDto
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public guardarMenuUsingPOST(body: ResidenciaDto, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public guardarMenuUsingPOST(body: ResidenciaDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public guardarMenuUsingPOST(body: ResidenciaDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public guardarMenuUsingPOST(body: ResidenciaDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public guardarResidenciaUsingPOST(body: ResidenciaDto, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public guardarResidenciaUsingPOST(body: ResidenciaDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public guardarResidenciaUsingPOST(body: ResidenciaDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public guardarResidenciaUsingPOST(body: ResidenciaDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling guardarMenuUsingPOST.');
+            throw new Error('Required parameter body was null or undefined when calling guardarResidenciaUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -109,19 +109,19 @@ export class ResidenciaControllerService {
     }
 
     /**
-     * updatePost
-     * 
+     * updateResidencia
+     *
      * @param body residenciaDto
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updatePostUsingPUT(body: ResidenciaDto, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public updatePostUsingPUT(body: ResidenciaDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public updatePostUsingPUT(body: ResidenciaDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public updatePostUsingPUT(body: ResidenciaDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateResidenciaUsingPUT(body: ResidenciaDto, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public updateResidenciaUsingPUT(body: ResidenciaDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public updateResidenciaUsingPUT(body: ResidenciaDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public updateResidenciaUsingPUT(body: ResidenciaDto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling updatePostUsingPUT.');
+            throw new Error('Required parameter body was null or undefined when calling updateResidenciaUsingPUT.');
         }
 
         let headers = this.defaultHeaders;
