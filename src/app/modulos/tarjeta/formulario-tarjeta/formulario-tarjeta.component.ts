@@ -291,6 +291,10 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
 
     this.tarjetaService.searchDateTarjetaUserUsingGET1(this.buscarPerIdent).pipe(takeUntil(this.unsuscribes$)).subscribe(
       data => {
+        if(data.status === 4){
+          this.mensajeError("ERROR NO SE HA ENCONTRADO A LA PERSONA CON ESA IDENTIFICACION");
+          return;
+        }
         if (data.object != null) {
           this.objtDatosTarjetaAllDto = data.object;
           this.objtDatosTarjetaAllDto.fechaFin = new Date(data.object.fechaFin);
@@ -388,7 +392,7 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
         this.MessageSuccess("FAMILIAR EDITADO");
         this.cargarFamiliar(this.idPerPrin);
       } else {
-        this.MessageSuccess("ERROR AL EDITAR FAMILIAR");
+        this.mensajeError("ERROR AL EDITAR FAMILIAR");
       }
     })
   }
