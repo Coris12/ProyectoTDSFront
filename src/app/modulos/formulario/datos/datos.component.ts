@@ -52,12 +52,12 @@ export class DatosComponent implements OnInit {
       } else {
         this.mensajeError("ERROR AL BUSCAR PERSONA");
         this.ObjDatorTarj = { canton: null, celular: null, direccion: null, id: null, idRecidencia: null, nacionalidad: null, nombres: null, pais: null, provincia: null, parroquia: null }
-        this.buscarUsuarioByIdentificacion(this.buscarPerIdent);
       }
     }, error => {
       this.mensajeError("ERROR AL BUSCAR!!");
     });
   }
+
 
   mensajeError(msg: String) {
     this.messageService.add({
@@ -73,16 +73,5 @@ export class DatosComponent implements OnInit {
       summary: 'Resultado',
       detail: 'Correcto!: ' + msg,
     });
-  }
-  buscarUsuarioByIdentificacion(identificacion: string) {
-    this.personaService.getPersonaByIdentificacionUsingGET(identificacion).pipe(takeUntil(this.unsuscribes$)).subscribe(data => {
-      if (data.object != null) {
-        this.ObjDatorTarj = data.object;
-        this.mensajeError("NO SE OBTUVIERON TODOS LOS DATOS, DEBIDO A QUE NO FUERON LLENADOS!");
-      } else {
-        this.mensajeError("NO SE ENCONTRÓ  EL USUARIO CON ESTA IDENTIFICACIÓN");
-        this.ObjDatorTarj = { canton: null, celular: null, direccion: null, id: null, idRecidencia: null, nacionalidad: null, nombres: null, pais: null, provincia: null, parroquia: null }
-      }
-    })
   }
 }
