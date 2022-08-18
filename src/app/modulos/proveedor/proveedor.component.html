@@ -49,12 +49,8 @@
                     <tr>
                         <td>{{pro.nombre_comercial_pro}}</td>
                         <td>{{pro.usuario.nombres}}</td>
-                        <td><button pButton pRipple type="button" style="margin: 10px"
-                                class="p-button-raised p-button-text p-button-danger"label="Borrar" icon="pi pi-trash"
-                                (click)="borrarProveedor(pro.id_proveedor)"></button>
-                            <button pButton pRipple type="button" style="margin: 10px"
-                                class="p-button-raised p-button-text p-button-danger" label="Editar"
-                                icon="pi pi-trash"(click)="updateProveedor(pro.id_proveedor)"></button>
+                        <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrarProveedor(pro.idProveedor)"></button>
+                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text"  (click)="updateProveedor(pro.idProveedor)"></button>
                         </td>
                     </tr>
                 </ng-template>

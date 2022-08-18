@@ -75,7 +75,7 @@ export class SucursalComponent implements OnInit {
       ).subscribe(data => {
         this.messageService.add({
           severity: 'info',
-          summary: 'Producto Actualizado',
+          summary: 'Sucursal Actualizado',
           detail: data.object
         });
         this.sucursalDialog = false;
@@ -86,10 +86,8 @@ export class SucursalComponent implements OnInit {
         this.sucursalForm.value
       ).subscribe(data => {
         this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Sucursal creada con exito.' });
-
       },
         error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
-
       this.sucursalDialog = false;
       this.sucursalForm.setValue({
         idSucursal: null,

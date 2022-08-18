@@ -17,7 +17,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { Producto } from '../model/producto';
 import { Proveedor } from '../model/proveedor';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -27,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProveedorControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -167,9 +166,9 @@ export class ProveedorControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET3(id: number, observe?: 'body', reportProgress?: boolean): Observable<Producto>;
-    public getByIdUsingGET3(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Producto>>;
-    public getByIdUsingGET3(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Producto>>;
+    public getByIdUsingGET3(id: number, observe?: 'body', reportProgress?: boolean): Observable<Proveedor>;
+    public getByIdUsingGET3(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Proveedor>>;
+    public getByIdUsingGET3(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Proveedor>>;
     public getByIdUsingGET3(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
@@ -196,7 +195,7 @@ export class ProveedorControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Producto>('get',`${this.basePath}/proveedor/detail/${encodeURIComponent(String(id))}`,
+        return this.httpClient.request<Proveedor>('get',`${this.basePath}/proveedor/detail/${encodeURIComponent(String(id))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
