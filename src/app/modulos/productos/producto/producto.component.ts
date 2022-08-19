@@ -34,7 +34,7 @@ export class ProductoComponent implements OnInit {
   //variables producto
   categoria: any[];
 
-  stock:any
+  stock: any
   categoriaProd: any//<---- guardeles asi
   codigo: string
 
@@ -57,8 +57,11 @@ export class ProductoComponent implements OnInit {
   //! abre el dialogo de producto
   productoDialog: boolean;
 
-  constructor(private productoController: ProductoControllerService, private proveedorController: ProveedorControllerService,
-    private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(
+    private productoController: ProductoControllerService,
+    private proveedorController: ProveedorControllerService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.categoria = [
@@ -133,10 +136,10 @@ export class ProductoComponent implements OnInit {
     }, 1000);
   }
 
-   updateProducto(idProducto:number) {
+  updateProducto(idProducto: number) {
     this.productoController.getByIdUsingGET2(idProducto)
-      .subscribe( produc => {
-        console.log (produc.idProducto)
+      .subscribe(produc => {
+        console.log(produc.idProducto)
         this.productoForm.setValue({
           idProducto: produc.idProducto,
           categoriaProducto: produc.categoriaProducto,
@@ -154,12 +157,12 @@ export class ProductoComponent implements OnInit {
           proveedor: produc.proveedor,
         });
       });
-      this.productoDialog = true;
+    this.productoDialog = true;
 
   }
 
   //metodo de guardar
-   saveProducto() {
+  saveProducto() {
     console.log(this.productoForm.value)
     if (this.productoForm.value?.idProducto !== null) {
       this.productoController.updateUsingPUT2(
@@ -175,13 +178,21 @@ export class ProductoComponent implements OnInit {
         this.cargarProductos();
       });
     } else {
-    this.productoController.createUsingPOST3(
+      this.productoController.createUsingPOST3(
         this.productoForm.value,
         this.productoForm.value?.proveedor.idProveedor,
       ).subscribe(data => {
-        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto creado .' });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Exito',
+          detail: 'Producto creado .'
+        });
       },
-        error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+        error => this.messageService.add({
+          severity: 'danger',
+          summary: 'Error',
+          detail: error.mensaje
+        }));
 
       this.productoDialog = false;
       this.productoForm.setValue({
@@ -214,12 +225,20 @@ export class ProductoComponent implements OnInit {
         //Actual logic to perform a confirmation
         this.productoController.deleteProductoUsingPATCH(idProducto).subscribe(
           data => {
-            this.messageService.add({ severity: 'success', summary: 'Producto Eliminado', detail: 'eliminar.' });
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Producto Eliminado',
+              detail: 'eliminar.'
+            });
             setTimeout(() => {
               this.cargarProductos();
             }, 1000);
           },
-          error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+          error => this.messageService.add({
+            severity: 'danger',
+            summary: 'Error',
+            detail: error.mensaje
+          }));
       }
     });
 

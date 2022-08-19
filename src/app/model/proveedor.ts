@@ -13,7 +13,7 @@ import { Usuario } from './usuario';
 
 export interface Proveedor { 
     estado?: number;
-    idProveedor?: number;
-    nombreComercialPro?: string;
+    id_proveedor?: number;
+    nombre_comercial_pro?: string;
     usuario?: Usuario;
 }

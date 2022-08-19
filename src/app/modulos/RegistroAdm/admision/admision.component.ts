@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdmisionComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+     
+  ) { }
 
   ngOnInit(): void {
   }
 
+
+buscar(){
+
+}
 }

@@ -9,7 +9,7 @@
             </div>
             <div class="ml-auto p-2">
                 <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay"
-                    class="p-button-rounded p-button-text red" (click)="cargarProveedores()">
+                    class="p-button-rounded p-button-text red" (click)="cargarProveedor()">
                 </button>
             </div>
         </div>
@@ -17,7 +17,7 @@
             <div class="p-toolbar-group-left">
                 <!-- (click)="showDialog()" -->
                 <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text"
-                    label="Crear" icon="pi pi-plus" (click)="dialgoProveedor=true"></button>
+                    label="Crear" icon="pi pi-plus" (click)="proveDialog=true"></button>
                 <!--  (click)="showCatalogosEliminados()" 
                 <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Papelera" icon="pi pi-trash" (click)="papeleraConvocatorias=true"></button>
 -->
@@ -40,21 +40,19 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
+                        <th>Id</th>
                         <th>Nombre comercial</th>
                         <th>Encargado</th>
                         <th>Opciones</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-pro>
+                <ng-template pTemplate="body" let-provee>
                     <tr>
-                        <td>{{pro.nombre_comercial_pro}}</td>
-                        <td>{{pro.usuario.nombres}}</td>
-                        <td><button pButton pRipple type="button" style="margin: 10px"
-                                class="p-button-raised p-button-text p-button-danger"label="Borrar" icon="pi pi-trash"
-                                (click)="borrarProveedor(pro.id_proveedor)"></button>
-                            <button pButton pRipple type="button" style="margin: 10px"
-                                class="p-button-raised p-button-text p-button-danger" label="Editar"
-                                icon="pi pi-trash"(click)="updateProveedor(pro.id_proveedor)"></button>
+                        <td>{{provee.id_proveedor}}</td>
+                        <td>{{provee.nombre_comercial_pro}}</td>
+                        <td>{{provee.usuario.nombres}}</td>
+                        <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrarProveedor(provee.id_proveedor)"></button>
+                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text"  (click)="updateProveedor(provee.id_proveedor)"></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -73,9 +71,9 @@
     </div>
 </div>
 
-<p-dialog header="Gestión de proveedores." [(visible)]="dialgoProveedor" [modal]="true" [draggable]="false"
+<p-dialog header="Gestión de proveedores." [(visible)]="proveDialog" [modal]="true" [draggable]="false"
     [resizable]="false" class="p-fluid">
-    <form [formGroup]="proveForm" (ngSubmit)="guardarProveedor()">
+    <form [formGroup]="proveForm" (ngSubmit)="saveProveedor()">
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <i class="pi pi-flag"></i>
