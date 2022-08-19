@@ -22,6 +22,7 @@ import { ResidenciaControllerService } from 'src/app/api/residenciaController.se
 import { ResidenciaDto } from 'src/app/model/residenciaDto';
 import { DatosTarjetaAllDTO } from 'src/app/model/datosTarjetaAllDTO';
 import { TarjetaControllerService } from 'src/app/api/tarjetaController.service';
+import { convertPropertyBindingBuiltins } from '@angular/compiler/src/compiler_util/expression_converter';
 
 @Component({
   selector: 'app-formulario-tarjeta',
@@ -280,6 +281,11 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
       summary: 'Advertencia',
       detail: 'Advertencia!: ' + msg,
     });
+  }
+
+  //convertir a mayusculas en cada tecla presionada
+  convertirMayusculasKeyPress(event){
+    event.target.value = event.target.value.toUpperCase();
   }
 
   idPerPrin: number = 0;
