@@ -59,7 +59,7 @@
                         <td>{{empleados. usuario.email}}</td>
                         <td>{{empleados. usuario.sexo}}</td>
                         <td>{{empleados. cargoEmple}}</td>
-                        <td>{{empleados.usuario}}</td>
+                        <td>{{empleados.usuario.roles[0].rolNombre}}</td>
                         <td><button pButton pRipple type="button" 
                             class="p-button-raised p-button-text p-button-danger" icon="pi pi-trash"
                             (click)="borrarEmple(empleados.idEmpleado)"></button>
