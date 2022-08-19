@@ -24,7 +24,7 @@
   <div class="col-12 md:col-3">
     <span class="p-float-label">
       <input autocomplete="off" class="p-inputtext-sm" type="text" id="nombresApellidos" pInputText pInputText
-        [(ngModel)]="persona.nombresApellidos" formControlName="nombresApellidos" (keypress)="validarLetras($event)">
+        [(ngModel)]="persona.nombresApellidos" formControlName="nombresApellidos" (keypress)="validarLetras($event)" disabled>
       <label class="p-inputtext-sm" for="inputtext">NOMBRES Y APELLIDOS</label>
     </span>
     <small class="p-error" *ngIf="submitted && !persona.nombresApellidos">SON REQUERIDOS.</small>
@@ -85,8 +85,8 @@
   </div>
   <div class="col-12 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="establecimiento" pInputText
-        [(ngModel)]="antecPersonalesObj.clinicos" formControlName="clinico" (keypress)="validacionAlfanumerica($event)">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="clinicos" pInputText
+        [(ngModel)]="antecPersonalesObj.clinicos" formControlName="clinico" (keypress)="validacionAlfanumerica($event)" maxlength="500">
       <label class="p-inputtext-sm" for="inputtext">CLÍNICOS</label>
     </span>
     <small class="p-error" *ngIf="submitted && !antecPersonalesObj.clinicos">ES REQUERIDO.</small>
@@ -94,8 +94,8 @@
 
   <div class="col-12 mt-3 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="establecimiento" pInputText
-        [(ngModel)]="antecPersonalesObj.quirurgicos" formControlName="quirurgico"
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="quirurgicos" pInputText
+        [(ngModel)]="antecPersonalesObj.quirurgicos" formControlName="quirurgico" maxlength="500"
         (keypress)="validacionAlfanumerica($event)">
       <label class="p-inputtext-sm" for="inputtext">QUIRÚRGICOS</label>
     </span>
@@ -160,7 +160,6 @@
       </p-checkbox>
       <label for="ch">ENF. INFECCIOSA</label>
     </div>
-    {{antecFamiliaresObj.enfInfecciosas | json}}
   </div>
   <div class="col-12 md:col-2">
     <div class="field-checkbox">
@@ -187,7 +186,7 @@
   </div>
   <div class="col-12 mt-3 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="familiares" pInputText
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="familiares" pInputText maxlength="500"
         [(ngModel)]="antecFamiliaresObj.familiares" formControlName="desFam"
         (keypress)="validacionAlfanumerica($event)">
       <label class="p-inputtext-sm" for="inputtext">FAMILIARES</label>
@@ -407,8 +406,8 @@
 
   <div class="col-12 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
-        [(ngModel)]="revOrgSistemObj.descripcion" [ngModelOptions]="{standalone: true}"
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="descripcion" pInputText maxlength="500"
+        [(ngModel)]="revOrgSistemObj.descripcion" formControlName = "descripcion"
         (keypress)="validacionAlfanumerica($event)">
       <label class="p-inputtext-sm" for="inputtext">OBSERVACIONES</label>
     </span>
@@ -611,7 +610,7 @@
   </div>
   <div class="col-12 md:col-5">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="descripcionDiagnosticos" pInputText
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="descripcionDiagnosticos" pInputText maxlength="255"
         [(ngModel)]="diagnosticoObj.descripcionDiagnostico" formControlName="descDiag"
         (keypress)="validacionAlfanumerica($event)">
       <label class="p-inputtext-sm" for="inputtext">DESCRIPCIÓN DIAGNOSTICO</label>
@@ -620,8 +619,8 @@
   </div>
   <div class="col-12 md:col-1">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="cie" pInputText [(ngModel)]="diagnosticoObj.cie"
-        formControlName="cie" (keypress)="validacionsoloLetrasNumeros($event)">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="cie" pInputText [(ngModel)]="diagnosticoObj.cie" maxlength="50"
+        formControlName="cie" (keypress)="validacionsoloLetrasNumeros($event)" >
       <label class="p-inputtext-sm" for="inputtext">CIE</label>
     </span>
     <small class="p-error" *ngIf="submitted && !diagnosticoObj.cie">ES REQUERIDO.</small>
@@ -647,8 +646,8 @@
 <div class="p-fluid grid ml-1 mr-1" [formGroup]="PresuntivoDef">
   <div class="col-12 mt-3 md:col-5">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="descripcionDiagnosticos" pInputText
-        [(ngModel)]="diagnosticoObj.descripcionPreDef" formControlName="DescPreDef"
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="descripcionpreDef" pInputText
+        [(ngModel)]="diagnosticoObj.descripcionPreDef" formControlName="DescPreDef" maxlength="255"
         (keypress)="validacionAlfanumerica($event)">
       <label class="p-inputtext-sm" for="inputtext">PRE=PRESUNTIVO / DEF=DEFINITIVO</label>
     </span>
@@ -656,7 +655,7 @@
   </div>
   <div class="col-12 mt-3 md:col-1">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="cie" pInputText
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="cie2" pInputText maxlength="50"
         [(ngModel)]="diagnosticoObj.descripcionPreDefCie" formControlName="DescPreDefCie"
         (keypress)="validacionsoloLetrasNumeros($event)">
       <label class="p-inputtext-sm" for="inputtext">CIE</label>
@@ -691,49 +690,49 @@
   </div>
   <div class="col-12 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="m" pInputText maxlength="500"
         [(ngModel)]="planTratamientoObj.m" (keypress)="validacionAlfanumerica($event)">
       <label class="p-inputtext-sm" for="inputtext">M:</label>
     </span>
   </div>
   <div class="col-12 mt-1 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="i" pInputText maxlength="500"
         [(ngModel)]="planTratamientoObj.i" (keypress)="validacionAlfanumerica($event)">
       <label class="p-inputtext-sm" for="inputtext">I:</label>
     </span>
   </div>
   <div class="col-12 mt-1 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
-        [(ngModel)]="planTratamientoObj.l" (keypress)="validacionAlfanumerica($event)">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="l" pInputText maxlength="500"
+        [(ngModel)]="planTratamientoObj.l" (keypress)="validacionAlfanumerica($event)" >
       <label class="p-inputtext-sm" for="inputtext">L:</label>
     </span>
   </div>
   <div class="col-12 mt-1 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
-        [(ngModel)]="planTratamientoObj.r" (keypress)="validacionAlfanumerica($event)">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="r" pInputText maxlength="500"
+        [(ngModel)]="planTratamientoObj.r" (keypress)="validacionAlfanumerica($event)" >
       <label class="p-inputtext-sm" for="inputtext">R:</label>
     </span>
   </div>
   <div class="col-12 mt-1 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
-        [(ngModel)]="planTratamientoObj.c" (keypress)="validacionAlfanumerica($event)">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="c" pInputText maxlength="500"
+        [(ngModel)]="planTratamientoObj.c" (keypress)="validacionAlfanumerica($event)" >
       <label class="p-inputtext-sm" for="inputtext">C:</label>
     </span>
   </div>
   <div class="col-12 mt-1 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
-        [(ngModel)]="planTratamientoObj.t" (keypress)="validacionAlfanumerica($event)">
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="t" pInputText maxlength="500"
+        [(ngModel)]="planTratamientoObj.t" (keypress)="validacionAlfanumerica($event)" >
       <label class="p-inputtext-sm" for="inputtext">T:</label>
     </span>
   </div>
   <div class="col-12 mt-1 md:col-12">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" id="observaciones" pInputText
+      <input class="p-inputtext-sm" autocomplete="off" type="text" id="d" pInputText maxlength="500"
         [(ngModel)]="planTratamientoObj.o" (keypress)="validacionAlfanumerica($event)">
       <label class="p-inputtext-sm" for="inputtext">O:</label>
     </span>
@@ -752,8 +751,8 @@
   </div>
   <div class="col-12 md:col-3">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" pInputText
-        [(ngModel)]="ConsultaExternaObj.nombresProfesional" formControlName="nomProf"
+      <input class="p-inputtext-sm" autocomplete="off" type="text" pInputText id="nombreProfesional"
+        [(ngModel)]="ConsultaExternaObj.nombresProfesional" formControlName="nomProf" maxlength="60"
         (keypress)="validarLetras($event)">
       <label class="p-inputtext-sm" for="inputtext">NOMBRE DEL PROFESIONAL</label>
     </span>
@@ -761,9 +760,9 @@
   </div>
   <div class="col-12 md:col-3">
     <span class="p-float-label">
-      <input class="p-inputtext-sm" autocomplete="off" type="text" pInputText
+      <input class="p-inputtext-sm" autocomplete="off" type="text" pInputText id="duracionConsulta"
         [(ngModel)]="ConsultaExternaObj.duracionConsulta" formControlName="DuracionConsult"
-        (keypress)="validacionAlfanumerica($event)">
+        (keypress)="validacionAlfanumerica($event)" maxlength="20">
       <label class="p-inputtext-sm" for="inputtext">DURACIÓN DE LA CONSULTA</label>
     </span>
     <small class="p-error" *ngIf="submitted && !ConsultaExternaObj.duracionConsulta">ES REQUERIDO.</small>
@@ -801,7 +800,7 @@
       <tr>
         <th pResizableColumn>
           <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
-            NOMBRES
+            NOMBRES PACIENTE
           </div>
         </th>
         <th pResizableColumn style="width:70px">
@@ -816,7 +815,7 @@
         </th>
         <th pResizableColumn>
           <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
-            NOMBRE DEL PROFESIONAL
+            ATENDIDO POR
           </div>
         </th>
         <th pResizableColumn style="width:60px">
