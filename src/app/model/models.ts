@@ -36,6 +36,7 @@ export * from './informacionTratamientoDTO';
 export * from './jwtDto';
 export * from './listaFamiliaresDTO';
 export * from './loginUsuario';
+export * from './medicamentos';
 export * from './modelAndView';
 export * from './nuevoUsuario';
 export * from './planTratamiento';

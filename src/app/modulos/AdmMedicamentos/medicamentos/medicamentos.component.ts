@@ -152,6 +152,7 @@ export class MedicamentosComponent implements OnInit {
   }
 
   buscarMedicamento() {//______________________________________________________________NO BORRRAR ____________________________________________________________________________________________________xd
+    this.medicamentos=[]
     this.medicamentoService.listUsingGET2().subscribe((res) => {
       for (let datos of res) {
         console.log(datos, this.idpersona, datos.usuario.id);

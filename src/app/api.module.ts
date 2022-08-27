@@ -18,6 +18,7 @@ import { FacturaControllerService } from './api/facturaController.service';
 import { FamiliaresControllerService } from './api/familiaresController.service';
 import { FaramaciaControllerService } from './api/faramaciaController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
+import { MedicamentosControllerService } from './api/medicamentosController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
@@ -49,6 +50,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     FamiliaresControllerService,
     FaramaciaControllerService,
     InformacionTratamientoControllerService,
+    MedicamentosControllerService,
     PlanTratamientoControllerService,
     ProductoControllerService,
     ProveedorControllerService,

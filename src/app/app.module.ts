@@ -113,6 +113,7 @@ import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadC
 import { ResidenciaControllerService } from './api/residenciaController.service';
 import { ConsentimientoControllerService } from './api/consentimientoController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
+import { MedicamentosControllerService } from './api/medicamentosController.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -223,6 +224,7 @@ import { InformacionTratamientoControllerService } from './api/informacionTratam
     ExamFisicoRegionalControllerService,
     DiagnosticoControllerService,
     PlanTratamientoControllerService,
+    MedicamentosControllerService,
     TarjetaControllerService,
     FamiliaresControllerService,
     TarjetaEspecialidadControllerService,

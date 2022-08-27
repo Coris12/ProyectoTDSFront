@@ -1,4 +1,5 @@
 <app-header></app-header>
+<p-toast></p-toast>
 <div class="animated fadeIn mt-4">
     <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
@@ -12,19 +13,19 @@
                 <div class="grid p-fluid">
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText>
                             <label for="inputtext">Cedula</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText>
                             <label for="inputtext">Nombres</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="sexo"  pInputText>
                             <label for="inputtext">Sexo</label>
                         </span>
                     </div>
@@ -41,7 +42,7 @@
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
-                        <button pButton type="button" label="Buscar"></button>
+                        <button pButton type="button" label="Buscar" (click)="buscarPersona2();"></button>
                     </div>
                 </div>
                 <br>
@@ -67,7 +68,7 @@
                     </div>
                     <div class="col-8 flex align-items-center justify-content-center">
                         <div class="p-fluid">
-                            <p-table #dt [paginator]="true" responsiveLayout="scroll" [rows]="10"
+                            <p-table #dt [value]="medicamentos" [paginator]="true" responsiveLayout="scroll" [rows]="10"
                                 styleClass="p-datatable-gridlines">
 
                                 <ng-template pTemplate="header">
@@ -79,9 +80,13 @@
                                         <th>FUN</th>
                                     </tr>
                                 </ng-template>
-                                <ng-template pTemplate="body" let-empleados>
+                                <ng-template pTemplate="body" let-medi>
                                     <tr>
-
+                                        <td>{{medi.nombreMedicamento}}</td>
+                                        <td>{{medi.fecha}}</td>
+                                        <td>{{medi.hora}}</td>
+                                        <td>{{medi.inicialesRespon}}</td>
+                                        <td>{{medi.abreviaturaFun}}</td>
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="summary">
@@ -103,7 +108,6 @@
 </div>
 <p-dialog header="2.Administraciòn" [(visible)]="dialogo" [modal]="true" [style]="{width: '50vw', height: '30vw'}"
     [draggable]="false" [resizable]="false" class="p-fluid">
-    <form [formGroup]="medicaForm" (ngSubmit)="saveMedicamento()">
         <p-toolbar>
             <h6>INI= INICIALES DEL RESPONSABLE</h6>
             <br>
@@ -113,37 +117,37 @@
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Nombre del medicamento</label>
-                <input type="text" pInputText placeholder="nombre medicamento">
+                <input type="text" pInputText placeholder="nombre medicamento" [(ngModel)]="Medi.nombreMedicamento">
             </span>
         </div>
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Dia y Mes</label>
-                <input type="date" pInputText placeholder="fecha">
+                <input type="date" pInputText placeholder="fecha" [(ngModel)]="Medi.fecha">
             </span>
         </div>
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Hora</label>
-                <input type="time" pInputText placeholder="hora">
+                <input type="time" pInputText placeholder="hora" [(ngModel)]="Medi.hora">
             </span>
         </div>
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">INI</label>
-                <input type="text" pInputText placeholder="INI">
+                <input type="text" pInputText placeholder="INI" [(ngModel)]="Medi.inicialesRespon">
             </span>
         </div>
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">FUN</label>
-                <input type="text" pInputText placeholder="FUN">
+                <input type="text" pInputText placeholder="FUN" [(ngModel)]="Medi.abreviaturaFun">
             </span>
         </div>
-    </form>
+    
 
     <div style="text-align:right">
-        <p-button type="submit" icon="pi pi-check" label="Guardar" styleClass="p-button-text"></p-button>
+        <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="cargarPersona()" styleClass="p-button-text"></p-button>
     </div>
 
 </p-dialog>

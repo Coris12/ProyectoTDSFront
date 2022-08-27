@@ -68,7 +68,7 @@ export class ProveedorComponent implements OnInit {
   updateProveedor(idProveedor: number) {
     //console.log(idProveedor);
 
-    this.proveedorController.getByIdUsingGET3(idProveedor)
+    this.proveedorController.getByIdUsingGET4(idProveedor)
       .subscribe(prove => {
         //console.log(prove.id_proveedor, prove.id_proveedor)
         this.proveForm.setValue({

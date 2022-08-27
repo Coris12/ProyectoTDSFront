@@ -137,7 +137,7 @@ export class ProductoComponent implements OnInit {
   }
 
   updateProducto(idProducto: number) {
-    this.productoController.getByIdUsingGET2(idProducto)
+    this.productoController.getByIdUsingGET3(idProducto)
       .subscribe(produc => {
         console.log(produc.idProducto)
         this.productoForm.setValue({
@@ -248,7 +248,7 @@ export class ProductoComponent implements OnInit {
 
   //metodo cargar proveedores
   cargarProveedores(): void {
-    this.proveedorController.listUsingGET3().subscribe(
+    this.proveedorController.listUsingGET4().subscribe(
       data => {
         this.proveedores = data;
       },
