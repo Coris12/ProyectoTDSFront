@@ -30,7 +30,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ConsultaExternaControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -61,7 +61,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * comprobarHistoriaClinica
-     *
+     * 
      * @param historiaClinica historiaClinica
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -110,7 +110,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * generarPdf
-     *
+     * 
      * @param idConExt idConExt
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -159,7 +159,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * getConsultaExternaById
-     *
+     * 
      * @param idConExt idConExt
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -208,7 +208,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * getConsultaExterna
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -249,7 +249,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * getMaxHistoriaClinica
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -290,7 +290,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * saveConsultaExterna
-     *
+     * 
      * @param body consultaExterna
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -342,7 +342,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * updateAntecedentesFamiliares
-     *
+     * 
      * @param cancer cancer
      * @param cardiopatia cardiopatia
      * @param diabetes diabetes
@@ -446,7 +446,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * updateAntecedentesPersonales
-     *
+     * 
      * @param clinicos clinicos
      * @param idConExt idConExt
      * @param quirurgicos quirurgicos
@@ -505,7 +505,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * updateConsultaExterna
-     *
+     * 
      * @param enfActual enfActual
      * @param fecha fecha
      * @param durConsulta durConsulta
@@ -590,7 +590,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * updateDiagnostico
-     *
+     * 
      * @param cie cie
      * @param desDiag desDiag
      * @param desPreDef desPreDef
@@ -669,7 +669,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * updateEstadoConsultaExterna
-     *
+     * 
      * @param idConExt idConExt
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -718,7 +718,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * updateExamenFisicoRegional
-     *
+     * 
      * @param abdomen abdomen
      * @param cabeza cabeza
      * @param cuello cuello
@@ -802,7 +802,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * updateRevisionOrganosSentido
-     *
+     * 
      * @param cardiovascular cardiovascular
      * @param descripcion descripcion
      * @param digestivo digestivo
@@ -906,7 +906,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * updateSignosVitales
-     *
+     * 
      * @param fechaMed fechaMed
      * @param freResp freResp
      * @param idConExt idConExt
@@ -993,7 +993,7 @@ export class ConsultaExternaControllerService {
 
     /**
      * updateTratamiento
-     *
+     * 
      * @param c c
      * @param i i
      * @param idConExt idConExt

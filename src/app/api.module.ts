@@ -8,6 +8,7 @@ import { AntecPersonalesControllerService } from './api/antecPersonalesControlle
 import { AuthControllerService } from './api/authController.service';
 import { BasicErrorControllerService } from './api/basicErrorController.service';
 import { ClienteControllerService } from './api/clienteController.service';
+import { ConsentimientoControllerService } from './api/consentimientoController.service';
 import { ConsultaExternaControllerService } from './api/consultaExternaController.service';
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
@@ -16,6 +17,7 @@ import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalCon
 import { FacturaControllerService } from './api/facturaController.service';
 import { FamiliaresControllerService } from './api/familiaresController.service';
 import { FaramaciaControllerService } from './api/faramaciaController.service';
+import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
@@ -37,6 +39,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     AuthControllerService,
     BasicErrorControllerService,
     ClienteControllerService,
+    ConsentimientoControllerService,
     ConsultaExternaControllerService,
     CuerpoFacturaControllerService,
     DiagnosticoControllerService,
@@ -45,6 +48,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     FacturaControllerService,
     FamiliaresControllerService,
     FaramaciaControllerService,
+    InformacionTratamientoControllerService,
     PlanTratamientoControllerService,
     ProductoControllerService,
     ProveedorControllerService,

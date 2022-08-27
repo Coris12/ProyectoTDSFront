@@ -30,7 +30,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class FamiliaresControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -61,7 +61,7 @@ export class FamiliaresControllerService {
 
     /**
      * deletefamiliares
-     *
+     * 
      * @param fId fId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -113,7 +113,7 @@ export class FamiliaresControllerService {
 
     /**
      * listfamiliares
-     *
+     * 
      * @param usuarioId usuarioId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -165,7 +165,7 @@ export class FamiliaresControllerService {
 
     /**
      * listfamiliaresusuario
-     *
+     * 
      * @param ui ui
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -217,7 +217,7 @@ export class FamiliaresControllerService {
 
     /**
      * savefamiliares
-     *
+     * 
      * @param body familiares
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -269,7 +269,7 @@ export class FamiliaresControllerService {
 
     /**
      * updatefamiliares
-     *
+     * 
      * @param body familiaresDTO
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.

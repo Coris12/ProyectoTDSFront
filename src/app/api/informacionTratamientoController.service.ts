@@ -17,17 +17,18 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { Farmacia } from '../model/farmacia';
+import { GenericResponseListInformacionTratamientoDTO } from '../model/genericResponseListInformacionTratamientoDTO';
 import { GenericResponsestring } from '../model/genericResponsestring';
+import { InformacionTratamientoDTO } from '../model/informacionTratamientoDTO';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class FaramaciaControllerService {
+export class InformacionTratamientoControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -57,19 +58,68 @@ export class FaramaciaControllerService {
 
 
     /**
-     * actualizarFarmacia
-     * 
-     * @param body farmacia
+     * getAllInformacionTratamientoById
+     *
+     * @param idConsentimientoFk idConsentimientoFk
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public actualizarFarmaciaUsingPUT(body: Farmacia, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public actualizarFarmaciaUsingPUT(body: Farmacia, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public actualizarFarmaciaUsingPUT(body: Farmacia, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public actualizarFarmaciaUsingPUT(body: Farmacia, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getAllInformacionTratamientoByIdUsingGET(idConsentimientoFk?: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponseListInformacionTratamientoDTO>;
+    public getAllInformacionTratamientoByIdUsingGET(idConsentimientoFk?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseListInformacionTratamientoDTO>>;
+    public getAllInformacionTratamientoByIdUsingGET(idConsentimientoFk?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseListInformacionTratamientoDTO>>;
+    public getAllInformacionTratamientoByIdUsingGET(idConsentimientoFk?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idConsentimientoFk !== undefined && idConsentimientoFk !== null) {
+            queryParameters = queryParameters.set('idConsentimientoFk', <any>idConsentimientoFk);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GenericResponseListInformacionTratamientoDTO>('get',`${this.basePath}/informacionTratamiento/getAllInformacionTratamientoById`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * saveInformacionTratamiento
+     *
+     * @param body informacionTratamiento
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public saveInformacionTratamientoUsingPOST(body: InformacionTratamientoDTO, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public saveInformacionTratamientoUsingPOST(body: InformacionTratamientoDTO, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public saveInformacionTratamientoUsingPOST(body: InformacionTratamientoDTO, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public saveInformacionTratamientoUsingPOST(body: InformacionTratamientoDTO, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling actualizarFarmaciaUsingPUT.');
+            throw new Error('Required parameter body was null or undefined when calling saveInformacionTratamientoUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -97,7 +147,7 @@ export class FaramaciaControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<GenericResponsestring>('put',`${this.basePath}/farmacia/update-farmacia`,
+        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/informacionTratamiento/saveInformacionTratamiento`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -109,19 +159,19 @@ export class FaramaciaControllerService {
     }
 
     /**
-     * saveFarmacia
-     * 
-     * @param body farmacia
+     * updateConsentimientoTratamiento
+     *
+     * @param body consentimientoTratamientoDto
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveFarmaciaUsingPOST(body: Farmacia, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public saveFarmaciaUsingPOST(body: Farmacia, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public saveFarmaciaUsingPOST(body: Farmacia, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public saveFarmaciaUsingPOST(body: Farmacia, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateConsentimientoTratamientoUsingPUT(body: InformacionTratamientoDTO, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public updateConsentimientoTratamientoUsingPUT(body: InformacionTratamientoDTO, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public updateConsentimientoTratamientoUsingPUT(body: InformacionTratamientoDTO, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public updateConsentimientoTratamientoUsingPUT(body: InformacionTratamientoDTO, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling saveFarmaciaUsingPOST.');
+            throw new Error('Required parameter body was null or undefined when calling updateConsentimientoTratamientoUsingPUT.');
         }
 
         let headers = this.defaultHeaders;
@@ -149,7 +199,7 @@ export class FaramaciaControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/farmacia/saveFarmacia`,
+        return this.httpClient.request<GenericResponsestring>('put',`${this.basePath}/informacionTratamiento/updateConsentimientoTratamiento`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

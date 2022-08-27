@@ -20,7 +20,7 @@ export class ProveedorComponent implements OnInit {
     nombre_comercial_pro: new FormControl(null, [Validators.nullValidator, Validators.required]),
     usuario: new FormControl(null, [Validators.nullValidator, Validators.required])
   });
- 
+
 
   //variables
   proveedor: Proveedor[] = [];
@@ -64,17 +64,17 @@ export class ProveedorComponent implements OnInit {
       );
     }, 100);
   }
-  
+
   updateProveedor(idProveedor: number) {
     //console.log(idProveedor);
-    
+
     this.proveedorController.getByIdUsingGET3(idProveedor)
       .subscribe(prove => {
         //console.log(prove.id_proveedor, prove.id_proveedor)
         this.proveForm.setValue({
-          id_proveedor: prove.id_proveedor,
+          id_proveedor: prove.idProveedor,
           estado: prove.estado,
-          nombre_comercial_pro: prove.nombre_comercial_pro,
+          nombre_comercial_pro: prove.nombreComercialPro,
           usuario: prove.usuario,
         });
       });

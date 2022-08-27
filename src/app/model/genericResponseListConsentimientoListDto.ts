@@ -9,11 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Usuario } from './usuario';
+import { ConsentimientoListDto } from './consentimientoListDto';
 
-export interface Proveedor { 
-    estado?: number;
-    idProveedor?: number;
-    nombreComercialPro?: string;
-    usuario?: Usuario;
+export interface GenericResponseListConsentimientoListDto { 
+    message?: string;
+    object?: Array<ConsentimientoListDto>;
+    status?: number;
 }

@@ -29,7 +29,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class TarjetaControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -60,7 +60,7 @@ export class TarjetaControllerService {
 
     /**
      * Crea la tarjeta
-     *
+     * 
      * @param body tarjeta
      * @param identificacion identificacion
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -123,7 +123,7 @@ export class TarjetaControllerService {
 
     /**
      * Eliminado logico del tarjeta
-     *
+     * 
      * @param idTarjeta id_tarjeta
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -175,7 +175,7 @@ export class TarjetaControllerService {
 
     /**
      * Detalles de las tarjetas
-     *
+     * 
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -221,7 +221,7 @@ export class TarjetaControllerService {
 
     /**
      * Muestra una lista de tarjetas
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -262,7 +262,7 @@ export class TarjetaControllerService {
 
     /**
      * Lista de tarjetas con estado 1
-     *
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -303,7 +303,7 @@ export class TarjetaControllerService {
 
     /**
      * searchDateTarjetaUser
-     *
+     * 
      * @param identificacion identificacion
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -355,7 +355,7 @@ export class TarjetaControllerService {
 
     /**
      * updateDatosTarjetaUser
-     *
+     * 
      * @param body datosTarjetaAllDTO
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -407,7 +407,7 @@ export class TarjetaControllerService {
 
     /**
      * Actualizacion de la Tarjeta
-     *
+     * 
      * @param body tarjeta
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.

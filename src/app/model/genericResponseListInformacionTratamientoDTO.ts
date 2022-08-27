@@ -9,11 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Usuario } from './usuario';
+import { InformacionTratamientoDTO } from './informacionTratamientoDTO';
 
-export interface Proveedor { 
-    estado?: number;
-    idProveedor?: number;
-    nombreComercialPro?: string;
-    usuario?: Usuario;
+export interface GenericResponseListInformacionTratamientoDTO { 
+    message?: string;
+    object?: Array<InformacionTratamientoDTO>;
+    status?: number;
 }

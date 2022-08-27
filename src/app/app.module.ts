@@ -111,7 +111,8 @@ import { FamiliaresControllerService } from './api/familiaresController.service'
 import { TarjetaControllerService } from './api/tarjetaController.service';
 import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadController.service';
 import { ResidenciaControllerService } from './api/residenciaController.service';
-
+import { ConsentimientoControllerService } from './api/consentimientoController.service';
+import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -141,6 +142,7 @@ import { ResidenciaControllerService } from './api/residenciaController.service'
     LectorComponent,
     ListaTarjetasComponent,
     FormularioTarjetaComponent,
+
 
   ],
   imports: [
@@ -224,7 +226,9 @@ import { ResidenciaControllerService } from './api/residenciaController.service'
     TarjetaControllerService,
     FamiliaresControllerService,
     TarjetaEspecialidadControllerService,
-    ResidenciaControllerService
+    ResidenciaControllerService,
+    ConsentimientoControllerService,
+    InformacionTratamientoControllerService
   ],
   bootstrap: [AppComponent]
 })
