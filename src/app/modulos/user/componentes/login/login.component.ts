@@ -43,6 +43,9 @@ export class LoginComponent implements OnInit {
         this.tokenService.setToken(data.token);
         this.messageService.add({severity:'success', summary: 'User', detail: 'Usewr user', life: 3000});
         this.router.navigate(['/']);
+        localStorage.setItem('usuario', this.nombreUsuario);
+        console.log(this.nombreUsuario);
+        
       },
       err => {
         this.errMsj = err.error.message;
