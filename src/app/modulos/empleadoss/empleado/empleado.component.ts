@@ -17,7 +17,6 @@ export class EmpleadoComponent implements OnInit {
   public empleForm = new FormGroup({
     idEmpleado: new FormControl(null),
     estado: new FormControl(null),
-    farmacia: new FormControl(null, [Validators.nullValidator, Validators.required]),
     cargoEmple: new FormControl(null, [Validators.nullValidator, Validators.required]),
     usuario: new FormControl(null, [Validators.nullValidator, Validators.required])
   });
@@ -72,6 +71,7 @@ export class EmpleadoComponent implements OnInit {
         this.empleForm.setValue({
           idEmpleado:emple.idEmpleado,
           cargoEmple:emple.cargoEmple,
+          estado:emple.estado,
           usuario:emple.usuario
           
         });
