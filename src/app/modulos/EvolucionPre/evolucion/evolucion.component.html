@@ -1,5 +1,5 @@
 <app-header></app-header>
-
+<p-toast></p-toast>
 <div class="animated fadeIn mt-4">
     <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
@@ -12,19 +12,19 @@
                 <div class="grid p-fluid">
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText>
                             <label for="inputtext">Cedula</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText>
                             <label for="inputtext">Nombres</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText>
                             <label for="inputtext">Sexo</label>
                         </span>
                     </div>
@@ -41,18 +41,14 @@
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
-                        <button pButton type="button" label="Buscar"></button>
+                        <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
                     </div>
                 </div>
             </div>
         </div>
-       
-     
         <div class="col-12">
-
             <div class="row">
-                <!--<div class="col-6">// era esto ?siya est-->
-             <div class="col-6" >
+                <div class="col-6">
                     <p-card header="1.Evolución" [style]="{width: '360px'}" styleClass="p-card-shadow">
                         <ng-template pTemplate="header">
                         </ng-template>
@@ -60,62 +56,47 @@
                             <div class="form-group mt-2">
                                 <span class="p-input-icon-left">
                                     <label for="requisitos ">Fecha</label>
-                                    <input type="date" pInputText placeholder="Fecha">
+                                    <input type="date" pInputText placeholder="Fecha" [(ngModel)]="Evolu.fecha">
                                 </span>
                             </div>
                             <div class="form-group mt-2">
                                 <span class="p-input-icon-left">
                                     <label for="requisitos ">Hora</label>
-                                    <input type="time" pInputText placeholder="Hora">
+                                    <input type="time" pInputText placeholder="Hora" [(ngModel)]="Evolu.hora">
                                 </span>
                             </div>
                             <div class="form-group mt-2">
-                                <span class="p-float-label">
-                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
-                                    <label for="float-input">Evolución</label>
-                                </span>
+                                <label for="float-input">Evolución</label>
+                                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Evolu.evolucion"></textarea>
+
+
                             </div>
-            
                         </div>
-                        <ng-template pTemplate="footer">
-                            <p-button label="Save" icon="pi pi-check"></p-button>
-                            <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
-                                [style]="{'margin-left': '.5em'}"></p-button>
-                        </ng-template>
                     </p-card>
                 </div>
-                <div class="col-4" >
+                <div class="col-4">
                     <p-card header="2.Prescripciones" [style]="{width: '360px'}" styleClass="p-card-shadow">
-                        <h6></h6>
                         <ng-template pTemplate="header">
                         </ng-template>
                         <div class="grid p-fluid">
                             <div class="form-group mt-2">
-                                <span class="p-input-icon-left">
-                                    <label for="requisitos ">Farmacoterapia e indicaciones</label>
-                                    <h6>(PARA ENFERMERIA Y OTRO PERSONAL)</h6>
-                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
-                                </span>
+                                <label for="requisitos ">Farmacoterapia e indicaciones (PARA ENFERMERIA Y OTRO
+                                    PERSONAL)</label>
+                                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Evolu.indicaciones"></textarea>
                             </div>
                             <div class="form-group mt-2">
-                                <span class="p-float-label">
-                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
-                                    <label for="requisitos ">Administrar,Farmacos,Insumos</label>
-                                </span>
+                                <label for="requisitos ">Administrar,Farmacos,Insumos</label>
+                                <textarea rows="5" cols="30" pInputTextarea></textarea>
                             </div>
-        
                         </div>
-                        <ng-template pTemplate="footer">
-                            <p-button label="Save" icon="pi pi-check"></p-button>
-                            <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
-                                [style]="{'margin-left': '.5em'}"></p-button>
-                        </ng-template>
                     </p-card>
-
                 </div>
             </div>
         </div>
-
+        <p-button label="Save" (click)="cargarPersona()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
+        </p-button>
+        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.6em'}">
+        </p-button>
 
     </div>
 </div>

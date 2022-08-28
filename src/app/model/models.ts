@@ -11,6 +11,7 @@ export * from './datosTarjetaAllDTO';
 export * from './datosTarjetaDto';
 export * from './diagnosticos';
 export * from './empleado';
+export * from './evolucion';
 export * from './examFisicoRegional';
 export * from './factura';
 export * from './familiares';
