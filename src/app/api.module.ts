@@ -18,6 +18,7 @@ import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalCon
 import { FacturaControllerService } from './api/facturaController.service';
 import { FamiliaresControllerService } from './api/familiaresController.service';
 import { FaramaciaControllerService } from './api/faramaciaController.service';
+import { FormularioControllerService } from './api/formularioController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
 import { MedicamentosControllerService } from './api/medicamentosController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
@@ -51,6 +52,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     FacturaControllerService,
     FamiliaresControllerService,
     FaramaciaControllerService,
+    FormularioControllerService,
     InformacionTratamientoControllerService,
     MedicamentosControllerService,
     PlanTratamientoControllerService,
