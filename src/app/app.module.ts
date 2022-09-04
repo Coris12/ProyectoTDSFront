@@ -114,6 +114,7 @@ import { ResidenciaControllerService } from './api/residenciaController.service'
 import { ConsentimientoControllerService } from './api/consentimientoController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
 import { MedicamentosControllerService } from './api/medicamentosController.service';
+import { EvolucionControllerService } from './api/evolucionController.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -230,6 +231,7 @@ import { MedicamentosControllerService } from './api/medicamentosController.serv
     TarjetaEspecialidadControllerService,
     ResidenciaControllerService,
     ConsentimientoControllerService,
+    EvolucionControllerService,
     InformacionTratamientoControllerService
   ],
   bootstrap: [AppComponent]

@@ -13,6 +13,7 @@ import { ConsultaExternaControllerService } from './api/consultaExternaControlle
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
 import { EmpleadoControllerService } from './api/empleadoController.service';
+import { EvolucionControllerService } from './api/evolucionController.service';
 import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalController.service';
 import { FacturaControllerService } from './api/facturaController.service';
 import { FamiliaresControllerService } from './api/familiaresController.service';
@@ -45,6 +46,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     CuerpoFacturaControllerService,
     DiagnosticoControllerService,
     EmpleadoControllerService,
+    EvolucionControllerService,
     ExamFisicoRegionalControllerService,
     FacturaControllerService,
     FamiliaresControllerService,

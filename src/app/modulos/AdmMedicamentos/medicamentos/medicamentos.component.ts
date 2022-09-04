@@ -5,6 +5,9 @@ import { AuthControllerService } from 'src/app/api/authController.service';
 import { MedicamentosControllerService } from 'src/app/api/medicamentosController.service';
 import { Medicamentos } from 'src/app/model/medicamentos';
 import { Usuario } from 'src/app/model/usuario';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+import { FacturaService } from 'src/app/servicioManual/factura.service';
 
 @Component({
   selector: 'app-medicamentos',
@@ -13,6 +16,7 @@ import { Usuario } from 'src/app/model/usuario';
 })
 export class MedicamentosComponent implements OnInit {
   dialogo: boolean;
+  dialogo56: boolean;
   medicamentos: any[] = [];
 
   usuario2: any
@@ -46,7 +50,8 @@ export class MedicamentosComponent implements OnInit {
   constructor(
     private medicamentoService: MedicamentosControllerService,
     private messageService: MessageService,
-    private persnaService: AuthControllerService
+    private persnaService: AuthControllerService,
+    private serviceGenPdf: FacturaService
   ) { }
 
   buscarPerIdent: string = "";
@@ -152,7 +157,7 @@ export class MedicamentosComponent implements OnInit {
   }
 
   buscarMedicamento() {//______________________________________________________________NO BORRRAR ____________________________________________________________________________________________________xd
-    this.medicamentos=[]
+    this.medicamentos = []
     this.medicamentoService.listUsingGET2().subscribe((res) => {
       for (let datos of res) {
         console.log(datos, this.idpersona, datos.usuario.id);
@@ -181,4 +186,79 @@ export class MedicamentosComponent implements OnInit {
     this.numHoja = ""
     this.numHistoria = ""
   }
+
+  imprimirPDFSinceButton(buscarcedula) {
+    this.serviceGenPdf.genePdfMedicamentos(buscarcedula).subscribe(data => {
+      if (data) {
+        //this.cargarConsultaExterna(idConsExterno);
+        this.descargarPdf(data);
+        //this.limpiarAll();
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+    this.vaciarbuscar();
+  }
+  createId(): string {
+    let id = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+  }
+
+  descargarPdf(pdfSrc: any) {
+    let pdf: any = pdfSrc;
+    let numAlea = this.createId();
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var url = window.URL.createObjectURL(blob);
+    if (this.Medi.fecha != null) {
+      let fech = this.Medi.fecha;
+      let nomPer = this.Medi.usuario.nombres;
+
+      let fecha = fech.getDate() + "/" + (fech.getMonth() + 1) + "/" + fech.getFullYear();
+      let hora = fech.getHours() + ":" + fech.getMinutes() + ":" + fech.getSeconds();
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'Medicamento_' + nomPer +  '-' + fecha + '-h' + hora + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    } else {
+      let nomPer = this.buscarnombre;
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'Medicamento_' + '-' + nomPer + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    }
+
+  }
+  ///WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWw
+
+  /*convetToPDF1() {
+    this.dialogo56 = true
+    var data = document.getElementById('medicamentospdf');
+    var width = document.getElementById('medicamentospdf').offsetWidth;
+    html2canvas(data, {
+      allowTaint: false, useCORS: false, logging: true,
+    }).then(canvas => {
+      var imgWidth = 140;
+      var imgHeight = canvas.height * imgWidth / canvas.width;// espera veo algo
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf.jsPDF('p', 'mm', 'a5');
+      var position = 5;
+      pdf.addImage(contentDataURL, 'JPEG', 5, position, imgWidth - 7, imgHeight)
+      pdf.save('Medicamentos' + '.pdf');
+      //for (let datos of this.Ordenlist) {
+      // pdf.save('Orden_Pedido_' + datos.secuencia + '.pdf');
+      //}
+
+    });
+  }*/
+
+  
+
 }

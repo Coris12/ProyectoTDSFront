@@ -9,15 +9,17 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Medicamentos } from './medicamentos';
 import { Usuario } from './usuario';
 
-export interface Medicamentos { 
-    abreviaturaFun?: string;
+export interface Evolucion { 
     establecimiento?: string;
+    evolucion?: string;
     fecha?: Date;
     hora?: string;
-    idMedicamentos?: number;
-    inicialesRespon?: string;
-    nombreMedicamento?: string;
+    idEvolucion?: number;
+    indicaciones?: string;
+    medicamento?: Medicamentos;
+    medicamentoAD?: string;
     usuario?: Usuario;
 }
