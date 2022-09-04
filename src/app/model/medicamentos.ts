@@ -13,6 +13,7 @@ import { Usuario } from './usuario';
 
 export interface Medicamentos { 
     abreviaturaFun?: string;
+    establecimiento?: string;
     fecha?: Date;
     hora?: string;
     idMedicamentos?: number;

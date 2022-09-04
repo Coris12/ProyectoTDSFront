@@ -16,4 +16,12 @@ export class FacturaService {
   genePdfConsultaExterna(idConExt: number){
     return this.http.get(this.baseUrl+'/consultaExterna/generarPdf?idConExt='+idConExt,{responseType:'blob' as 'json'});
   }
+
+  genePdfMedicamentos(iden: string){
+    return this.http.get(this.baseUrl+'/medicamentos/generarPdf?iden='+iden,{responseType:'blob' as 'json'});
+  }
+
+  genePdfEvolucion(iden: string){
+    return this.http.get(this.baseUrl+'/evoluciones/generarPdf?iden='+iden,{responseType:'blob' as 'json'});
+  }
 }

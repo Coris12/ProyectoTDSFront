@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { EvolucionControllerService } from 'src/app/api/evolucionController.service';
+import { MedicamentosControllerService } from 'src/app/api/medicamentosController.service';
 import { Evolucion } from 'src/app/model/evolucion';
+import { Medicamentos } from 'src/app/model/medicamentos';
+import { FacturaService } from 'src/app/servicioManual/factura.service';
 
 @Component({
   selector: 'app-evolucion',
@@ -13,8 +16,10 @@ export class EvolucionComponent implements OnInit {
 
   constructor(
     private persnaService: AuthControllerService,
-    private evolucionService:EvolucionControllerService,
-    private messageService:MessageService
+    private evolucionService: EvolucionControllerService,
+    private messageService: MessageService,
+    private medicaService: MedicamentosControllerService,
+    private serviceGenPdf:FacturaService
   ) { }
 
   //!variables
@@ -22,9 +27,16 @@ export class EvolucionComponent implements OnInit {
   buscarnombre: string
   sexo: string;
   idper: number
-  idEvo:any;
-  errMsj:String;
-  usuarioE:any;
+  idEvo: any;
+  errMsj: String;
+  establecimiento = "C.E.M. MEDIVALLE";
+
+  medi: string
+
+
+
+  usuarioE: any;
+  medicamentos: any = []
   //formulario
   Evolu: Evolucion = {
     idEvolucion: null,
@@ -32,7 +44,8 @@ export class EvolucionComponent implements OnInit {
     fecha: null,
     hora: null,
     indicaciones: null,
-    medicamento: null,
+    medicamentoAD: null,
+    establecimiento: null,
     usuario: null,
   }
 
@@ -56,6 +69,8 @@ export class EvolucionComponent implements OnInit {
     })
   }
 
+
+
   buscarPersona() {
     this.persnaService.listaUsingGET().subscribe((res) => {
       //console.log(this.buscarcedula, this.buscarnombre);
@@ -68,7 +83,6 @@ export class EvolucionComponent implements OnInit {
             this.idper = datos.id
 
             this.buscarcedula = datos.identificacion
-
             this.buscarnombre = datos.nombres
             this.sexo = datos.sexo
             break;
@@ -81,7 +95,6 @@ export class EvolucionComponent implements OnInit {
             this.idper = datos.id
 
             this.buscarcedula = datos.identificacion
-
             this.buscarnombre = datos.nombres
             this.sexo = datos.sexo
 
@@ -94,9 +107,10 @@ export class EvolucionComponent implements OnInit {
     })
   }
 
+
   saveEvolucion() {
     console.log(this.Evolu);
-
+    this.Evolu.establecimiento = this.establecimiento
     this.evolucionService.saveEvolucionUsingPOST(this.Evolu).subscribe(
       res => {
         if (res.object != null) {
@@ -113,6 +127,89 @@ export class EvolucionComponent implements OnInit {
         }
       })
   }
+  imprimirPDFSinceButton(buscarcedula) {
+    this.serviceGenPdf.genePdfEvolucion(buscarcedula).subscribe(data => {
+      if (data) {
+        //this.cargarConsultaExterna(idConsExterno);
+        this.descargarPdf(data);
+        //this.limpiarAll();
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+  }
+  createId(): string {
+    let id = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+  }
+
+  descargarPdf(pdfSrc: any) {
+    let pdf: any = pdfSrc;
+    let numAlea = this.createId();
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var url = window.URL.createObjectURL(blob);
+    if (this.Evolu.fecha != null) {
+      let fech = this.Evolu.fecha;
+      let nomPer = this.Evolu.usuario.nombres;
+
+      let fecha = fech.getDate() + "/" + (fech.getMonth() + 1) + "/" + fech.getFullYear();
+      let hora = fech.getHours() + ":" + fech.getMinutes() + ":" + fech.getSeconds();
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'Medicamento_' + nomPer +  '-' + fecha + '-h' + hora + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    } else {
+      let nomPer = this.buscarnombre;
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'Medicamento_' + '-' + nomPer + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    }
+
+  }
+
+  /* buscarMedicamento() {
+     var medi2: string
+     var i: any = 0
+     this.medicamentos = []
+     
+     this.medicaService.listUsingGET2().subscribe((res) => {
+       for (let datos of res) {
+ 
+         console.log(datos, this.idper, datos.usuario.id);
+         if (this.idper == datos.usuario.id) {
+           i++
+           console.log("siiiiiiiiiiiiiiiiiiiii", datos);
+           this.medicamentos.push({
+             nombreMedicamento: datos.nombreMedicamento,
+           });
+           console.log(this.medicamentos);
+          this.medi = this.medicamentos
+           /**
+            * medi2 = datos.nombreMedicamento
+           console.log(medi2);
+           console.log(this.medicamentos);
+           if (this.medi != medi2 &&(i>1)) {
+             this.medi = datos.nombreMedicamento.concat(" , " + datos.nombreMedicamento);
+             
+           }else{
+             this.medi = datos.nombreMedicamento
+           }
+           
+         }
+       }
+       //console.log(res);
+ 
+     })
+   }*/
 
   mensajeError(msg: String) {
     this.messageService.add({

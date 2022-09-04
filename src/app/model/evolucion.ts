@@ -13,11 +13,13 @@ import { Medicamentos } from './medicamentos';
 import { Usuario } from './usuario';
 
 export interface Evolucion { 
+    establecimiento?: string;
     evolucion?: string;
     fecha?: Date;
     hora?: string;
     idEvolucion?: number;
     indicaciones?: string;
     medicamento?: Medicamentos;
+    medicamentoAD?: string;
     usuario?: Usuario;
 }
