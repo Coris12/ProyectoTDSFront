@@ -39,6 +39,7 @@ import { ConsultaExternaAnamnesisComponent } from './modulos/consulta-externa-an
 import { LectorComponent } from './modulos/tarjeta/lector/lector.component';
 import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-tarjetas.component';
 import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
+import { MedicoConsentimientoComponent } from './modulos/Consentimiento/medico-consentimiento/medico-consentimiento.component';
 
 
 
@@ -64,6 +65,7 @@ const routes: Routes = [
   { path: 'autorizacion', component: AutorizacionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'admision', component: AdmisionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'consentimiento', component: ConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'ConsentimientoMedico', component: MedicoConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
   
   { path: 'formularioTarjeta', component: FormularioTarjetaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
