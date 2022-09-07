@@ -40,6 +40,7 @@ import { LectorComponent } from './modulos/tarjeta/lector/lector.component';
 import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-tarjetas.component';
 import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
 import { MedicoConsentimientoComponent } from './modulos/Consentimiento/medico-consentimiento/medico-consentimiento.component';
+import { ErrorComponent } from './modulos/user/componentes/error/error.component';
 
 
 
@@ -67,7 +68,8 @@ const routes: Routes = [
   { path: 'consentimiento', component: ConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'ConsentimientoMedico', component: MedicoConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
-  
+  { path: 'error', component: ErrorComponent, canActivate: [LoginGuard] },
+
   { path: 'formularioTarjeta', component: FormularioTarjetaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lectorQr', component: LectorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'listaTarjetas', component: ListaTarjetasComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },

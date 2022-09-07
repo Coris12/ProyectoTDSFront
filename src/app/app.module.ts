@@ -116,6 +116,7 @@ import { InformacionTratamientoControllerService } from './api/informacionTratam
 import { MedicamentosControllerService } from './api/medicamentosController.service';
 import { EvolucionControllerService } from './api/evolucionController.service';
 import { MedicoConsentimientoComponent } from './modulos/Consentimiento/medico-consentimiento/medico-consentimiento.component';
+import { ErrorComponent } from './modulos/user/componentes/error/error.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -146,6 +147,7 @@ import { MedicoConsentimientoComponent } from './modulos/Consentimiento/medico-c
     ListaTarjetasComponent,
     FormularioTarjetaComponent,
     MedicoConsentimientoComponent,
+    ErrorComponent,
 
 
   ],
