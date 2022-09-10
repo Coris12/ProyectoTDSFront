@@ -162,14 +162,14 @@ export class EvolucionComponent implements OnInit {
       let hora = fech.getHours() + ":" + fech.getMinutes() + ":" + fech.getSeconds();
       var link = document.createElement('a');
       link.href = url;
-      link.download = 'Medicamento_' + nomPer +  '-' + fecha + '-h' + hora + '-' + numAlea + '.pdf';
+      link.download = 'Evolucion y Prescricion_' + nomPer +  '-' + fecha + '-h' + hora + '-' + numAlea + '.pdf';
       link.click();
       window.open(url);
     } else {
       let nomPer = this.buscarnombre;
       var link = document.createElement('a');
       link.href = url;
-      link.download = 'Medicamento_' + '-' + nomPer + '-' + numAlea + '.pdf';
+      link.download = 'Evolucion y Prescricion_' + '-' + nomPer + '-' + numAlea + '.pdf';
       link.click();
       window.open(url);
     }

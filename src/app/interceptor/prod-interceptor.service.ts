@@ -6,6 +6,7 @@ import { Observable, throwError } from 'rxjs'
 import { catchError, concatMap} from 'rxjs/operators'
 import { AuthService } from '../modulos/user/service/auth.service';
 import { JwtDto } from '../models/jwt-dto';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +14,8 @@ export class ProdInterceptorService implements HttpInterceptor{
 
   constructor(
     private tokenService: TokenService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router:Router
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -39,6 +41,7 @@ export class ProdInterceptorService implements HttpInterceptor{
         }));
       } else {
         this.tokenService.logOut();
+        this.router.navigate(['/error']);
         return throwError(err);
       }
     }));
