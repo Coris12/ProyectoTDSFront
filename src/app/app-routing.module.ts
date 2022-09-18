@@ -41,6 +41,7 @@ import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-t
 import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
 import { MedicoConsentimientoComponent } from './modulos/Consentimiento/medico-consentimiento/medico-consentimiento.component';
 import { ErrorComponent } from './modulos/user/componentes/error/error.component';
+import { ProtocoloComponent } from './modulos/RecordOperatorio/protocolo/protocolo.component';
 
 
 
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: 'admision', component: AdmisionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'consentimiento', component: ConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'ConsentimientoMedico', component: MedicoConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'Protocolo', component: ProtocoloComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
   { path: 'error', component: ErrorComponent, canActivate: [LoginGuard] },
 

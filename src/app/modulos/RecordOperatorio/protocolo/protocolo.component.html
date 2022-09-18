@@ -1,0 +1,145 @@
+<app-header></app-header>
+<p-toast></p-toast>
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h2>RECORD OPERATORIO PROTOCOLO POSQUIRURGICO </h2>
+            </div>
+        </div>
+
+        <div class="content-section implementation mt-2">
+            <div class="mt-4">
+                <div class="grid p-fluid">
+                    <div class="field col-12 md:col-2">
+                        <button pButton type="button" label="Buscar"></button>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Cedula</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Nombres</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Servicio</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Sala</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Cama N°</label>
+                        </span>
+                    </div>
+                    <p-card header="DIAGNOSTICO" [style]="{width: '360px'}" styleClass="p-card-shadow">
+                        <ng-template pTemplate="header">
+                        </ng-template>
+                        <div class="grid p-fluid">
+                            <div class="form-group mt-2">
+                                <label for="float-input">Preoperatorio</label>
+                                <textarea rows="5" cols="30" pInputTextarea></textarea>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="float-input">Postoperatorio</label>
+                                <textarea rows="5" cols="30" pInputTextarea></textarea>
+                            </div>
+                        </div>
+                            <h3>OPERACION</h3>
+                            <div class="grid p-fluid">
+                                <div class="form-group mt-2">
+                                    <label for="float-input">Tipo de Cirujia</label>
+                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label for="float-input">Realizada</label>
+                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
+                                </div>
+                            </div>                       
+                    </p-card>
+                    <div class="col-1">
+                        <p-divider layout="vertical">
+
+                        </p-divider>
+                    </div>
+                    <div class="col-2 flex align-items-center justify-content-rigth">
+                        <div class="p-fluid">
+                            <p-card header="EQUIPO OPERATORIO" [style]="{width: '360px'}" styleClass="p-card-shadow">
+                                <ng-template pTemplate="header">
+                                </ng-template>
+                                <div class="form-group mt-2">
+                                    <span class="p-input-icon-left">
+                                        <label for="requisitos ">Cirujano</label>
+                                        <input type="text" pInputText placeholder="Cirujano" >
+                                    </span>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <span class="p-input-icon-left">
+                                        <label for="requisitos ">Primer ayudante</label>
+                                        <input type="text" pInputText placeholder="Primer ayudante" >
+                                    </span>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <span class="p-input-icon-left">
+                                        <label for="requisitos ">Segundo ayudante</label>
+                                        <input type="text" pInputText placeholder="Segundo ayudante" >
+                                    </span>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <span class="p-input-icon-left">
+                                        <label for="requisitos ">Tercer ayudante</label>
+                                        <input type="text" pInputText placeholder="Tercer ayudante" >
+                                    </span>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label for="float-input">Instrumentista</label>
+                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label for="float-input">Anestesiologo</label>
+                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <span class="p-input-icon-left">
+                                        <label for="requisitos ">Fecha de operacion</label>
+                                        <input type="date" pInputText placeholder="Fecha de operacion" >
+                                    </span>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <span class="p-input-icon-left">
+                                        <label for="requisitos ">Hora de inicio</label>
+                                        <input type="time" pInputText placeholder="" >
+                                    </span>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <span class="p-input-icon-left">
+                                        <label for="requisitos ">Hora de terminacion</label>
+                                        <input type="time" pInputText placeholder="" >
+                                    </span>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <span class="p-input-icon-left">
+                                        <label for="requisitos ">Tipo de anestesia</label>
+                                        <input type="text" pInputText placeholder="Tipo de anestesia" >
+                                    </span>
+                                </div>
+                            </p-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

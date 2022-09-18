@@ -84,6 +84,13 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/ConsentimientoMedico'],
         visible: this.isLogged && this.isAdmin
       },
+      
+      {
+        label: 'Protocolo PosQuirurgico',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/Protocolo'],
+        visible: this.isLogged && this.isAdmin
+      },
       //-! fin opciones para el administrador
 
       //! opciones para los empleados
