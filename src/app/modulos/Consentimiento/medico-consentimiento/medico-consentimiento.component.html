@@ -5,7 +5,7 @@
     <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
             <div class="p-2">
-                <h2>CONSENTIMIENTO PARA PROCEDIMIENTO MÉDICOS</h2>
+                <h2>CONSENTIMIENTO PARA PROCEDIMIENTOS MÉDICOS</h2>
             </div>
 
         </div>
@@ -14,12 +14,12 @@
                 <ng-template pTemplate="header">
                 </ng-template>
 
-                Yo (paciente) <input type="text" id="inputtext" pInputText> portador de la cédula de identidad No.
-                <input type="text" id="inputtext" pInputText> con el fin de diagnosticar
+                Yo (paciente) <input type="text" id="inputtext" pInputText  [(ngModel)]="Medico.nombrePaciente"> portador de la cédula de identidad No.
+                <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.cedula"> con el fin de diagnosticar
                 y/o tratar los sintomas o signos en relación con mi enfermedad doy mi <b>CONSENTIMIENTO</b> que se me
-                efectúe el (los) siguiente (s) procemiento(s) <input type="text" id="inputtext" pInputText>
+                efectúe el (los) siguiente (s) procedimiento(s) <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.procedimientos">
                 diagnóstico(s),terapéutico(s) y/o quirúrgico(s) que sera realizado por o bajo la dirección del
-                Dr. <input type="text" id="inputtext" pInputText> y/o personal designado por el médico y/o cirujano.
+                Dr. <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.nombreDoc"> y/o personal designado por el médico y/o cirujano.
                 <br>
                 <br>
                 He sido informado de los riesgos o complicaciones ( tales como: perforaciones,
@@ -34,22 +34,47 @@
                 <br>
                 <h3>DECLARACIÓN DEL MÉDICO</h3>
                 <br>
-                Yo (Dr.)<input type="text" id="inputtext" pInputText> médico especialista <b>Cirujano</b> <input
-                    type="text" id="inputtext" pInputText>, con código No.<input type="text" id="inputtext"
-                    pInputText>,he explicado en lenguaje
+                Yo (Dr.)<input type="text" id="inputtext" pInputText [(ngModel)]="Medico.nombreDoc"> médico especialista <b>Cirujano</b> <input
+                    type="text" id="inputtext" pInputText [(ngModel)]="Medico.especialidad">, con código (MSP) No.<input type="text" id="inputtext"
+                    pInputText [(ngModel)]="Medico.codigo">,he explicado en lenguaje
                 común al paciente y/o representante , las condiciones de enfermedad y la necesidad de realizar los
                 procedimientos de diagnóstico y/o de tratamiento,asi como posibles riesgos y complicaciones asociados a
                 los mismos.
+                <br>
+                Firma: 
+                <br>                                                                         
+                C.I: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.cedula">
+                <br>
+                <b>(Paciente)</b>
+                <br>
+                Firma:
+                <br>                                                                          
+                C.I: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.personaA">
+                <br>
+                <b>(Testigo o persona autorizada a consentir a la persona )</b>
+                <br>
+                Fecha y Hora :  <input type="datetime-local" id="inputtext" pInputText [(ngModel)]="Medico.fecha">
+                <br>
+                Fecha Nacimiento : <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.fechaNaci">   Edad: <input type="int" pInputText  [(ngModel)]="Medico.edad">
+                <br>
+                Direccion: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.direccion">
+                <br>
+                Telefono: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.telefono">
+                <br>
+                Alergia: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.alergia">
+
 
 
             </p-card>
-          
-        </div>
+               
+          </div>
 
     </div>
 </div>
 </div>
 <div>
+    <p-button label="Save" (click)="saveConsentimiento()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
+    </p-button>
     <button style="text-align: center" class="btn btn-dark  ml-4" (click)="downloadPDF()"><i
         class="fas fa-print"></i> Descargar PDF</button>
 </div>

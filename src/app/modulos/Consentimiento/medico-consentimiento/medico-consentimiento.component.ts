@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import html2canvas from 'html2canvas';
 import jspdf, { jsPDF } from 'jspdf';
+import { MessageService } from 'primeng/api';
+import { MedicoConsentimientoControllerService } from 'src/app/api/medicoConsentimientoController.service';
+import { MedicoConsentimiento } from 'src/app/model/medicoConsentimiento';
 @Component({
   selector: 'app-medico-consentimiento',
   templateUrl: './medico-consentimiento.component.html',
@@ -8,12 +11,76 @@ import jspdf, { jsPDF } from 'jspdf';
 })
 export class MedicoConsentimientoComponent implements OnInit {
 
-  constructor() { }
+
+  
+  idMe: any;
+  errMsj: String;
+  constructor(
+    private medicoService:MedicoConsentimientoControllerService,
+    private messageService: MessageService,
+  ) { }
 
   ngOnInit(): void {
   }
+  Medico: MedicoConsentimiento = {
+    alergia: null,
+    cedula:null,
+    codigo: null,
+    direccion: null,
+    edad: null,
+    especialidad:null,
+    estado:null,
+    fecha:null,
+    fechaNaci:null,
+    idMediC: null,
+    nombreDoc: null,
+    nombrePaciente: null,
+    personaA:null,
+    procedimientos:null,
+    telefono: null,
+  }
+
 
 dialogo:boolean
+
+saveConsentimiento() {
+  console.log(this.Medico);
+
+  this.medicoService.saveConsentimientoMUsingPOST(this.Medico).subscribe(
+    res => {
+      if (res.object != null) {
+        this.idMe = res.object
+        console.log(this.idMe);
+        this.MessageSuccess(" Consentimiento Medico guardado")
+        console.log(this.Medico);
+
+      } else {
+        this.mensajeError("Error al crear Consentimiento medico")
+        console.log(" holii" + this.Medico);
+        console.log("error" + this.errMsj)
+        console.log(res.object);
+      }
+    })
+}
+
+
+
+mensajeError(msg: String) {
+  this.messageService.add({
+    severity: 'error',
+    summary: 'Error',
+    detail: 'Error: ' + msg,
+  });
+}
+
+MessageSuccess(msg: String) {
+  this.messageService.add({
+    severity: 'success',
+    summary: 'Resultado',
+    detail: 'Correcto!: ' + msg,
+  });
+}
+
 capturarContenido() {
   var data = document.getElementById('contenidoAConvertir');
   html2canvas(data).then(canvas => {
@@ -48,24 +115,4 @@ downloadPDF() {
     docResult.save(`${new Date().toISOString()}Consentimiento Medico.pdf`);
   });
 }
- /* convetToPDF1() {
-    
-    var data = document.getElementById('medicamentospdf');
-    var width = document.getElementById('medicamentospdf').offsetWidth;
-    html2canvas(data, {
-      allowTaint: false, useCORS: false, logging: true,
-    }).then(canvas => {
-      var imgWidth = 140;
-      var imgHeight = canvas.height * imgWidth / canvas.width;// espera veo algo
-      const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jspdf.jsPDF('p', 'mm', 'a5');
-      var position = 5;
-      pdf.addImage(contentDataURL, 'JPEG', 5, position, imgWidth - 7, imgHeight)
-      pdf.save('Medicamentos' + '.pdf');
-      //for (let datos of this.Ordenlist) {
-      // pdf.save('Orden_Pedido_' + datos.secuencia + '.pdf');
-      //}
-
-    });
-  }*/
 }

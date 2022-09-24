@@ -21,6 +21,7 @@ import { FaramaciaControllerService } from './api/faramaciaController.service';
 import { FormularioControllerService } from './api/formularioController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
 import { MedicamentosControllerService } from './api/medicamentosController.service';
+import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
@@ -55,6 +56,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     FormularioControllerService,
     InformacionTratamientoControllerService,
     MedicamentosControllerService,
+    MedicoConsentimientoControllerService,
     PlanTratamientoControllerService,
     ProductoControllerService,
     ProveedorControllerService,

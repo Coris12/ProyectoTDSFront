@@ -40,6 +40,7 @@ export * from './jwtDto';
 export * from './listaFamiliaresDTO';
 export * from './loginUsuario';
 export * from './medicamentos';
+export * from './medicoConsentimiento';
 export * from './modelAndView';
 export * from './motivos';
 export * from './nuevoUsuario';

@@ -118,6 +118,7 @@ import { EvolucionControllerService } from './api/evolucionController.service';
 import { MedicoConsentimientoComponent } from './modulos/Consentimiento/medico-consentimiento/medico-consentimiento.component';
 import { ErrorComponent } from './modulos/user/componentes/error/error.component';
 import { ProtocoloComponent } from './modulos/RecordOperatorio/protocolo/protocolo.component';
+import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -139,6 +140,7 @@ import { ProtocoloComponent } from './modulos/RecordOperatorio/protocolo/protoco
     TratamientoComponent,
     DatosComponent,
     MedicamentosComponent,
+    MedicoConsentimientoComponent,
     EvolucionComponent,
     AutorizacionComponent,
     ConsentimientoComponent,
@@ -232,6 +234,7 @@ import { ProtocoloComponent } from './modulos/RecordOperatorio/protocolo/protoco
     DiagnosticoControllerService,
     PlanTratamientoControllerService,
     MedicamentosControllerService,
+    MedicoConsentimientoControllerService,
     TarjetaControllerService,
     FamiliaresControllerService,
     TarjetaEspecialidadControllerService,
