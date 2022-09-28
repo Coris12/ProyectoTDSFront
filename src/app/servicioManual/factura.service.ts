@@ -24,4 +24,8 @@ export class FacturaService {
   genePdfEvolucion(iden: string){
     return this.http.get(this.baseUrl+'/evoluciones/generarPdf?iden='+iden,{responseType:'blob' as 'json'});
   }
+
+  genePdfMedicoConsentimietno(idme: number){
+    return this.http.get(this.baseUrl+'/consentimientoMedico/generarPdf?idme='+idme,{responseType:'blob' as 'json'});
+  }
 }

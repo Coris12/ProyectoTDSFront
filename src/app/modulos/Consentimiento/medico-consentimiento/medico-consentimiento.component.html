@@ -7,8 +7,18 @@
             <div class="p-2">
                 <h2>CONSENTIMIENTO PARA PROCEDIMIENTOS MÉDICOS</h2>
             </div>
-
+            <div class="col-12 md:col-2">
+                <div class="p-inputgroup">
+                  <button type="button" pButton pRipple label="LIMPIAR" ></button>
+                </div>
+              </div>
+              <div class="col-12 md:col-2">
+                <div class="p-inputgroup">
+                  <button type="button" pButton pRipple label="LISTADO CONSENTIMIENTOS" (click)="listDialog = true;"></button>
+                </div>
+              </div>
         </div>
+        
         <div class="content-section implementation mt-2">
             <p-card [style]="{'width': '900px', 'margin-bottom': '2em'}">
                 <ng-template pTemplate="header">
@@ -55,7 +65,7 @@
                 <br>
                 Fecha y Hora :  <input type="datetime-local" id="inputtext" pInputText [(ngModel)]="Medico.fecha">
                 <br>
-                Fecha Nacimiento : <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.fechaNaci">   Edad: <input type="int" pInputText  [(ngModel)]="Medico.edad">
+                Fecha Nacimiento : <input type="date" id="inputtext" pInputText [(ngModel)]="Medico.fechaNaci">   Edad: <input type="int" pInputText  [(ngModel)]="Medico.edad">
                 <br>
                 Direccion: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.direccion">
                 <br>
@@ -73,11 +83,52 @@
 </div>
 </div>
 <div>
-    <p-button label="Save" (click)="saveConsentimiento()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
-    </p-button>
-    <button style="text-align: center" class="btn btn-dark  ml-4" (click)="downloadPDF()"><i
-        class="fas fa-print"></i> Descargar PDF</button>
-</div>
-
 
     
+    <p-button label="Save" (click)="saveConsentimiento()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
+    </p-button>
+    <button style="text-align: center" class="btn btn-dark  ml-4" (click)=" imprimirPDFSinceButton(idMe)"><i
+        class="fas fa-print"></i> Descargar PDF</button>
+        
+</div>
+
+<p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'47em'}" [modal]="false">
+    <div class="col-8 flex align-items-center justify-content-center">
+        <div class="p-fluid">
+            <p-table #dt [value]="Medicos" [paginator]="true" responsiveLayout="scroll" [rows]="10"
+                styleClass="p-datatable-gridlines">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre Paciente</th>
+                        <th>Fecha/hora</th>
+                        <th>Print</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-medi>
+                    <tr>
+                        <td>{{medi.idMediC}}</td>
+                        <td>{{medi.nombrePaciente}}</td>
+                        <td>{{medi.fecha}}</td>
+                        <td style="text-align:center">
+                            <button pButton pRipple type="button" icon="pi pi-print" (click)="imprimirPDFSinceButton(medi.idMediC)"
+                            class="p-button-rounded p-button-text">
+                            </button>
+                          </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="8">Ningun registro.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+  
+  </p-sidebar>
