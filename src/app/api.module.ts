@@ -13,6 +13,7 @@ import { ConsultaExternaControllerService } from './api/consultaExternaControlle
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
 import { EmpleadoControllerService } from './api/empleadoController.service';
+import { EquiposControllerService } from './api/equiposController.service';
 import { EvolucionControllerService } from './api/evolucionController.service';
 import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalController.service';
 import { FacturaControllerService } from './api/facturaController.service';
@@ -24,6 +25,7 @@ import { MedicamentosControllerService } from './api/medicamentosController.serv
 import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { ProductoControllerService } from './api/productoController.service';
+import { ProtocoloControllerService } from './api/protocoloController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
 import { ResidenciaControllerService } from './api/residenciaController.service';
 import { RevOrganoSistemControllerService } from './api/revOrganoSistemController.service';
@@ -31,6 +33,7 @@ import { SigVitAntropometriaControllerService } from './api/sigVitAntropometriaC
 import { SucursalControllerService } from './api/sucursalController.service';
 import { TarjetaControllerService } from './api/tarjetaController.service';
 import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadController.service';
+import { TipoQuiControllerService } from './api/tipoQuiController.service';
 import { TratamientoControllerService } from './api/tratamientoController.service';
 
 @NgModule({
@@ -48,6 +51,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     CuerpoFacturaControllerService,
     DiagnosticoControllerService,
     EmpleadoControllerService,
+    EquiposControllerService,
     EvolucionControllerService,
     ExamFisicoRegionalControllerService,
     FacturaControllerService,
@@ -59,6 +63,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     MedicoConsentimientoControllerService,
     PlanTratamientoControllerService,
     ProductoControllerService,
+    ProtocoloControllerService,
     ProveedorControllerService,
     ResidenciaControllerService,
     RevOrganoSistemControllerService,
@@ -66,6 +71,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     SucursalControllerService,
     TarjetaControllerService,
     TarjetaEspecialidadControllerService,
+    TipoQuiControllerService,
     TratamientoControllerService ]
 })
 export class ApiModule {

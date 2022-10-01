@@ -7,139 +7,219 @@
                 <h2>RECORD OPERATORIO PROTOCOLO POSQUIRURGICO </h2>
             </div>
         </div>
+        <div class="mt-4">
+            <div class="grid p-fluid">
+                <div class="field col-12 md:col-2">
+                    <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
+                </div>
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula">
+                        <label for="inputtext">Cedula</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre">
+                        <label for="inputtext">Nombres</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="proto.servicio">
+                        <label for="inputtext">Servicio</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="proto.sala">
+                        <label for="inputtext">Sala</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-2">
+                    <span class="p-float-label">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="proto.nCama">
+                        <label for="inputtext">Cama N° </label>
+                    </span>
+                </div>
 
-        <div class="content-section implementation mt-2">
-            <div class="mt-4">
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-2">
-                        <button pButton type="button" label="Buscar"></button>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Cedula</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Nombres</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Servicio</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Sala</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Cama N°</label>
-                        </span>
-                    </div>
-                    <p-card header="DIAGNOSTICO" [style]="{width: '360px'}" styleClass="p-card-shadow">
-                        <ng-template pTemplate="header">
-                        </ng-template>
-                        <div class="grid p-fluid">
-                            <div class="form-group mt-2">
-                                <label for="float-input">Preoperatorio</label>
-                                <textarea rows="5" cols="30" pInputTextarea></textarea>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="p-fluid">
+                                <p-card header="DIAGNOSTICO" [style]="{width: '360px'}" styleClass="p-card-shadow">
+                                    <ng-template pTemplate="header">
+                                    </ng-template>
+                                    <div class="grid p-fluid">
+                                        <div class="form-group mt-2">
+                                            <label for="float-input">Preoperatorio</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="proto.preoperatorio"></textarea>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <label for="float-input">Postoperatorio</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="proto.postoperatorio"></textarea>
+                                        </div>
+                                    </div>
+                                    <h3>OPERACION</h3>
+                                    <div class="grid p-fluid">
+                                        <div class="form-group mt-2">
+                                            <label for="float-input">Tipo de Cirujia</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="proto.tipoCirujia"> </textarea>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <label for="float-input">Realizada</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="proto.realizada"></textarea>
+                                        </div>
+                                    </div>
+                                </p-card>
                             </div>
-                            <div class="form-group mt-2">
-                                <label for="float-input">Postoperatorio</label>
-                                <textarea rows="5" cols="30" pInputTextarea></textarea>
-                            </div>
-                        </div>
-                            <h3>OPERACION</h3>
-                            <div class="grid p-fluid">
-                                <div class="form-group mt-2">
-                                    <label for="float-input">Tipo de Cirujia</label>
-                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <label for="float-input">Realizada</label>
-                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
-                                </div>
-                            </div>                       
-                    </p-card>
-                    <div class="col-1">
-                        <p-divider layout="vertical">
-
-                        </p-divider>
-                    </div>
-                    <div class="col-2 flex align-items-center justify-content-rigth">
-                        <div class="p-fluid">
-                            <p-card header="EQUIPO OPERATORIO" [style]="{width: '360px'}" styleClass="p-card-shadow">
+                            <br>
+                            <p-card [style]="{width: '360px'}" styleClass="p-card-shadow">
                                 <ng-template pTemplate="header">
                                 </ng-template>
-                                <div class="form-group mt-2">
-                                    <span class="p-input-icon-left">
-                                        <label for="requisitos ">Cirujano</label>
-                                        <input type="text" pInputText placeholder="Cirujano" >
-                                    </span>
+                                <div class="grid p-fluid">
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Redactada por:</label>
+                                            <input type="text" pInputText placeholder="Redactada" [(ngModel)]="proto.redactado">
+                                        </span>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Fecha de Dictado</label>
+                                            <input type="datetime-local" pInputText placeholder="" [(ngModel)]="proto.fecha">
+                                        </span>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Escrita por:</label>
+                                            <input type="text" pInputText placeholder="Escrita" [(ngModel)]="proto.escrita">
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="form-group mt-2">
-                                    <span class="p-input-icon-left">
-                                        <label for="requisitos ">Primer ayudante</label>
-                                        <input type="text" pInputText placeholder="Primer ayudante" >
-                                    </span>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <span class="p-input-icon-left">
-                                        <label for="requisitos ">Segundo ayudante</label>
-                                        <input type="text" pInputText placeholder="Segundo ayudante" >
-                                    </span>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <span class="p-input-icon-left">
-                                        <label for="requisitos ">Tercer ayudante</label>
-                                        <input type="text" pInputText placeholder="Tercer ayudante" >
-                                    </span>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <label for="float-input">Instrumentista</label>
-                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <label for="float-input">Anestesiologo</label>
-                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <span class="p-input-icon-left">
-                                        <label for="requisitos ">Fecha de operacion</label>
-                                        <input type="date" pInputText placeholder="Fecha de operacion" >
-                                    </span>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <span class="p-input-icon-left">
-                                        <label for="requisitos ">Hora de inicio</label>
-                                        <input type="time" pInputText placeholder="" >
-                                    </span>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <span class="p-input-icon-left">
-                                        <label for="requisitos ">Hora de terminacion</label>
-                                        <input type="time" pInputText placeholder="" >
-                                    </span>
-                                </div>
-                                <div class="form-group mt-2">
-                                    <span class="p-input-icon-left">
-                                        <label for="requisitos ">Tipo de anestesia</label>
-                                        <input type="text" pInputText placeholder="Tipo de anestesia" >
-                                    </span>
-                                </div>
+
                             </p-card>
-                       
+                        </div>
+                        <div class="col-4">
+                            <div class="p-fluid">
+                                <p-card header="EQUIPO OPERATORIO" [style]="{width: '360px'}"
+                                    styleClass="p-card-shadow">
+                                    <ng-template pTemplate="header">
+                                    </ng-template>
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Cirujano</label>
+                                            <input type="text" pInputText placeholder="Cirujano"[(ngModel)]="equi.cirujano">
+                                        </span>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Primer ayudante</label>
+                                            <input type="text" pInputText placeholder="Primer ayudante" [(ngModel)]="equi.primerAyudante">
+                                        </span>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Segundo ayudante</label>
+                                            <input type="text" pInputText placeholder="Segundo ayudante" [(ngModel)]="equi.segundoAyudante">
+                                        </span>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Tercer ayudante</label>
+                                            <input type="text" pInputText placeholder="Tercer ayudante" [(ngModel)]="equi. tercerAyudante">
+                                        </span>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="float-input">Instrumentista</label>
+                                        <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="equi.instrumentista"></textarea>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="float-input">Anestesiologo</label>
+                                        <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="equi.anestesiologo"></textarea>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Fecha de operacion</label>
+                                            <input type="date" pInputText placeholder="Fecha de operacion" [(ngModel)]="equi.fecha">
+                                        </span>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Hora de inicio</label>
+                                            <input type="time" pInputText placeholder="" [(ngModel)]="equi.horaInicio">
+                                        </span>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Hora de terminacion</label>
+                                            <input type="time" pInputText placeholder="" [(ngModel)]="equi.horaFin">
+                                        </span>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <span class="p-input-icon-left">
+                                            <label for="requisitos ">Tipo de anestesia</label>
+                                            <input type="text" pInputText placeholder="Tipo de anestesia" [(ngModel)]="equi.tipoAnestesia">
+                                        </span>
+                                    </div>
+                                </p-card>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-fluid">
+                                <p-card header="TIPOS QUIRÚRGICOS" [style]="{width: '360px'}"
+                                    styleClass="p-card-shadow">
+                                    <ng-template pTemplate="header">
+                                    </ng-template>
+                                    <div class="grid p-fluid">
+                                        <div class="form-group mt-2">
+                                            <label for="float-input">Diéresis</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.dieresis"></textarea>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <label for="float-input">Exposición</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.exposicion"></textarea>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <label for="float-input">Exploración y hallazgos quirúrgicos</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.exploracion"></textarea>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <label for="float-input">Procedimiento operatorio</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.procedimiento"></textarea>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <label for="float-input">Sintesis</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.sintesis"></textarea>
+                                        </div>
+                                        <div class="form-gr     oup mt-2">
+                                            <label for="float-input">Complicaciones del acto operatorio</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.complicaciones"></textarea>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <label for="float-input">Examen Hisopatológico</label>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.examen"></textarea>
+                                        </div>
+                                    </div>
+                                </p-card>
+
+                            </div>
+
+                        </div>
                     </div>
+
+                </div>
+                <div class="row">
+                    <p-card>
+                        <div class="col-12">
+                            <p-button type="submit" icon="pi pi-check" label="Guardar"(click)="cargarPersona()" styleClass="p-button-text">
+                            </p-button>
+                        </div>
+                    </p-card>
                 </div>
             </div>
         </div>
     </div>
+
+
 </div>

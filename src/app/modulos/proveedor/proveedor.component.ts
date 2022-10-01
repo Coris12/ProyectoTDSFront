@@ -72,9 +72,9 @@ export class ProveedorComponent implements OnInit {
       .subscribe(prove => {
         //console.log(prove.id_proveedor, prove.id_proveedor)
         this.proveForm.setValue({
-          id_proveedor: prove.id_proveedor,
+          id_proveedor: prove.idProveedor,
           estado: prove.estado,
-          nombre_comercial_pro: prove.nombre_comercial_pro,
+          nombre_comercial_pro: prove.nombreComercialPro,
           usuario: prove.usuario,
         });
       });

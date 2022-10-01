@@ -11,9 +11,18 @@
  */
 import { Usuario } from './usuario';
 
-export interface Proveedor { 
+export interface Protocolos { 
+    escrita?: string;
     estado?: number;
-    idProveedor?: number;
-    nombreComercialPro?: string;
+    fecha?: Date;
+    idProtocolo?: number;
+    nCama?: number;
+    postoperatorio?: string;
+    preoperatorio?: string;
+    realizada?: string;
+    redactado?: string;
+    sala?: string;
+    servicio?: string;
+    tipoCirujia?: string;
     usuario?: Usuario;
 }

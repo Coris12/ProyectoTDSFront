@@ -119,6 +119,9 @@ import { MedicoConsentimientoComponent } from './modulos/Consentimiento/medico-c
 import { ErrorComponent } from './modulos/user/componentes/error/error.component';
 import { ProtocoloComponent } from './modulos/RecordOperatorio/protocolo/protocolo.component';
 import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
+import { ProtocoloControllerService } from './api/protocoloController.service';
+import { EquiposControllerService } from './api/equiposController.service';
+import { TipoQuiControllerService } from './api/tipoQuiController.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -241,7 +244,10 @@ import { MedicoConsentimientoControllerService } from './api/medicoConsentimient
     ResidenciaControllerService,
     ConsentimientoControllerService,
     EvolucionControllerService,
-    InformacionTratamientoControllerService
+    InformacionTratamientoControllerService,
+    ProtocoloControllerService,
+    EquiposControllerService,
+    TipoQuiControllerService
   ],
   bootstrap: [AppComponent]
 })
