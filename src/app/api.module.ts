@@ -20,6 +20,7 @@ import { FacturaControllerService } from './api/facturaController.service';
 import { FamiliaresControllerService } from './api/familiaresController.service';
 import { FaramaciaControllerService } from './api/faramaciaController.service';
 import { FormularioControllerService } from './api/formularioController.service';
+import { HistoriaControllerService } from './api/historiaController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
 import { MedicamentosControllerService } from './api/medicamentosController.service';
 import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
@@ -58,6 +59,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     FamiliaresControllerService,
     FaramaciaControllerService,
     FormularioControllerService,
+    HistoriaControllerService,
     InformacionTratamientoControllerService,
     MedicamentosControllerService,
     MedicoConsentimientoControllerService,

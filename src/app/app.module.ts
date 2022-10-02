@@ -122,6 +122,8 @@ import { MedicoConsentimientoControllerService } from './api/medicoConsentimient
 import { ProtocoloControllerService } from './api/protocoloController.service';
 import { EquiposControllerService } from './api/equiposController.service';
 import { TipoQuiControllerService } from './api/tipoQuiController.service';
+import { HistoriaComponent } from './modulos/HistoriaClinica/historia/historia.component';
+import { HistoriaControllerService } from './api/historiaController.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -155,6 +157,7 @@ import { TipoQuiControllerService } from './api/tipoQuiController.service';
     MedicoConsentimientoComponent,
     ErrorComponent,
     ProtocoloComponent,
+    HistoriaComponent,
 
 
   ],
@@ -243,6 +246,7 @@ import { TipoQuiControllerService } from './api/tipoQuiController.service';
     TarjetaEspecialidadControllerService,
     ResidenciaControllerService,
     ConsentimientoControllerService,
+    HistoriaControllerService,
     EvolucionControllerService,
     InformacionTratamientoControllerService,
     ProtocoloControllerService,

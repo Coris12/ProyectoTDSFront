@@ -36,6 +36,7 @@ export * from './genericResponseUsuario';
 export * from './genericResponseint';
 export * from './genericResponseobject';
 export * from './genericResponsestring';
+export * from './historiaClinica';
 export * from './informacionTratamientoDTO';
 export * from './jwtDto';
 export * from './listaFamiliaresDTO';
