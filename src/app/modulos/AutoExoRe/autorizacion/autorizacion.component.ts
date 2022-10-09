@@ -40,17 +40,18 @@ export class AutorizacionComponent implements OnInit {
     servicio: null,
     unidadOperativa: null,
     usuario: null,
+    cedulaMe: null,
+    cedulaRe: null,
+    cedulaTra: null,
+    nombreMedico: null,
+    nombreRepre: null,
+    nombreTratante: null,
+    parentesco: null,
+    telefonoMedico: null,
+    telefonoParien: null,
+    telefonoTra: null,
   }
 
-  per: Persona = {
-    autorizacion: null,
-    cedula: null,
-    idPersona: null,
-    nombre: null,
-    parentesco: null,
-    telefono: null,
-    tipo: null,
-  }
 
   organos: OrganosDonados = {
     autorizacion: null,
@@ -63,7 +64,6 @@ export class AutorizacionComponent implements OnInit {
     private messageService: MessageService,
     private personaService: AuthControllerService,
     private autoService: AutorizacionControllerService,
-    private perService: PersonaControllerService,
     private organoService: OrganosControllerService
   ) { }
 
@@ -106,7 +106,9 @@ export class AutorizacionComponent implements OnInit {
 
   saveAutorizacion() {
     console.log(this.Auto);
-
+    this.Auto.usuario.nombres = this.buscarnombre
+    this.Auto.usuario.celular=this.telefono
+    this.Auto.usuario.identificacion=this.buscarcedula
     this.autoService.saveAutorizacionUsingPOST(this.Auto).subscribe(
       res => {
         if (res.object != null) {
@@ -123,30 +125,12 @@ export class AutorizacionComponent implements OnInit {
         }
       })
   }
-  savePersona() {
-    console.log(this.per);
-    this.per.nombre = this.buscarnombre
-    this.perService.savePersonaUsingPOST(this.per).subscribe(
-      res => {
-        if (res.object != null) {
-          this.idPer = res.object
-          console.log(this.idPer);
-          this.MessageSuccess(" Autorizacion  creado")
-          console.log(this.idPer);
 
-        } else {
-          this.mensajeError("error al Autorizacio")
-          console.log(" holii" + this.idPer);
-          console.log("error" + this.errMsj)
-          console.log(res.object);
-        }
-      })
-  }
 
   saveOrganos() {
     console.log(this.organos);
 
-    this.organoService.saveOrganosUsingPOST(this.per).subscribe(
+    this.organoService.saveOrganosUsingPOST(this.organos).subscribe(
       res => {
         if (res.object != null) {
           this.idOr = res.object
@@ -178,6 +162,7 @@ export class AutorizacionComponent implements OnInit {
 
     })
   }
+
   guardarTodo() {
     this.personaService.listaUsingGET().subscribe((res) => {
       for (let datos of res) {

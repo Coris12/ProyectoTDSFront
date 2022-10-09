@@ -14,15 +14,26 @@ import { Usuario } from './usuario';
 export interface Autorizacion { 
     cama?: string;
     canton?: string;
+    cedulaMe?: string;
+    cedulaRe?: string;
+    cedulaTra?: string;
     codUd?: string;
     fecha?: Date;
     idAutorizacion?: number;
     instutucionSistema?: string;
+    nombre?: string;
+    nombreMedico?: string;
+    nombreRepre?: string;
+    nombreTratante?: string;
     numeroHistoriaClinica?: number;
+    parentesco?: string;
     parroquia?: string;
     provincia?: string;
     sala?: string;
     servicio?: string;
+    telefonoMedico?: string;
+    telefonoParien?: string;
+    telefonoTra?: string;
     unidadOperativa?: string;
     usuario?: Usuario;
 }

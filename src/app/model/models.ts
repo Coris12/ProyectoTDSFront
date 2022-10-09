@@ -48,7 +48,6 @@ export * from './modelAndView';
 export * from './motivos';
 export * from './nuevoUsuario';
 export * from './organosDonados';
-export * from './persona';
 export * from './planTratamiento';
 export * from './producto';
 export * from './protocolos';

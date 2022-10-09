@@ -26,7 +26,6 @@ import { InformacionTratamientoControllerService } from './api/informacionTratam
 import { MedicamentosControllerService } from './api/medicamentosController.service';
 import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
 import { OrganosControllerService } from './api/organosController.service';
-import { PersonaControllerService } from './api/personaController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { ProtocoloControllerService } from './api/protocoloController.service';
@@ -68,7 +67,6 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     MedicamentosControllerService,
     MedicoConsentimientoControllerService,
     OrganosControllerService,
-    PersonaControllerService,
     PlanTratamientoControllerService,
     ProductoControllerService,
     ProtocoloControllerService,
