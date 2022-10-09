@@ -4,6 +4,8 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { DatosTarjetaDto } from 'src/app/model/datosTarjetaDto';
 import { MessageService } from 'primeng/api';
+import { FormularioControllerService } from 'src/app/api/formularioController.service';
+import { Formulario } from '../../../model/formulario';
 
 
 
@@ -16,6 +18,8 @@ export class DatosComponent implements OnInit {
   private unsuscribes$ = new Subject<void>();
 
   selectedCities: string[] = [];
+
+  formuData: Formulario[]=[];
 
   ObjDatorTarj: DatosTarjetaDto = {
     canton: null,
@@ -32,23 +36,25 @@ export class DatosComponent implements OnInit {
   constructor(
     private personaService: AuthControllerService,
     private messageService: MessageService,
+    private formularioService: FormularioControllerService
 
-
-  ) { 
+  ) {
   }
 
   buscarPerIdent: string;
 
   ngOnInit(): void {
-   this.selectedCities
+    this.selectedCities
   }
 
   idPerPrin: number = 0;
- buscarPersonaPorIdentificacion() {
+  buscarPersonaPorIdentificacion() {
     this.personaService.searchDateTarjetaUserUsingGET(this.buscarPerIdent).pipe(takeUntil(this.unsuscribes$)).subscribe((res) => {
       if (res.object != null) {
         this.ObjDatorTarj = res.object;
         this.idPerPrin = res.object.id;
+        console.log("id de la perosna es: " +this.idPerPrin)
+        this.buscarDatos(this.idPerPrin);
       } else {
         this.mensajeError("ERROR AL BUSCAR PERSONA");
         this.ObjDatorTarj = { canton: null, celular: null, direccion: null, id: null, idRecidencia: null, nacionalidad: null, nombres: null, pais: null, provincia: null, parroquia: null }
@@ -73,5 +79,14 @@ export class DatosComponent implements OnInit {
       summary: 'Resultado',
       detail: 'Correcto!: ' + msg,
     });
+  }
+
+
+  buscarDatos(idPersona: number): void {
+    this.formularioService.getByIdConvocatoriaUsingGET(idPersona).subscribe(data => {
+      this.formuData = data
+      console.log(data)
+    })
+
   }
 }

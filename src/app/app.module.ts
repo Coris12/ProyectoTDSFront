@@ -127,6 +127,7 @@ import { HistoriaControllerService } from './api/historiaController.service';
 import { PersonaControllerService } from './api/personaController.service';
 import { OrganosControllerService } from './api/organosController.service';
 import { AutorizacionControllerService } from './api/autorizacionController.service';
+import { FormularioControllerService } from './api/formularioController.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -257,7 +258,8 @@ import { AutorizacionControllerService } from './api/autorizacionController.serv
     EquiposControllerService,
     TipoQuiControllerService,
     PersonaControllerService,
-    OrganosControllerService
+    OrganosControllerService,
+    FormularioControllerService
   ],
   bootstrap: [AppComponent]
 })
