@@ -1,5 +1,6 @@
 export * from './antecFamiliares';
 export * from './antecPersonales';
+export * from './autorizacion';
 export * from './cliente';
 export * from './consentimientoDto';
 export * from './consentimientoListDto';
@@ -46,6 +47,8 @@ export * from './medicoConsentimiento';
 export * from './modelAndView';
 export * from './motivos';
 export * from './nuevoUsuario';
+export * from './organosDonados';
+export * from './persona';
 export * from './planTratamiento';
 export * from './producto';
 export * from './protocolos';

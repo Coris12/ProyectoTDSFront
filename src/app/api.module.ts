@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { AntecFamiliaresControllerService } from './api/antecFamiliaresController.service';
 import { AntecPersonalesControllerService } from './api/antecPersonalesController.service';
 import { AuthControllerService } from './api/authController.service';
+import { AutorizacionControllerService } from './api/autorizacionController.service';
 import { BasicErrorControllerService } from './api/basicErrorController.service';
 import { ClienteControllerService } from './api/clienteController.service';
 import { ConsentimientoControllerService } from './api/consentimientoController.service';
@@ -24,6 +25,8 @@ import { HistoriaControllerService } from './api/historiaController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
 import { MedicamentosControllerService } from './api/medicamentosController.service';
 import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
+import { OrganosControllerService } from './api/organosController.service';
+import { PersonaControllerService } from './api/personaController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { ProtocoloControllerService } from './api/protocoloController.service';
@@ -45,6 +48,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     AntecFamiliaresControllerService,
     AntecPersonalesControllerService,
     AuthControllerService,
+    AutorizacionControllerService,
     BasicErrorControllerService,
     ClienteControllerService,
     ConsentimientoControllerService,
@@ -63,6 +67,8 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     InformacionTratamientoControllerService,
     MedicamentosControllerService,
     MedicoConsentimientoControllerService,
+    OrganosControllerService,
+    PersonaControllerService,
     PlanTratamientoControllerService,
     ProductoControllerService,
     ProtocoloControllerService,

@@ -17,14 +17,15 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { Formulario } from '../model/formulario';
+import { Autorizacion } from '../model/autorizacion';
+import { GenericResponsestring } from '../model/genericResponsestring';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class FormularioControllerService {
+export class AutorizacionControllerService {
 
     protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
@@ -56,19 +57,106 @@ export class FormularioControllerService {
 
 
     /**
-     * Crea al formulario
+     * getById
      * 
-     * @param body formulario
+     * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createUsingPOST3(body: Formulario, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public createUsingPOST3(body: Formulario, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public createUsingPOST3(body: Formulario, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public createUsingPOST3(body: Formulario, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET(id: number, observe?: 'body', reportProgress?: boolean): Observable<Autorizacion>;
+    public getByIdUsingGET(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Autorizacion>>;
+    public getByIdUsingGET(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Autorizacion>>;
+    public getByIdUsingGET(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Autorizacion>('get',`${this.basePath}/Autorizacion/deatllesAutorizacion/${encodeURIComponent(String(id))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Muestra una lista de las Autorizaciones
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public listUsingGET(observe?: 'body', reportProgress?: boolean): Observable<Array<Autorizacion>>;
+    public listUsingGET(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Autorizacion>>>;
+    public listUsingGET(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Autorizacion>>>;
+    public listUsingGET(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Autorizacion>>('get',`${this.basePath}/Autorizacion/listaAutorizaciones`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * saveAutorizacion
+     * 
+     * @param body autorizacion
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public saveAutorizacionUsingPOST(body: Autorizacion, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public saveAutorizacionUsingPOST(body: Autorizacion, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public saveAutorizacionUsingPOST(body: Autorizacion, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public saveAutorizacionUsingPOST(body: Autorizacion, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createUsingPOST3.');
+            throw new Error('Required parameter body was null or undefined when calling saveAutorizacionUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -96,102 +184,9 @@ export class FormularioControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/formulario/crearFormulario`,
+        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/Autorizacion/saveAutorizacion`,
             {
                 body: body,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Recibe la id de convocatoria para mostrar estudiantes asignados
-     * 
-     * @param id id
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getByIdConvocatoriaUsingGET(id: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Formulario>>;
-    public getByIdConvocatoriaUsingGET(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Formulario>>>;
-    public getByIdConvocatoriaUsingGET(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Formulario>>>;
-    public getByIdConvocatoriaUsingGET(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdConvocatoriaUsingGET.');
-        }
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (id !== undefined && id !== null) {
-            queryParameters = queryParameters.set('id', <any>id);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (JWT) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<Array<Formulario>>('get',`${this.basePath}/formulario/getByIdUsuario`,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Muestra una lista de los formularios
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public listUsingGET5(observe?: 'body', reportProgress?: boolean): Observable<Array<Formulario>>;
-    public listUsingGET5(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Formulario>>>;
-    public listUsingGET5(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Formulario>>>;
-    public listUsingGET5(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // authentication (JWT) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
-            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<Array<Formulario>>('get',`${this.basePath}/formulario/listaForms`,
-            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

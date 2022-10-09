@@ -124,6 +124,9 @@ import { EquiposControllerService } from './api/equiposController.service';
 import { TipoQuiControllerService } from './api/tipoQuiController.service';
 import { HistoriaComponent } from './modulos/HistoriaClinica/historia/historia.component';
 import { HistoriaControllerService } from './api/historiaController.service';
+import { PersonaControllerService } from './api/personaController.service';
+import { OrganosControllerService } from './api/organosController.service';
+import { AutorizacionControllerService } from './api/autorizacionController.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -222,6 +225,7 @@ import { HistoriaControllerService } from './api/historiaController.service';
     MessageService,
     ConfirmationService,
     AuthControllerService,
+    AutorizacionControllerService,
     ClienteControllerService,
     CuerpoFacturaControllerService,
     EmpleadoControllerService,
@@ -251,7 +255,9 @@ import { HistoriaControllerService } from './api/historiaController.service';
     InformacionTratamientoControllerService,
     ProtocoloControllerService,
     EquiposControllerService,
-    TipoQuiControllerService
+    TipoQuiControllerService,
+    PersonaControllerService,
+    OrganosControllerService
   ],
   bootstrap: [AppComponent]
 })
