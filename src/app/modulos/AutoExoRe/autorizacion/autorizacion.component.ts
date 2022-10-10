@@ -107,8 +107,8 @@ export class AutorizacionComponent implements OnInit {
   saveAutorizacion() {
     console.log(this.Auto);
     this.Auto.usuario.nombres = this.buscarnombre
-    this.Auto.usuario.celular=this.telefono
-    this.Auto.usuario.identificacion=this.buscarcedula
+    this.Auto.usuario.celular = this.telefono
+    this.Auto.usuario.identificacion = this.buscarcedula
     this.autoService.saveAutorizacionUsingPOST(this.Auto).subscribe(
       res => {
         if (res.object != null) {
@@ -116,31 +116,10 @@ export class AutorizacionComponent implements OnInit {
           console.log(this.idAutori);
           this.MessageSuccess(" Autorizacion  creado")
           console.log(this.idAutori);
-          this.recuperarAutorizacion()
+          this.recuperarAutorizacion();
         } else {
           this.mensajeError("error al Autorizacio")
           console.log(" holii" + this.idAutori);
-          console.log("error" + this.errMsj)
-          console.log(res.object);
-        }
-      })
-  }
-
-
-  saveOrganos() {
-    console.log(this.organos);
-
-    this.organoService.saveOrganosUsingPOST(this.organos).subscribe(
-      res => {
-        if (res.object != null) {
-          this.idOr = res.object
-          console.log(this.idOr);
-          this.MessageSuccess(" correcto ")
-          console.log(this.idOr);
-
-        } else {
-          this.mensajeError("error al guardar organos donados")
-          console.log(" holii" + this.idOr);
           console.log("error" + this.errMsj)
           console.log(res.object);
         }
@@ -151,17 +130,40 @@ export class AutorizacionComponent implements OnInit {
 
     this.autoService.listUsingGET().subscribe((res) => {
       for (let datos of res) {
-        if (datos.idAutorizacion == this.idAu) {
+        console.log();
+
+        if (datos.idAutorizacion == this.idAutori) {
 
           this.organos.autorizacion = datos
-
-          console.log(this.idAu);
+          console.log(this.idAutori);
           this.saveOrganos();
         }
       }
 
     })
   }
+  saveOrganos() {
+    console.log(this.organos);
+
+    this.organoService.saveOrganosUsingPOST(this.organos).subscribe(
+      res => {
+        if (res.object != null) {
+          this.idOr = res.object
+          console.log(this.idOr);
+          this.MessageSuccess(" correcto ")
+          console.log(this.idOr);
+          
+
+        } else {
+          this.mensajeError("error al guardar organos donados")
+          console.log(" holii" + this.idOr);
+          console.log("error" + this.errMsj)
+          console.log(res.object);
+        }
+      })
+  }
+
+
 
   guardarTodo() {
     this.personaService.listaUsingGET().subscribe((res) => {
@@ -173,7 +175,7 @@ export class AutorizacionComponent implements OnInit {
           this.Auto.usuario = this.usuarioA
           console.log(this.Auto);
           this.saveAutorizacion();
-this.recuperarAutorizacion
+          //          this.saveOrganos();
         }
       }
     })
