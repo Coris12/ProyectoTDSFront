@@ -173,7 +173,7 @@ export class AutorizacionComponent implements OnInit {
           this.Auto.usuario = this.usuarioA
           console.log(this.Auto);
           this.saveAutorizacion();
-
+this.recuperarAutorizacion
         }
       }
     })
