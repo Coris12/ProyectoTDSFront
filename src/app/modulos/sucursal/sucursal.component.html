@@ -1,7 +1,6 @@
 <app-header></app-header>
 <p-toast></p-toast>
 <p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
-
 <div class="animated fadeIn mt-4">
     <div class="p-5 bg-light ">
         <div class="d-flex justify-content-between">
@@ -52,7 +51,7 @@
                         <td>{{sucu.telefonoSuc}} </td>
                         <td>{{sucu.correoSuc}}</td>
                         <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrarSucursal(sucu.idSucursal)"></button>
-                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="updateSucursal(sucu.idSucursal)"></button>
+                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text"  (click)="updateSucursal(sucu.idSucursal)"></button>
                         </td>
                     </tr>
                 </ng-template>

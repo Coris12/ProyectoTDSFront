@@ -62,8 +62,8 @@
                         <td>{{tratamiento.subtotal}}</td>
                         <td>{{tratamiento.total}}</td>
                         <td>{{tratamiento.valorUnitario}}</td>
-                        <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text"></button>
-                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text"></button>
+                        <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrarTratamiento(tratamiento.idTratamiento)"></button>
+                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="updateTratamiento(tratamiento.idTratamiento)" ></button>
                         </td>
 
                     </tr>

@@ -48,8 +48,8 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-provee>
                     <tr>
-                        <td>{{provee.id_proveedor}}</td>
-                        <td>{{provee.nombre_comercial_pro}}</td>
+                        <td>{{provee.idProveedor}}</td>
+                        <td>{{provee.nombreComercialPro}}</td>
                         <td>{{provee.usuario.nombres}}</td>
                         <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrarProveedor(provee.idProveedor)"></button>
                             <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text"  (click)="updateProveedor(provee.idProveedor)"></button>
@@ -77,7 +77,7 @@
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <i class="pi pi-flag"></i>
-                <input type="text" pInputText placeholder="Nombre comercial" formControlName="nombre_comercial_pro">
+                <input type="text" pInputText placeholder="Nombre comercial" formControlName="nombreComercialPro">
             </span>
         </div>
         <div class="form-group mt-2"><span class="p-input-icon-left">

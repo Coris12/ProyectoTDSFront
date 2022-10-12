@@ -15,9 +15,9 @@ import { ProveedorControllerService } from '../../api/proveedorController.servic
 export class ProveedorComponent implements OnInit {
 
   public proveForm = new FormGroup({
-    id_proveedor: new FormControl(null),
+    idProveedor: new FormControl(null),
     estado: new FormControl(null),
-    nombre_comercial_pro: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    nombreComercialPro: new FormControl(null, [Validators.nullValidator, Validators.required]),
     usuario: new FormControl(null, [Validators.nullValidator, Validators.required])
   });
 
@@ -72,9 +72,9 @@ export class ProveedorComponent implements OnInit {
       .subscribe(prove => {
         //console.log(prove.id_proveedor, prove.id_proveedor)
         this.proveForm.setValue({
-          id_proveedor: prove.idProveedor,
+          idProveedor: prove.idProveedor,
           estado: prove.estado,
-          nombre_comercial_pro: prove.nombreComercialPro,
+          nombreComercialPro: prove.nombreComercialPro,
           usuario: prove.usuario,
         });
       });
@@ -83,10 +83,10 @@ export class ProveedorComponent implements OnInit {
 
   saveProveedor() {
     console.log(this.proveForm.value)
-    if (this.proveForm.value?.id_proveedor !== null) {
+    if (this.proveForm.value?.idProveedor !== null) {
       this.proveedorController.updateUsingPUT3(
         this.proveForm.value,
-        this.proveForm.value?.id_proveedor,
+        this.proveForm.value?.idProveedor,
       ).subscribe(data => {
         this.messageService.add({
           severity: 'info',
@@ -116,9 +116,9 @@ export class ProveedorComponent implements OnInit {
       );
       this.proveDialog = false;
       this.proveForm.setValue({
-        id_proveedor: null,
+        idProveedor: null,
         estado: null,
-        nombre_comercial_pro: null,
+        nombreComercialPro: null,
         usuario: null
       })
     }

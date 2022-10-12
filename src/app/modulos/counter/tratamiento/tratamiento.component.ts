@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { TratamientoControllerService } from 'src/app/api/tratamientoController.service';
 import { EmpleadoControllerService } from '../../../api/empleadoController.service';
 import { ClienteControllerService } from '../../../api/clienteController.service';
@@ -24,9 +24,9 @@ export class TratamientoComponent implements OnInit {
   totalRecords: number
 
 
-  empleado: Empleado []=[];
-  cliente: Cliente[] =[];
-  tratamiento : Tratamiento [] =[];
+  empleado: Empleado[] = [];
+  cliente: Cliente[] = [];
+  tratamiento: Tratamiento[] = [];
 
   public tratamientoForm = new FormGroup({
     idTratamiento: new FormControl(null),
@@ -45,7 +45,8 @@ export class TratamientoComponent implements OnInit {
     private tratamientoController: TratamientoControllerService,
     private messageService: MessageService,
     private empleadoController: EmpleadoControllerService,
-    private clienteCntroller: ClienteControllerService
+    private clienteCntroller: ClienteControllerService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit(): void {
@@ -53,11 +54,36 @@ export class TratamientoComponent implements OnInit {
     this.cargarTratamientos();
   }
 
-  cargarTratamientos(event?: LazyLoadEvent): void  {
+
+
+
+  updateTratamiento(idTratamiento: number) {
+    //console.log(idProveedor);
+
+    this.tratamientoController.getByIdUsingGET6(idTratamiento)
+      .subscribe(trata => {
+        //console.log(prove.id_proveedor, prove.id_proveedor)
+        this.tratamientoForm.setValue({
+          idTratamiento: trata.idTratamiento,
+          nombre: trata.nombre,
+          cantidad: trata.cantidad,
+          categoria: trata.categoria,
+          codigo: trata.codigo,
+          descripcion: trata.descripcion,
+          estado: trata.estado,
+          subtotal: trata.subtotal,
+          total: trata.total,
+          valorUnitario: trata.valorUnitario
+        });
+      });
+    this.dialogo = true;
+  }
+
+  cargarTratamientos(event?: LazyLoadEvent): void {
     this.loading = true;
 
     setTimeout(() => {
-      this.tratamientoController.listUsingGET5().subscribe(
+      this.tratamientoController.searchUsingGET5().subscribe(
 
         data => {
           this.tratamiento = data;
@@ -99,15 +125,78 @@ export class TratamientoComponent implements OnInit {
   }
 
   saveTratamiento() {
-    this.tratamientoController.createUsingPOST6(
-      this.tratamientoForm.value,
-    ).subscribe(data => {
-      this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Tratamiento creado .' });
-    },
-      error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+    console.log(this.tratamientoForm.value)
+    if (this.tratamientoForm.value?.idTratamiento !== null) {
+      this.tratamientoController.updateUsingPUT6(
+        this.tratamientoForm.value,
+        this.tratamientoForm.value?.idTratamiento,
+      ).subscribe(data => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Tratamiento Actualizado',
+          detail: data.object
+        });
+        this.dialogo=false;
+        this.cargarTratamientos
+      })
+    } else {
+      this.tratamientoController.createUsingPOST6(
+        this.tratamientoForm.value,
+      ).subscribe(data => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Exito',
+          detail: 'Tratamiento creado .'
+        });
+      },
+        error => this.messageService.add({
+          severity: 'danger',
+          summary: 'Error',
+          detail: error.mensaje
+        })
+      );
 
-    this.dialogo = false;
+      this.dialogo = false;
+      this.tratamientoForm.setValue({
+        idTratamiento: null,
+        nombre: null,
+        cantidad: null,
+        categoria:null,
+        codigo: null,
+        descripcion: null,
+        estado: null,
+        subtotal: null,
+        total: null,
+        valorUnitario: null
+      })
+    }
+  }
 
+
+  borrarTratamiento(idTratamiento): void {
+    this.confirmationService.confirm({
+      message: 'Esta seguro de eliminar el Tratamiento ?',
+      accept: () => {
+        this.tratamientoController.deleteTratamientoUsingPATCH1(idTratamiento).subscribe(
+          data => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Tratamiento Eliminado',
+              detail: 'Eliminar.'
+            });
+            setTimeout(() => {
+              this.cargarTratamientos();
+            }, 1000);
+          },
+          error =>
+            this.messageService.add({
+              severity: 'Danger',
+              summary: 'Error',
+              detail: error.mensaje
+            })
+        );
+      }
+    })
   }
 
 }

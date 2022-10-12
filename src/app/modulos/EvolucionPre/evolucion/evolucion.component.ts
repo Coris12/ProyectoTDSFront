@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { EvolucionControllerService } from 'src/app/api/evolucionController.service';
 import { MedicamentosControllerService } from 'src/app/api/medicamentosController.service';
@@ -19,7 +20,7 @@ export class EvolucionComponent implements OnInit {
     private evolucionService: EvolucionControllerService,
     private messageService: MessageService,
     private medicaService: MedicamentosControllerService,
-    private serviceGenPdf:FacturaService
+    private serviceGenPdf: FacturaService
   ) { }
 
   //!variables
@@ -30,9 +31,9 @@ export class EvolucionComponent implements OnInit {
   idEvo: any;
   errMsj: String;
   establecimiento = "C.E.M. MEDIVALLE";
-
+  Evoluciones: any[] = [];
   medi: string
-
+  loading: boolean = true;
 
 
   usuarioE: any;
@@ -48,8 +49,19 @@ export class EvolucionComponent implements OnInit {
     establecimiento: null,
     usuario: null,
   }
+  listDialog: boolean
+  submitted: boolean;
 
+  openNew() {
+    this.submitted = false;
+    this.listDialog = true;
+  }
+
+  clear(table: Table) {
+    table.clear();
+  }
   ngOnInit(): void {
+    this.cargarEvolucion()
   }
 
 
@@ -68,7 +80,21 @@ export class EvolucionComponent implements OnInit {
       }
     })
   }
-
+  cargarEvolucion() {
+    this.loading = true;
+    setTimeout(() => {
+      this.evolucionService.listUsingGET2().subscribe(
+        data => {
+          this.Evoluciones = data;
+          console.log(data);
+          this.loading = false;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }, 100);
+  }
 
 
   buscarPersona() {
@@ -162,7 +188,7 @@ export class EvolucionComponent implements OnInit {
       let hora = fech.getHours() + ":" + fech.getMinutes() + ":" + fech.getSeconds();
       var link = document.createElement('a');
       link.href = url;
-      link.download = 'Evolucion y Prescricion_' + nomPer +  '-' + fecha + '-h' + hora + '-' + numAlea + '.pdf';
+      link.download = 'Evolucion y Prescricion_' + nomPer + '-' + fecha + '-h' + hora + '-' + numAlea + '.pdf';
       link.click();
       window.open(url);
     } else {

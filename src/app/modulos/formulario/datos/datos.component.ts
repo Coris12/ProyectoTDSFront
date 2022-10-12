@@ -6,6 +6,8 @@ import { DatosTarjetaDto } from 'src/app/model/datosTarjetaDto';
 import { MessageService } from 'primeng/api';
 import { FormularioControllerService } from 'src/app/api/formularioController.service';
 import { Formulario } from '../../../model/formulario';
+import { RefiereDeriva } from 'src/app/model/refiereDeriva';
+import { DatosInstitucionales } from 'src/app/model/datosInstitucionales';
 
 
 
@@ -19,7 +21,7 @@ export class DatosComponent implements OnInit {
 
   selectedCities: string[] = [];
 
-  formuData: Formulario[]=[];
+  formuData: Formulario[] = [];
 
   ObjDatorTarj: DatosTarjetaDto = {
     canton: null,
@@ -33,6 +35,41 @@ export class DatosComponent implements OnInit {
     parroquia: null,
     provincia: null,
   }
+
+  refiere: RefiereDeriva = {
+    entidadSistema: null,
+    especialidadReferido: null,
+    establecimientoRefer: null,
+    fecha: null,
+    idRefiere: null,
+    motivo: null,
+    servicioReferido: null,
+  }
+
+  formula: Formulario = {
+    cuadroClinico: null,
+    datos: null,
+    diagnostico: null,
+    hallazgos: null,
+    idFormulario: null,
+    refiere: null,
+    usuario: null,
+  }
+
+
+  datosin: DatosInstitucionales = {
+    area: null,
+    districto: null,
+    entidad: null,
+    establecimiento: null,
+    histClinNum: null,
+    idDatos: null,
+    tipo: null,
+  }
+
+
+
+
   constructor(
     private personaService: AuthControllerService,
     private messageService: MessageService,
@@ -53,7 +90,7 @@ export class DatosComponent implements OnInit {
       if (res.object != null) {
         this.ObjDatorTarj = res.object;
         this.idPerPrin = res.object.id;
-        console.log("id de la perosna es: " +this.idPerPrin)
+        console.log("id de la perosna es: " + this.idPerPrin)
         this.buscarDatos(this.idPerPrin);
       } else {
         this.mensajeError("ERROR AL BUSCAR PERSONA");
@@ -86,6 +123,28 @@ export class DatosComponent implements OnInit {
     this.formularioService.getByIdConvocatoriaUsingGET(idPersona).subscribe(data => {
       this.formuData = data
       console.log(data)
+      for (let datos of data) {
+        if (this.idPerPrin != undefined) {
+          if (datos.usuario.id == this.idPerPrin) {
+            this.datosin.area=datos.datos.area
+            this.datosin.districto=datos.datos.districto
+            this.datosin.entidad=datos.datos.entidad
+            this.datosin.establecimiento=datos.datos.establecimiento
+            this.datosin.histClinNum=datos.datos.histClinNum
+            this.datosin.tipo=datos.datos.tipo
+            this.refiere.entidadSistema = datos.refiere.entidadSistema
+            this.refiere.establecimientoRefer = datos.refiere.establecimientoRefer
+            this.refiere.servicioReferido = datos.refiere.servicioReferido
+            this.refiere.especialidadReferido = datos.refiere.especialidadReferido
+            this.refiere.fecha = datos.refiere.fecha
+            this.formula.cuadroClinico = datos.cuadroClinico
+            this.formula.diagnostico=datos.diagnostico
+            this.formula.hallazgos=datos.hallazgos
+          }
+        }
+
+
+      }
     })
 
   }
