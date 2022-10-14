@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { Proveedor } from './proveedor';
+import { Sucursal } from './sucursal';
 
 export interface Producto { 
     categoriaProducto?: string;
@@ -26,5 +27,6 @@ export interface Producto {
     proveedor?: Proveedor;
     regSanitario?: string;
     stock?: string;
+    sucursal?: Sucursal;
     ultimoCosto?: number;
 }

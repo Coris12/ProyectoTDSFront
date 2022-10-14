@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 import { HistoriaClinica } from 'src/app/model/historiaClinica';
+import { FacturaService } from 'src/app/servicioManual/factura.service';
 
 @Component({
   selector: 'app-historia',
@@ -14,12 +16,12 @@ export class HistoriaComponent implements OnInit {
   buscarcedula: string;
   buscarnombre: string;
   idpersona: number;
-  idHistoria:any
-  usuarioN:any
+  idHistoria: any
+  usuarioN: any
 
   historia: HistoriaClinica = {
     alergia: null,
-    examen:null,
+    examen: null,
     apf: null,
     app: null,
     edad: null,
@@ -37,22 +39,37 @@ export class HistoriaComponent implements OnInit {
     religion: null,
     residencia: null,
     spo2: null,
-    dx:null,
+    dx: null,
     ta: null,
-    dr:null,
+    dr: null,
     tem: null,
     tipoSangre: null,
     usuario: null,
   }
 
+  listDialog: boolean
+  submitted: boolean;
+  loading: boolean = true;
+
+  historias: any[] = [];
+  openNew() {
+    this.submitted = false;
+    this.listDialog = true;
+  }
+
+  clear(table: Table) {
+    table.clear();
+  }
   constructor(
     private persnaService: AuthControllerService,
-    private historiaService:HistoriaControllerService,
+    private historiaService: HistoriaControllerService,
     private messageService: MessageService,
+    private serviceGenPdf: FacturaService
 
   ) { }
 
   ngOnInit(): void {
+    
   }
 
   buscarPersona() {
@@ -77,7 +94,7 @@ export class HistoriaComponent implements OnInit {
     })
   }
 
-  guardarTodo(){
+  guardarTodo() {
     this.persnaService.listaUsingGET().subscribe((res) => {
       for (let datos of res) {
 
@@ -93,7 +110,8 @@ export class HistoriaComponent implements OnInit {
     })
   }
 
-  saveHistoriaClinica(){
+  
+  saveHistoriaClinica() {
     console.log(this.historia);
     this.historiaService.saveHistoriaClinicaUsingPOST(this.historia).subscribe(
       res => {
@@ -109,6 +127,22 @@ export class HistoriaComponent implements OnInit {
           console.log(res.object);
         }
       })
+  }
+
+  CargarHistoria(event: LazyLoadEvent) {
+    this.loading = true;
+    setTimeout(() => {
+      this.historiaService.listUsingGET5().subscribe(
+        data => {
+          this.historias = data;
+          console.log(data);
+          this.loading = false;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }, 100);
   }
 
   mensajeError(msg: String) {
@@ -127,4 +161,62 @@ export class HistoriaComponent implements OnInit {
     });
   }
 
+  imprimirPDFSinceButton(idHi: number) {
+    this.serviceGenPdf.genePdHistoria(idHi).subscribe(data => {
+      if (data) {
+        //this.cargarConsultaExterna(idConsExterno);
+        this.descargarPdf(data);
+        //this.limpiarAll();
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+  }
+  createId(): string {
+    let id = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+  }
+
+  descargarPdf(pdfSrc: any) {
+    let pdf: any = pdfSrc;
+    let numAlea = this.createId();
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var url = window.URL.createObjectURL(blob);
+    if (this.historia.fecha != null) {
+      let nomPer = this.historia.usuario.nombres;
+
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'HISTORIA CLINICA_' + nomPer + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    } else {
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'HISTORIA CLINICA_' + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    }
+
+  }
+
+  imprimirPDF(idHi: number) {
+    this.serviceGenPdf.genePdHistoria(idHi).subscribe(data => {
+      if (data) {
+        this.descargarPdf(data);
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+  }
+
+ 
 }

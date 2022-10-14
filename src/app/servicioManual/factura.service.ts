@@ -28,4 +28,11 @@ export class FacturaService {
   genePdfMedicoConsentimietno(idme: number){
     return this.http.get(this.baseUrl+'/consentimientoMedico/generarPdf?idme='+idme,{responseType:'blob' as 'json'});
   }
+
+  genePdfConsentimietnoInformado(idCon: number){
+    return this.http.get(this.baseUrl+'/consentimiento/generarPdf?idCon='+idCon,{responseType:'blob' as 'json'});
+  }
+  genePdHistoria(idHi: number){
+    return this.http.get(this.baseUrl+'/HistoriaClinica/generarPdf?idHi='+idHi,{responseType:'blob' as 'json'});
+  }
 }

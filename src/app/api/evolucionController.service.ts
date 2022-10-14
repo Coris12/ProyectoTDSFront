@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class EvolucionControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -63,10 +63,10 @@ export class EvolucionControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public generarPdfUsingGET1(iden?: string, observe?: 'body', reportProgress?: boolean): Observable<string>;
-    public generarPdfUsingGET1(iden?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<string>>;
-    public generarPdfUsingGET1(iden?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<string>>;
-    public generarPdfUsingGET1(iden?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public generarPdfUsingGET2(iden?: string, observe?: 'body', reportProgress?: boolean): Observable<string>;
+    public generarPdfUsingGET2(iden?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<string>>;
+    public generarPdfUsingGET2(iden?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<string>>;
+    public generarPdfUsingGET2(iden?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -112,13 +112,13 @@ export class EvolucionControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET2(id: number, observe?: 'body', reportProgress?: boolean): Observable<Evolucion>;
-    public getByIdUsingGET2(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Evolucion>>;
-    public getByIdUsingGET2(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Evolucion>>;
-    public getByIdUsingGET2(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET4(id: number, observe?: 'body', reportProgress?: boolean): Observable<Evolucion>;
+    public getByIdUsingGET4(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Evolucion>>;
+    public getByIdUsingGET4(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Evolucion>>;
+    public getByIdUsingGET4(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET2.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET4.');
         }
 
         let headers = this.defaultHeaders;
@@ -157,10 +157,10 @@ export class EvolucionControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET2(observe?: 'body', reportProgress?: boolean): Observable<Array<Evolucion>>;
-    public listUsingGET2(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Evolucion>>>;
-    public listUsingGET2(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Evolucion>>>;
-    public listUsingGET2(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET4(observe?: 'body', reportProgress?: boolean): Observable<Array<Evolucion>>;
+    public listUsingGET4(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Evolucion>>>;
+    public listUsingGET4(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Evolucion>>>;
+    public listUsingGET4(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 

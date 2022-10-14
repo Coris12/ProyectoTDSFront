@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProtocoloControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -63,13 +63,13 @@ export class ProtocoloControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET7(id: number, observe?: 'body', reportProgress?: boolean): Observable<Protocolos>;
-    public getByIdUsingGET7(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Protocolos>>;
-    public getByIdUsingGET7(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Protocolos>>;
-    public getByIdUsingGET7(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET10(id: number, observe?: 'body', reportProgress?: boolean): Observable<Protocolos>;
+    public getByIdUsingGET10(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Protocolos>>;
+    public getByIdUsingGET10(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Protocolos>>;
+    public getByIdUsingGET10(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET7.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET10.');
         }
 
         let headers = this.defaultHeaders;
@@ -108,10 +108,10 @@ export class ProtocoloControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET8(observe?: 'body', reportProgress?: boolean): Observable<Array<Protocolos>>;
-    public listUsingGET8(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Protocolos>>>;
-    public listUsingGET8(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Protocolos>>>;
-    public listUsingGET8(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET11(observe?: 'body', reportProgress?: boolean): Observable<Array<Protocolos>>;
+    public listUsingGET11(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Protocolos>>>;
+    public listUsingGET11(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Protocolos>>>;
+    public listUsingGET11(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 

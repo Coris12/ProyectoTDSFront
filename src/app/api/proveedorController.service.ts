@@ -26,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProveedorControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -62,13 +62,13 @@ export class ProveedorControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createUsingPOST4(body: Proveedor, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public createUsingPOST4(body: Proveedor, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public createUsingPOST4(body: Proveedor, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public createUsingPOST4(body: Proveedor, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createUsingPOST5(body: Proveedor, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public createUsingPOST5(body: Proveedor, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public createUsingPOST5(body: Proveedor, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public createUsingPOST5(body: Proveedor, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createUsingPOST4.');
+            throw new Error('Required parameter body was null or undefined when calling createUsingPOST5.');
         }
 
         let headers = this.defaultHeaders;
@@ -166,13 +166,13 @@ export class ProveedorControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET4(id: number, observe?: 'body', reportProgress?: boolean): Observable<Proveedor>;
-    public getByIdUsingGET4(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Proveedor>>;
-    public getByIdUsingGET4(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Proveedor>>;
-    public getByIdUsingGET4(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET11(id: number, observe?: 'body', reportProgress?: boolean): Observable<Proveedor>;
+    public getByIdUsingGET11(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Proveedor>>;
+    public getByIdUsingGET11(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Proveedor>>;
+    public getByIdUsingGET11(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET4.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET11.');
         }
 
         let headers = this.defaultHeaders;
@@ -211,10 +211,10 @@ export class ProveedorControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET4(observe?: 'body', reportProgress?: boolean): Observable<Array<Proveedor>>;
-    public listUsingGET4(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Proveedor>>>;
-    public listUsingGET4(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Proveedor>>>;
-    public listUsingGET4(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET12(observe?: 'body', reportProgress?: boolean): Observable<Array<Proveedor>>;
+    public listUsingGET12(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Proveedor>>>;
+    public listUsingGET12(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Proveedor>>>;
+    public listUsingGET12(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 

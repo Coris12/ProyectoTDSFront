@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class HistoriaControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -57,19 +57,68 @@ export class HistoriaControllerService {
 
 
     /**
+     * generarPdf
+     * 
+     * @param idHi idHi
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public generarPdfUsingGET3(idHi?: number, observe?: 'body', reportProgress?: boolean): Observable<string>;
+    public generarPdfUsingGET3(idHi?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<string>>;
+    public generarPdfUsingGET3(idHi?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<string>>;
+    public generarPdfUsingGET3(idHi?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idHi !== undefined && idHi !== null) {
+            queryParameters = queryParameters.set('idHi', <any>idHi);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<string>('get',`${this.basePath}/HistoriaClinica/generarPdf`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * getById
      * 
      * @param id id
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET4(id: number, observe?: 'body', reportProgress?: boolean): Observable<HistoriaClinica>;
-    public getByIdUsingGET4(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<HistoriaClinica>>;
-    public getByIdUsingGET4(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<HistoriaClinica>>;
-    public getByIdUsingGET4(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET5(id: number, observe?: 'body', reportProgress?: boolean): Observable<HistoriaClinica>;
+    public getByIdUsingGET5(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<HistoriaClinica>>;
+    public getByIdUsingGET5(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<HistoriaClinica>>;
+    public getByIdUsingGET5(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET4.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET5.');
         }
 
         let headers = this.defaultHeaders;
@@ -108,10 +157,10 @@ export class HistoriaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET5(observe?: 'body', reportProgress?: boolean): Observable<Array<HistoriaClinica>>;
-    public listUsingGET5(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<HistoriaClinica>>>;
-    public listUsingGET5(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<HistoriaClinica>>>;
-    public listUsingGET5(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET6(observe?: 'body', reportProgress?: boolean): Observable<Array<HistoriaClinica>>;
+    public listUsingGET6(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<HistoriaClinica>>>;
+    public listUsingGET6(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<HistoriaClinica>>>;
+    public listUsingGET6(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 

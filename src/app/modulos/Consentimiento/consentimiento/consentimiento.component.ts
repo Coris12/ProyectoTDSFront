@@ -11,6 +11,7 @@ import { Consentimiento } from 'src/app/model/consentimiento';
 import { ConsentimientoDto } from 'src/app/model/consentimientoDto';
 import { ConsentimientoListDto } from 'src/app/model/consentimientoListDto';
 import { InformacionTratamientoDTO } from 'src/app/model/informacionTratamientoDTO';
+import { FacturaService } from 'src/app/servicioManual/factura.service';
 
 @Component({
   selector: 'app-consentimiento',
@@ -39,8 +40,15 @@ export class ConsentimientoComponent implements OnInit, OnDestroy, AfterContentC
 
   objInformacionTto: InformacionTratamientoDTO = {}
 
-  constructor(private messageService: MessageService, private consentimientoservice: ConsentimientoControllerService, private infTratamientoService: InformacionTratamientoControllerService,
-    private fb: FormBuilder, private servicePersona: AuthControllerService, private confirmationService: ConfirmationService, private cdRef: ChangeDetectorRef) {
+  constructor(private messageService: MessageService,
+    private consentimientoservice: ConsentimientoControllerService,
+    private infTratamientoService: InformacionTratamientoControllerService,
+    private fb: FormBuilder,
+    private servicePersona: AuthControllerService,
+    private confirmationService: ConfirmationService,
+    private cdRef: ChangeDetectorRef,
+    private serviceGenPdf: FacturaService
+  ) {
 
     this.formCabezera = this.fb.group({
       institucionSistemas: ['', Validators.required],
@@ -322,8 +330,8 @@ export class ConsentimientoComponent implements OnInit, OnDestroy, AfterContentC
     table.clear();
   }
 
-  idUpdateUsuario:number = 0;
-  idUpdateConsentimiento:number = 0;
+  idUpdateUsuario: number = 0;
+  idUpdateConsentimiento: number = 0;
   onRowSelect(event) {
     this.messageService.add({ severity: 'info', summary: 'CONSENTIMIENTO DE: ', detail: event.data.nombres });
     this.cargarDatosConsentimientos(event.data.idConsentimiento);
@@ -334,9 +342,9 @@ export class ConsentimientoComponent implements OnInit, OnDestroy, AfterContentC
   }
 
 
-  idProfesionalTratante: number= 0;
-  idCirujano: number= 0;
-  idAnastesiologo: number= 0;
+  idProfesionalTratante: number = 0;
+  idCirujano: number = 0;
+  idAnastesiologo: number = 0;
   cargarDatosConsentimientos(idConsentimiento: number) {
     if (idConsentimiento == null || idConsentimiento == 0) {
       this.messageError('NO SE OBTUVO UN DATO IMPORTANTE, RECARGE LA PÁGINA O VUELVA A INICAR SESIÓN');
@@ -445,20 +453,20 @@ export class ConsentimientoComponent implements OnInit, OnDestroy, AfterContentC
     this.objConsentimieto.idConsentimiento = this.idUpdateConsentimiento;
 
     this.consentimientoservice.updateConsentimientoUsingPUT(this.objConsentimieto).pipe(takeUntil(this.unsuscribes$)).subscribe((data) => {
-      if(data.object!=null && data.status===1){
+      if (data.object != null && data.status === 1) {
         this.editarInfoProfesionalTratante();
         this.editatInfoCirujano();
         this.editarInfoAnastesiologo();
         this.messageSuccess('SE HA EDITADO');
-      }else{
-        this.messageError("ERROR AL EDITAR..."+data.message);
+      } else {
+        this.messageError("ERROR AL EDITAR..." + data.message);
       }
-    }, error=>{
+    }, error => {
       this.messageError("ERROR EN EL SERVIDOR");
     })
   }
 
-  editarInfoProfesionalTratante(){
+  editarInfoProfesionalTratante() {
     this.objInformacionTto.proposito = this.formProfesionalTratante.get('propositos').value;
     this.objInformacionTto.procedimientoPropuesto = this.formProfesionalTratante.get('terapiaProcedimiento').value;
     this.objInformacionTto.resultadoEsperado = this.formProfesionalTratante.get('resultadosEsperados').value;
@@ -471,17 +479,17 @@ export class ConsentimientoComponent implements OnInit, OnDestroy, AfterContentC
     this.objInformacionTto.idInfTrat = this.idProfesionalTratante;
 
     this.infTratamientoService.updateConsentimientoTratamientoUsingPUT(this.objInformacionTto).pipe(takeUntil(this.unsuscribes$)).subscribe((data) => {
-      if(data.object!=null || data.status == 1){
+      if (data.object != null || data.status == 1) {
         this.messageSuccess("EDITADO INFORMACIÓN DEL PROFESIONAL TRATANTE");
-      }else{
-        this.messageError("ERROR AL EDITAR..."+data.message);
+      } else {
+        this.messageError("ERROR AL EDITAR..." + data.message);
       }
-    }, error=>{
+    }, error => {
       this.messageError("ERROR EN EL SERVIDOR");
     })
   }
 
-  editatInfoCirujano(){
+  editatInfoCirujano() {
     this.objInformacionTto.proposito = this.formCirujano.get('proposito').value;
     this.objInformacionTto.procedimientoPropuesto = this.formCirujano.get('intervencionQuirurgica').value;
     this.objInformacionTto.resultadoEsperado = this.formCirujano.get('resultadoEsperados').value;
@@ -493,18 +501,18 @@ export class ConsentimientoComponent implements OnInit, OnDestroy, AfterContentC
     this.objInformacionTto.idConsentimientoFK = this.idUpdateConsentimiento;
     this.objInformacionTto.idInfTrat = this.idCirujano;
     this.infTratamientoService.updateConsentimientoTratamientoUsingPUT(this.objInformacionTto).pipe(takeUntil(this.unsuscribes$)).subscribe((data) => {
-      if(data.object!=null || data.status == 1){
+      if (data.object != null || data.status == 1) {
         this.messageSuccess("EDITADO INFORMACIÓN DEL CIRUJANO TRATANTE");
-      }else{
-        this.messageError("ERROR AL EDITAR..."+data.message)
+      } else {
+        this.messageError("ERROR AL EDITAR..." + data.message)
       }
-    },error=>{
+    }, error => {
       this.messageError("ERROR EN EL SERVIDOR")
     })
 
   }
 
-  editarInfoAnastesiologo(){
+  editarInfoAnastesiologo() {
     this.objInformacionTto.proposito = this.formAnastesiologo.get('proposito').value;
     this.objInformacionTto.procedimientoPropuesto = this.formAnastesiologo.get('anestesiaPropuesta').value;
     this.objInformacionTto.resultadoEsperado = this.formAnastesiologo.get('resultadosEsperados').value;
@@ -516,12 +524,12 @@ export class ConsentimientoComponent implements OnInit, OnDestroy, AfterContentC
     this.objInformacionTto.idConsentimientoFK = this.idUpdateConsentimiento;
     this.objInformacionTto.idInfTrat = this.idAnastesiologo;
     this.infTratamientoService.updateConsentimientoTratamientoUsingPUT(this.objInformacionTto).pipe(takeUntil(this.unsuscribes$)).subscribe((data) => {
-      if(data.object!=null || data.status == 1){
+      if (data.object != null || data.status == 1) {
         this.messageSuccess("EDITADO INFORMACIÓN DEL ANASTESIOLOGO TRATANTE");
-      }else{
-        this.messageError("ERROR AL EDITAR..."+data.message)
+      } else {
+        this.messageError("ERROR AL EDITAR..." + data.message)
       }
-    }, error=>{
+    }, error => {
       this.messageError("ERROR EN EL SERVIDOR")
     })
 
@@ -578,30 +586,73 @@ export class ConsentimientoComponent implements OnInit, OnDestroy, AfterContentC
   }
 
 
-  imprimirPDFSinceButton(idConsentimiento: number) {
-    console.log(idConsentimiento);
+  
 
-    // this.serviceGenPdf.genePdfConsultaExterna(idConsExterno).subscribe(data => {
-    //   if (data) {
-    //     this.cargarConsultaExterna(idConsExterno);
-    //     this.descargarPdf(data);
-    //     this.limpiarAll();
-    //   } else {
-    //     this.mensajesError("No PDF document found");
-    //   }
-    // }, err => {
-    //   this.mensajesError("ERROR AL GENERAR PDF");
-    // });
+  imprimirPDFSinceButton(idCon: number) {
+    this.serviceGenPdf.genePdfConsentimietnoInformado(idCon).subscribe(data => {
+      if (data) {
+        //this.cargarConsultaExterna(idConsExterno);
+        this.descargarPdf(data);
+        //this.limpiarAll();
+      } else {
+        this.messageError("No PDF document found");
+      }
+    }, err => {
+      this.messageError("ERROR AL GENERAR PDF");
+    });
+  }
+  createId(): string {
+    let id = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
   }
 
-  limpiarFormularios() {
-    this.updateSi = false;
-    this.formConsentimiento.get('cedula').enable();
+  descargarPdf(pdfSrc: any) {
+    let pdf: any = pdfSrc;
+    let numAlea = this.createId();
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var url = window.URL.createObjectURL(blob);
+    if (this.objConsentimieto.fecha != null) {
+      let nomPer = this.objConsentimieto.nombre;
 
-    this.formCabezera.reset();
-    this.formConsentimiento.reset();
-    this.formProfesionalTratante.reset();
-    this.formAnastesiologo.reset();
-    this.formCirujano.reset();
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'CONSENTIMIENTO INFORMADO' + nomPer + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    } else {
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'CONSENTIMIENTO INFORMADO_' + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    }
+
   }
-}
+
+  imprimirPDF(idCon: number) {
+    this.serviceGenPdf.genePdfConsentimietnoInformado(idCon).subscribe(data => {
+      if (data) {
+        this.descargarPdf(data);
+      } else {
+        this.messageError("No PDF document found");
+      }
+    }, err => {
+      this.messageError("ERROR AL GENERAR PDF");
+    })
+  }
+
+    limpiarFormularios() {
+      this.updateSi = false;
+      this.formConsentimiento.get('cedula').enable();
+
+      this.formCabezera.reset();
+      this.formConsentimiento.reset();
+      this.formProfesionalTratante.reset();
+      this.formAnastesiologo.reset();
+      this.formCirujano.reset();
+    }
+  }

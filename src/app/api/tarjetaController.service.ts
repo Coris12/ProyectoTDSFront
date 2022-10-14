@@ -66,17 +66,17 @@ export class TarjetaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createUsingPOST5(body: DatosTarjetaAllDTO, identificacion: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public createUsingPOST5(body: DatosTarjetaAllDTO, identificacion: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public createUsingPOST5(body: DatosTarjetaAllDTO, identificacion: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public createUsingPOST5(body: DatosTarjetaAllDTO, identificacion: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createUsingPOST6(body: DatosTarjetaAllDTO, identificacion: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public createUsingPOST6(body: DatosTarjetaAllDTO, identificacion: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public createUsingPOST6(body: DatosTarjetaAllDTO, identificacion: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public createUsingPOST6(body: DatosTarjetaAllDTO, identificacion: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createUsingPOST5.');
+            throw new Error('Required parameter body was null or undefined when calling createUsingPOST6.');
         }
 
         if (identificacion === null || identificacion === undefined) {
-            throw new Error('Required parameter identificacion was null or undefined when calling createUsingPOST5.');
+            throw new Error('Required parameter identificacion was null or undefined when calling createUsingPOST6.');
         }
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -180,13 +180,13 @@ export class TarjetaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET6(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tarjeta>;
-    public getByIdUsingGET6(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tarjeta>>;
-    public getByIdUsingGET6(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tarjeta>>;
-    public getByIdUsingGET6(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET13(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tarjeta>;
+    public getByIdUsingGET13(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tarjeta>>;
+    public getByIdUsingGET13(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tarjeta>>;
+    public getByIdUsingGET13(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET6.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET13.');
         }
 
         let headers = this.defaultHeaders;
@@ -225,10 +225,10 @@ export class TarjetaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET5(observe?: 'body', reportProgress?: boolean): Observable<Array<Tarjeta>>;
-    public listUsingGET5(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tarjeta>>>;
-    public listUsingGET5(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tarjeta>>>;
-    public listUsingGET5(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET13(observe?: 'body', reportProgress?: boolean): Observable<Array<Tarjeta>>;
+    public listUsingGET13(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tarjeta>>>;
+    public listUsingGET13(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tarjeta>>>;
+    public listUsingGET13(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
