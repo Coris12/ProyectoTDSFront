@@ -187,8 +187,14 @@
         </div>
 
         <div class="form-group col ">
-            <label for="requisitos ">Proveedor</label>
+            <label for="requisitos ">Proveedor:</label>
             <p-dropdown [options]="proveedores" formControlName="proveedor" placeholder="Seleccione el proveedor" optionLabel="nombre_comercial_pro" [style]="{ width: '40vw' }" [showClear]="true"></p-dropdown>
+
+        </div>
+
+        <div class="form-group col ">
+            <label for="requisitos ">Sucursal:</label>
+            <p-dropdown [options]="sucursales" formControlName="sucursal" placeholder="Seleccione la sucursal" optionLabel="nombreSuc" [style]="{ width: '40vw' }" [showClear]="true"></p-dropdown>
 
         </div>
 

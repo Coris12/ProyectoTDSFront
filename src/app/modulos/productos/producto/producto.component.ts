@@ -4,8 +4,10 @@ import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api'
 import { Table } from 'primeng/table';
 import { ProductoControllerService } from 'src/app/api/productoController.service';
 import { ProveedorControllerService } from 'src/app/api/proveedorController.service';
+import { SucursalControllerService } from 'src/app/api/sucursalController.service';
 import { Producto } from 'src/app/model/producto';
 import { Proveedor } from 'src/app/model/proveedor';
+import { Sucursal } from 'src/app/model/sucursal';
 
 @Component({
   selector: 'app-producto',
@@ -47,6 +49,7 @@ export class ProductoComponent implements OnInit {
   produc: any[];
   proveedores: Proveedor[] = [];
 
+  sucursales: Sucursal[] = [];
   // * lazy load
   loading: boolean;
   totalRecords: number
@@ -61,6 +64,7 @@ export class ProductoComponent implements OnInit {
     private productoController: ProductoControllerService,
     private proveedorController: ProveedorControllerService,
     private messageService: MessageService,
+    private sucursalController: SucursalControllerService,
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -78,6 +82,7 @@ export class ProductoComponent implements OnInit {
 
     this.cargarProductos();
     this.cargarProveedores();
+    this.cargarSucursales();
   }
 
   generarcodigo() {
@@ -251,6 +256,20 @@ export class ProductoComponent implements OnInit {
     this.proveedorController.listUsingGET4().subscribe(
       data => {
         this.proveedores = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+
+  // metodo para cargar las sucursales de la
+  cargarSucursales(): void {
+    this.sucursalController.listaUsingGET1().subscribe(
+      data => {
+        this.sucursales = data;
+        console.log(this.sucursales);
       },
       err => {
         console.log(err);
