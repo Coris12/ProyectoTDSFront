@@ -32,6 +32,7 @@ export class ProductoComponent implements OnInit {
     proveedor: new FormControl(null, [Validators.nullValidator, Validators.required]),
     costoPromedio: new FormControl(null, [Validators.nullValidator, Validators.required]),
     ultimoCosto: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    sucursal: new FormControl(null, [Validators.nullValidator, Validators.required]),
   })
   //variables producto
   categoria: any[];
@@ -142,7 +143,7 @@ export class ProductoComponent implements OnInit {
   }
 
   updateProducto(idProducto: number) {
-    this.productoController.getByIdUsingGET3(idProducto)
+    this.productoController.getByIdUsingGET9(idProducto)
       .subscribe(produc => {
         console.log(produc.idProducto)
         this.productoForm.setValue({
@@ -160,6 +161,7 @@ export class ProductoComponent implements OnInit {
           costoPromedio: produc.costoPromedio,
           ultimoCosto: produc.ultimoCosto,
           proveedor: produc.proveedor,
+          sucursal: produc.sucursal,
         });
       });
     this.productoDialog = true;
@@ -183,9 +185,10 @@ export class ProductoComponent implements OnInit {
         this.cargarProductos();
       });
     } else {
-      this.productoController.createUsingPOST3(
+      this.productoController.createUsingPOST4(
         this.productoForm.value,
         this.productoForm.value?.proveedor.idProveedor,
+        this.productoForm.value?.sucursal.idSucursal
       ).subscribe(data => {
         this.messageService.add({
           severity: 'success',
@@ -214,7 +217,8 @@ export class ProductoComponent implements OnInit {
         stock: null,
         costoPromedio: null,
         ultimoCosto: null,
-        proveedor: null
+        proveedor: null,
+        sucursal:null
       })
 
     }
@@ -253,9 +257,11 @@ export class ProductoComponent implements OnInit {
 
   //metodo cargar proveedores
   cargarProveedores(): void {
-    this.proveedorController.listUsingGET4().subscribe(
+    this.proveedorController.searchUsingGET3().subscribe(
       data => {
         this.proveedores = data;
+      
+        console.log("prove:"+ this.proveedores)
       },
       err => {
         console.log(err);

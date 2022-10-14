@@ -68,7 +68,7 @@ export class ProveedorComponent implements OnInit {
   updateProveedor(idProveedor: number) {
     //console.log(idProveedor);
 
-    this.proveedorController.getByIdUsingGET4(idProveedor)
+    this.proveedorController.getByIdUsingGET11(idProveedor)
       .subscribe(prove => {
         //console.log(prove.id_proveedor, prove.id_proveedor)
         this.proveForm.setValue({
@@ -97,7 +97,7 @@ export class ProveedorComponent implements OnInit {
         this.cargarProveedor();
       });
     } else {
-      this.proveedorController.createUsingPOST4(
+      this.proveedorController.createUsingPOST5(
         this.proveForm.value,
         this.proveForm.value?.usuario.idUsuario,
       ).subscribe(data => {

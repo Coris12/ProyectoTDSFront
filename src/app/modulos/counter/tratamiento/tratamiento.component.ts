@@ -60,7 +60,7 @@ export class TratamientoComponent implements OnInit {
   updateTratamiento(idTratamiento: number) {
     //console.log(idProveedor);
 
-    this.tratamientoController.getByIdUsingGET6(idTratamiento)
+    this.tratamientoController.getByIdUsingGET15(idTratamiento)
       .subscribe(trata => {
         //console.log(prove.id_proveedor, prove.id_proveedor)
         this.tratamientoForm.setValue({
@@ -100,7 +100,7 @@ export class TratamientoComponent implements OnInit {
   }
 
   cargarCliente() {
-    this.clienteCntroller.listUsingGET().subscribe(
+    this.clienteCntroller.listUsingGET1().subscribe(
       data => {
         console.log(data)
         this.cliente = data;
@@ -140,7 +140,7 @@ export class TratamientoComponent implements OnInit {
         this.cargarTratamientos
       })
     } else {
-      this.tratamientoController.createUsingPOST6(
+      this.tratamientoController.createUsingPOST7(
         this.tratamientoForm.value,
       ).subscribe(data => {
         this.messageService.add({

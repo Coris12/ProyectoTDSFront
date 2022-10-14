@@ -132,7 +132,7 @@ export class HistoriaComponent implements OnInit {
   CargarHistoria(event: LazyLoadEvent) {
     this.loading = true;
     setTimeout(() => {
-      this.historiaService.listUsingGET5().subscribe(
+      this.historiaService.listUsingGET6().subscribe(
         data => {
           this.historias = data;
           console.log(data);

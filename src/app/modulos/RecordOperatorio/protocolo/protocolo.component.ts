@@ -130,7 +130,7 @@ export class ProtocoloComponent implements OnInit {
   }
   recuperarprotocolo() {
 
-    this.protocoloService.listUsingGET8().subscribe((res) => {
+    this.protocoloService.listUsingGET11().subscribe((res) => {
       for (let datos of res) {
         if (datos.idProtocolo == this.idPro) {
           

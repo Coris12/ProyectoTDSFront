@@ -81,7 +81,7 @@ export class MedicoConsentimientoComponent implements OnInit {
   CargarConsentimientos() {
     this.loading = true;
     setTimeout(() => {
-      this.medicoService.listUsingGET5().subscribe(
+      this.medicoService.listUsingGET8().subscribe(
         data => {
           this.Medicos = data;
           console.log(data);

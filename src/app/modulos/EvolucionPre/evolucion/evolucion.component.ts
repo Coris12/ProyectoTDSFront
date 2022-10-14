@@ -83,7 +83,7 @@ export class EvolucionComponent implements OnInit {
   cargarEvolucion() {
     this.loading = true;
     setTimeout(() => {
-      this.evolucionService.listUsingGET2().subscribe(
+      this.evolucionService.listUsingGET4().subscribe(
         data => {
           this.Evoluciones = data;
           console.log(data);

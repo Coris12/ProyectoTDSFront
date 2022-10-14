@@ -503,7 +503,7 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
     console.log(this.formDatosTarjeta);
     console.log(this.formDatosTarjeta.value);
 
-    this.tarjetaService.createUsingPOST5(this.objtDatosTarjetaAllDto, cedula).pipe(takeUntil(this.unsuscribes$)).subscribe(data => {
+    this.tarjetaService.createUsingPOST6(this.objtDatosTarjetaAllDto, cedula).pipe(takeUntil(this.unsuscribes$)).subscribe(data => {
       if (data.mensaje) {
         this.updateIdTarjetaUsuario(data.mensaje, cedula);
         this.MessageSuccess("TARJETA GUARDADA CORRECTAMENTE");

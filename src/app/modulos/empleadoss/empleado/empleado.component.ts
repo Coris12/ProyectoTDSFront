@@ -65,7 +65,7 @@ export class EmpleadoComponent implements OnInit {
   }
 
   updateEmpleado(idEmpleado: number) {
-    this.empleadoController.getByIdUsingGET1(idEmpleado)
+    this.empleadoController.getByIdUsingGET2(idEmpleado)
       .subscribe(emple => {
         console.log(emple.idEmpleado)
         this.empleForm.setValue({

@@ -26,7 +26,8 @@
             </div>
         </p-toolbar>
         <div class="content-section implementation mt-2">
-            <p-table #dt [value]="productos" [paginator]="true" responsiveLayout="scroll" [loading]="loading" [rows]="10" styleClass="p-datatable-gridlines" [globalFilterFields]="['codBarra', 'nombreProducto', 'nombre_comercial_pro']">
+            <p-table #dt [value]="productos" [paginator]="true" responsiveLayout="stack" [loading]="loading" [rows]="10" styleClass="p-datatable-gridlines" [globalFilterFields]="['codBarra', 'nombreProducto', 'nombre_comercial_pro']" [scrollable]="true" scrollHeight="400px"
+                scrollDirection="both">
                 <ng-template pTemplate="caption">
                     <div class="table-header">
                         <span class="p-input-icon-left">
@@ -38,41 +39,43 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Id </th>
-                        <th>Nombre Producto</th>
-                        <th>Categoria</th>
-                        <th>Codigo barras</th>
-                        <th>Codigo referencia</th>
-                        <th>Descripcion</th>
-                        <th>Fecha Expiracion</th>
-                        <th>Inventario</th>
-                        <th>Precio</th>
-                        <th>Registro Sanitario</th>
-                        <th>Stock</th>
-                        <th>Costo Promedio</th>
-                        <th>Ultimo Costo</th>
-                        <th>Proveedor</th>
-                        <th>Opciones</th>
+                        <th style="width:100px">Id </th>
+                        <th style="width:200px">Nombre Producto</th>
+                        <th style="width:200px">Categoria</th>
+                        <th style="width:200px">Codigo barras</th>
+                        <th style="width:200px">Codigo referencia</th>
+                        <th style="width:200px">Descripcion</th>
+                        <th style="width:200px">Fecha Expiracion</th>
+                        <th style="width:200px">Inventario</th>
+                        <th style="width:200px">Precio</th>
+                        <th style="width:200px">Registro Sanitario</th>
+                        <th style="width:200px">Stock</th>
+                        <th style="width:200px">Costo Promedio</th>
+                        <th style="width:200px">Ultimo Costo</th>
+                        <th style="width:200px">Proveedor</th>
+                        <th style="width:200px">Sucursal</th>
+                        <th style="width:200px">Opciones</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-producto>
                     <tr>
-                        <td>{{producto.idProducto}}</td>
-                        <td>{{producto.nombreProducto}}</td>
-                        <td>{{producto.categoriaProducto}}</td>
-                        <td>{{producto.codBarra}}</td>
-                        <td>{{producto.codigoRef}}</td>
-                        <td>{{producto.descripcionProducto}}</td>
-                        <td>{{producto.fechaExp}}</td>
-                        <td>{{producto.inventarioProducto}}</td>
-                        <td>{{producto.precioProducto}}</td>
-                        <td>{{producto.regSanitario}}</td>
-                        <td>{{producto.stock}}</td>
-                        <td>{{producto.costoPromedio}}</td>
-                        <td>{{producto.ultimoCosto}}</td>
-                        <td>{{producto.proveedor.nombreComercialPro}}</td>
+                        <td style="width:100px">{{producto.idProducto}}</td>
+                        <td style="width:200px">{{producto.nombreProducto}}</td>
+                        <td style="width:200px">{{producto.categoriaProducto}}</td>
+                        <td style="width:200px">{{producto.codBarra}}</td>
+                        <td style="width:200px">{{producto.codigoRef}}</td>
+                        <td style="width:200px">{{producto.descripcionProducto}}</td>
+                        <td style="width:200px">{{producto.fechaExp}}</td>
+                        <td style="width:200px">{{producto.inventarioProducto}}</td>
+                        <td style="width:200px">{{producto.precioProducto}}</td>
+                        <td style="width:200px">{{producto.regSanitario}}</td>
+                        <td style="width:200px">{{producto.stock}}</td>
+                        <td style="width:200px">{{producto.costoPromedio}}</td>
+                        <td style="width:200px">{{producto.ultimoCosto}}</td>
+                        <td style="width:200px">{{producto.proveedor.nombreComercialPro}}</td>
+                        <td style="width:200px">{{producto.sucursal.nombreSuc}}</td>
 
-                        <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrarProducto(producto.idProducto)"></button>
+                        <td style="width:200px"><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrarProducto(producto.idProducto)"></button>
                             <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="updateProducto(producto.idProducto)"></button>
                         </td>
 
@@ -146,7 +149,7 @@
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
-                <label for="requisitos ">"Nombre del producto</label>
+                <label for="requisitos ">Nombre del producto</label>
                 <input type="text" pInputText placeholder="Nombre del producto" formControlName="nombreProducto">
             </span>
         </div>
@@ -188,7 +191,7 @@
 
         <div class="form-group col ">
             <label for="requisitos ">Proveedor:</label>
-            <p-dropdown [options]="proveedores" formControlName="proveedor" placeholder="Seleccione el proveedor" optionLabel="nombre_comercial_pro" [style]="{ width: '40vw' }" [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="proveedores" formControlName="proveedor" placeholder="Seleccione el proveedor" optionLabel="nombreComercialPro" [style]="{ width: '40vw' }" [showClear]="true"></p-dropdown>
 
         </div>
 
