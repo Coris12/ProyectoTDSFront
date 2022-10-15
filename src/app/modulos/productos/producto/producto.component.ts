@@ -33,6 +33,7 @@ export class ProductoComponent implements OnInit {
     costoPromedio: new FormControl(null, [Validators.nullValidator, Validators.required]),
     ultimoCosto: new FormControl(null, [Validators.nullValidator, Validators.required]),
     sucursal: new FormControl(null, [Validators.nullValidator, Validators.required]),
+
   })
   //variables producto
   categoria: any[];
@@ -188,7 +189,7 @@ export class ProductoComponent implements OnInit {
       this.productoController.createUsingPOST4(
         this.productoForm.value,
         this.productoForm.value?.proveedor.idProveedor,
-        this.productoForm.value?.sucursal.idSucursal
+        this.productoForm.value?.sucursal.idSucural,
       ).subscribe(data => {
         this.messageService.add({
           severity: 'success',
@@ -218,7 +219,7 @@ export class ProductoComponent implements OnInit {
         costoPromedio: null,
         ultimoCosto: null,
         proveedor: null,
-        sucursal:null
+        sucursal: null,
       })
 
     }
@@ -257,11 +258,9 @@ export class ProductoComponent implements OnInit {
 
   //metodo cargar proveedores
   cargarProveedores(): void {
-    this.proveedorController.searchUsingGET3().subscribe(
+    this.proveedorController.listUsingGET12().subscribe(
       data => {
         this.proveedores = data;
-      
-        console.log("prove:"+ this.proveedores)
       },
       err => {
         console.log(err);

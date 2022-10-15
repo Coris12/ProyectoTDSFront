@@ -69,7 +69,7 @@ export class HistoriaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+    this.HistoriaCNum();
   }
 
   buscarPersona() {
@@ -94,6 +94,7 @@ export class HistoriaComponent implements OnInit {
     })
   }
 
+
   guardarTodo() {
     this.persnaService.listaUsingGET().subscribe((res) => {
       for (let datos of res) {
@@ -110,7 +111,7 @@ export class HistoriaComponent implements OnInit {
     })
   }
 
-  
+
   saveHistoriaClinica() {
     console.log(this.historia);
     this.historiaService.saveHistoriaClinicaUsingPOST(this.historia).subscribe(
@@ -218,5 +219,18 @@ export class HistoriaComponent implements OnInit {
     });
   }
 
- 
+  HistoriaCNum() {
+    var i: number = 0
+    var x: number = 2
+    var numhistoria: any
+    this.historiaService.listUsingGET6().subscribe((res) => {
+      for (let datos of res) {
+        i++
+        numhistoria= i+1
+       console.log(numhistoria,"!!!!!!!!!!!!!!!!!!!!!!!!!111");
+       this.historia.numCl= numhistoria       
+      }
+
+    })
+  }
 }
