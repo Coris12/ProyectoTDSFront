@@ -98,11 +98,11 @@
 </div>
 
 <p-dialog header="Crear Producto." [(visible)]="productoDialog" [modal]="true" [style]="{width: '50vw', height: '30vw'}" [draggable]="false" [resizable]="false" class="p-fluid">
-    <form [formGroup]="productoForm" (ngSubmit)="saveProducto()">
+   
 
         <div class="form-group mt-2">
             <label for="requisitos ">Categoria producto</label>
-            <p-dropdown inputId="web" [(ngModel)]="categoriaProd" [options]="categoria" formControlName="categoriaProducto" placeholder="Seleccione la categoria del producto" (onChange)="generarcodigo()">
+            <p-dropdown inputId="web" [(ngModel)]="categoriaProd" [options]="categoria" [(ngModel)]="producto.categoriaProducto" placeholder="Seleccione la categoria del producto" (onChange)="generarcodigo()">
                 <ng-template let-option pTemplate="item">
                     <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
                 </ng-template>
@@ -113,7 +113,7 @@
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Codigo Barras</label>
-                <input type="text" pInputText placeholder="Codigo Barras" formControlName="codBarra">
+                <input type="text" pInputText placeholder="Codigo Barras" [(ngModel)]="producto.codBarra">
             </span>
         </div>
 
@@ -121,21 +121,21 @@
             <span class="p-input-icon-left">
                 <label for="requisitos ">Codigo Referencia</label>
                 <input type="text" pInputText placeholder="Codigo Referencia" [(ngModel)]="codigo" value={{codigo}}
-                    formControlName="codigoRef">
+              >
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Descripcion</label>
-                <input type="text" pInputText placeholder="Descripcion" formControlName="descripcionProducto">
+                <input type="text" pInputText placeholder="Descripcion" [(ngModel)]="producto.descripcionProducto">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Fecha de expiracion</label>
-                <p-inputMask mask="99/99/9999" formControlName="fechaExp" placeholder=" Fecha Expiracion 99/99/9999"
+                <p-inputMask mask="99/99/9999" [(ngModel)]="producto.fechaExp" placeholder=" Fecha Expiracion 99/99/9999"
                     slotChar="mm/dd/yyyy"></p-inputMask>
             </span>
         </div>
@@ -143,66 +143,65 @@
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Inventario</label>
-                <input type="number" pInputText placeholder="Inventario" formControlName="inventarioProducto">
+                <input type="number" pInputText placeholder="Inventario" [(ngModel)]="producto.inventarioProducto">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Nombre del producto</label>
-                <input type="text" pInputText placeholder="Nombre del producto" formControlName="nombreProducto">
+                <input type="text" pInputText placeholder="Nombre del producto" [(ngModel)]="producto.nombreProducto">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Precio</label>
-                <input type="number" pInputText placeholder="Precio" formControlName="precioProducto">
+                <input type="number" pInputText placeholder="Precio" [(ngModel)]="producto.precioProducto">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Registro Sanitario</label>
-                <input type="text" pInputText placeholder="Registro Sanitario" formControlName="regSanitario">
+                <input type="text" pInputText placeholder="Registro Sanitario" [(ngModel)]="producto.regSanitario">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Stock del Producto</label>
-                <input type="number" pInputText placeholder="Stock del Producto" formControlName="stock">
+                <input type="number" pInputText placeholder="Stock del Producto" [(ngModel)]="producto.stock">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Costo Promedio</label>
-                <input type="number" pInputText placeholder="Costo Promedio" formControlName="costoPromedio">
+                <input type="number" pInputText placeholder="Costo Promedio" [(ngModel)]="producto.costoPromedio">
             </span>
         </div>
 
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <label for="requisitos ">Ultimo costo</label>
-                <input type="number" pInputText placeholder="Ultimo costo" formControlName="ultimoCosto">
+                <input type="number" pInputText placeholder="Ultimo costo" [(ngModel)]="producto.ultimoCosto">
             </span>
         </div>
 
         <div class="form-group col ">
             <label for="requisitos ">Proveedor:</label>
-            <p-dropdown [options]="proveedores" formControlName="proveedor" placeholder="Seleccione el proveedor" optionLabel="nombreComercialPro" [style]="{ width: '40vw' }" [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="proveedores" [(ngModel)]="producto.proveedor" placeholder="Seleccione el proveedor" optionLabel="nombreComercialPro" [style]="{ width: '40vw' }" [showClear]="true"></p-dropdown>
 
         </div>
 
         <div class="form-group col ">
             <label for="requisitos ">Sucursal:</label>
-            <p-dropdown [options]="sucursales" formControlName="sucursal" placeholder="Seleccione la sucursal" optionLabel="nombreSuc" [style]="{ width: '40vw' }" [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="sucursales" [(ngModel)]="producto.sucursal" placeholder="Seleccione la sucursal" optionLabel="nombreSuc" [style]="{ width: '40vw' }" [showClear]="true"></p-dropdown>
 
         </div>
 
         <div style="text-align:right">
-            <p-button type="submit" icon="pi pi-check" label="Guardar" styleClass="p-button-text"></p-button>
+            <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="guardarProducto()" styleClass="p-button-text"></p-button>
         </div>
-    </form>
 </p-dialog>

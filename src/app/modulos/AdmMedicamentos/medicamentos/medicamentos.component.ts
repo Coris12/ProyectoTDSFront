@@ -118,6 +118,7 @@ export class MedicamentosComponent implements OnInit {
       detail: 'Correcto!: ' + msg,
     });
   }
+
   buscarPersona2() {
     this.persnaService.listaUsingGET().subscribe((res) => {
       //console.log(this.buscarcedula, this.buscarnombre);
@@ -156,7 +157,7 @@ export class MedicamentosComponent implements OnInit {
     })
   }
 
-  buscarMedicamento() {//______________________________________________________________NO BORRRAR ____________________________________________________________________________________________________xd
+  buscarMedicamento() {
     this.medicamentos = []
     this.medicamentoService.listUsingGET7().subscribe((res) => {
       for (let datos of res) {
@@ -179,6 +180,7 @@ export class MedicamentosComponent implements OnInit {
 
     })
   }
+
   vaciarbuscar() {
     this.buscarcedula = ""
     this.buscarnombre = ""
@@ -201,6 +203,7 @@ export class MedicamentosComponent implements OnInit {
     });
     this.vaciarbuscar();
   }
+
   createId(): string {
     let id = '';
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -236,6 +239,10 @@ export class MedicamentosComponent implements OnInit {
     }
 
   }
+
+
+
+  
   ///WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWw
 
   /*convetToPDF1() {

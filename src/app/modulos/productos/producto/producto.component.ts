@@ -57,8 +57,26 @@ export class ProductoComponent implements OnInit {
   totalRecords: number
   proveedor: Proveedor[];
   codRefe: any;
+  idPro: any
 
-
+  producto: Producto = {
+    idProducto: null,
+    categoriaProducto: null,
+    codBarra: null,
+    codigoRef: null,
+    descripcionProducto: null,
+    fechaExp: null,
+    inventarioProducto: null,
+    nombreProducto: null,
+    precioProducto: null,
+    regSanitario: null,
+    stock: null,
+    proveedor: null,
+    costoPromedio: null,
+    ultimoCosto: null,
+    sucursal: null,
+  }
+  errMsj: string;
   //! abre el dialogo de producto
   productoDialog: boolean;
 
@@ -144,28 +162,32 @@ export class ProductoComponent implements OnInit {
   }
 
   updateProducto(idProducto: number) {
-    this.productoController.getByIdUsingGET9(idProducto)
-      .subscribe(produc => {
-        console.log(produc.idProducto)
-        this.productoForm.setValue({
-          idProducto: produc.idProducto,
-          categoriaProducto: produc.categoriaProducto,
-          codBarra: produc.codBarra,
-          codigoRef: produc.codigoRef,
-          descripcionProducto: produc.descripcionProducto,
-          fechaExp: produc.fechaExp,
-          nombreProducto: produc.nombreProducto,
-          inventarioProducto: produc.inventarioProducto,
-          precioProducto: produc.precioProducto,
-          regSanitario: produc.regSanitario,
-          stock: produc.stock,
-          costoPromedio: produc.costoPromedio,
-          ultimoCosto: produc.ultimoCosto,
-          proveedor: produc.proveedor,
-          sucursal: produc.sucursal,
-        });
-      });
+    this.productoController.getByIdUsingGET9(idProducto).subscribe(produc => {
+      console.log(produc.idProducto)
+
+      this.producto.idProducto = produc.idProducto,
+        this.producto.categoriaProducto = produc.categoriaProducto,
+        this.producto.codBarra = produc.codBarra,
+        this.codigo = produc.codigoRef,
+        this.producto.descripcionProducto = produc.descripcionProducto,
+        this.producto.fechaExp = produc.fechaExp,
+        this.producto.nombreProducto = produc.nombreProducto,
+        this.producto.inventarioProducto = produc.inventarioProducto,
+        this.producto.precioProducto = produc.precioProducto,
+        this.producto.regSanitario = produc.regSanitario,
+        this.producto.stock = produc.stock,
+        this.producto.costoPromedio = produc.costoPromedio,
+        this.producto.ultimoCosto = produc.ultimoCosto,
+        this.producto.proveedor = produc.proveedor,
+        this.producto.sucursal = produc.sucursal
+        
+    })
+
+
+
+
     this.productoDialog = true;
+    this.cargarProductos()
 
   }
 
@@ -186,8 +208,8 @@ export class ProductoComponent implements OnInit {
         this.cargarProductos();
       });
     } else {
-      this.productoController.createUsingPOST4(
-        this.productoForm.value,
+      this.productoController.createUsingPOST4(// y el idproducto?????' creoq sea guarda solo
+        this.productoForm.value?.idProducto, //para que sirve eso que pegue ? es para que te guarde lo de esoosea el producto
         this.productoForm.value?.proveedor.idProveedor,
         this.productoForm.value?.sucursal.idSucural,
       ).subscribe(data => {
@@ -226,6 +248,42 @@ export class ProductoComponent implements OnInit {
   }
   //fin del metodo
 
+  guardarProducto() {// este funcionaaaaaaaaaaaaaaa
+    console.log(this.producto);
+    this.producto.codigoRef = this.codigo
+    this.productoController.saveProductoUsingPOST(this.producto).subscribe(
+      res => {
+        console.log(res);
+        if (res.object != null) {//<_________________
+          this.idPro = res.object//esto que hace nose
+          console.log(this.idPro);
+          this.MessageSuccess(" Medicamento  guardado")
+          console.log(this.idPro);
+          this.productoDialog = false
+
+        } else {
+          this.mensajeError("error al guardar medicamento")
+          console.log(" holii" + this.idPro);
+          console.log("error" + this.errMsj)
+          console.log(res.object);
+        }
+      })
+  }
+  mensajeError(msg: String) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Error: ' + msg,
+    });
+  }
+
+  MessageSuccess(msg: String) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Resultado',
+      detail: 'Correcto!: ' + msg,
+    });
+  }
   //metodo de borrado logico
   borrarProducto(idProducto: number): void {
 
