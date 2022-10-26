@@ -26,7 +26,7 @@
             </div>
         </p-toolbar>
         <div class="content-section implementation mt-2">
-            <p-table #dt [value]="productos" [paginator]="true" responsiveLayout="stack" [loading]="loading" [rows]="10" styleClass="p-datatable-gridlines" [globalFilterFields]="['codBarra', 'nombreProducto', 'nombre_comercial_pro']" [scrollable]="true" scrollHeight="400px"
+            <p-table #dt [value]="productos" [paginator]="true" responsiveLayout="stack" [loading]="loading" [rows]="10" styleClass="p-datatable-gridlines" [globalFilterFields]="['codBarra', 'nombreProducto', 'proveedor.nombreComercialPro','sucursal.nombreSuc']" [scrollable]="true" scrollHeight="400px"
                 scrollDirection="both">
                 <ng-template pTemplate="caption">
                     <div class="table-header">
