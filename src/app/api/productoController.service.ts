@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProductoControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -359,6 +359,58 @@ export class ProductoControllerService {
 
         return this.httpClient.request<Producto>('get',`${this.basePath}/producto/detail/${encodeURIComponent(String(id))}`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Recibe la id de convocatoria para mostrar estudiantes asignados
+     * 
+     * @param idSucursal id_sucursal
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getProductoByIdSucursalUsingGET(idSucursal: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Producto>>;
+    public getProductoByIdSucursalUsingGET(idSucursal: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Producto>>>;
+    public getProductoByIdSucursalUsingGET(idSucursal: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Producto>>>;
+    public getProductoByIdSucursalUsingGET(idSucursal: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (idSucursal === null || idSucursal === undefined) {
+            throw new Error('Required parameter idSucursal was null or undefined when calling getProductoByIdSucursalUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idSucursal !== undefined && idSucursal !== null) {
+            queryParameters = queryParameters.set('id_sucursal', <any>idSucursal);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Producto>>('get',`${this.basePath}/producto/getProductoByIdSucursal`,
+            {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

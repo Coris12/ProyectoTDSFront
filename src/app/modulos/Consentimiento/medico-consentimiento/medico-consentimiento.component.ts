@@ -26,7 +26,7 @@ export class MedicoConsentimientoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.CargarConsentimientos();
+    
   }
   Medico: MedicoConsentimiento = {
     alergia: null,
@@ -44,6 +44,7 @@ export class MedicoConsentimientoComponent implements OnInit {
     personaA: null,
     procedimientos: null,
     telefono: null,
+    entidad:null,
   }
   
   listDialog: boolean
@@ -78,7 +79,7 @@ export class MedicoConsentimientoComponent implements OnInit {
       })
   }
 
-  CargarConsentimientos() {
+  CargarConsentimientos(event: LazyLoadEvent) {
     this.loading = true;
     setTimeout(() => {
       this.medicoService.listUsingGET8().subscribe(

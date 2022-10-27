@@ -16,6 +16,7 @@ export interface MedicoConsentimiento {
     codigo?: string;
     direccion?: string;
     edad?: number;
+    entidad?: string;
     especialidad?: string;
     estado?: number;
     fecha?: Date;

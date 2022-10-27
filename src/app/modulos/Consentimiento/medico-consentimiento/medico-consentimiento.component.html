@@ -38,7 +38,7 @@
                 durante el curso del mismo pudieran presentarse condiciones imprevistas
                 necesitándose extensión del procedimiento especificado anteriormente o terminar en cirugía con remoción
                 de órganos y tejidos.Asi mismo reconozco que se me ha informado que por convenio
-                ejecutado entre el equipo médico y ENTIDAD:HOSPITAL DEL DIA-CENTRO DE VARICES AG solo existe la
+                ejecutado entre el equipo médico y ENTIDAD: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.entidad" > solo existe la
                 presentacion de instalaciones para dicho(s) procemiento(s).
                 <br>
                 <br>
@@ -87,30 +87,60 @@
     
     <p-button label="Save" (click)="saveConsentimiento()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
     </p-button>
-    <button style="text-align: center" class="btn btn-dark  ml-4" (click)=" imprimirPDFSinceButton(idMe)"><i
-        class="fas fa-print"></i> Descargar PDF</button>
+ 
         
 </div>
 
-<p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'47em'}" [modal]="false">
-    <div class="col-8 flex align-items-center justify-content-center">
+<p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
+    <div class="col-12 flex align-items-center justify-content-center">
         <div class="p-fluid">
-            <p-table #dt [value]="Medicos" [paginator]="true" responsiveLayout="scroll" [rows]="10"
-                styleClass="p-datatable-gridlines">
-
+            <p-table #dt [value]="Medicos" [lazy]="true" (onLazyLoad)="CargarConsentimientos($event)"
+            selectionMode="single" [loading]="loading"  responsiveLayout="scroll" [resizableColumns]="true"
+            styleClass="p-datatable-gridlines p-datatable-sm"
+            [globalFilterFields]="['nombres', 'identificacion']"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                  <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
+                    (click)="clear(dt)"></button>
+                
+                  <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" autocomplete="off" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                      placeholder="BUSCAR" />
+                  </span>
+                </div>
+              </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Id</th>
-                        <th>Nombre Paciente</th>
-                        <th>Fecha/hora</th>
-                        <th>Print</th>
-                    </tr>
+                        <th pResizableColumn style="width:110px">
+                          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                            IDENTIFICACIÓN
+                          </div>
+                        </th>
+                        <th pResizableColumn>
+                          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                            NOMBRES PACIENTE
+                          </div>
+                        </th>
+                        <th pResizableColumn style="width:100px">
+                          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                            FECHA
+                          </div>
+                        </th>
+                        
+                        <th pResizableColumn style="width:50px">
+                          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                            PRINT
+                          </div>
+                        </th>
+                      </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-medi>
                     <tr>
-                        <td>{{medi.idMediC}}</td>
-                        <td>{{medi.nombrePaciente}}</td>
-                        <td>{{medi.fecha}}</td>
+                        <td style="text-align:center">{{medi.idMediC}}</td>
+                        <td style="text-align:center">{{medi.nombrePaciente}}</td>
+                        <td style="text-align:center"> {{medi.fecha}}</td>
                         <td style="text-align:center">
                             <button pButton pRipple type="button" icon="pi pi-print" (click)="imprimirPDFSinceButton(medi.idMediC)"
                             class="p-button-rounded p-button-text">
