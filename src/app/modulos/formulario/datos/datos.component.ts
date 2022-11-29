@@ -22,7 +22,7 @@ export class DatosComponent implements OnInit {
   selectedCities: string[] = [];
 
   formuData: Formulario[] = [];
-
+  idForm: any;
   ObjDatorTarj: DatosTarjetaDto = {
     canton: null,
     celular: null,
@@ -126,20 +126,20 @@ export class DatosComponent implements OnInit {
       for (let datos of data) {
         if (this.idPerPrin != undefined) {
           if (datos.usuario.id == this.idPerPrin) {
-            this.datosin.area=datos.datos.area
-            this.datosin.districto=datos.datos.districto
-            this.datosin.entidad=datos.datos.entidad
-            this.datosin.establecimiento=datos.datos.establecimiento
-            this.datosin.histClinNum=datos.datos.histClinNum
-            this.datosin.tipo=datos.datos.tipo
+            this.datosin.area = datos.datos.area
+            this.datosin.districto = datos.datos.districto
+            this.datosin.entidad = datos.datos.entidad
+            this.datosin.establecimiento = datos.datos.establecimiento
+            this.datosin.histClinNum = datos.datos.histClinNum
+            this.datosin.tipo = datos.datos.tipo
             this.refiere.entidadSistema = datos.refiere.entidadSistema
             this.refiere.establecimientoRefer = datos.refiere.establecimientoRefer
             this.refiere.servicioReferido = datos.refiere.servicioReferido
             this.refiere.especialidadReferido = datos.refiere.especialidadReferido
             this.refiere.fecha = datos.refiere.fecha
             this.formula.cuadroClinico = datos.cuadroClinico
-            this.formula.diagnostico=datos.diagnostico
-            this.formula.hallazgos=datos.hallazgos
+            this.formula.diagnostico = datos.diagnostico
+            this.formula.hallazgos = datos.hallazgos
           }
         }
 
@@ -148,4 +148,22 @@ export class DatosComponent implements OnInit {
     })
 
   }
+  saveFormulario() {
+    console.log(this.formula);
+    this.formularioService.createUsingPOST3(this.formula).subscribe(
+      res => {
+        if (res.object != null) {
+          this.idForm = res.object
+          console.log(this.idForm);
+          this.MessageSuccess(" Formulario guardado")
+          console.log(this.idForm);
+        } else {
+          this.mensajeError("error al guardar el formulario")
+          console.log(" holii" + this.idForm);
+          console.log("error" + this.idForm)
+          console.log(res.object);
+        }
+      })
+  }
+
 }
