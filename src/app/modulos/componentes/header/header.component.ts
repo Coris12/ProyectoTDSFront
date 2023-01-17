@@ -197,7 +197,8 @@ export class HeaderComponent implements OnInit {
         label: 'Odontologia',
         icon: 'pi pi-fw pi-users',
         routerLink: ['/Odontologia'],
-        visible: this.isLogged && this.isOdontologia
+        //visible: this.isLogged && this.isOdontologia
+        visible: this.isLogged && this.isAdmin
       },
       {
         label: 'Cerrar Sesión',
