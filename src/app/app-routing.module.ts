@@ -43,6 +43,7 @@ import { MedicoConsentimientoComponent } from './modulos/Consentimiento/medico-c
 import { ErrorComponent } from './modulos/user/componentes/error/error.component';
 import { ProtocoloComponent } from './modulos/RecordOperatorio/protocolo/protocolo.component';
 import { HistoriaComponent } from './modulos/HistoriaClinica/historia/historia.component';
+import { OdontologiaComponent } from './modulos/Odontologia/odontologia/odontologia.component';
 
 
 
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: 'lista-usuarios', component: UsuariosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lista-productos', component: ProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['farmacia','user'] } },
   { path: 'lista-empleados', component: EmpleadoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin','user'] } },
+  { path: 'Odontologia', component: OdontologiaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['odontologia', 'user'] } },
 
   { path: 'proveedores', component: ProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'medicamentos', component: MedicamentosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },

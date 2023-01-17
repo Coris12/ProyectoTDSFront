@@ -128,6 +128,7 @@ import { PersonaControllerService } from './api/personaController.service';
 import { OrganosControllerService } from './api/organosController.service';
 import { AutorizacionControllerService } from './api/autorizacionController.service';
 import { FormularioControllerService } from './api/formularioController.service';
+import { OdontologiaComponent } from './modulos/Odontologia/odontologia/odontologia.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -162,6 +163,7 @@ import { FormularioControllerService } from './api/formularioController.service'
     ErrorComponent,
     ProtocoloComponent,
     HistoriaComponent,
+    OdontologiaComponent,
 
 
   ],

@@ -1,0 +1,325 @@
+<app-header></app-header>
+<p-toast></p-toast>
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Odontologia</h1>
+            </div>
+        </div>
+        <div class="content-section implementation mt-2">
+            <div class="mt-4">
+                <div class="grid p-fluid">
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" [(ngModel)]="establecimiento" value={{establecimiento}}
+                                pInputText>
+                            <label for="inputtext">Establecimiento</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Cedula</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Nombres</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Sexo</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">Edad</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText>
+                            <label for="inputtext">N° Historia Clinica</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>1.Motivo de Consulta</b>
+            </div>
+        </p-divider>
+        <p-editor [style]="{'height':'120px'}">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>2.Enfermedad o Problema Actual</b>
+            </div>
+        </p-divider>
+        <p-editor [style]="{'height':'120px'}">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>3.Antecedentes Personales y Familiares</b>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">ALERGIA ANTISIOTICO</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">ALERGIA ANESTESIA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">HEMO RRAGIAS</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">VIH/SIDA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">TUBERCULOSIS</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">ASMA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">DIABETES</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">ENF.CARDIACA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">OTRO</label>
+                </div>
+            </div>
+            <div class="col-12 mt-3 md:col-12">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="familiares" pInputText
+                        maxlength="500">
+                    <label class="p-inputtext-sm" for="inputtext"></label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>4.Signos Vitales</b>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="PRESION" pInputText
+                        pKeyFilter="num">
+                    <label class="p-inputtext-sm" for="inputtext">PRESION ARTERIAL</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="temperatura" pInputText
+                        pKeyFilter="num">
+                    <label class="p-inputtext-sm" for="inputtext">FRECUENCIA CARDIACA min</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="temperatura" pInputText
+                        pKeyFilter="num">
+                    <label class="p-inputtext-sm" for="inputtext">TEMPERATURA °C</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="temperatura" pInputText
+                        pKeyFilter="num">
+                    <label class="p-inputtext-sm" for="inputtext">F.RESPIRATORIA min</label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>5.Examen del sistema estomatognatico</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">LABIO</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">MEJILLA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">MAXILAR SUPERIOR</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">MAXILAR INFERIOR</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">LENGUA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">PALADAR</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">PISO</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">CARRILLOS</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">GLANDULAS SALIBALES</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">ORO FARINGE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">A.T.M.</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">GLANGLIOS</label>
+                </div>
+            </div>
+            <div class="col-12 mt-3 md:col-12">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="familiares" pInputText
+                        maxlength="500">
+                    <label class="p-inputtext-sm" for="inputtext"></label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>6.Odontograma</b>
+            </div>
+        </p-divider>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>7.Indicadores de salud bucal</b>
+            </div>
+        </p-divider>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>8.Indices CPO-ceo</b>
+            </div>
+        </p-divider>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>9.Simbologia del odontograma</b>
+            </div>
+        </p-divider>
+    
+            <div class="container mt-2" style="text-align: center;">
+                <img src="../../../../assets/SIMBOLOGIA.jpg" class="img-thumbnail" width="600" height="400">
+            </div>
+        
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>10.Planes de doaginostico terapeutico y educacional</b>
+            </div>
+        </p-divider>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>11.Diagnostico</b>
+            </div>
+        </p-divider>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>12.Tratamiento</b>
+            </div>
+        </p-divider>
+    </div>
+</div>

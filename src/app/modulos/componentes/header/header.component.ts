@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   isPaciente = false;
   isFarmacia = false;
   isDoctor = false;
+  isOdontologia=false;
   constructor(private tokenService: TokenService) { }
 
   ngOnInit() {
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
     this.isPaciente = this.tokenService.isPaciente();
     this.isFarmacia = this.tokenService.isFarmacia();
     this.isDoctor = this.tokenService.isDoctor();
+    this.isOdontologia=this.tokenService.isOdontologia();
     //items del menu
     this.items = [
       {
@@ -191,7 +193,12 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isFarmacia
       },
 
-
+      {
+        label: 'Odontologia',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/Odontologia'],
+        visible: this.isLogged && this.isOdontologia
+      },
       {
         label: 'Cerrar Sesión',
         icon: 'pi pi-fw pi-user-minus',
