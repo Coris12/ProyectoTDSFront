@@ -19,19 +19,19 @@
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="buscarcedula"pInputText>
                             <label for="inputtext">Cedula</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext"[(ngModel)]="buscarnombre" pInputText>
                             <label for="inputtext">Nombres</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext"  [(ngModel)]="sexo" pInputText>
                             <label for="inputtext">Sexo</label>
                         </span>
                     </div>
@@ -43,9 +43,12 @@
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext"  [(ngModel)]="his"pInputText>
                             <label for="inputtext">N° Historia Clinica</label>
                         </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
                     </div>
                 </div>
             </div>
@@ -707,7 +710,7 @@
         <p-divider align="left">
             <div class="inline-flex align-items-center">
                 <i class="pi pi-user mr-2"></i>
-                <b>10.Planes de doaginostico terapeutico y educacional</b>
+                <b>10.Planes de diaginostico terapeutico y educacional</b>
             </div>
         </p-divider>
         <div class="grid p-fluid">
