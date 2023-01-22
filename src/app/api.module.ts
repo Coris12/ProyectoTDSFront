@@ -17,14 +17,18 @@ import { EmpleadoControllerService } from './api/empleadoController.service';
 import { EquiposControllerService } from './api/equiposController.service';
 import { EvolucionControllerService } from './api/evolucionController.service';
 import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalController.service';
+import { ExamenEstoControllerService } from './api/examenEstoController.service';
 import { FacturaControllerService } from './api/facturaController.service';
 import { FamiliaresControllerService } from './api/familiaresController.service';
 import { FaramaciaControllerService } from './api/faramaciaController.service';
 import { FormularioControllerService } from './api/formularioController.service';
 import { HistoriaControllerService } from './api/historiaController.service';
+import { IndiceControlllerService } from './api/indiceControlller.service';
+import { IndicesFamilControllerService } from './api/indicesFamilController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
 import { MedicamentosControllerService } from './api/medicamentosController.service';
 import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
+import { OdontologiaControllerService } from './api/odontologiaController.service';
 import { OrganosControllerService } from './api/organosController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { ProductoControllerService } from './api/productoController.service';
@@ -58,14 +62,18 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     EquiposControllerService,
     EvolucionControllerService,
     ExamFisicoRegionalControllerService,
+    ExamenEstoControllerService,
     FacturaControllerService,
     FamiliaresControllerService,
     FaramaciaControllerService,
     FormularioControllerService,
     HistoriaControllerService,
+    IndiceControlllerService,
+    IndicesFamilControllerService,
     InformacionTratamientoControllerService,
     MedicamentosControllerService,
     MedicoConsentimientoControllerService,
+    OdontologiaControllerService,
     OrganosControllerService,
     PlanTratamientoControllerService,
     ProductoControllerService,

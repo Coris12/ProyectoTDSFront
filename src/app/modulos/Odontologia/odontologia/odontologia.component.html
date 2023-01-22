@@ -59,7 +59,7 @@
                 <b>1.Motivo de Consulta</b>
             </div>
         </p-divider>
-        <p-editor [style]="{'height':'120px'}">
+        <p-editor [(ngModel)]="Odonto.motivo" [style]="{'height':'120px'}">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -74,7 +74,7 @@
                 <b>2.Enfermedad o Problema Actual</b>
             </div>
         </p-divider>
-        <p-editor [style]="{'height':'120px'}">
+        <p-editor [(ngModel)]="Odonto.enfermedad" [style]="{'height':'120px'}">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -163,28 +163,28 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="PRESION" pInputText
+                    <input class="p-inputtext-sm"  [(ngModel)]="Odonto.presion" autocomplete="off" type="text" id="PRESION" pInputText
                         pKeyFilter="num">
                     <label class="p-inputtext-sm" for="inputtext">PRESION ARTERIAL</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="temperatura" pInputText
+                    <input class="p-inputtext-sm" autocomplete="off"  [(ngModel)]="Odonto.frecCardiaca"type="text" id="temperatura" pInputText
                         pKeyFilter="num">
                     <label class="p-inputtext-sm" for="inputtext">FRECUENCIA CARDIACA min</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="temperatura" pInputText
+                    <input class="p-inputtext-sm" autocomplete="off"  [(ngModel)]="Odonto.temperatura" type="text" id="temperatura" pInputText
                         pKeyFilter="num">
                     <label class="p-inputtext-sm" for="inputtext">TEMPERATURA °C</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="temperatura" pInputText
+                    <input class="p-inputtext-sm" autocomplete="off"  [(ngModel)]="Odonto.frecRespi" type="text" id="temperatura" pInputText
                         pKeyFilter="num">
                     <label class="p-inputtext-sm" for="inputtext">F.RESPIRATORIA min</label>
                 </span>
@@ -636,31 +636,31 @@
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">D</label>
-                    <input type="number" pInputText placeholder="">
+                    <input type="number"  [(ngModel)]="indice.d"pInputText placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">C</label>
-                    <input type="number" pInputText placeholder="">
+                    <input type="number"  [(ngModel)]="indice.c" pInputText placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-center">
                     <label for="requisitos ">P</label>
-                    <input type="number" pInputText placeholder="">
+                    <input type="number" pInputText  [(ngModel)]="indice.p" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-center">
                     <label for="requisitos ">O</label>
-                    <input type="number" pInputText placeholder="">
+                    <input type="number" pInputText  [(ngModel)]="indice.o"  placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">TOTAL</label>
-                    <input type="number" pInputText placeholder="">
+                    <input type="number" pInputText   [(ngModel)]="indice.totalD" placeholder="">
                 </span>
             </div>
         </div>
@@ -668,31 +668,31 @@
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">d</label>
-                    <input type="number" pInputText placeholder="">
+                    <input type="number" pInputText   [(ngModel)]="indice.d1"placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">c</label>
-                    <input type="number" pInputText placeholder="">
+                    <input type="number" pInputText   [(ngModel)]="indice.c1"placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-center">
                     <label for="requisitos ">p</label>
-                    <input type="number" pInputText placeholder="">
+                    <input type="number" pInputText  [(ngModel)]="indice.p1" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-center">
                     <label for="requisitos ">o</label>
-                    <input type="number" pInputText placeholder="">
+                    <input type="number" pInputText  [(ngModel)]="indice.o1" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">TOTAL</label>
-                    <input type="number" pInputText placeholder="">
+                    <input type="number" pInputText  [(ngModel)]="indice.totald1" placeholder="">
                 </span>
             </div>
         </div>
@@ -927,6 +927,7 @@
 
             </div>
         </div>
-
+        <p-button label="Save" (click)="cargarPersona()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
+        </p-button>
 
     </div>

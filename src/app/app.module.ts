@@ -129,6 +129,8 @@ import { OrganosControllerService } from './api/organosController.service';
 import { AutorizacionControllerService } from './api/autorizacionController.service';
 import { FormularioControllerService } from './api/formularioController.service';
 import { OdontologiaComponent } from './modulos/Odontologia/odontologia/odontologia.component';
+import { OdontologiaControllerService } from './api/odontologiaController.service';
+import { IndiceControlllerService } from './api/indiceControlller.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -261,7 +263,10 @@ import { OdontologiaComponent } from './modulos/Odontologia/odontologia/odontolo
     TipoQuiControllerService,
     PersonaControllerService,
     OrganosControllerService,
-    FormularioControllerService
+    FormularioControllerService,
+    OrganosControllerService,
+    OdontologiaControllerService,
+    IndiceControlllerService
   ],
   bootstrap: [AppComponent]
 })
