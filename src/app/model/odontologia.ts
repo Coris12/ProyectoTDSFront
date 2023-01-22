@@ -14,15 +14,21 @@ import { IndicesF } from './indicesF';
 import { Usuario } from './usuario';
 
 export interface Odontologia { 
+    codigo?: string;
+    diagnostico?: string;
     enfermedad?: string;
     establecimiento?: string;
     examen?: Array<ExamenEsto>;
+    fecha?: Date;
     frecCardiaca?: number;
     frecRespi?: number;
     idOdonto?: number;
     indicesF?: Array<IndicesF>;
     motivo?: string;
+    prescripcion?: string;
     presion?: number;
+    procedimiento?: string;
+    sesion?: string;
     temperatura?: number;
     usuario?: Usuario;
 }

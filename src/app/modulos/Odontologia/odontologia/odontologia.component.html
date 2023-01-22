@@ -894,19 +894,19 @@
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Sesion</label>
-                    <input type="number" pInputText placeholder="Sesion">
+                    <input type="text" pInputText [(ngModel)]="Odonto.sesion"  placeholder="Sesion">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Fecha</label>
-                    <input type="date" pInputText placeholder="Fecha">
+                    <input type="date" pInputText  [(ngModel)]="Odonto.fecha" placeholder="Fecha">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Codigo</label>
-                    <input type="text" pInputText placeholder="codigo">
+                    <input type="text" pInputText  [(ngModel)]="Odonto.codigo" placeholder="codigo" > 
                 </span>
             </div>
         </div>
@@ -914,16 +914,16 @@
 
             <div class="col-12 md:col-2">
                 <label for="float-input">Diagnosticos y complicaciones</label>
-                <textarea rows="5" cols="30" pInputTextarea></textarea>
+                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Odonto.diagnostico" ></textarea>
             </div>
 
             <div class="col-12 md:col-4">
                 <label for="float-input">Procedimientos</label>
-                <textarea rows="5" cols="30" pInputTextarea></textarea>
+                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Odonto.procedimiento" ></textarea>
             </div>
             <div class="col-12 md:col-2">
                 <label for="float-input">Prescripciones</label>
-                <textarea rows="5" cols="30" pInputTextarea></textarea>
+                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Odonto.prescripcion"> </textarea>
 
             </div>
         </div>

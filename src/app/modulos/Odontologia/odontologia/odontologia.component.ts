@@ -41,13 +41,20 @@ export class OdontologiaComponent implements OnInit {
   idIndi: any
   //
   Odonto: Odontologia = {
+    codigo: null,
+    diagnostico:null,
     enfermedad: null,
     establecimiento: null,
+    examen:null,
+    fecha: null,
     frecCardiaca: null,
     frecRespi: null,
     idOdonto: null,
     motivo: null,
+    prescripcion: null,
     presion: null,
+    procedimiento: null,
+    sesion: null,
     temperatura: null,
     usuario: null
   }
@@ -66,7 +73,7 @@ export class OdontologiaComponent implements OnInit {
     totalD: null,
     totald1: null
   }
-  
+
 
   ngOnInit(): void {
     this.buscar();
