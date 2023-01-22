@@ -1,10 +1,13 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 import { IndiceControlllerService } from 'src/app/api/indiceControlller.service';
+import { IndicesFamilControllerService } from 'src/app/api/indicesFamilController.service';
 import { OdontologiaControllerService } from 'src/app/api/odontologiaController.service';
 import { IndicesCPO } from 'src/app/model/indicesCPO';
+import { IndicesF } from 'src/app/model/indicesF';
 import { Odontologia } from 'src/app/model/odontologia';
 
 @Component({
@@ -20,6 +23,7 @@ export class OdontologiaComponent implements OnInit {
     private odonService: OdontologiaControllerService,
     private indiService: IndiceControlllerService,
     private messageService: MessageService,
+    private indiceAService:IndicesFamilControllerService
 
   ) {
 
@@ -74,6 +78,20 @@ export class OdontologiaComponent implements OnInit {
     totald1: null
   }
 
+  indiceF:IndicesF={
+    alergiaAnes: null,
+    alergiaAntiabio: null,
+    asma: null,
+    descripcion: null,
+    diabetes: null,
+    enfCardiaca: null,
+    hemR: null,
+    idIndiceF: null,
+    odontologia: null,
+    otros: null,
+    tuberculosis: null,
+    vh: null
+  }
 
   ngOnInit(): void {
     this.buscar();
@@ -125,7 +143,7 @@ export class OdontologiaComponent implements OnInit {
           this.idIndi = res.object
           console.log(this.indice);
           this.MessageSuccess("Exito")
-          
+          this.guardarAntecedenteF();
           console.log(this.indice);
 
         } else {
@@ -138,6 +156,20 @@ export class OdontologiaComponent implements OnInit {
       }
     )
   }
+   
+  guardarAntecedenteF(){
+    this.indiceAService.saveAntecPersonalesUsingPOST1(this.indiceF).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LOS ANTECEDENTES PERSONALES EN EL SERVIDOR");
+    });
+  }
+
+  
   mensajeError(msg: String) {
     this.messageService.add({
       severity: 'error',
@@ -160,6 +192,7 @@ export class OdontologiaComponent implements OnInit {
       for (let datos of res) {
         if (datos.idOdonto == this.idOdont) {
           this.indice.odontologia = datos
+          this.indiceF.odontologia=datos
           console.log(this.idOdont);
           this.guardarIndice();
         }

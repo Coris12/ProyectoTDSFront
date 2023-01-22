@@ -93,61 +93,70 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.alergiaAntiabio" inputId="aa"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">ALERGIA ANTISIOTICO</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.alergiaAnes" inputId="an"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">ALERGIA ANESTESIA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                    <label for="ch">HEMO RRAGIAS</label>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.hemR" inputId="hr"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">HEMORRAGIAS</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.vh" inputId="vh"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">VIH/SIDA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.tuberculosis" inputId="tb"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">TUBERCULOSIS</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.asma" inputId="as"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">ASMA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.diabetes" inputId="db"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">DIABETES</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.enfCardiaca" inputId="ec"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">ENF.CARDIACA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.otros" inputId="an"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">OTRO</label>
                 </div>
             </div>
             <div class="col-12 mt-3 md:col-12">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="familiares" pInputText
+                    <input class="p-inputtext-sm" autocomplete="off" type="text"  [(ngModel)]="indiceF.descripcion" id="familiares" pInputText
                         maxlength="500">
                     <label class="p-inputtext-sm" for="inputtext"></label>
                 </span>
