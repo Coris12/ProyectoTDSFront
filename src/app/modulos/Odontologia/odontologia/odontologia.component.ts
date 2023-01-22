@@ -66,6 +66,7 @@ export class OdontologiaComponent implements OnInit {
     totalD: null,
     totald1: null
   }
+  
 
   ngOnInit(): void {
     this.buscar();
