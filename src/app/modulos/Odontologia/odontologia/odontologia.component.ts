@@ -2,12 +2,14 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AuthControllerService } from 'src/app/api/authController.service';
+import { DiagnosticoOControllerService } from 'src/app/api/diagnosticoOController.service';
 import { ExamenEstoControllerService } from 'src/app/api/examenEstoController.service';
 import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 import { IndiceControlllerService } from 'src/app/api/indiceControlller.service';
 import { IndicesFamilControllerService } from 'src/app/api/indicesFamilController.service';
 import { OdontologiaControllerService } from 'src/app/api/odontologiaController.service';
 import { PlanesControllerService } from 'src/app/api/planesController.service';
+import { DiagnosticoO } from 'src/app/model/diagnosticoO';
 import { ExamenEsto } from 'src/app/model/examenEsto';
 import { IndicesCPO } from 'src/app/model/indicesCPO';
 import { IndicesF } from 'src/app/model/indicesF';
@@ -29,7 +31,8 @@ export class OdontologiaComponent implements OnInit {
     private messageService: MessageService,
     private indiceAService:IndicesFamilControllerService,
     private examenEsto:ExamenEstoControllerService,
-    private planesService:PlanesControllerService
+    private planesService:PlanesControllerService,
+    private diagnosticoService:DiagnosticoOControllerService
 
   ) {
 
@@ -125,6 +128,24 @@ export class OdontologiaComponent implements OnInit {
     rayosx: null
   }
 
+  diagnostico:DiagnosticoO={
+    cie1: null,
+    cie2: null,
+    def: null,
+    def2: null,
+    descripcion1: null,
+    descripcion2: null,
+    fechaA: null,
+    fechaC: null,
+    idDiagnostico: null,
+    odontologia: null,
+    pre1: null,
+    pre2: null,
+    profesional: null,
+}
+
+
+
   ngOnInit(): void {
     this.buscar();
     this.recuperarprotocolo()
@@ -178,6 +199,7 @@ export class OdontologiaComponent implements OnInit {
           this.guardarAntecedenteF();
           this.guardarExamenEsto();
           this.guardarPlanes();
+          this.guardarDiagnostico();
           console.log(this.indice);
 
         } else {
@@ -226,6 +248,18 @@ export class OdontologiaComponent implements OnInit {
       this.mensajeError("ERROR AL GUARDAR EL PLANE DE DIAGNOSTICO EN EL SERVIDOR");
     });
   }
+
+  guardarDiagnostico() {
+     this.diagnosticoService.saveDiagnosticoUsingPOST1(this.diagnostico).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar diagnostico");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR EL DIAGNOSTICO EN EL SERVIDOR");
+    });
+  }
   mensajeError(msg: String) {
     this.messageService.add({
       severity: 'error',
@@ -251,6 +285,7 @@ export class OdontologiaComponent implements OnInit {
           this.indiceF.odontologia=datos
           this.examenE.odontologia=datos
           this.planes.odontologia=datos
+          this.diagnostico.odontologia=datos
           console.log(this.idOdont);
           this.guardarIndice();
         }

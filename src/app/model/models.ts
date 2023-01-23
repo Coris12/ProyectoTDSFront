@@ -11,6 +11,7 @@ export * from './cuerpoFactura';
 export * from './datosInstitucionales';
 export * from './datosTarjetaAllDTO';
 export * from './datosTarjetaDto';
+export * from './diagnosticoO';
 export * from './diagnosticos';
 export * from './empleado';
 export * from './equipoOperatorio';

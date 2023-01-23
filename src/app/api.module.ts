@@ -13,6 +13,7 @@ import { ConsentimientoControllerService } from './api/consentimientoController.
 import { ConsultaExternaControllerService } from './api/consultaExternaController.service';
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
+import { DiagnosticoOControllerService } from './api/diagnosticoOController.service';
 import { EmpleadoControllerService } from './api/empleadoController.service';
 import { EquiposControllerService } from './api/equiposController.service';
 import { EvolucionControllerService } from './api/evolucionController.service';
@@ -59,6 +60,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     ConsultaExternaControllerService,
     CuerpoFacturaControllerService,
     DiagnosticoControllerService,
+    DiagnosticoOControllerService,
     EmpleadoControllerService,
     EquiposControllerService,
     EvolucionControllerService,

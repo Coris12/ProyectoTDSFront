@@ -782,52 +782,58 @@
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText placeholder="">
+                    <input type="text" pInputText [(ngModel)]="diagnostico.descripcion1" placeholder="">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText placeholder="">
+                    <input type="text" pInputText [(ngModel)]="diagnostico.cie1" placeholder="">
                 </span>
             </div>
+          
             <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                    <label for="ch">PRE</label>
-                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton name="preDef" value="PRE" [(ngModel)]="diagnostico.pre1" inputId="city1"
+                      ></p-radioButton>
+                    <label for="city1">PRE</label>
+                  </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                    <label for="ch">DEF</label>
-                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton name="preDef" value="PRE" [(ngModel)]="diagnostico.def" inputId="city"
+                      ></p-radioButton>
+                    <label for="city1">DEF</label>
+                  </div>
             </div>
+      
         </div>
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText placeholder="">
+                    <input type="text" pInputText  [(ngModel)]="diagnostico.descripcion2"placeholder="">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText placeholder="">
+                    <input type="text" pInputText  [(ngModel)]="diagnostico.cie2"placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                    <label for="ch">PRE</label>
-                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton name="preDef" value="PRE" [(ngModel)]="diagnostico.pre2" inputId="city2"
+                      ></p-radioButton>
+                    <label for="city1">PRE</label>
+                  </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                    <label for="ch">DEF</label>
-                </div>
+                <div class="field-radiobutton">
+                    <p-radioButton name="preDef" value="PRE" [(ngModel)]="diagnostico.def2" inputId="city3"
+                      ></p-radioButton>
+                    <label for="city1">DEF</label>
+                  </div>
             </div>
         </div>
         <div class="grid p-fluid">
@@ -887,25 +893,25 @@
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Fecha de apertura</label>
-                    <input type="date" pInputText placeholder="">
+                    <input type="date" pInputText [(ngModel)]="diagnostico.fechaA" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Fecha de control</label>
-                    <input type="date" pInputText placeholder="">
+                    <input type="date" pInputText  [(ngModel)]="diagnostico.fechaC"placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Profesional</label>
-                    <input type="text" pInputText placeholder="profesional">
+                    <input type="text" pInputText [(ngModel)]="diagnostico.profesional" placeholder="profesional">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Codigo</label>
-                    <input type="number" pInputText placeholder="codigo">
+                    <input type="number"  pInputText  [(ngModel)]="Odonto.codigo"placeholder="codigo">
                 </span>
             </div>
         </div>
