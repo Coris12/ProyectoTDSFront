@@ -7,10 +7,12 @@ import { HistoriaControllerService } from 'src/app/api/historiaController.servic
 import { IndiceControlllerService } from 'src/app/api/indiceControlller.service';
 import { IndicesFamilControllerService } from 'src/app/api/indicesFamilController.service';
 import { OdontologiaControllerService } from 'src/app/api/odontologiaController.service';
+import { PlanesControllerService } from 'src/app/api/planesController.service';
 import { ExamenEsto } from 'src/app/model/examenEsto';
 import { IndicesCPO } from 'src/app/model/indicesCPO';
 import { IndicesF } from 'src/app/model/indicesF';
 import { Odontologia } from 'src/app/model/odontologia';
+import { PlanesDiagnostico } from 'src/app/model/planesDiagnostico';
 
 @Component({
   selector: 'app-odontologia',
@@ -26,7 +28,8 @@ export class OdontologiaComponent implements OnInit {
     private indiService: IndiceControlllerService,
     private messageService: MessageService,
     private indiceAService:IndicesFamilControllerService,
-    private examenEsto:ExamenEstoControllerService
+    private examenEsto:ExamenEstoControllerService,
+    private planesService:PlanesControllerService
 
   ) {
 
@@ -52,7 +55,6 @@ export class OdontologiaComponent implements OnInit {
     diagnostico:null,
     enfermedad: null,
     establecimiento: null,
-    examen:null,
     fecha: null,
     frecCardiaca: null,
     frecRespi: null,
@@ -114,6 +116,15 @@ export class OdontologiaComponent implements OnInit {
     piso: null
   }
 
+  planes:PlanesDiagnostico={
+    biometrica: null,
+    idPlanes: null,
+    odontologia: null,
+    otros: null,
+    quimicaS: null,
+    rayosx: null
+  }
+
   ngOnInit(): void {
     this.buscar();
     this.recuperarprotocolo()
@@ -166,6 +177,7 @@ export class OdontologiaComponent implements OnInit {
           this.MessageSuccess("Exito")
           this.guardarAntecedenteF();
           this.guardarExamenEsto();
+          this.guardarPlanes();
           console.log(this.indice);
 
         } else {
@@ -202,7 +214,18 @@ export class OdontologiaComponent implements OnInit {
       this.mensajeError("ERROR AL GUARDAR EL EXAMEN DEL SISTEMA ESTOMATONAGTICO EN EL SERVIDOR");
     });
   }
-  
+
+  guardarPlanes(){
+    this.planesService.saveAntecPersonalesUsingPOST2(this.planes).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intentar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR EL PLANE DE DIAGNOSTICO EN EL SERVIDOR");
+    });
+  }
   mensajeError(msg: String) {
     this.messageService.add({
       severity: 'error',
@@ -227,6 +250,7 @@ export class OdontologiaComponent implements OnInit {
           this.indice.odontologia = datos
           this.indiceF.odontologia=datos
           this.examenE.odontologia=datos
+          this.planes.odontologia=datos
           console.log(this.idOdont);
           this.guardarIndice();
         }

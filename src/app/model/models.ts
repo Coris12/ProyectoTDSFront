@@ -53,6 +53,7 @@ export * from './nuevoUsuario';
 export * from './odontologia';
 export * from './organosDonados';
 export * from './planTratamiento';
+export * from './planesDiagnostico';
 export * from './producto';
 export * from './protocolos';
 export * from './proveedor';

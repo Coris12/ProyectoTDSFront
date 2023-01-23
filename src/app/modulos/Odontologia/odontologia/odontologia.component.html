@@ -737,31 +737,35 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.biometrica" inputId="bi"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">BIOMETRICA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true"[(ngModel)]="planes.quimicaS" inputId="qs"
+                    [ngModelOptions]="{standalone: true}" ></p-checkbox>
                     <label for="ch">QUIMICA SANGUINEA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.rayosx" inputId="rx"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">RAYOS-X</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.otros" inputId="bi"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">OTROS</label>
                 </div>
             </div>
             <div class="col-12 mt-3 md:col-12">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="familiares" pInputText
+                    <input class="p-inputtext-sm" autocomplete="off" type="text"   id="familiares" pInputText
                         maxlength="500">
                     <label class="p-inputtext-sm" for="inputtext"></label>
                 </span>

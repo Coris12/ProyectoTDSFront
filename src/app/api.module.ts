@@ -31,6 +31,7 @@ import { MedicoConsentimientoControllerService } from './api/medicoConsentimient
 import { OdontologiaControllerService } from './api/odontologiaController.service';
 import { OrganosControllerService } from './api/organosController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
+import { PlanesControllerService } from './api/planesController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { ProtocoloControllerService } from './api/protocoloController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
@@ -76,6 +77,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     OdontologiaControllerService,
     OrganosControllerService,
     PlanTratamientoControllerService,
+    PlanesControllerService,
     ProductoControllerService,
     ProtocoloControllerService,
     ProveedorControllerService,

@@ -9,8 +9,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { ExamenEsto } from './examenEsto';
-import { IndicesF } from './indicesF';
 import { Usuario } from './usuario';
 
 export interface Odontologia { 
@@ -18,12 +16,10 @@ export interface Odontologia {
     diagnostico?: string;
     enfermedad?: string;
     establecimiento?: string;
-    examen?: Array<ExamenEsto>;
     fecha?: Date;
     frecCardiaca?: number;
     frecRespi?: number;
     idOdonto?: number;
-    indicesF?: Array<IndicesF>;
     motivo?: string;
     prescripcion?: string;
     presion?: number;
