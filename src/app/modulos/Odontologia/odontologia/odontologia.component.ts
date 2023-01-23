@@ -2,10 +2,12 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AuthControllerService } from 'src/app/api/authController.service';
+import { ExamenEstoControllerService } from 'src/app/api/examenEstoController.service';
 import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 import { IndiceControlllerService } from 'src/app/api/indiceControlller.service';
 import { IndicesFamilControllerService } from 'src/app/api/indicesFamilController.service';
 import { OdontologiaControllerService } from 'src/app/api/odontologiaController.service';
+import { ExamenEsto } from 'src/app/model/examenEsto';
 import { IndicesCPO } from 'src/app/model/indicesCPO';
 import { IndicesF } from 'src/app/model/indicesF';
 import { Odontologia } from 'src/app/model/odontologia';
@@ -23,7 +25,8 @@ export class OdontologiaComponent implements OnInit {
     private odonService: OdontologiaControllerService,
     private indiService: IndiceControlllerService,
     private messageService: MessageService,
-    private indiceAService:IndicesFamilControllerService
+    private indiceAService:IndicesFamilControllerService,
+    private examenEsto:ExamenEstoControllerService
 
   ) {
 
@@ -93,6 +96,24 @@ export class OdontologiaComponent implements OnInit {
     vh: null
   }
 
+  examenE:ExamenEsto={
+    atm: null,
+    carrillos: null,
+    descripcion: null,
+    glandulasSa: null,
+    glangios: null,
+    idExamenEs: null,
+    labio: null,
+    lengua: null,
+    maxSuperior: null,
+    maxilarInf: null,
+    mejillas: null,
+    odontologia: null,
+    oroFaringe: null,
+    paladar: null,
+    piso: null
+  }
+
   ngOnInit(): void {
     this.buscar();
     this.recuperarprotocolo()
@@ -144,6 +165,7 @@ export class OdontologiaComponent implements OnInit {
           console.log(this.indice);
           this.MessageSuccess("Exito")
           this.guardarAntecedenteF();
+          this.guardarExamenEsto();
           console.log(this.indice);
 
         } else {
@@ -169,6 +191,17 @@ export class OdontologiaComponent implements OnInit {
     });
   }
 
+  guardarExamenEsto(){
+    this.examenEsto.saveExamenEstoUsingPOST(this.examenE).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR EL EXAMEN DEL SISTEMA ESTOMATONAGTICO EN EL SERVIDOR");
+    });
+  }
   
   mensajeError(msg: String) {
     this.messageService.add({
@@ -193,6 +226,7 @@ export class OdontologiaComponent implements OnInit {
         if (datos.idOdonto == this.idOdont) {
           this.indice.odontologia = datos
           this.indiceF.odontologia=datos
+          this.examenE.odontologia=datos
           console.log(this.idOdont);
           this.guardarIndice();
         }

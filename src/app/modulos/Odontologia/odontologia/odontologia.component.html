@@ -208,79 +208,91 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.labio" inputId="lb"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">LABIO</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.mejillas" inputId="mj"
+                    [ngModelOptions]="{standalone: true}" ></p-checkbox>
                     <label for="ch">MEJILLA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.maxSuperior" inputId="ms"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">MAXILAR SUPERIOR</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.maxilarInf" inputId="mi"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">MAXILAR INFERIOR</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.lengua" inputId="lg"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">LENGUA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.paladar" inputId="pl"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">PALADAR</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.piso" inputId="ps"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">PISO</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.carrillos" inputId="cr"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">CARRILLOS</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.glandulasSa" inputId="gs"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">GLANDULAS SALIBALES</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.oroFaringe" inputId="of"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">ORO FARINGE</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.atm" inputId="at"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">A.T.M.</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true"[(ngModel)]="examenE.glangios" inputId="gl"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">GLANGLIOS</label>
                 </div>
             </div>
             <div class="col-12 mt-3 md:col-12">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off" type="text" id="familiares" pInputText
+                    <input class="p-inputtext-sm" autocomplete="off" [(ngModel)]="examenE.descripcion" type="text" id="familiares" pInputText
                         maxlength="500">
                     <label class="p-inputtext-sm" for="inputtext"></label>
                 </span>

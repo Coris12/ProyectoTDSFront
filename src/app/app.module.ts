@@ -132,6 +132,7 @@ import { OdontologiaComponent } from './modulos/Odontologia/odontologia/odontolo
 import { OdontologiaControllerService } from './api/odontologiaController.service';
 import { IndiceControlllerService } from './api/indiceControlller.service';
 import { IndicesFamilControllerService } from './api/indicesFamilController.service';
+import { ExamenEstoControllerService } from './api/examenEstoController.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -268,7 +269,8 @@ import { IndicesFamilControllerService } from './api/indicesFamilController.serv
     OrganosControllerService,
     OdontologiaControllerService,
     IndiceControlllerService,
-    IndicesFamilControllerService
+    IndicesFamilControllerService,
+    ExamenEstoControllerService
   ],
   bootstrap: [AppComponent]
 })
