@@ -38,6 +38,7 @@ import { ProtocoloControllerService } from './api/protocoloController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
 import { ResidenciaControllerService } from './api/residenciaController.service';
 import { RevOrganoSistemControllerService } from './api/revOrganoSistemController.service';
+import { SaludControllerService } from './api/saludController.service';
 import { SigVitAntropometriaControllerService } from './api/sigVitAntropometriaController.service';
 import { SucursalControllerService } from './api/sucursalController.service';
 import { TarjetaControllerService } from './api/tarjetaController.service';
@@ -85,6 +86,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     ProveedorControllerService,
     ResidenciaControllerService,
     RevOrganoSistemControllerService,
+    SaludControllerService,
     SigVitAntropometriaControllerService,
     SucursalControllerService,
     TarjetaControllerService,

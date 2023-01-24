@@ -62,6 +62,7 @@ export * from './refiereDeriva';
 export * from './residenciaDto';
 export * from './revOrganoSistem';
 export * from './rol';
+export * from './saludBucal';
 export * from './sigVitAntropometria';
 export * from './sucursal';
 export * from './tarjeta';

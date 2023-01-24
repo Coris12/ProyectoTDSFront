@@ -9,12 +9,14 @@ import { IndiceControlllerService } from 'src/app/api/indiceControlller.service'
 import { IndicesFamilControllerService } from 'src/app/api/indicesFamilController.service';
 import { OdontologiaControllerService } from 'src/app/api/odontologiaController.service';
 import { PlanesControllerService } from 'src/app/api/planesController.service';
+import { SaludControllerService } from 'src/app/api/saludController.service';
 import { DiagnosticoO } from 'src/app/model/diagnosticoO';
 import { ExamenEsto } from 'src/app/model/examenEsto';
 import { IndicesCPO } from 'src/app/model/indicesCPO';
 import { IndicesF } from 'src/app/model/indicesF';
 import { Odontologia } from 'src/app/model/odontologia';
 import { PlanesDiagnostico } from 'src/app/model/planesDiagnostico';
+import { SaludBucal } from 'src/app/model/saludBucal';
 
 @Component({
   selector: 'app-odontologia',
@@ -32,7 +34,8 @@ export class OdontologiaComponent implements OnInit {
     private indiceAService:IndicesFamilControllerService,
     private examenEsto:ExamenEstoControllerService,
     private planesService:PlanesControllerService,
-    private diagnosticoService:DiagnosticoOControllerService
+    private diagnosticoService:DiagnosticoOControllerService,
+    private salService:SaludControllerService
 
   ) {
 
@@ -125,7 +128,8 @@ export class OdontologiaComponent implements OnInit {
     odontologia: null,
     otros: null,
     quimicaS: null,
-    rayosx: null
+    rayosx: null,
+    descripcion:null
   }
 
   diagnostico:DiagnosticoO={
@@ -144,6 +148,57 @@ export class OdontologiaComponent implements OnInit {
     profesional: null,
 }
 
+salud:SaludBucal={
+  angleI: null,
+  angleII: null,
+  angleIII: null,
+  cal1: null,
+  cal2: null,
+  cal3: null,
+  cal4: null,
+  cal5: null,
+  calcul6: null,
+  gin1: null,
+  gin2: null,
+  gin3: null,
+  gin4: null,
+  gin5: null,
+  gin6: null,
+  idSalud: null,
+  leve: null,
+  leveF: null,
+  moderada: null,
+  moderadaF: null,
+  odontologia: null,
+  p11: null,
+  p16: null,
+  p17: null,
+  p21: null,
+  p26: null,
+  p27: null,
+  p31: null,
+  p36: null,
+  p37: null,
+  p41: null,
+  p46: null,
+  p47: null,
+  p55: null,
+  p65: null,
+  p71: null,
+  p75: null,
+  p85: null,
+  placa1: null,
+  placa2: null,
+  placa3: null,
+  placa4: null,
+  placa5: null,
+  placa6: null,
+  severa: null,
+  severaF: null,
+  toatlG1: null,
+  toatlP1: null,
+  totalC2: null,
+}
 
 
   ngOnInit(): void {
@@ -200,6 +255,7 @@ export class OdontologiaComponent implements OnInit {
           this.guardarExamenEsto();
           this.guardarPlanes();
           this.guardarDiagnostico();
+          this.guardarSalud();
           console.log(this.indice);
 
         } else {
@@ -260,6 +316,19 @@ export class OdontologiaComponent implements OnInit {
       this.mensajeError("ERROR AL GUARDAR EL DIAGNOSTICO EN EL SERVIDOR");
     });
   }
+
+  guardarSalud() {
+    this.salService.saveSaludUsingPOST(this.salud).subscribe(data => {
+     if (data.object != null) {
+       this.MessageSuccess(data.message);
+     } else {
+       this.mensajeError("Error al intententar guardar salud bucal");
+     }
+   }, error => {
+     this.mensajeError("ERROR AL GUARDAR SALUD BUCAL EN EL SERVIDOR");
+   });
+ }
+
   mensajeError(msg: String) {
     this.messageService.add({
       severity: 'error',
@@ -286,6 +355,7 @@ export class OdontologiaComponent implements OnInit {
           this.examenE.odontologia=datos
           this.planes.odontologia=datos
           this.diagnostico.odontologia=datos
+          this.salud.odontologia=datos
           console.log(this.idOdont);
           this.guardarIndice();
         }

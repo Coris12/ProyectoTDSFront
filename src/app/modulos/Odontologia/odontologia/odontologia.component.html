@@ -19,19 +19,19 @@
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" [(ngModel)]="buscarcedula"pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText>
                             <label for="inputtext">Cedula</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext"[(ngModel)]="buscarnombre" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText>
                             <label for="inputtext">Nombres</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext"  [(ngModel)]="sexo" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText>
                             <label for="inputtext">Sexo</label>
                         </span>
                     </div>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext"  [(ngModel)]="his"pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="his" pInputText>
                             <label for="inputtext">N° Historia Clinica</label>
                         </span>
                     </div>
@@ -94,70 +94,70 @@
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.alergiaAntiabio" inputId="aa"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">ALERGIA ANTISIOTICO</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.alergiaAnes" inputId="an"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">ALERGIA ANESTESIA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.hemR" inputId="hr"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">HEMORRAGIAS</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.vh" inputId="vh"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">VIH/SIDA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.tuberculosis" inputId="tb"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">TUBERCULOSIS</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.asma" inputId="as"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">ASMA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.diabetes" inputId="db"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">DIABETES</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.enfCardiaca" inputId="ec"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">ENF.CARDIACA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.otros" inputId="an"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">OTRO</label>
                 </div>
             </div>
             <div class="col-12 mt-3 md:col-12">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off" type="text"  [(ngModel)]="indiceF.descripcion" id="familiares" pInputText
-                        maxlength="500">
+                    <input class="p-inputtext-sm" autocomplete="off" type="text" [(ngModel)]="indiceF.descripcion"
+                        id="familiares" pInputText maxlength="500">
                     <label class="p-inputtext-sm" for="inputtext"></label>
                 </span>
             </div>
@@ -172,29 +172,29 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm"  [(ngModel)]="Odonto.presion" autocomplete="off" type="text" id="PRESION" pInputText
-                        pKeyFilter="num">
+                    <input class="p-inputtext-sm" [(ngModel)]="Odonto.presion" autocomplete="off" type="text"
+                        id="PRESION" pInputText pKeyFilter="num">
                     <label class="p-inputtext-sm" for="inputtext">PRESION ARTERIAL</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off"  [(ngModel)]="Odonto.frecCardiaca"type="text" id="temperatura" pInputText
-                        pKeyFilter="num">
+                    <input class="p-inputtext-sm" autocomplete="off" [(ngModel)]="Odonto.frecCardiaca" type="text"
+                        id="temperatura" pInputText pKeyFilter="num">
                     <label class="p-inputtext-sm" for="inputtext">FRECUENCIA CARDIACA min</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off"  [(ngModel)]="Odonto.temperatura" type="text" id="temperatura" pInputText
-                        pKeyFilter="num">
+                    <input class="p-inputtext-sm" autocomplete="off" [(ngModel)]="Odonto.temperatura" type="text"
+                        id="temperatura" pInputText pKeyFilter="num">
                     <label class="p-inputtext-sm" for="inputtext">TEMPERATURA °C</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off"  [(ngModel)]="Odonto.frecRespi" type="text" id="temperatura" pInputText
-                        pKeyFilter="num">
+                    <input class="p-inputtext-sm" autocomplete="off" [(ngModel)]="Odonto.frecRespi" type="text"
+                        id="temperatura" pInputText pKeyFilter="num">
                     <label class="p-inputtext-sm" for="inputtext">F.RESPIRATORIA min</label>
                 </span>
             </div>
@@ -209,91 +209,91 @@
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.labio" inputId="lb"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">LABIO</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.mejillas" inputId="mj"
-                    [ngModelOptions]="{standalone: true}" ></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">MEJILLA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.maxSuperior" inputId="ms"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">MAXILAR SUPERIOR</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.maxilarInf" inputId="mi"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">MAXILAR INFERIOR</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.lengua" inputId="lg"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">LENGUA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.paladar" inputId="pl"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">PALADAR</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.piso" inputId="ps"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">PISO</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.carrillos" inputId="cr"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">CARRILLOS</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.glandulasSa" inputId="gs"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">GLANDULAS SALIBALES</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.oroFaringe" inputId="of"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">ORO FARINGE</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.atm" inputId="at"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">A.T.M.</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true"[(ngModel)]="examenE.glangios" inputId="gl"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.glangios" inputId="gl"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">GLANGLIOS</label>
                 </div>
             </div>
             <div class="col-12 mt-3 md:col-12">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off" [(ngModel)]="examenE.descripcion" type="text" id="familiares" pInputText
-                        maxlength="500">
+                    <input class="p-inputtext-sm" autocomplete="off" [(ngModel)]="examenE.descripcion" type="text"
+                        id="familiares" pInputText maxlength="500">
                     <label class="p-inputtext-sm" for="inputtext"></label>
                 </span>
             </div>
@@ -341,107 +341,105 @@
             <div class="grid p-fluid">
                 <div class="col-12 md:col-2">
                     <div class="field-radiobutton">
-                        <p-radioButton name="p16" value="X" [(ngModel)]="diagnostico.pre1" inputId="p1"
-                          ></p-radioButton>
+                        <p-radioButton name="p16" value="X" [(ngModel)]="salud.p16" inputId="p1"></p-radioButton>
                         <label for="p1">16</label>
-                      </div>
-                </div>
-                <div class="col-12 md:col-2">
-                    
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                        <label for="ch">17</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                        <label for="ch">55</label>
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p17" value="X" [(ngModel)]="salud.p17" inputId="p2"></p-radioButton>
+                        <label for="p2">17</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
-                    <span class="p-input-icon-left">
-                        <input type="number" pInputText placeholder="">
-                    </span>
-                </div>
-                <div class="col-12 md:col-2">
-                    <span class="p-input-icon-left">
-                        <input type="number" pInputText placeholder="">
-                    </span>
-                </div>
-                <div class="col-12 md:col-2">
-                    <span class="p-input-icon-left">
-                        <input type="number" pInputText placeholder="">
-                    </span>
-                </div>
-            </div>
-            <div class="grid p-fluid">
-                <div class="col-12 md:col-2">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                        <label for="ch">11</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-2">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                        <label for="ch">21</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-2">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                        <label for="ch">51</label>
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p55" value="X" [(ngModel)]="salud.p55" inputId="p3"></p-radioButton>
+                        <label for="p3">55</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <span class="p-input-icon-left">
-                        <input type="number" pInputText placeholder="">
+                        <input type="number" [(ngModel)]="salud.placa1" pInputText placeholder="">
                     </span>
                 </div>
                 <div class="col-12 md:col-2">
                     <span class="p-input-icon-left">
-                        <input type="number" pInputText placeholder="">
+                        <input type="number" [(ngModel)]="salud.cal1" pInputText placeholder="">
                     </span>
                 </div>
                 <div class="col-12 md:col-2">
                     <span class="p-input-icon-left">
-                        <input type="number" pInputText placeholder="">
+                        <input type="number" [(ngModel)]="salud.gin1" pInputText placeholder="">
                     </span>
                 </div>
             </div>
             <div class="grid p-fluid">
                 <div class="col-12 md:col-2">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                        <label for="ch">26</label>
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p11" value="X" [(ngModel)]="salud.p11" inputId="p4"></p-radioButton>
+                        <label for="p4">11</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                        <label for="ch">27</label>
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p21" value="X" [(ngModel)]="salud.p21" inputId="p5"></p-radioButton>
+                        <label for="p5">21</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                        <label for="ch">65</label>
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p51" value="X" [(ngModel)]="salud.p51" inputId="p6"></p-radioButton>
+                        <label for="p6">51</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <span class="p-input-icon-left">
-                        <input type="number" pInputText placeholder="">
+                        <input type="number" [(ngModel)]="salud.placa2" pInputText placeholder="">
                     </span>
                 </div>
                 <div class="col-12 md:col-2">
                     <span class="p-input-icon-left">
-                        <input type="number" pInputText placeholder="">
+                        <input type="number" pInputText [(ngModel)]="salud.cal2" placeholder="">
                     </span>
                 </div>
                 <div class="col-12 md:col-2">
                     <span class="p-input-icon-left">
-                        <input type="number" pInputText placeholder="">
+                        <input type="number" pInputText [(ngModel)]="salud.gin2" placeholder="">
+                    </span>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p26" value="X" [(ngModel)]="salud.p26" inputId="p7"></p-radioButton>
+                        <label for="p6">26</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p27" value="X" [(ngModel)]="salud.p27" inputId="p8"></p-radioButton>
+                        <label for="p8">27</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p65" value="X" [(ngModel)]="salud.p65" inputId="p9"></p-radioButton>
+                        <label for="p9">65</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" [(ngModel)]="salud.placa3" pInputText placeholder="">
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText  [(ngModel)]="salud.cal3" placeholder="">
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText [(ngModel)]="salud.gin3" placeholder="">
                     </span>
                 </div>
             </div>
@@ -664,31 +662,31 @@
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">D</label>
-                    <input type="number"  [(ngModel)]="indice.d"pInputText placeholder="">
+                    <input type="number" [(ngModel)]="indice.d" pInputText placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">C</label>
-                    <input type="number"  [(ngModel)]="indice.c" pInputText placeholder="">
+                    <input type="number" [(ngModel)]="indice.c" pInputText placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-center">
                     <label for="requisitos ">P</label>
-                    <input type="number" pInputText  [(ngModel)]="indice.p" placeholder="">
+                    <input type="number" pInputText [(ngModel)]="indice.p" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-center">
                     <label for="requisitos ">O</label>
-                    <input type="number" pInputText  [(ngModel)]="indice.o"  placeholder="">
+                    <input type="number" pInputText [(ngModel)]="indice.o" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">TOTAL</label>
-                    <input type="number" pInputText   [(ngModel)]="indice.totalD" placeholder="">
+                    <input type="number" pInputText [(ngModel)]="indice.totalD" placeholder="">
                 </span>
             </div>
         </div>
@@ -696,31 +694,31 @@
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">d</label>
-                    <input type="number" pInputText   [(ngModel)]="indice.d1"placeholder="">
+                    <input type="number" pInputText [(ngModel)]="indice.d1" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">c</label>
-                    <input type="number" pInputText   [(ngModel)]="indice.c1"placeholder="">
+                    <input type="number" pInputText [(ngModel)]="indice.c1" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-center">
                     <label for="requisitos ">p</label>
-                    <input type="number" pInputText  [(ngModel)]="indice.p1" placeholder="">
+                    <input type="number" pInputText [(ngModel)]="indice.p1" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-center">
                     <label for="requisitos ">o</label>
-                    <input type="number" pInputText  [(ngModel)]="indice.o1" placeholder="">
+                    <input type="number" pInputText [(ngModel)]="indice.o1" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">TOTAL</label>
-                    <input type="number" pInputText  [(ngModel)]="indice.totald1" placeholder="">
+                    <input type="number" pInputText [(ngModel)]="indice.totald1" placeholder="">
                 </span>
             </div>
         </div>
@@ -745,35 +743,35 @@
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.biometrica" inputId="bi"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">BIOMETRICA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.quimicaS" inputId="qs" 
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.quimicaS" inputId="qs"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="qs">QUIMICA SANGUINEA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.rayosx" inputId="rx"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">RAYOS-X</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
                     <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.otros" inputId="bi"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">OTROS</label>
                 </div>
             </div>
             <div class="col-12 mt-3 md:col-12">
                 <span class="p-float-label">
-                    <input class="p-inputtext-sm" autocomplete="off" type="text"   id="familiares" pInputText
-                        maxlength="500">
+                    <input class="p-inputtext-sm" autocomplete="off" type="text" [(ngModel)]="planes.descripcion"
+                        id="familiares" pInputText maxlength="500">
                     <label class="p-inputtext-sm" for="inputtext"></label>
                 </span>
             </div>
@@ -798,49 +796,45 @@
                     <input type="text" pInputText [(ngModel)]="diagnostico.cie1" placeholder="">
                 </span>
             </div>
-          
+
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="pre1" value="X" [(ngModel)]="diagnostico.pre1" inputId="city1"
-                      ></p-radioButton>
+                    <p-radioButton name="pre1" value="X" [(ngModel)]="diagnostico.pre1" inputId="city1"></p-radioButton>
                     <label for="city1">PRE</label>
-                  </div>
+                </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="def1" value="X" [(ngModel)]="diagnostico.def" inputId="city"
-                      ></p-radioButton>
+                    <p-radioButton name="def1" value="X" [(ngModel)]="diagnostico.def" inputId="city"></p-radioButton>
                     <label for="city">DEF</label>
-                  </div>
+                </div>
             </div>
-      
+
         </div>
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText  [(ngModel)]="diagnostico.descripcion2"placeholder="">
+                    <input type="text" pInputText [(ngModel)]="diagnostico.descripcion2" placeholder="">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText  [(ngModel)]="diagnostico.cie2"placeholder="">
+                    <input type="text" pInputText [(ngModel)]="diagnostico.cie2" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="pre2" value="X" [(ngModel)]="diagnostico.pre2" inputId="city2"
-                      ></p-radioButton>
+                    <p-radioButton name="pre2" value="X" [(ngModel)]="diagnostico.pre2" inputId="city2"></p-radioButton>
                     <label for="city2">PRE</label>
-                  </div>
+                </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="def2" value="X" [(ngModel)]="diagnostico.def2" inputId="city3"
-                      ></p-radioButton>
+                    <p-radioButton name="def2" value="X" [(ngModel)]="diagnostico.def2" inputId="city3"></p-radioButton>
                     <label for="city3">DEF</label>
-                  </div>
+                </div>
             </div>
         </div>
         <div class="grid p-fluid">
@@ -906,7 +900,7 @@
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Fecha de control</label>
-                    <input type="date" pInputText  [(ngModel)]="diagnostico.fechaC"placeholder="">
+                    <input type="date" pInputText [(ngModel)]="diagnostico.fechaC" placeholder="">
                 </span>
             </div>
             <div class="col-12 md:col-2">
@@ -918,7 +912,7 @@
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Codigo</label>
-                    <input type="number"  pInputText  [(ngModel)]="Odonto.codigo"placeholder="codigo">
+                    <input type="number" pInputText [(ngModel)]="Odonto.codigo" placeholder="codigo">
                 </span>
             </div>
         </div>
@@ -932,19 +926,19 @@
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Sesion</label>
-                    <input type="text" pInputText [(ngModel)]="Odonto.sesion"  placeholder="Sesion">
+                    <input type="text" pInputText [(ngModel)]="Odonto.sesion" placeholder="Sesion">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Fecha</label>
-                    <input type="date" pInputText  [(ngModel)]="Odonto.fecha" placeholder="Fecha">
+                    <input type="date" pInputText [(ngModel)]="Odonto.fecha" placeholder="Fecha">
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
                     <label for="requisitos ">Codigo</label>
-                    <input type="text" pInputText  [(ngModel)]="Odonto.codigo" placeholder="codigo" > 
+                    <input type="text" pInputText [(ngModel)]="Odonto.codigo" placeholder="codigo">
                 </span>
             </div>
         </div>
@@ -952,12 +946,12 @@
 
             <div class="col-12 md:col-2">
                 <label for="float-input">Diagnosticos y complicaciones</label>
-                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Odonto.diagnostico" ></textarea>
+                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Odonto.diagnostico"></textarea>
             </div>
 
             <div class="col-12 md:col-4">
                 <label for="float-input">Procedimientos</label>
-                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Odonto.procedimiento" ></textarea>
+                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Odonto.procedimiento"></textarea>
             </div>
             <div class="col-12 md:col-2">
                 <label for="float-input">Prescripciones</label>
