@@ -45,6 +45,7 @@ export interface SaludBucal {
     p41?: string;
     p46?: string;
     p47?: string;
+    p51?: string;
     p55?: string;
     p65?: string;
     p71?: string;

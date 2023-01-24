@@ -18,7 +18,7 @@ export class MedicamentosComponent implements OnInit {
   dialogo: boolean;
   dialogo56: boolean;
   medicamentos: any[] = [];
-
+  establecimiento = "C.E.M. MEDIVALLE";
   usuario2: any
   idpersona: number;
   idpe: string;
@@ -33,6 +33,7 @@ export class MedicamentosComponent implements OnInit {
   Medi: Medicamentos = {
     abreviaturaFun: null,
     fecha: null,
+    establecimiento:null,
     hora: null,
     idMedicamentos: null,
     inicialesRespon: null,
@@ -85,7 +86,7 @@ export class MedicamentosComponent implements OnInit {
 
   saveMedicamento() {
     console.log(this.Medi);
-
+    this.Medi.establecimiento = this.establecimiento
     this.medicamentoService.saveMedicamentoUsingPOST(this.Medi).subscribe(
       res => {
         if (res.object != null) {
@@ -119,7 +120,7 @@ export class MedicamentosComponent implements OnInit {
     });
   }
 
-  buscarPersona2() {
+  buscarPersona() {
     this.persnaService.listaUsingGET().subscribe((res) => {
       //console.log(this.buscarcedula, this.buscarnombre);
       for (let datos of res) {

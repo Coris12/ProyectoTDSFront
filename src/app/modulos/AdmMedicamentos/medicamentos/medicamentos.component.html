@@ -13,6 +13,12 @@
                 <div class="grid p-fluid">
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
+                            <input type="text" id="inputtext" [(ngModel)]="establecimiento" pInputText>
+                            <label for="inputtext">Establecimiento</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
                             <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText>
                             <label for="inputtext">Cedula</label>
                         </span>
@@ -36,7 +42,7 @@
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
-                        <button pButton type="button" label="Buscar" (click)="buscarPersona2();"></button>
+                        <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
                     </div>
                 </div>
                 <br>
