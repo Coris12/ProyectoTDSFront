@@ -304,6 +304,11 @@
                 <b>6.Odontograma</b>
             </div>
         </p-divider>
+        <div class="grid p-fluid">
+            <div class="container mt-2" style="text-align: center;">
+                <img src="../../../../assets/odontograma.jpg" class="img-thumbnail" width="600" height="800">
+            </div>
+        </div>
         <p-divider align="left">
             <div class="inline-flex align-items-center">
                 <i class="pi pi-user mr-2"></i>
@@ -744,8 +749,7 @@
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true"[(ngModel)]="planes.quimicaS" inputId="qs"
-                    [ngModelOptions]="{standalone: true}" ></p-checkbox>
+                    <p-checkbox name="group1" value="X" [(ngModel)]="planes.quimicaS" name="X" ></p-checkbox>
                     <label for="ch">QUIMICA SANGUINEA</label>
                 </div>
             </div>
@@ -801,7 +805,7 @@
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="preDef" value="PRE" [(ngModel)]="diagnostico.def" inputId="city"
+                    <p-radioButton name="preDef" value="DEF" [(ngModel)]="diagnostico.def" inputId="city"
                       ></p-radioButton>
                     <label for="city1">DEF</label>
                   </div>
@@ -823,14 +827,14 @@
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="preDef" value="PRE" [(ngModel)]="diagnostico.pre2" inputId="city2"
+                    <p-radioButton name="pre2" value="Xxx" [(ngModel)]="diagnostico.pre2" inputId="city2"
                       ></p-radioButton>
                     <label for="city1">PRE</label>
                   </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="preDef" value="PRE" [(ngModel)]="diagnostico.def2" inputId="city3"
+                    <p-radioButton name="preDef" value="DEF" [(ngModel)]="diagnostico.def2" inputId="city3"
                       ></p-radioButton>
                     <label for="city1">DEF</label>
                   </div>
