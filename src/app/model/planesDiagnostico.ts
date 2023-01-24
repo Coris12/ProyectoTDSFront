@@ -13,6 +13,7 @@ import { Odontologia } from './odontologia';
 
 export interface PlanesDiagnostico { 
     biometrica?: boolean;
+    descripcion?: string;
     idPlanes?: number;
     odontologia?: Odontologia;
     otros?: boolean;

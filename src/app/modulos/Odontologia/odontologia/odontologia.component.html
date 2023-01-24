@@ -340,12 +340,14 @@
             </div>
             <div class="grid p-fluid">
                 <div class="col-12 md:col-2">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                        <label for="ch">16</label>
-                    </div>
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p16" value="X" [(ngModel)]="diagnostico.pre1" inputId="p1"
+                          ></p-radioButton>
+                        <label for="p1">16</label>
+                      </div>
                 </div>
                 <div class="col-12 md:col-2">
+                    
                     <div class="field-checkbox">
                         <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
                         <label for="ch">17</label>
@@ -749,8 +751,9 @@
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="planes.quimicaS" name="X" ></p-checkbox>
-                    <label for="ch">QUIMICA SANGUINEA</label>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.quimicaS" inputId="qs" 
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="qs">QUIMICA SANGUINEA</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
@@ -798,16 +801,16 @@
           
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="preDef" value="PRE" [(ngModel)]="diagnostico.pre1" inputId="city1"
+                    <p-radioButton name="pre1" value="X" [(ngModel)]="diagnostico.pre1" inputId="city1"
                       ></p-radioButton>
                     <label for="city1">PRE</label>
                   </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="preDef" value="DEF" [(ngModel)]="diagnostico.def" inputId="city"
+                    <p-radioButton name="def1" value="X" [(ngModel)]="diagnostico.def" inputId="city"
                       ></p-radioButton>
-                    <label for="city1">DEF</label>
+                    <label for="city">DEF</label>
                   </div>
             </div>
       
@@ -827,16 +830,16 @@
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="pre2" value="Xxx" [(ngModel)]="diagnostico.pre2" inputId="city2"
+                    <p-radioButton name="pre2" value="X" [(ngModel)]="diagnostico.pre2" inputId="city2"
                       ></p-radioButton>
-                    <label for="city1">PRE</label>
+                    <label for="city2">PRE</label>
                   </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="preDef" value="DEF" [(ngModel)]="diagnostico.def2" inputId="city3"
+                    <p-radioButton name="def2" value="X" [(ngModel)]="diagnostico.def2" inputId="city3"
                       ></p-radioButton>
-                    <label for="city1">DEF</label>
+                    <label for="city3">DEF</label>
                   </div>
             </div>
         </div>
