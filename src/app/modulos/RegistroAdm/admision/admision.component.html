@@ -1,9 +1,66 @@
 <app-header></app-header>
+<p-toast></p-toast>
 <div class="animated fadeIn mt-4">
     <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
             <div class="p-2">
-                <h1>Registro</h1>
+                <h2>Admision</h2>
+            </div>
+        </div>
+        <div class="p-fluid grid">
+            <div class="field col-12 md:col-2 centrar">
+                <span class="p-float-label">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="establecimiento"
+                        (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                    <label for="inputtext">INSTITUCIÓN DEL SISTEMA</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2 centrar">
+                <span class="p-float-label">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText
+                        (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                    <label for="inputtext">UNIDAD OPERATIVA</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2 centrar">
+                <span class="p-float-label">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText
+                        (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                    <label for="inputtext">COD. UD</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <label for="" class="centrarLabel">COD. LOCALIZACIÓN</label>
+                <div class="flexDerecha">
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input autocomplete="off" type="text" id="inputtext" pInputText
+                                (keypress)="validarSoloLetras($event)" maxlength="255">
+                            <label for="inputtext">PARROQUIA</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input autocomplete="off" type="text" id="inputtext" pInputText
+                                (keypress)="validarSoloLetras($event)" maxlength="255">
+                            <label for="inputtext">CANTÓN</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input autocomplete="off" type="text" id="inputtext" pInputText
+                                (keypress)="validarSoloLetras($event)" maxlength="255">
+                            <label for="inputtext">PROVINCIA</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-12 md:col-2 centrar">
+                <span class="p-float-label">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText
+                        (keypress)="validacionSoloNumeros($event)" maxlength="10">
+                    <label for="inputtext"># HISTORIA CLÍNICA</label>
+                </span>
             </div>
         </div>
         <p-divider align="left">
@@ -16,56 +73,44 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText>
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
+            <div class="field col-12 md:col-2">
+                <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText>
                     <label for="inputtext">Nombres Completos</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Direccion </label>
+                    <input type="text" id="inputtext" [(ngModel)]="direccion" pInputText>
+                    <label for="inputtext">Direccion</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="cel" pInputText>
                     <label for="inputtext">Celular</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText>
                     <label for="inputtext">Sexo</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Email</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Provincia</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Caton</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Parroquia</label>
+                    <label for="inputtext">Estado Civil</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
@@ -77,13 +122,19 @@
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Ciudad</label>
+                    <label for="inputtext">Parroquia</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Fecha nacimiento</label>
+                    <label for="inputtext">Canton</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Provincia</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
@@ -94,566 +145,106 @@
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Pais</label>
+                    <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText>
+                    <label for="inputtext">Instruccion ultimo año aprobado</label>
                 </span>
             </div>
-
-
-        </div>
-        <!------------------------------------->
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>2.Inicio de atencion y motivo</b>
-            </div>
-        </p-divider>
-        <br>
-        <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="time" pInputText>
-                    <label for="inputtext">Hora</label>
+                    <input type="date" id="inputtext" pInputText>
+                    <label for="inputtext">Fecha Admision</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Trauma</label>
+                    <label for="inputtext">Ocupacion</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Causa Clinica</label>
+                    <label for="inputtext">Empresa donde trabaja</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Causa G.Ostretica</label>
+                    <label for="inputtext">Tipo de seguro</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Grupo Sanguineo y Factor Rh</label>
+                    <label for="inputtext">Referido de</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Notificacion a la policia</label>
+                    <label for="inputtext">En caso de emergencia llamar a </label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Otro motivo</label>
-                </span>
-            </div>
-        </div>
-        <!------------------------------------------------------------------------------>
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>3.Accidente,violencia,intoxicacion,envenamiento o quemadura</b>
-            </div>
-        </p-divider>
-        <br>
-        <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="datetime-local" pInputText>
-                    <label for="">Fecha y Hora del evento</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" pInputText>
-                    <label for="inputtext">Lugar del evento</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" pInputText>
-                    <label for="inputtext">Custodia policial</label>
-                </span>
-            </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Accidente de transito </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Caida </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Quemadura</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Mordedura</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Ahogamiento</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Cuerpo extraño</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Aplastamiento</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Violencia por arma de fuego</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Violencia por arma cortopunznate</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Violencia por riña</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Violencia Familiar</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Abuso Fisico</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Abuso Psicologico</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Abuso Sexual</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Otro accdiente</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Otra Violencia</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Intoxicacion alcoholica</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Intoxicacion alimentaria</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Intoxicacion por drogas</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Inhalacion de gases</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Otra Intoxicacion</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Envenamiento</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Picadura</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Anafilaxia</label>
-                </div>
-            </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <textarea id="float-input" rows="5" cols="199" pInputTextarea></textarea>
-                    <label for="float-input">Observacion</label>
-                </span>
-            </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Aliento Etilico</label>
+                    <label for="inputtext">Parentesco</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Valor Alcocheck</label>
+                    <label for="inputtext">Direcion</label>
                 </span>
             </div>
-        </div>
-        <!------------------------------------------------------------------------------>
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>4.Antecedes personales y Familiares</b>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
             </div>
+            <label for="p1">Forma de llegada</label>
             <br>
-            <label for="ny">Describir abajo,registrando el numero respectivo </label>
-        </p-divider>
-
-        <div class="grid p-fluid">
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">1.Alergico </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">2.Clinico </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">3.Ginecologico</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">4.Traumotologo </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">5.Quirurgico</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">6.Farmacologico </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">7.Psiquiatrico </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">8.Otro </label>
-                </div>
-            </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <textarea id="float-input" rows="5" cols="199" pInputTextarea></textarea>
-                    <label for="float-input">Descripcion</label>
-                </span>
-            </div>
-        </div>
-        <!------------------------------------------------------------------------------>
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>5.Enfermedad actual y revision de sistemas</b>
-            </div>
-            <br>
-            <label for="ny">Describir cronologia-localizacion - caracteristica-intensidad-frecuencia-factores
-                agravantes</label>
-        </p-divider>
-        <div class="grid p-fluid">
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Via aerea libre </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Via aerea obstruida </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Condicion estable </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Condicion inestable</label>
-                </div>
-            </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <textarea id="float-input" rows="5" cols="199" pInputTextarea></textarea>
-                    <label for="float-input">Descripcion</label>
-                </span>
-            </div>
-        </div>
-        <!------------------------------------------------------------------------------>
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>6.Signos Vitales</b>
-            </div>
-        </p-divider>
-        <br>
-        <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Presion arterial</label>
-                </span>
-            </div>
-
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">F.Cardiaca (mln)</label>
-                </span>
-            </div>
-
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Temp.Sucal (°c)</label>
-                </span>
-            </div>
-
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Temp. Axilarl (°c)</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Peso (kg)</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Talla (m)</label>
-                </span>
-            </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-8 md:col-2">
-                <p>GLASGOW</p>
-            </div>
-            <div class="field col-4 md:col-2">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Ocular (4)</label>
-                </span>
-            </div>
-            <div class="field col-4 md:col-2">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Verbal (6)</label>
-                </span>
-            </div>
-            <div class="field col-4 md:col-2">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Motora (6)</label>
-                </span>
-            </div>
-            <div class="field col-4 md:col-2">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Total (15)</label>
-                </span>
-            </div>
-            <div class="field col-4 md:col-2">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Reaccion pupila der</label>
-                </span>
-            </div>
-            <div class="field col-4 md:col-2">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Reaccion pupila izq</label>
-                </span>
-            </div>
-            <div class="field col-4 md:col-2">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">T.LLenado Capilar</label>
-                </span>
-            </div>
-            <div class="field col-4 md:col-2">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Satura Oxigeno</label>
-                </span>
-            </div>
-        </div>
-        <!------------------------------------------------------------------------------>
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>7.Examen Fisico y Diagnostico</b>
-            </div>
-            <br>
-            <label for="ny">Marcar "SP" si se encuentra sin patologia,marcar "CP" si se encuentra con patologia,
-                Registrar abajo el numero y los hallazgos patologios</label>
-        </p-divider>
-        <div class="grid p-fluid">
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">1.Via aerea obstruida </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">2.Cabeza </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">3.Cuello</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">4.Torax</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">5.Abdomen</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">6.Colummna</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">7.Pelvis</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">8.Extremidades</label>
-                </div>
-            </div>
-            <div class="grid p-fluid">
-                <div class="field col-12 md:col-4">
-                    <span class="p-float-label">
-                        <textarea id="float-input" rows="5" cols="199" pInputTextarea></textarea>
-                        <label for="float-input">Descripcion</label>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>8.Localizacion de lesiones</b>
-            </div>
-            <br>
-            <label for="ny">Escribir el numero de la lesion sobre la region correspondiente</label>
-        </p-divider>
-        <div class="grid p-fluid">
-            <div class="container mt-2" style="text-align: left;">
-                <img src="../../../../assets/lesiones.png" class="img-thumbnail" width="300" height="400">
-            </div>
-        </div>
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>9.Emergencia obstétrica</b>
-            </div>
-        </p-divider>
-        <div class="grid p-fluid">
+            <label for="p1"></label>
             <div class="col-12 md:col-2">
-                
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
+                    <label for="p1">Ambulancia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
+                    <label for="p1">Ambulatorio</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
+                    <label for="p1">Otro transporte</label>
+                </div>
             </div>
         </div>
+        <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Fuente de informacion</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Institucion o persona que entrega al paciente</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+        </div>
+
     </div>
 </div>
