@@ -3,6 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
+import { AdmisionControllerService } from './api/admisionController.service';
 import { AntecFamiliaresControllerService } from './api/antecFamiliaresController.service';
 import { AntecPersonalesControllerService } from './api/antecPersonalesController.service';
 import { AuthControllerService } from './api/authController.service';
@@ -51,6 +52,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
   declarations: [],
   exports:      [],
   providers: [
+    AdmisionControllerService,
     AntecFamiliaresControllerService,
     AntecPersonalesControllerService,
     AuthControllerService,

@@ -1,3 +1,4 @@
+export * from './admision';
 export * from './antecFamiliares';
 export * from './antecPersonales';
 export * from './autorizacion';
