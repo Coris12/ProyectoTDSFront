@@ -498,13 +498,14 @@
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <p-checkbox name="X" value="X" [binary]="true" [(ngModel)]="accidente.ana" inputId="aa"
+                    [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Picadura</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <input type="checkbox" name="violencia" id="vi" value="X">
+                    <input type="checkbox" name="X" id="vi" value="X" [(ngModel)]="accidente.ana">
                     <label for="ch">Anaflaxia</label>
                 </div>
             </div>

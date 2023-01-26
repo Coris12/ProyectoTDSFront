@@ -138,6 +138,7 @@ import { DiagnosticoOControllerService } from './api/diagnosticoOController.serv
 import { SaludControllerService } from './api/saludController.service';
 import { AdmisionControllerService } from './api/admisionController.service';
 import { LlegadaAdServiceService } from './api/llegadaAdService.service';
+import { AccidenteControllerService } from './api/accidenteController.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -280,7 +281,8 @@ import { LlegadaAdServiceService } from './api/llegadaAdService.service';
     DiagnosticoOControllerService,
     SaludControllerService,
     AdmisionControllerService,
-    LlegadaAdServiceService
+    LlegadaAdServiceService,
+    AccidenteControllerService
   ],
   bootstrap: [AppComponent]
 })

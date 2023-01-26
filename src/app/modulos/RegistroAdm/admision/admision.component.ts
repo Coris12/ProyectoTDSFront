@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { AccidenteControllerService } from 'src/app/api/accidenteController.service';
 import { AdmisionControllerService } from 'src/app/api/admisionController.service';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { LlegadaAdServiceService } from 'src/app/api/llegadaAdService.service';
+import { Accidente } from 'src/app/model/accidente';
 import { Admision } from 'src/app/model/admision';
 import { LLegadaAd } from 'src/app/model/lLegadaAd';
 
@@ -19,7 +21,8 @@ export class AdmisionComponent implements OnInit {
     private persnaService: AuthControllerService,
     private adService: AdmisionControllerService,
     private messageService: MessageService,
-    private llegService:LlegadaAdServiceService
+    private llegService:LlegadaAdServiceService,
+    private accService:AccidenteControllerService
 
   ) { }
  
@@ -31,6 +34,7 @@ export class AdmisionComponent implements OnInit {
   idpersona: any;
   sexo: string
   buscarnombre: string
+  value:"X"
   establecimiento = "C.E.M. MEDIVALLE";
   idAm: any;
   errMsj: String
@@ -91,6 +95,11 @@ export class AdmisionComponent implements OnInit {
     quirurgica: null,
     trauma: null,
   }
+  accidente:Accidente={
+    admision:null,
+    ana:null,
+    idAccidente:null,
+  }
   
   ngOnInit(): void {
 
@@ -148,15 +157,28 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
+  guardarAccidente(){
+    this.accService.saveAccidenteUsingPOST(this.llegada).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR Accidente EN EL SERVIDOR");
+    });
+  }
+
   recuperarAdmision() {
 
     this.adService.listUsingGET().subscribe((res) => {
       for (let datos of res) {
         if (datos.idAdmision == this.idAm) {
           this.llegada.admision = datos
-          
+          this.accidente.admision=datos
           console.log(this.idAm);
           this.guardarLlegada();
+          this.guardarAccidente();
         }
       }
 
