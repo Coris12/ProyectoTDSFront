@@ -45,6 +45,7 @@ export * from './indicesCPO';
 export * from './indicesF';
 export * from './informacionTratamientoDTO';
 export * from './jwtDto';
+export * from './lLegadaAd';
 export * from './listaFamiliaresDTO';
 export * from './loginUsuario';
 export * from './medicamentos';

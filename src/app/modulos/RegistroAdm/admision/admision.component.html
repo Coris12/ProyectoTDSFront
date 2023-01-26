@@ -11,20 +11,21 @@
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
                     <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="establecimiento"
-                        (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                        value={{establecimiento}} (keypress)="validacionAlfanumerica($event)" maxlength="255">
                     <label for="inputtext">INSTITUCIÓN DEL SISTEMA</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
-                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="adm.unidadOperativa"
-                        (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText
+                        [(ngModel)]="admision.unidadOperativa" (keypress)="validacionAlfanumerica($event)"
+                        maxlength="255">
                     <label for="inputtext">UNIDAD OPERATIVA</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
-                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="adm.codUd"
+                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="admision.codUd"
                         (keypress)="validacionAlfanumerica($event)" maxlength="255">
                     <label for="inputtext">COD. UD</label>
                 </span>
@@ -34,22 +35,22 @@
                 <div class="flexDerecha">
                     <div class="field col-12 md:col-4">
                         <span class="p-float-label">
-                            <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="adm.parroquia"
-                                (keypress)="validarSoloLetras($event)" maxlength="255">
+                            <input autocomplete="off" type="text" id="inputtext" pInputText
+                                [(ngModel)]="admision.parroquia" (keypress)="validarSoloLetras($event)" maxlength="255">
                             <label for="inputtext">PARROQUIA</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="p-float-label">
-                            <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="adm.canton"
-                                (keypress)="validarSoloLetras($event)" maxlength="255">
+                            <input autocomplete="off" type="text" id="inputtext" pInputText
+                                [(ngModel)]="admision.canton" (keypress)="validarSoloLetras($event)" maxlength="255">
                             <label for="inputtext">CANTÓN</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="p-float-label">
-                            <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="adm.provincia"
-                                (keypress)="validarSoloLetras($event)" maxlength="255">
+                            <input autocomplete="off" type="text" id="inputtext" pInputText
+                                [(ngModel)]="admision.provincia" (keypress)="validarSoloLetras($event)" maxlength="255">
                             <label for="inputtext">PROVINCIA</label>
                         </span>
                     </div>
@@ -109,7 +110,7 @@
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.estadoC">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.estadoC">
                     <label for="inputtext">Estado Civil</label>
                 </span>
             </div>
@@ -145,107 +146,155 @@
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.instruccion">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.instruccion">
                     <label for="inputtext">Instruccion ultimo año aprobado</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="date" id="inputtext" pInputText [(ngModel)]="adm.fechaA">
+                    <input type="date" id="inputtext" pInputText [(ngModel)]="admision.fechaA">
                     <label for="inputtext">Fecha Admision</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.ocupacion">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.ocupacion">
                     <label for="inputtext">Ocupacion</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.empresa">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.empresa">
                     <label for="inputtext">Empresa donde trabaja</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.tipoS">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.tipoS">
                     <label for="inputtext">Tipo de seguro</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.referidoD">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.referidoD">
                     <label for="inputtext">Referido de</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.emergencia">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.emergencia">
                     <label for="inputtext">En caso de emergencia llamar a </label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.parantesco">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.parantesco">
                     <label for="inputtext">Parentesco</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.direccP">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.direccP">
                     <label for="inputtext">Direcion</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.telefono">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.telefono">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
-            <label for="p1">Forma de llegada</label>
-            <br>
-            <label for="p1"></label>
-            <div class="col-12 md:col-2">
-                <div class="field-radiobutton">
-                    <p-radioButton name="p16" value="X" [(ngModel)]="adm.ambulancia" inputId="p1"></p-radioButton>
-                    <label for="p1">Ambulancia</label>
-                </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <b>Forma de llegada</b>
             </div>
-            <div class="col-12 md:col-2">
-                <div class="field-radiobutton">
-                    <p-radioButton name="p16" value="X" [(ngModel)]="adm.ambulat" inputId="p1"></p-radioButton>
-                    <label for="p1">Ambulatorio</label>
-                </div>
-            </div>
-            <div class="col-12 md:col-2">
-                <div class="field-radiobutton">
-                    <p-radioButton name="p16" value="X" [(ngModel)]="adm.otro" inputId="p1"></p-radioButton>
-                    <label for="p1">Otro transporte</label>
-                </div>
+        </p-divider>
+        <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+            <div class="field-radiobutton">
+                <p-radioButton name="p16" value="X" [(ngModel)]="llegada.ambulancia" inputId="p1"></p-radioButton>
+                <label for="p1">Ambulancia</label>
             </div>
         </div>
+        <div class="col-12 md:col-4">
+            <div class="field-radiobutton">
+                <p-radioButton name="p16" value="X" [(ngModel)]="llegada.ambulat" inputId="p1"></p-radioButton>
+                <label for="p1">Ambulatorio</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-2">
+            <div class="field-radiobutton">
+                <p-radioButton name="p16" value="X" [(ngModel)]="llegada.otro" inputId="p1"></p-radioButton>
+                <label for="p1">Otro transporte</label>
+            </div>
+        </div>
+    </div>
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.fuente">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.fuente">
                     <label for="inputtext">Fuente de informacion</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.persona">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.persona">
                     <label for="inputtext">Institucion o persona que entrega al paciente</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="adm.numero">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.numero">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
         </div>
-        <p-button label="Save" (click)="cargarPersona()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>2.Inicio de Atencion y motivo </b>
+            </div>
+        </p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Hora</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
+                    <label for="p1">Trauma</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
+                    <label for="p1">Causa Clinica</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
+                    <label for="p1">Causa G.Obstretica</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
+                    <label for="p1">Causa Quirurgica</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
+                    <label for="p1">Notificacion a la policia</label>
+                </div>
+            </div>
+        </div>
+        <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="cargarPersona()" styleClass="p-button-text">
         </p-button>
     </div>
 </div>

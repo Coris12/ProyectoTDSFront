@@ -28,6 +28,7 @@ import { HistoriaControllerService } from './api/historiaController.service';
 import { IndiceControlllerService } from './api/indiceControlller.service';
 import { IndicesFamilControllerService } from './api/indicesFamilController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
+import { LlegadaAdServiceService } from './api/llegadaAdService.service';
 import { MedicamentosControllerService } from './api/medicamentosController.service';
 import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
 import { OdontologiaControllerService } from './api/odontologiaController.service';
@@ -77,6 +78,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     IndiceControlllerService,
     IndicesFamilControllerService,
     InformacionTratamientoControllerService,
+    LlegadaAdServiceService,
     MedicamentosControllerService,
     MedicoConsentimientoControllerService,
     OdontologiaControllerService,

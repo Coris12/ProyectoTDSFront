@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AdmisionControllerService } from 'src/app/api/admisionController.service';
 import { AuthControllerService } from 'src/app/api/authController.service';
+import { LlegadaAdServiceService } from 'src/app/api/llegadaAdService.service';
 import { Admision } from 'src/app/model/admision';
+import { LLegadaAd } from 'src/app/model/lLegadaAd';
+
 import { ResidenciaDto } from 'src/app/model/residenciaDto';
 
 @Component({
@@ -15,10 +18,12 @@ export class AdmisionComponent implements OnInit {
   constructor(
     private persnaService: AuthControllerService,
     private adService: AdmisionControllerService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private llegService:LlegadaAdServiceService
 
   ) { }
-
+ 
+//variables
   usuarioE:any
   cel: string
   direccion: string
@@ -30,6 +35,8 @@ export class AdmisionComponent implements OnInit {
   idAm: any;
   errMsj: String
   idper:number
+  selectedValue: string;
+
   res: ResidenciaDto = {
     barrio: null,
     canton: null,
@@ -40,10 +47,7 @@ export class AdmisionComponent implements OnInit {
     zona: null
   }
 
-  selectedValue: string;
-  adm: Admision = {
-    
-    cama: null,
+  admision: Admision = {  
     canton: null,
     codUd: null,
     direccP: null,
@@ -64,48 +68,91 @@ export class AdmisionComponent implements OnInit {
     persona: null,
     provincia: null,
     referidoD: null,
-    sala: null,
     servicio: null,
     telefono: null,
     tipoS: null,
     unidadOperativa: null,
     usuario: null,
   }
+
+  llegada:LLegadaAd={
+    admision: null,
+    ambulancia: null,
+    ambulat: null,
+    idLlegada: null,
+    otro: null,
+  }
+  
   ngOnInit(): void {
 
   }
 
+  cargarPersona() {
+      
+    this.persnaService.listaUsingGET().subscribe((res) => {
+      console.log(res);
+      for (let datos of res) {
 
-  guardarA(){
-    this.adService.saveAdUsingPOST(this.adm).subscribe(data => {
-      if (data.object != null) {
-        this.MessageSuccess(data.message);
-      } else {
-        this.mensajeError("Error al intententar guardar");
+        if (datos.id == this.idper && this.idper != 0 && this.idper != undefined) {
+          console.log(datos.id, this.idper);
+          this.usuarioE = datos
+          this.admision.usuario = this.usuarioE
+          console.log(this.usuarioE);
+
+          console.log(this.admision);
+          this.guardarAdmision()
+          
+        }
       }
-    }, error => {
-      this.mensajeError("ERROR AL GUARDAR LOS ANTECEDENTES PERSONALES EN EL SERVIDOR");
-    });
+    })
   }
+
   guardarAdmision() {
-    console.log(this.adm);
-    this.adm.instutucionSistema = this.establecimiento
-    this.adService.saveAdUsingPOST(this.adm).subscribe(
+    console.log(this.admision);
+    this.admision.instutucionSistema = this.establecimiento
+    this.adService.saveAdUsingPOST(this.admision).subscribe(
       res => {
         if (res.object != null) {
           this.idAm = res.object
           console.log(this.idAm);
-          this.MessageSuccess(" Odontologia  creado")
-          console.log(this.adm);
+          this.MessageSuccess(" Admision  creado")
+          this.recuperarAdmision()
+          console.log(this.admision);
         } else {
-          this.mensajeError("error al crear ficha aodontologica")
-          console.log(" holii" + this.adm);
+          this.mensajeError("error al crear ficha de admision")
+          console.log(" holii" + this.idAm);
           console.log("error" + this.errMsj)
           console.log(res.object);
         }
       })
   }
 
+  guardarLlegada(){
+    this.llegService.saveLlegadaUsingPOST(this.llegada).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
+    });
+  }
+
+  recuperarAdmision() {
+
+    this.adService.listUsingGET().subscribe((res) => {
+      for (let datos of res) {
+        if (datos.idAdmision == this.idAm) {
+          this.llegada.admision = datos
+          
+          console.log(this.idAm);
+          this.guardarLlegada();
+        }
+      }
+
+    })
+  }
   mensajeError(msg: String) {
     this.messageService.add({
       severity: 'error',
@@ -122,22 +169,7 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
-  cargarPersona() {
-    this.persnaService.listaUsingGET().subscribe((res) => {
-      for (let datos of res) {
-
-        if (datos.id == this.idper && this.idper != 0 && this.idper != undefined) {
-          console.log(datos.id, this.idper);
-          this.usuarioE = datos
-          this.adm.usuario = this.usuarioE
-
-          console.log(this.adm);
-          this.guardarAdmision()
-          
-        }
-      }
-    })
-  }
+  
 
   buscarPersona() {
     this.persnaService.listaUsingGET().subscribe((res) => {
@@ -148,7 +180,7 @@ export class AdmisionComponent implements OnInit {
           //console.log(datos.identificacion, this.buscarcedula);
           //this.buscarnombre = ""
           if (datos.identificacion == this.buscarcedula) {
-            this.idpersona = datos.id
+            this.idper = datos.id
             this.buscarcedula = datos.identificacion
             this.buscarnombre = datos.nombres
             this.direccion = datos.direccion
@@ -161,7 +193,7 @@ export class AdmisionComponent implements OnInit {
           //console.log(datos.nombres, this.buscarnombre);
           //this.buscarcedula = ""
           if (datos.nombres == this.buscarnombre) {
-            this.idpersona = datos.id
+            this.idper = datos.id
             this.buscarcedula = datos.identificacion
             this.buscarnombre = datos.nombres
             this.direccion = datos.direccion
