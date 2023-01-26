@@ -323,74 +323,83 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="date" id="inputtext" pInputText>
+                    <input type="date" id="inputtext" [(ngModel)]="accidente.fecha" pInputText>
                     <label for="inputtext">Fecha y Hora del evento</label>
                 </span>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="accidente.nombreE" pInputText>
                     <label for="inputtext">Lugar del evento</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="accidente.direccionE" pInputText>
                     <label for="inputtext">Direccion del evento</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.policial" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Custodia Policial</label>
                 </div>
             </div>
             <div class="grid p-fliud">
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.transito" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Accidente de transito</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.caida" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Caida</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.quemadura" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Quemadura</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.mode" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Mordedura</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.ahogamiento" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Ahogamiento</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.extrao" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Cuerpo Extraño</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.aplas" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Aplastamiento</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.otroa" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Otro accidente</label>
                     </div>
                 </div>
@@ -399,55 +408,57 @@
 
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.fuego" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Violencia por arma de fuego</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.rina" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Violencia por riña</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.corto" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Violencia por arma c.punzante</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
-                        <label for="ch">Violencia por arma riña</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-2">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
-                        <label for="ch">Violencia por arma c.punzante</label>
-                    </div>
-                </div>
-                <div class="col-12 md:col-2">
-                    <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.vfamiliar" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Violencia familiar</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.abusoF" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Abuso físico</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.apsicolgico" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Abuso psicológico</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.abusoS" inputId="bs"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Abuso sexual</label>
                     </div>
                 </div>
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.otaraV" inputId="ov"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Otra violencia</label>
                     </div>
                 </div>
@@ -455,64 +466,65 @@
             <div class="grid p-fliud">
                 <div class="col-12 md:col-2">
                     <div class="field-checkbox">
-                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.alcolica" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
                         <label for="ch">Intoxicación alcholica</label>
                     </div>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.alimentaria" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Intoxicación alimentaria</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.drogas" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Intoxicación por drogas</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
-                    <label for="ch">Otra violencia</label>
-                </div>
-            </div>
-            <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.gases" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Inhalación de gases</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.otraI" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Otra intoxicación</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.enve" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Envenenamiento</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="X" value="X" [binary]="true" [(ngModel)]="accidente.ana" inputId="aa"
-                    [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <p-checkbox name="X" [binary]="true" [(ngModel)]="accidente.picadura" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Picadura</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <input type="checkbox" name="X" id="vi" value="X" [(ngModel)]="accidente.ana">
+                    <p-checkbox name="X" [binary]="true" [(ngModel)]="accidente.ana" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Anaflaxia</label>
                 </div>
             </div>
 
         </div>
         <label for="cd">Observaciones</label>
-        <p-editor [style]="{'height':'120px'}">
+        <p-editor [(ngModel)]="accidente.desc" [style]="{'height':'120px'}">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -525,15 +537,130 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.etilico" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Aliento etílico</label>
                 </div>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="number" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="accidente.valor" pInputText>
                     <label for="inputtext">Valor alcocheck</label>
                 </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>4.Antecedentes personales y familiares</b>
+            </div>
+        </p-divider>
+        <label for="inputtext">Describir abajo registrando el numero respectivo</label>
+        <p-divider></p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">1.Alérgico</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">2.Clínico</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">3.Ginecológico</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">4.Traumatóg.</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">5.Quirúrgico</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">6.Farmacológ.</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">7.Psiquiatrico</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">8.Otro</label>
+                </div>
+            </div>
+        </div>
+        <label for="cd">Observaciones</label>
+        <p-editor [(ngModel)]="selectedValue" [style]="{'height':'120px'}">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>5.Enfermedad actual y revisión de sistemas</b>
+            </div>
+        </p-divider>
+        <label for="inputtext">Describir cronologíalocalización caracteristicas intesidad frecuencia factores agravantes</label>
+        <p-divider></p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Via aérea libre</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Via aérea obstriuda</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Condición estable</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Condición inestable</label>
+                </div>
             </div>
         </div>
         <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="cargarPersona()" styleClass="p-button-text">

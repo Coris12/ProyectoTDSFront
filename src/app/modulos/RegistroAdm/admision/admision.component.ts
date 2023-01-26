@@ -34,9 +34,9 @@ export class AdmisionComponent implements OnInit {
   idpersona: any;
   sexo: string
   buscarnombre: string
-  value:"X"
   establecimiento = "C.E.M. MEDIVALLE";
   idAm: any;
+  idA:any
   errMsj: String
   idper:number
   selectedValue: string;
@@ -96,9 +96,39 @@ export class AdmisionComponent implements OnInit {
     trauma: null,
   }
   accidente:Accidente={
+    abusoF:null,
+    nombreE: null,
+    direccionE: null,
+    fecha:null,
+    otaraV:null,
+    abusoS: null,
+    policial:null,
     admision:null,
+    ahogamiento:null,
+    alcolica:null,
+    alimentaria:null,
     ana:null,
+    aplas:null,
+    apsicolgico:null,
+    caida:null,
+    corto:null,
+    desc:null,
+    drogas:null,
+    enve:null,
+    etilico:null,
+    extrao:null,
+    fuego:null,
+    gases:null,
     idAccidente:null,
+    mode:null,
+    otraI:null,
+    otroa:null,
+    picadura:null,
+    quemadura:null,
+    rina:null,
+    transito:null,
+    valor:null,
+    vfamiliar:null,
   }
   
   ngOnInit(): void {
@@ -145,6 +175,24 @@ export class AdmisionComponent implements OnInit {
       })
   }
 
+  guardarAccident() {
+    console.log(this.accidente);
+    
+    this.accService.saveAccidenteUsingPOST(this.accidente).subscribe(
+      res => {
+        if (res.object != null) {
+          this.idA = res.object
+          console.log(this.idpersona);
+          this.guardarLlegada();
+          console.log(this.admision);
+        } else {
+          this.mensajeError("error al crear ficha de admision")
+          console.log(" holii" + this.idAm);
+          console.log("error" + this.errMsj)
+          console.log(res.object);
+        }
+      })
+  }
   guardarLlegada(){
     this.llegService.saveLlegadaUsingPOST(this.llegada).subscribe(data => {
       if (data.object != null) {
@@ -174,11 +222,12 @@ export class AdmisionComponent implements OnInit {
     this.adService.listUsingGET().subscribe((res) => {
       for (let datos of res) {
         if (datos.idAdmision == this.idAm) {
-          this.llegada.admision = datos
           this.accidente.admision=datos
+          this.llegada.admision=datos
           console.log(this.idAm);
-          this.guardarLlegada();
-          this.guardarAccidente();
+          //this.guardarLlegada();
+          this.guardarAccident();
+          //this.guardaA
         }
       }
 
