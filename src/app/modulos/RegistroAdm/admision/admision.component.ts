@@ -148,7 +148,9 @@ export class AdmisionComponent implements OnInit {
     otro: null,
     psiquiatrico: null,
     quirur: null,
-    trau: null
+    trau: null,
+    descripcion:null,
+    descripcionA:null
 
   }
   ngOnInit(): void {

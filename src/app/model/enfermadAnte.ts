@@ -15,6 +15,8 @@ export interface EnfermadAnte {
     admision?: Admision;
     alergico?: boolean;
     clinico?: boolean;
+    descripcion?: boolean;
+    descripcionA?: string;
     estable?: boolean;
     farma?: boolean;
     gine?: boolean;
