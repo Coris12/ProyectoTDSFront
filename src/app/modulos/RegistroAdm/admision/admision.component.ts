@@ -3,9 +3,11 @@ import { MessageService } from 'primeng/api';
 import { AccidenteControllerService } from 'src/app/api/accidenteController.service';
 import { AdmisionControllerService } from 'src/app/api/admisionController.service';
 import { AuthControllerService } from 'src/app/api/authController.service';
+import { EnfermadAnteControllerService } from 'src/app/api/enfermadAnteController.service';
 import { LlegadaAdServiceService } from 'src/app/api/llegadaAdService.service';
 import { Accidente } from 'src/app/model/accidente';
 import { Admision } from 'src/app/model/admision';
+import { EnfermadAnte } from 'src/app/model/enfermadAnte';
 import { LLegadaAd } from 'src/app/model/lLegadaAd';
 
 import { ResidenciaDto } from 'src/app/model/residenciaDto';
@@ -21,13 +23,14 @@ export class AdmisionComponent implements OnInit {
     private persnaService: AuthControllerService,
     private adService: AdmisionControllerService,
     private messageService: MessageService,
-    private llegService:LlegadaAdServiceService,
-    private accService:AccidenteControllerService
+    private llegService: LlegadaAdServiceService,
+    private accService: AccidenteControllerService,
+    private enferService: EnfermadAnteControllerService
 
   ) { }
- 
-//variables
-  usuarioE:any
+
+  //variables
+  usuarioE: any
   cel: string
   direccion: string
   buscarcedula: string;
@@ -36,9 +39,9 @@ export class AdmisionComponent implements OnInit {
   buscarnombre: string
   establecimiento = "C.E.M. MEDIVALLE";
   idAm: any;
-  idA:any
+  idA: any
   errMsj: String
-  idper:number
+  idper: number
   selectedValue: string;
 
   res: ResidenciaDto = {
@@ -51,7 +54,7 @@ export class AdmisionComponent implements OnInit {
     zona: null
   }
 
-  admision: Admision = {  
+  admision: Admision = {
     canton: null,
     codUd: null,
     direccP: null,
@@ -79,7 +82,7 @@ export class AdmisionComponent implements OnInit {
     usuario: null,
   }
   selectedCities: string[] = [];
-  llegada:LLegadaAd={
+  llegada: LLegadaAd = {
     admision: null,
     ambulancia: null,
     ambulat: null,
@@ -95,48 +98,65 @@ export class AdmisionComponent implements OnInit {
     quirurgica: null,
     trauma: null,
   }
-  accidente:Accidente={
-    abusoF:null,
+  accidente: Accidente = {
+    abusoF: null,
     nombreE: null,
     direccionE: null,
-    fecha:null,
-    otaraV:null,
+    fecha: null,
+    otaraV: null,
     abusoS: null,
-    policial:null,
-    admision:null,
-    ahogamiento:null,
-    alcolica:null,
-    alimentaria:null,
-    ana:null,
-    aplas:null,
-    apsicolgico:null,
-    caida:null,
-    corto:null,
-    desc:null,
-    drogas:null,
-    enve:null,
-    etilico:null,
-    extrao:null,
-    fuego:null,
-    gases:null,
-    idAccidente:null,
-    mode:null,
-    otraI:null,
-    otroa:null,
-    picadura:null,
-    quemadura:null,
-    rina:null,
-    transito:null,
-    valor:null,
-    vfamiliar:null,
+    policial: null,
+    admision: null,
+    ahogamiento: null,
+    alcolica: null,
+    alimentaria: null,
+    ana: null,
+    aplas: null,
+    apsicolgico: null,
+    caida: null,
+    corto: null,
+    desc: null,
+    drogas: null,
+    enve: null,
+    etilico: null,
+    extrao: null,
+    fuego: null,
+    gases: null,
+    idAccidente: null,
+    mode: null,
+    otraI: null,
+    otroa: null,
+    picadura: null,
+    quemadura: null,
+    rina: null,
+    transito: null,
+    valor: null,
+    vfamiliar: null,
   }
-  
+
+  enfermedad: EnfermadAnte = {
+    alergico: null,
+    clinico: null,
+    estable: null,
+    farma: null,
+    gine: null,
+    idEnfermedad: null,
+    inestable: null,
+    libre: null,
+    obstruida: null,
+    admision: null,
+    otro: null,
+    psiquiatrico: null,
+    quirur: null,
+    trau: null
+
+  }
   ngOnInit(): void {
 
   }
 
   cargarPersona() {
-      
+
     this.persnaService.listaUsingGET().subscribe((res) => {
       console.log(res);
       for (let datos of res) {
@@ -149,7 +169,7 @@ export class AdmisionComponent implements OnInit {
 
           console.log(this.admision);
           this.guardarAdmision()
-          
+
         }
       }
     })
@@ -177,13 +197,14 @@ export class AdmisionComponent implements OnInit {
 
   guardarAccident() {
     console.log(this.accidente);
-    
+
     this.accService.saveAccidenteUsingPOST(this.accidente).subscribe(
       res => {
         if (res.object != null) {
           this.idA = res.object
           console.log(this.idpersona);
           this.guardarLlegada();
+          this.guardarEnfermedad();
           console.log(this.admision);
         } else {
           this.mensajeError("error al crear ficha de admision")
@@ -193,7 +214,7 @@ export class AdmisionComponent implements OnInit {
         }
       })
   }
-  guardarLlegada(){
+  guardarLlegada() {
     this.llegService.saveLlegadaUsingPOST(this.llegada).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
@@ -205,25 +226,27 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
-  guardarAccidente(){
-    this.accService.saveAccidenteUsingPOST(this.llegada).subscribe(data => {
+  guardarEnfermedad() {
+    this.enferService.saveEnferUsingPOST(this.enfermedad).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
       } else {
         this.mensajeError("Error al intententar guardar");
       }
     }, error => {
-      this.mensajeError("ERROR AL GUARDAR Accidente EN EL SERVIDOR");
+      this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
     });
   }
+
 
   recuperarAdmision() {
 
     this.adService.listUsingGET().subscribe((res) => {
       for (let datos of res) {
         if (datos.idAdmision == this.idAm) {
-          this.accidente.admision=datos
-          this.llegada.admision=datos
+          this.accidente.admision = datos
+          this.llegada.admision = datos
+          this.enfermedad.admision=datos
           console.log(this.idAm);
           //this.guardarLlegada();
           this.guardarAccident();
@@ -249,7 +272,7 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
-  
+
 
   buscarPersona() {
     this.persnaService.listaUsingGET().subscribe((res) => {

@@ -17,6 +17,7 @@ import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.se
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
 import { DiagnosticoOControllerService } from './api/diagnosticoOController.service';
 import { EmpleadoControllerService } from './api/empleadoController.service';
+import { EnfermadAnteControllerService } from './api/enfermadAnteController.service';
 import { EquiposControllerService } from './api/equiposController.service';
 import { EvolucionControllerService } from './api/evolucionController.service';
 import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalController.service';
@@ -68,6 +69,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     DiagnosticoControllerService,
     DiagnosticoOControllerService,
     EmpleadoControllerService,
+    EnfermadAnteControllerService,
     EquiposControllerService,
     EvolucionControllerService,
     ExamFisicoRegionalControllerService,
