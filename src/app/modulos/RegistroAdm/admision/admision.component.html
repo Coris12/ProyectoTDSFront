@@ -264,38 +264,39 @@
                 </span>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="llegada.trauma" inputId="ny"></p-checkbox>
+                <div class="field-radiobutton">
+                    <p-radioButton name="group1" value="X" [(ngModel)]="llegada.trauma" inputId="ny"></p-radioButton>
                     <label for="ny">Trauma</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="llegada.causaC" inputId="ny"></p-checkbox>
+                <div class="field-radiobutton">
+                    <p-radioButton name="group1" value="X" [(ngModel)]="llegada.causaC" inputId="ny"></p-radioButton>
                     <label for="ny">Causa clinica</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="X" value="X" [(ngModel)]="llegada.obstretica" inputId="ny"></p-checkbox>
+                <div class="field-radiobutton">
+                    <p-radioButton name="X" value="X" [(ngModel)]="llegada.obstretica" inputId="ny"></p-radioButton>
                     <label for="ny">Causa G.Obstretica</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="llegada.quirurgica" inputId="ny"></p-checkbox>
+                <div class="field-radiobutton">
+                    <p-radioButton name="group1" value="X" [(ngModel)]="llegada.quirurgica"
+                        inputId="ny"></p-radioButton>
                     <label for="ny">Causa Quirurgica</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="llegada.policia" inputId="ny"></p-checkbox>
+                <div class="field-radiobutton">
+                    <p-radioButton name="group1" value="X" [(ngModel)]="llegada.policia" inputId="ny"></p-radioButton>
                     <label for="ny">Notificacion a la Policia</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="X" [(ngModel)]="llegada.motivo" inputId="ny"></p-checkbox>
+                <div class="field-radiobutton">
+                    <p-radioButton name="group1" value="X" [(ngModel)]="llegada.motivo" inputId="ny"></p-radioButton>
                     <label for="ny">Otro motivo</label>
                 </div>
             </div>
@@ -309,6 +310,228 @@
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText [(ngModel)]="llegada.grupo">
                     <label for="inputtext">Grupo Sanguineo</label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>3.Accidente,violencia,intoxicacion,envenenamiento o quemadura </b>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="date" id="inputtext" pInputText>
+                    <label for="inputtext">Fecha y Hora del evento</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Lugar del evento</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Direccion del evento</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <label for="ch">Custodia Policial</label>
+                </div>
+            </div>
+            <div class="grid p-fliud">
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Accidente de transito</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Caida</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Quemadura</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Mordedura</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Ahogamiento</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Cuerpo Extraño</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Aplastamiento</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Otro accidente</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Violencia por arma de fuego</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Violencia por arma c.punzante</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Violencia por arma riña</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Violencia por arma c.punzante</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Violencia familiar</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Abuso físico</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Abuso psicológico</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Abuso sexual</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Otra violencia</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid p-fliud">
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                        <label for="ch">Intoxicación alcholica</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <label for="ch">Intoxicación alimentaria</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <label for="ch">Intoxicación por drogas</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <label for="ch">Otra violencia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <label for="ch">Inhalación de gases</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <label for="ch">Otra intoxicación</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <label for="ch">Envenenamiento</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <label for="ch">Picadura</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <input type="checkbox" name="violencia" id="vi" value="X">
+                    <label for="ch">Anaflaxia</label>
+                </div>
+            </div>
+
+        </div>
+        <label for="cd">Observaciones</label>
+        <p-editor [style]="{'height':'120px'}">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                    <label for="ch">Aliento etílico</label>
+                </div>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="number" id="inputtext" pInputText>
+                    <label for="inputtext">Valor alcocheck</label>
                 </span>
             </div>
         </div>

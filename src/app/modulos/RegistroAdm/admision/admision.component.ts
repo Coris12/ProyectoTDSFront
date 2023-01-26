@@ -74,7 +74,7 @@ export class AdmisionComponent implements OnInit {
     unidadOperativa: null,
     usuario: null,
   }
-
+  selectedCities: string[] = [];
   llegada:LLegadaAd={
     admision: null,
     ambulancia: null,
