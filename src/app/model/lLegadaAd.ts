@@ -15,6 +15,15 @@ export interface LLegadaAd {
     admision?: Admision;
     ambulancia?: string;
     ambulat?: string;
+    causaC?: string;
+    desc?: string;
+    grupo?: string;
+    hora?: string;
     idLlegada?: number;
+    motivo?: string;
+    obstretica?: string;
     otro?: string;
+    policia?: string;
+    quirurgica?: string;
+    trauma?: string;
 }

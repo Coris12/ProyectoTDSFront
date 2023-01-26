@@ -79,8 +79,17 @@ export class AdmisionComponent implements OnInit {
     admision: null,
     ambulancia: null,
     ambulat: null,
+    causaC: null,
+    desc: null,
+    grupo: null,
+    hora: null,
     idLlegada: null,
+    motivo: null,
+    obstretica: null,
     otro: null,
+    policia: null,
+    quirurgica: null,
+    trauma: null,
   }
   
   ngOnInit(): void {

@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class TipoQuiControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -63,13 +63,13 @@ export class TipoQuiControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET14(id: number, observe?: 'body', reportProgress?: boolean): Observable<TiposQuirurgicos>;
-    public getByIdUsingGET14(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<TiposQuirurgicos>>;
-    public getByIdUsingGET14(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<TiposQuirurgicos>>;
-    public getByIdUsingGET14(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET19(id: number, observe?: 'body', reportProgress?: boolean): Observable<TiposQuirurgicos>;
+    public getByIdUsingGET19(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<TiposQuirurgicos>>;
+    public getByIdUsingGET19(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<TiposQuirurgicos>>;
+    public getByIdUsingGET19(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET14.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET19.');
         }
 
         let headers = this.defaultHeaders;
@@ -108,10 +108,10 @@ export class TipoQuiControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET14(observe?: 'body', reportProgress?: boolean): Observable<Array<TiposQuirurgicos>>;
-    public listUsingGET14(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<TiposQuirurgicos>>>;
-    public listUsingGET14(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<TiposQuirurgicos>>>;
-    public listUsingGET14(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET19(observe?: 'body', reportProgress?: boolean): Observable<Array<TiposQuirurgicos>>;
+    public listUsingGET19(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<TiposQuirurgicos>>>;
+    public listUsingGET19(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<TiposQuirurgicos>>>;
+    public listUsingGET19(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 

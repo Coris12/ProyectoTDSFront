@@ -12,9 +12,6 @@
 import { Usuario } from './usuario';
 
 export interface Admision { 
-    ambulancia?: string;
-    ambulat?: string;
-    cama?: string;
     canton?: string;
     codUd?: string;
     direccP?: string;
@@ -30,13 +27,11 @@ export interface Admision {
     nombre?: string;
     numero?: string;
     ocupacion?: string;
-    otro?: string;
     parantesco?: string;
     parroquia?: string;
     persona?: string;
     provincia?: string;
     referidoD?: string;
-    sala?: string;
     servicio?: string;
     telefono?: string;
     tipoS?: string;

@@ -29,7 +29,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class TarjetaControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -180,13 +180,13 @@ export class TarjetaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET13(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tarjeta>;
-    public getByIdUsingGET13(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tarjeta>>;
-    public getByIdUsingGET13(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tarjeta>>;
-    public getByIdUsingGET13(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET18(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tarjeta>;
+    public getByIdUsingGET18(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tarjeta>>;
+    public getByIdUsingGET18(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tarjeta>>;
+    public getByIdUsingGET18(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET13.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET18.');
         }
 
         let headers = this.defaultHeaders;
@@ -225,10 +225,10 @@ export class TarjetaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET13(observe?: 'body', reportProgress?: boolean): Observable<Array<Tarjeta>>;
-    public listUsingGET13(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tarjeta>>>;
-    public listUsingGET13(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tarjeta>>>;
-    public listUsingGET13(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET18(observe?: 'body', reportProgress?: boolean): Observable<Array<Tarjeta>>;
+    public listUsingGET18(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tarjeta>>>;
+    public listUsingGET18(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tarjeta>>>;
+    public listUsingGET18(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 

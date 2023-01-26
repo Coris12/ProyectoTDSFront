@@ -211,25 +211,25 @@
             </div>
         </p-divider>
         <div class="grid p-fluid">
-        <div class="col-12 md:col-4">
-            <div class="field-radiobutton">
-                <p-radioButton name="p16" value="X" [(ngModel)]="llegada.ambulancia" inputId="p1"></p-radioButton>
-                <label for="p1">Ambulancia</label>
+            <div class="col-12 md:col-4">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="llegada.ambulancia" inputId="p1"></p-radioButton>
+                    <label for="p1">Ambulancia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="llegada.ambulat" inputId="p1"></p-radioButton>
+                    <label for="p1">Ambulatorio</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="llegada.otro" inputId="p1"></p-radioButton>
+                    <label for="p1">Otro transporte</label>
+                </div>
             </div>
         </div>
-        <div class="col-12 md:col-4">
-            <div class="field-radiobutton">
-                <p-radioButton name="p16" value="X" [(ngModel)]="llegada.ambulat" inputId="p1"></p-radioButton>
-                <label for="p1">Ambulatorio</label>
-            </div>
-        </div>
-        <div class="col-12 md:col-2">
-            <div class="field-radiobutton">
-                <p-radioButton name="p16" value="X" [(ngModel)]="llegada.otro" inputId="p1"></p-radioButton>
-                <label for="p1">Otro transporte</label>
-            </div>
-        </div>
-    </div>
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
@@ -259,39 +259,57 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="time" id="inputtext" pInputText>
                     <label for="inputtext">Hora</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-radiobutton">
-                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
-                    <label for="p1">Trauma</label>
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="llegada.trauma" inputId="ny"></p-checkbox>
+                    <label for="ny">Trauma</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-radiobutton">
-                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
-                    <label for="p1">Causa Clinica</label>
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="llegada.causaC" inputId="ny"></p-checkbox>
+                    <label for="ny">Causa clinica</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-radiobutton">
-                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
-                    <label for="p1">Causa G.Obstretica</label>
+                <div class="field-checkbox">
+                    <p-checkbox name="X" value="X" [(ngModel)]="llegada.obstretica" inputId="ny"></p-checkbox>
+                    <label for="ny">Causa G.Obstretica</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-radiobutton">
-                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
-                    <label for="p1">Causa Quirurgica</label>
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="llegada.quirurgica" inputId="ny"></p-checkbox>
+                    <label for="ny">Causa Quirurgica</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
-                <div class="field-radiobutton">
-                    <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue" inputId="p1"></p-radioButton>
-                    <label for="p1">Notificacion a la policia</label>
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="llegada.policia" inputId="ny"></p-checkbox>
+                    <label for="ny">Notificacion a la Policia</label>
                 </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" value="X" [(ngModel)]="llegada.motivo" inputId="ny"></p-checkbox>
+                    <label for="ny">Otro motivo</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="llegada.desc">
+                    <label for="inputtext">Descripcion</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="llegada.grupo">
+                    <label for="inputtext">Grupo Sanguineo</label>
+                </span>
             </div>
         </div>
         <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="cargarPersona()" styleClass="p-button-text">
