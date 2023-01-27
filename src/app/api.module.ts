@@ -45,6 +45,7 @@ import { RevOrganoSistemControllerService } from './api/revOrganoSistemControlle
 import { SaludControllerService } from './api/saludController.service';
 import { SigVitAntropometriaControllerService } from './api/sigVitAntropometriaController.service';
 import { SignosEControllerService } from './api/signosEController.service';
+import { SolicitudEControllerService } from './api/solicitudEController.service';
 import { SucursalControllerService } from './api/sucursalController.service';
 import { TarjetaControllerService } from './api/tarjetaController.service';
 import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadController.service';
@@ -98,6 +99,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     SaludControllerService,
     SigVitAntropometriaControllerService,
     SignosEControllerService,
+    SolicitudEControllerService,
     SucursalControllerService,
     TarjetaControllerService,
     TarjetaEspecialidadControllerService,

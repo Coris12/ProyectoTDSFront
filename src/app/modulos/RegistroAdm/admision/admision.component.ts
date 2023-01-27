@@ -7,6 +7,7 @@ import { EnfermadAnteControllerService } from 'src/app/api/enfermadAnteControlle
 
 import { LlegadaAdServiceService } from 'src/app/api/llegadaAdService.service';
 import { SignosEControllerService } from 'src/app/api/signosEController.service';
+import { SolicitudEControllerService } from 'src/app/api/solicitudEController.service';
 import { Accidente } from 'src/app/model/accidente';
 import { Admision } from 'src/app/model/admision';
 import { EnfermadAnte } from 'src/app/model/enfermadAnte';
@@ -14,6 +15,7 @@ import { LLegadaAd } from 'src/app/model/lLegadaAd';
 
 import { ResidenciaDto } from 'src/app/model/residenciaDto';
 import { SignosE } from 'src/app/model/signosE';
+import { SolicitudE } from 'src/app/model/solicitudE';
 
 @Component({
   selector: 'app-admision',
@@ -29,7 +31,8 @@ export class AdmisionComponent implements OnInit {
     private llegService: LlegadaAdServiceService,
     private accService: AccidenteControllerService,
     private enferService: EnfermadAnteControllerService,
-    private SignoService: SignosEControllerService
+    private SignoService: SignosEControllerService,
+    private SoliService:SolicitudEControllerService
 
   ) { }
 
@@ -186,6 +189,28 @@ export class AdmisionComponent implements OnInit {
     verbal: null,
     viaObost: null,
   }
+
+  soli:SolicitudE={
+    abdomen:null,
+    admision:null,
+    biometrica:null,
+    cardiograma:null,
+    desc:null,
+    ecoA:null,
+    elec:null,
+    endo:null,
+    gastro:null,
+    idSoli:null,
+    inter:null,
+    osea:null,
+    otros:null,
+    pelvica:null,
+    reso:null,
+    sanguinea:null,
+    tomo:null,
+    torax:null,
+    uro:null,
+  }
   ngOnInit(): void {
 
   }
@@ -236,6 +261,7 @@ export class AdmisionComponent implements OnInit {
           this.guardarLlegada();
           this.guardarEnfermedad();
           this.guardarSigno();
+          this.guardarSoli();
           console.log(this.admision);
         } else {
           this.mensajeError("error al crear ficha de admision")
@@ -269,6 +295,19 @@ export class AdmisionComponent implements OnInit {
       this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
     });
   }
+
+  guardarSoli(){
+    this.SoliService.saveSoliUsingPOST(this.soli).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
+    });
+  }
+
   guardarEnfermedad() {
     this.enferService.saveEnferUsingPOST(this.enfermedad).subscribe(data => {
       if (data.object != null) {
@@ -281,7 +320,6 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
-
   recuperarAdmision() {
     this.adService.listUsingGET().subscribe((res) => {
       for (let datos of res) {
@@ -290,6 +328,7 @@ export class AdmisionComponent implements OnInit {
           this.llegada.admision = datos
           this.enfermedad.admision = datos
           this.signos.admision = datos
+          this.soli.admision=datos
           console.log(this.idAm);
           this.guardarAccident();
         }
@@ -313,8 +352,6 @@ export class AdmisionComponent implements OnInit {
       detail: 'Correcto!: ' + msg,
     });
   }
-
-
 
   buscarPersona() {
     this.persnaService.listaUsingGET().subscribe((res) => {
@@ -353,8 +390,6 @@ export class AdmisionComponent implements OnInit {
     })
   }
 
-
-
   validacionAlfanumerica(event) {
     const patron = /[a-zA-ZÑñ0-9 ,:-]/;
     const permitidos = event.keyCode;
@@ -366,6 +401,7 @@ export class AdmisionComponent implements OnInit {
       return false;
     }
   }
+
   validacionNumerosLetras(event) {
     const patron = /[a-zA-ZÑñ0-9 ]/;
     const permitidos = event.keyCode;
@@ -401,4 +437,5 @@ export class AdmisionComponent implements OnInit {
       return false;
     }
   }
+
 }
