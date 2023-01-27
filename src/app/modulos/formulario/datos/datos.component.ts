@@ -148,6 +148,7 @@ export class DatosComponent implements OnInit {
     })
 
   }
+  ///guarr
   saveFormulario() {
     console.log(this.formula);
     this.formularioService.createUsingPOST3(this.formula).subscribe(
