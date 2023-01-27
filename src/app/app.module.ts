@@ -142,6 +142,8 @@ import { AccidenteControllerService } from './api/accidenteController.service';
 import { EnfermadAnteControllerService } from './api/enfermadAnteController.service';
 import { SignosEControllerService } from './api/signosEController.service';
 import { SolicitudEControllerService } from './api/solicitudEController.service';
+import { IngresoDiaControllerService } from './api/ingresoDiaController.service';
+import { DiagnsticoAiControllerService } from './api/diagnsticoAiController.service';
 
 @NgModule({
   declarations: [
@@ -289,7 +291,9 @@ import { SolicitudEControllerService } from './api/solicitudEController.service'
     AccidenteControllerService,
     EnfermadAnteControllerService,
     SignosEControllerService,
-    SolicitudEControllerService
+    SolicitudEControllerService,
+    IngresoDiaControllerService,
+    DiagnsticoAiControllerService
   ],
   bootstrap: [AppComponent]
 })

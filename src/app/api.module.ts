@@ -16,6 +16,7 @@ import { ConsultaExternaControllerService } from './api/consultaExternaControlle
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
 import { DiagnosticoOControllerService } from './api/diagnosticoOController.service';
+import { DiagnsticoAiControllerService } from './api/diagnsticoAiController.service';
 import { EmpleadoControllerService } from './api/empleadoController.service';
 import { EnfermadAnteControllerService } from './api/enfermadAnteController.service';
 import { EquiposControllerService } from './api/equiposController.service';
@@ -30,6 +31,7 @@ import { HistoriaControllerService } from './api/historiaController.service';
 import { IndiceControlllerService } from './api/indiceControlller.service';
 import { IndicesFamilControllerService } from './api/indicesFamilController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
+import { IngresoDiaControllerService } from './api/ingresoDiaController.service';
 import { LlegadaAdServiceService } from './api/llegadaAdService.service';
 import { MedicamentosControllerService } from './api/medicamentosController.service';
 import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
@@ -70,6 +72,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     CuerpoFacturaControllerService,
     DiagnosticoControllerService,
     DiagnosticoOControllerService,
+    DiagnsticoAiControllerService,
     EmpleadoControllerService,
     EnfermadAnteControllerService,
     EquiposControllerService,
@@ -84,6 +87,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     IndiceControlllerService,
     IndicesFamilControllerService,
     InformacionTratamientoControllerService,
+    IngresoDiaControllerService,
     LlegadaAdServiceService,
     MedicamentosControllerService,
     MedicoConsentimientoControllerService,

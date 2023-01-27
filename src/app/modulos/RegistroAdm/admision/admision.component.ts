@@ -3,14 +3,18 @@ import { MessageService } from 'primeng/api';
 import { AccidenteControllerService } from 'src/app/api/accidenteController.service';
 import { AdmisionControllerService } from 'src/app/api/admisionController.service';
 import { AuthControllerService } from 'src/app/api/authController.service';
+import { DiagnsticoAiControllerService } from 'src/app/api/diagnsticoAiController.service';
 import { EnfermadAnteControllerService } from 'src/app/api/enfermadAnteController.service';
+import { IngresoDiaControllerService } from 'src/app/api/ingresoDiaController.service';
 
 import { LlegadaAdServiceService } from 'src/app/api/llegadaAdService.service';
 import { SignosEControllerService } from 'src/app/api/signosEController.service';
 import { SolicitudEControllerService } from 'src/app/api/solicitudEController.service';
 import { Accidente } from 'src/app/model/accidente';
 import { Admision } from 'src/app/model/admision';
+import { DiagnosticoAI } from 'src/app/model/diagnosticoAI';
 import { EnfermadAnte } from 'src/app/model/enfermadAnte';
+import { IngresoDia } from 'src/app/model/ingresoDia';
 import { LLegadaAd } from 'src/app/model/lLegadaAd';
 
 import { ResidenciaDto } from 'src/app/model/residenciaDto';
@@ -32,7 +36,9 @@ export class AdmisionComponent implements OnInit {
     private accService: AccidenteControllerService,
     private enferService: EnfermadAnteControllerService,
     private SignoService: SignosEControllerService,
-    private SoliService:SolicitudEControllerService
+    private SoliService:SolicitudEControllerService,
+    private ingreService:IngresoDiaControllerService,
+    private altaService:DiagnsticoAiControllerService
 
   ) { }
 
@@ -211,6 +217,35 @@ export class AdmisionComponent implements OnInit {
     torax:null,
     uro:null,
   }
+
+  ingreso:IngresoDia={
+    admision:null,
+    cie1:null,
+    cie2:null,
+    cie3:null,
+    d1:null,
+    d2:null,
+    d3:null,
+    descripcion1:null,
+    descripcion2:null,
+    descripcion3:null,
+    idDiagI:null,
+  }
+
+  alta:DiagnosticoAI={
+    admision:null,
+    cie1:null,
+    cie2:null,
+    cie3:null,
+    d1:null,
+    d2:null,
+    d3:null,
+    descripcion1:null,
+    descripcion2:null,
+    descripcion3:null,
+    idDiagA:null,
+  }
+
   ngOnInit(): void {
 
   }
@@ -262,6 +297,8 @@ export class AdmisionComponent implements OnInit {
           this.guardarEnfermedad();
           this.guardarSigno();
           this.guardarSoli();
+          this.guardarIngreso();
+          this.guardarAlta();
           console.log(this.admision);
         } else {
           this.mensajeError("error al crear ficha de admision")
@@ -308,6 +345,30 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
+  guardarIngreso(){
+    this.ingreService.saveDiagnosticoAUsingPOST1(this.ingreso).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
+    });
+  }
+
+guardarAlta(){
+  this.altaService.saveDiagnosticoAUsingPOST(this.alta).subscribe(data => {
+    if (data.object != null) {
+      this.MessageSuccess(data.message);
+    } else {
+      this.mensajeError("Error al intententar guardar");
+    }
+  }, error => {
+    this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
+  });
+}
+
   guardarEnfermedad() {
     this.enferService.saveEnferUsingPOST(this.enfermedad).subscribe(data => {
       if (data.object != null) {
@@ -329,6 +390,8 @@ export class AdmisionComponent implements OnInit {
           this.enfermedad.admision = datos
           this.signos.admision = datos
           this.soli.admision=datos
+          this.ingreso.admision=datos
+          this.alta.admision=datos
           console.log(this.idAm);
           this.guardarAccident();
         }

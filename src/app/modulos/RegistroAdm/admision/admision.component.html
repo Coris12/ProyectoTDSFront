@@ -918,14 +918,14 @@
                 <b>8.Localizaciones de lesiones</b>
             </div>
         </p-divider>
-        
+
         <div class="grid p-fluid">
             <div class="container mt-2" style="text-align: left;">
                 <img src="../../../../assets/lesiones.png" class="img-thumbnail" width="300" height="200">
             </div>
         </div>
         <div class="grid p-fliud">
-            <div class="col-12 md:col-2" >
+            <div class="col-12 md:col-2">
                 <label for="inputtext">1.Herida penetrante</label>
                 <label for="inputtext">2.Herida cortante</label>
                 <label for="inputtext">3.Fractura expuesta</label>
@@ -1085,81 +1085,81 @@
                 <b>11.Diagnostico de ingreso</b>
             </div>
         </p-divider>
-        <label for="inputtext">PRE=PRESUNTIVO        DEF=DEFINITIVO</label>
+        <label for="inputtext">PRE=PRESUNTIVO DEF=DEFINITIVO</label>
         <p-divider></p-divider>
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion1" placeholder="">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.cie1" placeholder="">
                 </span>
             </div>
 
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="selectedValue" inputId="city1"></p-radioButton>
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="ingreso.d1" inputId="city1"></p-radioButton>
                     <label for="city1">PRE</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="def1" value="DEF" [(ngModel)]="selectedValue" inputId="city"></p-radioButton>
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="ingreso.d1" inputId="city"></p-radioButton>
                     <label for="city">DEF</label>
                 </div>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion2" placeholder="">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.cie2" placeholder="">
                 </span>
             </div>
 
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="selectedValue" inputId="city1"></p-radioButton>
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="ingreso.d2" inputId="city1"></p-radioButton>
                     <label for="city1">PRE</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="def1" value="DEF" [(ngModel)]="selectedValue" inputId="city"></p-radioButton>
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="ingreso.d2" inputId="city"></p-radioButton>
                     <label for="city">DEF</label>
                 </div>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion3" placeholder="">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.cie3" placeholder="">
                 </span>
             </div>
 
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="selectedValue" inputId="city1"></p-radioButton>
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="ingreso.d3" inputId="city1"></p-radioButton>
                     <label for="city1">PRE</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="def1" value="DEF" [(ngModel)]="selectedValue" inputId="city"></p-radioButton>
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="ingreso.d3" inputId="city"></p-radioButton>
                     <label for="city">DEF</label>
                 </div>
             </div>
@@ -1170,87 +1170,153 @@
                 <b>12.Diagnostico de alta</b>
             </div>
         </p-divider>
-        <label for="inputtext">PRE=PRESUNTIVO        DEF=DEFINITIVO</label>
+        <label for="inputtext">PRE=PRESUNTIVO DEF=DEFINITIVO</label>
         <p-divider></p-divider>
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.descripcion1" placeholder="">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.cie1" placeholder="">
                 </span>
             </div>
 
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="selectedValue" inputId="city1"></p-radioButton>
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="alta.d1" inputId="city1"></p-radioButton>
                     <label for="city1">PRE</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="def1" value="DEF" [(ngModel)]="selectedValue" inputId="city"></p-radioButton>
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="alta.d1" inputId="city"></p-radioButton>
                     <label for="city">DEF</label>
                 </div>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.descripcion2" placeholder="">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.cie2" placeholder="">
                 </span>
             </div>
 
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="selectedValue" inputId="city1"></p-radioButton>
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="alta.d2" inputId="city1"></p-radioButton>
                     <label for="city1">PRE</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="def1" value="DEF" [(ngModel)]="selectedValue" inputId="city"></p-radioButton>
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="alta.d2" inputId="city"></p-radioButton>
                     <label for="city">DEF</label>
                 </div>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.descripcion3" placeholder="">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.cie3" placeholder="">
                 </span>
             </div>
 
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="selectedValue" inputId="city1"></p-radioButton>
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="alta.d3" inputId="city1"></p-radioButton>
                     <label for="city1">PRE</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-radiobutton">
-                    <p-radioButton name="def1" value="DEF" [(ngModel)]="selectedValue" inputId="city"></p-radioButton>
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="alta.d3" inputId="city"></p-radioButton>
                     <label for="city">DEF</label>
                 </div>
             </div>
         </div>
-      
-      
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>13.Plan tratamiento</b>
+            </div>
+        </p-divider>
+        <br>
+        <label for="cd">Indicaciones</label>
+
+        <p-editor [(ngModel)]="accidente.desc" [style]="{'height':'100px'}">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <br>
+        <label for="inputtext"><b>Medicamento</b></label>
+        <br>
+        <label for="inputtext">Principio activo,concentracion y presentacion</label>
+        <p-divider></p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <label for="requisitos "> Medicamento</label>
+                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                </span>
+            </div>
+           
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <label for="requisitos "> Posologia</label>
+                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <label for="requisitos "> Medicamento</label>
+                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                </span>
+            </div>
+           
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <label for="requisitos "> Posologia</label>
+                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <label for="requisitos "> Medicamento</label>
+                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                </span>
+            </div>
+           
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <label for="requisitos "> Posologia</label>
+                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                </span>
+            </div>
+        </div>
         <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="cargarPersona()" styleClass="p-button-text">
         </p-button>
     </div>
