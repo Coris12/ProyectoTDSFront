@@ -52,6 +52,7 @@ import { SucursalControllerService } from './api/sucursalController.service';
 import { TarjetaControllerService } from './api/tarjetaController.service';
 import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadController.service';
 import { TipoQuiControllerService } from './api/tipoQuiController.service';
+import { TrataMControllerService } from './api/trataMController.service';
 import { TratamientoControllerService } from './api/tratamientoController.service';
 
 @NgModule({
@@ -108,6 +109,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     TarjetaControllerService,
     TarjetaEspecialidadControllerService,
     TipoQuiControllerService,
+    TrataMControllerService,
     TratamientoControllerService ]
 })
 export class ApiModule {

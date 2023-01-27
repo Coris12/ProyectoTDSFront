@@ -76,6 +76,7 @@ export * from './sucursal';
 export * from './tarjeta';
 export * from './tarjetaEspecialidad';
 export * from './tiposQuirurgicos';
+export * from './trataM';
 export * from './tratamiento';
 export * from './usuario';
 export * from './view';

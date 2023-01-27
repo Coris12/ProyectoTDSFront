@@ -1258,7 +1258,7 @@
         <br>
         <label for="cd">Indicaciones</label>
 
-        <p-editor [(ngModel)]="accidente.desc" [style]="{'height':'100px'}">
+        <p-editor [(ngModel)]="trata.indicaciones" [style]="{'height':'100px'}">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -1272,51 +1272,60 @@
         <br>
         <label for="inputtext">Principio activo,concentracion y presentacion</label>
         <p-divider></p-divider>
+        <br>
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.medica1" placeholder="">
                     <label for="requisitos "> Medicamento</label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
                 </span>
             </div>
-           
+
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.posologia1" placeholder="">
                     <label for="requisitos "> Posologia</label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
                 </span>
             </div>
         </div>
+        <br>
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.medica2" placeholder="">
                     <label for="requisitos "> Medicamento</label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
                 </span>
             </div>
-           
+
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.posologia2" placeholder="">
                     <label for="requisitos "> Posologia</label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
                 </span>
             </div>
         </div>
+        <br>
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.medica3" placeholder="">
                     <label for="requisitos "> Medicamento</label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
                 </span>
             </div>
-           
+
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.poso3" placeholder="">
                     <label for="requisitos "> Posologia</label>
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
                 </span>
             </div>
         </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-book mr-2"></i>
+                <b>14.Alta</b>
+            </div>
+        </p-divider>
         <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="cargarPersona()" styleClass="p-button-text">
         </p-button>
     </div>

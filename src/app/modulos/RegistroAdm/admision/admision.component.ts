@@ -10,6 +10,7 @@ import { IngresoDiaControllerService } from 'src/app/api/ingresoDiaController.se
 import { LlegadaAdServiceService } from 'src/app/api/llegadaAdService.service';
 import { SignosEControllerService } from 'src/app/api/signosEController.service';
 import { SolicitudEControllerService } from 'src/app/api/solicitudEController.service';
+import { TrataMControllerService } from 'src/app/api/trataMController.service';
 import { Accidente } from 'src/app/model/accidente';
 import { Admision } from 'src/app/model/admision';
 import { DiagnosticoAI } from 'src/app/model/diagnosticoAI';
@@ -20,6 +21,7 @@ import { LLegadaAd } from 'src/app/model/lLegadaAd';
 import { ResidenciaDto } from 'src/app/model/residenciaDto';
 import { SignosE } from 'src/app/model/signosE';
 import { SolicitudE } from 'src/app/model/solicitudE';
+import { TrataM } from 'src/app/model/trataM';
 
 @Component({
   selector: 'app-admision',
@@ -36,9 +38,10 @@ export class AdmisionComponent implements OnInit {
     private accService: AccidenteControllerService,
     private enferService: EnfermadAnteControllerService,
     private SignoService: SignosEControllerService,
-    private SoliService:SolicitudEControllerService,
-    private ingreService:IngresoDiaControllerService,
-    private altaService:DiagnsticoAiControllerService
+    private SoliService: SolicitudEControllerService,
+    private ingreService: IngresoDiaControllerService,
+    private altaService: DiagnsticoAiControllerService,
+    private trataService: TrataMControllerService
 
   ) { }
 
@@ -94,7 +97,7 @@ export class AdmisionComponent implements OnInit {
     unidadOperativa: null,
     usuario: null,
   }
-  selectedCities: string[] = [];
+
   llegada: LLegadaAd = {
     admision: null,
     ambulancia: null,
@@ -111,6 +114,7 @@ export class AdmisionComponent implements OnInit {
     quirurgica: null,
     trauma: null,
   }
+
   accidente: Accidente = {
     abusoF: null,
     nombreE: null,
@@ -196,58 +200,69 @@ export class AdmisionComponent implements OnInit {
     viaObost: null,
   }
 
-  soli:SolicitudE={
-    abdomen:null,
-    admision:null,
-    biometrica:null,
-    cardiograma:null,
-    desc:null,
-    ecoA:null,
-    elec:null,
-    endo:null,
-    gastro:null,
-    idSoli:null,
-    inter:null,
-    osea:null,
-    otros:null,
-    pelvica:null,
-    reso:null,
-    sanguinea:null,
-    tomo:null,
-    torax:null,
-    uro:null,
+  soli: SolicitudE = {
+    abdomen: null,
+    admision: null,
+    biometrica: null,
+    cardiograma: null,
+    desc: null,
+    ecoA: null,
+    elec: null,
+    endo: null,
+    gastro: null,
+    idSoli: null,
+    inter: null,
+    osea: null,
+    otros: null,
+    pelvica: null,
+    reso: null,
+    sanguinea: null,
+    tomo: null,
+    torax: null,
+    uro: null,
   }
 
-  ingreso:IngresoDia={
-    admision:null,
-    cie1:null,
-    cie2:null,
-    cie3:null,
-    d1:null,
-    d2:null,
-    d3:null,
-    descripcion1:null,
-    descripcion2:null,
-    descripcion3:null,
-    idDiagI:null,
+  ingreso: IngresoDia = {
+    admision: null,
+    cie1: null,
+    cie2: null,
+    cie3: null,
+    d1: null,
+    d2: null,
+    d3: null,
+    descripcion1: null,
+    descripcion2: null,
+    descripcion3: null,
+    idDiagI: null,
   }
 
-  alta:DiagnosticoAI={
-    admision:null,
-    cie1:null,
-    cie2:null,
-    cie3:null,
-    d1:null,
-    d2:null,
-    d3:null,
-    descripcion1:null,
-    descripcion2:null,
-    descripcion3:null,
-    idDiagA:null,
+  alta: DiagnosticoAI = {
+    admision: null,
+    cie1: null,
+    cie2: null,
+    cie3: null,
+    d1: null,
+    d2: null,
+    d3: null,
+    descripcion1: null,
+    descripcion2: null,
+    descripcion3: null,
+    idDiagA: null,
+  }
+
+  trata: TrataM = {
+    admision: null,
+    idTrat: null,
+    indicaciones: null,
+    medica1: null,
+    medica2: null,
+    medica3: null,
+    poso3: null,
+    posologia1: null,
+    posologia2: null,
   }
 
   ngOnInit(): void {
-
   }
 
   cargarPersona() {
@@ -274,7 +289,7 @@ export class AdmisionComponent implements OnInit {
         if (res.object != null) {
           this.idAm = res.object
           console.log(this.idAm);
-          this.MessageSuccess(" Admision  creado")
+      //    this.MessageSuccess(" Admision  creado")
           this.recuperarAdmision()
           console.log(this.admision);
         } else {
@@ -299,6 +314,7 @@ export class AdmisionComponent implements OnInit {
           this.guardarSoli();
           this.guardarIngreso();
           this.guardarAlta();
+          this.guardarTrata();
           console.log(this.admision);
         } else {
           this.mensajeError("error al crear ficha de admision")
@@ -333,7 +349,7 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
-  guardarSoli(){
+  guardarSoli() {
     this.SoliService.saveSoliUsingPOST(this.soli).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
@@ -345,7 +361,7 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
-  guardarIngreso(){
+  guardarIngreso() {
     this.ingreService.saveDiagnosticoAUsingPOST1(this.ingreso).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
@@ -357,18 +373,29 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
-guardarAlta(){
-  this.altaService.saveDiagnosticoAUsingPOST(this.alta).subscribe(data => {
-    if (data.object != null) {
-      this.MessageSuccess(data.message);
-    } else {
-      this.mensajeError("Error al intententar guardar");
-    }
-  }, error => {
-    this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
-  });
-}
+  guardarAlta() {
+    this.altaService.saveDiagnosticoAUsingPOST(this.alta).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
+    });
+  }
 
+  guardarTrata(){
+    this.trataService.saveDiagnosticoAUsingPOST2(this.trata).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
+    });
+  }
   guardarEnfermedad() {
     this.enferService.saveEnferUsingPOST(this.enfermedad).subscribe(data => {
       if (data.object != null) {
@@ -389,9 +416,10 @@ guardarAlta(){
           this.llegada.admision = datos
           this.enfermedad.admision = datos
           this.signos.admision = datos
-          this.soli.admision=datos
-          this.ingreso.admision=datos
-          this.alta.admision=datos
+          this.soli.admision = datos
+          this.ingreso.admision = datos
+          this.alta.admision = datos
+          this.trata.admision=datos
           console.log(this.idAm);
           this.guardarAccident();
         }
