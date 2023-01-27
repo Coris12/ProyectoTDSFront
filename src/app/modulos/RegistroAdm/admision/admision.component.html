@@ -1326,7 +1326,118 @@
                 <b>14.Alta</b>
             </div>
         </p-divider>
-        <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="cargarPersona()" styleClass="p-button-text">
-        </p-button>
+        <div class="grid p-fliud">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Domicilio</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Consulta externa</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Observacion</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Internacion</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Referencia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Egresa vivo</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">En condicion estable</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">En condicion inestable</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Muerto en emergencia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="int" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <label for="requisitos "> Causa</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="int" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <label for="requisitos "> Dias de incapacidad</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <label for="requisitos "> Servicio de referencia</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <label for="requisitos "> Establecimiento</label>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="datetime-local" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <label for="requisitos "> Fecha y Hora</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="int" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <label for="requisitos "> Nombre Profesional</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="int" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <label for="requisitos "> Codigo</label>
+                </span>
+            </div>
+        </div>
+        <button pButton type="button" icon="pi pi-check" label="Guardar" (click)="cargarPersona()"></button>
+        
     </div>
-</div>
