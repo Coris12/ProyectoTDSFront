@@ -631,7 +631,8 @@
                 <b>5.Enfermedad actual y revisión de sistemas</b>
             </div>
         </p-divider>
-        <label for="inputtext">Describir cronologíalocalización caracteristicas intesidad frecuencia factores agravantes</label>
+        <label for="inputtext">Describir cronologíalocalización caracteristicas intesidad frecuencia factores
+            agravantes</label>
         <p-divider></p-divider>
         <div class="grid p-fluid">
             <div class="col-12 md:col-2">
@@ -663,7 +664,413 @@
                 </div>
             </div>
         </div>
-        <p-editor [(ngModel)]="enfermedad.descripcion"[style]="{'height':'120px'}">
+        <p-editor [(ngModel)]="enfermedad.descripcion" [style]="{'height':'120px'}">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>6.Signos vitales,mediciones y valores</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fliud">
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.presion" pInputText>
+                    <label for="inputtext">Presion arterial</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.fCardiaca" pInputText>
+                    <label for="inputtext">F.Cardiaca</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.respira" pInputText>
+                    <label for="inputtext">F.Respiratoria</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.bucal" pInputText>
+                    <label for="inputtext">Temp.bucal °C</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.axilar" pInputText>
+                    <label for="inputtext">Temp.axilar °C</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.peso" pInputText>
+                    <label for="inputtext">Peso Kg</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.talla" pInputText>
+                    <label for="inputtext">Talla m </label>
+                </span>
+            </div>
+            <label for="inputtext">Glasgow </label>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.ocular" pInputText>
+                    <label for="inputtext">Ocular (4)</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.verbal" pInputText>
+                    <label for="inputtext">Verbal (5)</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.motora" pInputText>
+                    <label for="inputtext">Motora (6)</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.total" pInputText>
+                    <label for="inputtext">Total (15)</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.pupilaD" pInputText>
+                    <label for="inputtext">Reaccion pupila der.</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.pupilaI" pInputText>
+                    <label for="inputtext">Reaccion pupila izq.</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.capilar" pInputText>
+                    <label for="inputtext">T.llenado capilar</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.oxigeno" pInputText>
+                    <label for="inputtext">Satura Oxigeno</label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>7.Examen fisico y diagnostico</b>
+            </div>
+        </p-divider>
+        <label for="inputtext">Marcar "SP" si de encunetra sn patologia marcar "CP" si se encuentra con patologia
+            registrar bajo el numeroy los halazgos patologicos</label>
+        <p-divider></p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <label for=""><b>1.Via aerea obstruida</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.viaObost" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.viaObost" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for=""><b>2.Cabeza</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.cabeza" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.cabeza" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for=""><b>3.Cuello</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.cuello" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.cuello" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for=""><b>4.Torax</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.torax" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.torax" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for=""><b>5.Abdomen</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.abdomen" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.abdomen" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for=""><b>6.Colunma</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.columna" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.columna" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for=""><b>7.Pelvis</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.pelvis" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.pelvis" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for=""><b>8.Extremidades</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.extremidades" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.extremidades" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+        </div>
+        <p-editor [(ngModel)]="signos.descripcion" [style]="{'height':'120px'}">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>8.Localizaciones de lesiones</b>
+            </div>
+        </p-divider>
+        
+        <div class="grid p-fluid">
+            <div class="container mt-2" style="text-align: left;">
+                <img src="../../../../assets/lesiones.png" class="img-thumbnail" width="300" height="200">
+            </div>
+        </div>
+        <div class="grid p-fliud">
+            <div class="col-12 md:col-2" >
+                <label for="inputtext">1.Herida penetrante</label>
+                <label for="inputtext">2.Herida cortante</label>
+                <label for="inputtext">3.Fractura expuesta</label>
+                <label for="inputtext">4.Fractura cerrada</label>
+                <label for="inputtext">5.Cuerpo extraño</label>
+                <label for="inputtext">6.Hemorragia</label>
+                <label for="inputtext">7.Mordedura</label>
+                <label for="inputtext">8.Picadura</label>
+                <label for="inputtext">9.Excoracion</label>
+                <label for="inputtext">10.Deformacion o masa</label>
+                <label for="inputtext">11.Hematoma</label>
+                <label for="inputtext">12.Eritema/Inflamacion</label>
+                <label for="inputtext">13.Luxacion/Esguince</label>
+                <label for="inputtext">14.Quemadura</label>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>9.Emergencia obstretica</b>
+            </div>
+        </p-divider>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>10.Solicitud de examenes</b>
+            </div>
+        </p-divider>
+        <label for="inputtext">Resgistrar abajo comentarios y resusltados anotando el numero</label>
+        <p-divider></p-divider>
+        <div class="grid p-2">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">1.Biometria</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">2.Uroanalisis</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">3.Quimica sanguinea</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">4.Electrolitos</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">5.Gastrometria</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">6.Electrocardiograma</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">7.Endoscopia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">8.R.X Torax</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">9.R.X Abdomen</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">10.R.X Osea</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">11.Tomografia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">12.Resonancia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">13.Ecografia pelvica</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">14.Ecografia abdomen</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">15.Interconsulta</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">16.Otros</label>
+                </div>
+            </div>
+        </div>
+        <p-editor [(ngModel)]="selectedValue" [style]="{'height':'120px'}">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>

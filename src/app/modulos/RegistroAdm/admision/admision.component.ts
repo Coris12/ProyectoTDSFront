@@ -4,13 +4,16 @@ import { AccidenteControllerService } from 'src/app/api/accidenteController.serv
 import { AdmisionControllerService } from 'src/app/api/admisionController.service';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { EnfermadAnteControllerService } from 'src/app/api/enfermadAnteController.service';
+
 import { LlegadaAdServiceService } from 'src/app/api/llegadaAdService.service';
+import { SignosEControllerService } from 'src/app/api/signosEController.service';
 import { Accidente } from 'src/app/model/accidente';
 import { Admision } from 'src/app/model/admision';
 import { EnfermadAnte } from 'src/app/model/enfermadAnte';
 import { LLegadaAd } from 'src/app/model/lLegadaAd';
 
 import { ResidenciaDto } from 'src/app/model/residenciaDto';
+import { SignosE } from 'src/app/model/signosE';
 
 @Component({
   selector: 'app-admision',
@@ -25,7 +28,8 @@ export class AdmisionComponent implements OnInit {
     private messageService: MessageService,
     private llegService: LlegadaAdServiceService,
     private accService: AccidenteControllerService,
-    private enferService: EnfermadAnteControllerService
+    private enferService: EnfermadAnteControllerService,
+    private SignoService: SignosEControllerService
 
   ) { }
 
@@ -149,29 +153,54 @@ export class AdmisionComponent implements OnInit {
     psiquiatrico: null,
     quirur: null,
     trau: null,
-    descripcion:null,
-    descripcionA:null
+    descripcion: null,
+    descripcionA: null
 
+  }
+
+  signos: SignosE = {
+    abdomen: null,
+    admision: null,
+    axilar: null,
+    bucal: null,
+    cabeza: null,
+    capilar: null,
+    columna: null,
+    cuello: null,
+    descripcion: null,
+    extremidades: null,
+    fCardiaca: null,
+    idSgnos: null,
+    motora: null,
+    ocular: null,
+    oxigeno: null,
+    pelvis: null,
+    peso: null,
+    presion: null,
+    pupilaD: null,
+    pupilaI: null,
+    respira: null,
+    talla: null,
+    torax: null,
+    total: null,
+    verbal: null,
+    viaObost: null,
   }
   ngOnInit(): void {
 
   }
 
   cargarPersona() {
-
     this.persnaService.listaUsingGET().subscribe((res) => {
       console.log(res);
       for (let datos of res) {
-
         if (datos.id == this.idper && this.idper != 0 && this.idper != undefined) {
           console.log(datos.id, this.idper);
           this.usuarioE = datos
           this.admision.usuario = this.usuarioE
           console.log(this.usuarioE);
-
           console.log(this.admision);
           this.guardarAdmision()
-
         }
       }
     })
@@ -199,7 +228,6 @@ export class AdmisionComponent implements OnInit {
 
   guardarAccident() {
     console.log(this.accidente);
-
     this.accService.saveAccidenteUsingPOST(this.accidente).subscribe(
       res => {
         if (res.object != null) {
@@ -207,6 +235,7 @@ export class AdmisionComponent implements OnInit {
           console.log(this.idpersona);
           this.guardarLlegada();
           this.guardarEnfermedad();
+          this.guardarSigno();
           console.log(this.admision);
         } else {
           this.mensajeError("error al crear ficha de admision")
@@ -216,6 +245,7 @@ export class AdmisionComponent implements OnInit {
         }
       })
   }
+
   guardarLlegada() {
     this.llegService.saveLlegadaUsingPOST(this.llegada).subscribe(data => {
       if (data.object != null) {
@@ -228,6 +258,17 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
+  guardarSigno() {
+    this.SignoService.saveSignosEUsingPOST(this.signos).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
+    });
+  }
   guardarEnfermedad() {
     this.enferService.saveEnferUsingPOST(this.enfermedad).subscribe(data => {
       if (data.object != null) {
@@ -242,22 +283,21 @@ export class AdmisionComponent implements OnInit {
 
 
   recuperarAdmision() {
-
     this.adService.listUsingGET().subscribe((res) => {
       for (let datos of res) {
         if (datos.idAdmision == this.idAm) {
           this.accidente.admision = datos
           this.llegada.admision = datos
-          this.enfermedad.admision=datos
+          this.enfermedad.admision = datos
+          this.signos.admision = datos
           console.log(this.idAm);
-          //this.guardarLlegada();
           this.guardarAccident();
-          //this.guardaA
         }
       }
 
     })
   }
+
   mensajeError(msg: String) {
     this.messageService.add({
       severity: 'error',

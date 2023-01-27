@@ -44,6 +44,7 @@ import { ResidenciaControllerService } from './api/residenciaController.service'
 import { RevOrganoSistemControllerService } from './api/revOrganoSistemController.service';
 import { SaludControllerService } from './api/saludController.service';
 import { SigVitAntropometriaControllerService } from './api/sigVitAntropometriaController.service';
+import { SignosEControllerService } from './api/signosEController.service';
 import { SucursalControllerService } from './api/sucursalController.service';
 import { TarjetaControllerService } from './api/tarjetaController.service';
 import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadController.service';
@@ -96,6 +97,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     RevOrganoSistemControllerService,
     SaludControllerService,
     SigVitAntropometriaControllerService,
+    SignosEControllerService,
     SucursalControllerService,
     TarjetaControllerService,
     TarjetaEspecialidadControllerService,

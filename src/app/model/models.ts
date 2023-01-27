@@ -68,6 +68,7 @@ export * from './revOrganoSistem';
 export * from './rol';
 export * from './saludBucal';
 export * from './sigVitAntropometria';
+export * from './signosE';
 export * from './sucursal';
 export * from './tarjeta';
 export * from './tarjetaEspecialidad';
