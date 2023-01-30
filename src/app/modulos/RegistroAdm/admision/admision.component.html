@@ -927,35 +927,35 @@
         
         <div class="grid p-fliud">
             <div class="col-12 md:col-2">
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="penetrante">
+                <input type="checkbox" id="vehicle1" [(ngModel)]="lesion.pentrante" name="vehicle1" value="penetrante">
                 <label for="vehicle1">1.Herida penetrante</label><br>
-                <input type="checkbox" id="vehicle2" name="vehicle2" value="cortante">
+                <input type="checkbox" id="vehicle2"[(ngModel)]="lesion.cortante" name="vehicle2" value="cortante">
                 <label for="vehicle2">2.Herida cortante</label><br>
-                <input type="checkbox" id="vehicle3" name="vehicle3" value="expuesta">
+                <input type="checkbox" id="vehicle3" [(ngModel)]="lesion.expuesta" name="vehicle3" value="expuesta">
                 <label for="vehicle3">3.Fractura expuesta</label><br>
-                <input type="checkbox" id="vehicle4" name="vehicle4" value="cerrada">
+                <input type="checkbox" id="vehicle4" [(ngModel)]="lesion.cerrada" name="vehicle4" value="cerrada">
                 <label for="vehicle4">4.Fractura cerrada</label><br>
-                <input type="checkbox" id="vehicle5" name="vehicle5" value="estraño">
+                <input type="checkbox" id="vehicle5" [(ngModel)]="lesion.extraa" name="vehicle5" value="estraño">
                 <label for="vehicle5">5.Cuerpo extraño</label><br>
-                <input type="checkbox" id="vehicle6" name="vehicle6" value="hemorragia">
+                <input type="checkbox" id="vehicle6"  [(ngModel)]="lesion.hemorragia"name="vehicle6" value="hemorragia">
                 <label for="inputtext">6.Hemorragia</label><br>
-                <input type="checkbox" id="vehicle7" name="vehicle7" value="mordedura">
+                <input type="checkbox" id="vehicle7" [(ngModel)]="lesion.mordedura" name="vehicle7" value="mordedura">
                 <label for="vehicle7">7.Mordedura</label><br>
             </div>
             <div class="col-12 md:col-2">
-                <input type="checkbox" id="vehicle8" name="vehicle8" value="picadura">
+                <input type="checkbox" id="vehicle8" [(ngModel)]="lesion.picadura" name="vehicle8" value="picadura">
                 <label for="vehicle8">8.Picadura</label><br>
-                <input type="checkbox" id="vehicle9" name="vehicle9" value="excoracion">
+                <input type="checkbox" id="vehicle9"  [(ngModel)]="lesion.excoracion" name="vehicle9" value="excoracion">
                 <label for="vehicle9">9.Excoracion</label><br>
-                <input type="checkbox" id="vehicle10" name="vehicle10" value="deformacion">
+                <input type="checkbox" id="vehicle10" [(ngModel)]="lesion.masa" name="vehicle10" value="deformacion">
                 <label for="vehicle10">10.Deformacion o masa</label><br>
-                <input type="checkbox" id="vehicle11" name="vehicle11" value="hematoma">
+                <input type="checkbox" id="vehicle11" [(ngModel)]="lesion.hematoma" name="vehicle11" value="hematoma">
                 <label for="vehicle11">11.Hematoma</label><br>
-                <input type="checkbox" id="vehicle12" name="vehicle12" value="inflamacion">
+                <input type="checkbox" id="vehicle12" [(ngModel)]="lesion.inflamacion" name="vehicle12" value="inflamacion">
                 <label for="vehicle12">12.Eritema/Inflamacion</label><br>
-                <input type="checkbox" id="vehicle13" name="vehicle13" value="luxacion">
+                <input type="checkbox" id="vehicle13" [(ngModel)]="lesion.esguince" name="vehicle13" value="luxacion">
                 <label for="vehicle13">13.Luxacion/Esguince</label><br>
-                <input type="checkbox" id="vehicle14" name="vehicle14" value="quemadura">
+                <input type="checkbox" id="vehicle14"[(ngModel)]="lesion.quemadura" name="vehicle14" value="quemadura">
                 <label for="vehicle14">14.Quemadura</label>
             </div>
         </div>

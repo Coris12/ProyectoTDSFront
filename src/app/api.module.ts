@@ -34,6 +34,7 @@ import { IndiceControlllerService } from './api/indiceControlller.service';
 import { IndicesFamilControllerService } from './api/indicesFamilController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
 import { IngresoDiaControllerService } from './api/ingresoDiaController.service';
+import { LesionesControllerService } from './api/lesionesController.service';
 import { LlegadaAdServiceService } from './api/llegadaAdService.service';
 import { MedicamentosControllerService } from './api/medicamentosController.service';
 import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
@@ -93,6 +94,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     IndicesFamilControllerService,
     InformacionTratamientoControllerService,
     IngresoDiaControllerService,
+    LesionesControllerService,
     LlegadaAdServiceService,
     MedicamentosControllerService,
     MedicoConsentimientoControllerService,

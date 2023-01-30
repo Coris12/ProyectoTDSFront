@@ -52,6 +52,7 @@ export * from './informacionTratamientoDTO';
 export * from './ingresoDia';
 export * from './jwtDto';
 export * from './lLegadaAd';
+export * from './lesiones';
 export * from './listaFamiliaresDTO';
 export * from './loginUsuario';
 export * from './medicamentos';

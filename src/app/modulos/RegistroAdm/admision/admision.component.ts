@@ -8,18 +8,22 @@ import { DiagnsticoAiControllerService } from 'src/app/api/diagnsticoAiControlle
 import { EmergenciaControllerService } from 'src/app/api/emergenciaController.service';
 import { EnfermadAnteControllerService } from 'src/app/api/enfermadAnteController.service';
 import { IngresoDiaControllerService } from 'src/app/api/ingresoDiaController.service';
+import { LesionesControllerService } from 'src/app/api/lesionesController.service';
 
 import { LlegadaAdServiceService } from 'src/app/api/llegadaAdService.service';
+import { ResidenciaControllerService } from 'src/app/api/residenciaController.service';
 import { SignosEControllerService } from 'src/app/api/signosEController.service';
 import { SolicitudEControllerService } from 'src/app/api/solicitudEController.service';
 import { TrataMControllerService } from 'src/app/api/trataMController.service';
 import { Accidente } from 'src/app/model/accidente';
 import { Admision } from 'src/app/model/admision';
 import { Alta } from 'src/app/model/alta';
+import { DatosTarjetaAllDTO } from 'src/app/model/datosTarjetaAllDTO';
 import { DiagnosticoAI } from 'src/app/model/diagnosticoAI';
 import { Emergencia } from 'src/app/model/emergencia';
 import { EnfermadAnte } from 'src/app/model/enfermadAnte';
 import { IngresoDia } from 'src/app/model/ingresoDia';
+import { Lesiones } from 'src/app/model/lesiones';
 import { LLegadaAd } from 'src/app/model/lLegadaAd';
 
 import { ResidenciaDto } from 'src/app/model/residenciaDto';
@@ -45,11 +49,17 @@ export class AdmisionComponent implements OnInit {
     private SoliService: SolicitudEControllerService,
     private ingreService: IngresoDiaControllerService,
     private trataService: TrataMControllerService,
-    private altaService:AltaControllerService,
-    private diaAService:DiagnsticoAiControllerService,
-    private emergenciaService:EmergenciaControllerService
+    private altaService: AltaControllerService,
+    private diaAService: DiagnsticoAiControllerService,
+    private emergenciaService: EmergenciaControllerService,
+    private lesionService: LesionesControllerService,
+    private residenService:ResidenciaControllerService,
   ) { }
 
+
+
+
+  
   //variables
   usuarioE: any
   cel: string
@@ -64,6 +74,8 @@ export class AdmisionComponent implements OnInit {
   errMsj: String
   idper: number
   selectedValue: string;
+
+ 
 
   res: ResidenciaDto = {
     barrio: null,
@@ -267,49 +279,68 @@ export class AdmisionComponent implements OnInit {
     posologia2: null,
   }
 
-  Alta:Alta={
-    admision:null,
-    cExterna:null,
-    causa:null,
-    codigo:null,
-    dias:null,
-    domicilio:null,
-    estable:null,
-    establecimiento:null,
-    fecha:null,
-    idAlta:null,
-    inestable:null,
-    internacion:null,
-    muerto:null,
-    nombre:null,
-    observacion:null,
-    referencia:null,
-    servicio:null,
-    vivo:null,
+  Alta: Alta = {
+    admision: null,
+    cExterna: null,
+    causa: null,
+    codigo: null,
+    dias: null,
+    domicilio: null,
+    estable: null,
+    establecimiento: null,
+    fecha: null,
+    idAlta: null,
+    inestable: null,
+    internacion: null,
+    muerto: null,
+    nombre: null,
+    observacion: null,
+    referencia: null,
+    servicio: null,
+    vivo: null,
   }
 
-emergencia:Emergencia={
-  abortos:null,
-  admision:null,
-  borramiento:null,
-  cesareas:null,
-  contraciones:null,
-  dilatacion:null,
-  fecha:null,
-  fetal:null,
-  frecuencia:null,
-  gestas:null,
-  idEmergencia:null,
-  membranas:null,
-  partos:null,
-  plano:null,
-  presentacion:null,
-  semanas:null,
-  snagrado:null,
-  tiempo:null,
-  uterina:null,
-  util:null,
-}
+  emergencia: Emergencia = {
+    abortos: null,
+    admision: null,
+    borramiento: null,
+    cesareas: null,
+    contraciones: null,
+    dilatacion: null,
+    fecha: null,
+    fetal: null,
+    frecuencia: null,
+    gestas: null,
+    idEmergencia: null,
+    membranas: null,
+    partos: null,
+    plano: null,
+    presentacion: null,
+    semanas: null,
+    snagrado: null,
+    tiempo: null,
+    uterina: null,
+    util: null,
+  }
+
+  lesion: Lesiones = {
+    admision:null,
+    cerrada:null,
+    cortante:null,
+    esguince:null,
+    excoracion:null,
+    expuesta:null,
+    extraa:null,
+    hematoma:null,
+    hemorragia:null,
+    idLesiones:null,
+    inflamacion:null,
+    masa:null,
+    mordedura:null,
+    pentrante:null,
+    picadura:null,
+    quemadura:null,
+  }
 
   ngOnInit(): void {
   }
@@ -366,6 +397,7 @@ emergencia:Emergencia={
           this.guardarTrata();
           this.guardarAl();
           this.guardarEmergencia();
+          this.guardarLesion();
           console.log(this.admision);
         } else {
           this.mensajeError("error al crear ficha de admision")
@@ -425,7 +457,7 @@ emergencia:Emergencia={
   }
 
   guardarAlta() {
-    this.Alta.establecimiento=this.establecimiento
+    this.Alta.establecimiento = this.establecimiento
     this.diaAService.saveDiagnosticoAUsingPOST(this.alta).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
@@ -437,7 +469,7 @@ emergencia:Emergencia={
     });
   }
 
-  guardarTrata(){
+  guardarTrata() {
     this.trataService.saveDiagnosticoAUsingPOST2(this.trata).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
@@ -461,6 +493,18 @@ emergencia:Emergencia={
     });
   }
 
+  guardarLesion(){
+    this.lesionService.saveLesionUsingPOST(this.lesion).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
+    });
+  }
+
   recuperarAdmision() {
     this.adService.listUsingGET().subscribe((res) => {
       for (let datos of res) {
@@ -472,9 +516,10 @@ emergencia:Emergencia={
           this.soli.admision = datos
           this.ingreso.admision = datos
           this.alta.admision = datos
-          this.trata.admision=datos
-          this.Alta.admision=datos
-          this.emergencia.admision=datos
+          this.trata.admision = datos
+          this.Alta.admision = datos
+          this.emergencia.admision = datos
+          this.lesion.admision=datos
           console.log(this.idAm);
           this.guardarAccident();
         }
@@ -483,7 +528,7 @@ emergencia:Emergencia={
     })
   }
 
-  guardarAl(){
+  guardarAl() {
     this.altaService.savAltaUsingPOST(this.Alta).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
@@ -495,7 +540,7 @@ emergencia:Emergencia={
     });
   }
 
-  guardarEmergencia(){
+  guardarEmergencia() {
     this.emergenciaService.saveEnferUsingPOST(this.emergencia).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
@@ -560,6 +605,7 @@ emergencia:Emergencia={
     })
   }
 
+ 
   validacionAlfanumerica(event) {
     const patron = /[a-zA-ZÑñ0-9 ,:-]/;
     const permitidos = event.keyCode;
@@ -608,4 +654,5 @@ emergencia:Emergencia={
     }
   }
 
+ 
 }
