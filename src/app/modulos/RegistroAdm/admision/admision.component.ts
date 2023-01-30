@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AccidenteControllerService } from 'src/app/api/accidenteController.service';
 import { AdmisionControllerService } from 'src/app/api/admisionController.service';
+import { AltaControllerService } from 'src/app/api/altaController.service';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { DiagnsticoAiControllerService } from 'src/app/api/diagnsticoAiController.service';
 import { EnfermadAnteControllerService } from 'src/app/api/enfermadAnteController.service';
@@ -13,6 +14,7 @@ import { SolicitudEControllerService } from 'src/app/api/solicitudEController.se
 import { TrataMControllerService } from 'src/app/api/trataMController.service';
 import { Accidente } from 'src/app/model/accidente';
 import { Admision } from 'src/app/model/admision';
+import { Alta } from 'src/app/model/alta';
 import { DiagnosticoAI } from 'src/app/model/diagnosticoAI';
 import { EnfermadAnte } from 'src/app/model/enfermadAnte';
 import { IngresoDia } from 'src/app/model/ingresoDia';
@@ -40,9 +42,9 @@ export class AdmisionComponent implements OnInit {
     private SignoService: SignosEControllerService,
     private SoliService: SolicitudEControllerService,
     private ingreService: IngresoDiaControllerService,
-    private altaService: DiagnsticoAiControllerService,
-    private trataService: TrataMControllerService
-
+    private trataService: TrataMControllerService,
+    private altaService:AltaControllerService,
+    private diaAService:DiagnsticoAiControllerService
   ) { }
 
   //variables
@@ -262,6 +264,26 @@ export class AdmisionComponent implements OnInit {
     posologia2: null,
   }
 
+  Alta:Alta={
+    admision:null,
+    cExterna:null,
+    causa:null,
+    codigo:null,
+    dias:null,
+    domicilio:null,
+    estable:null,
+    establecimiento:null,
+    fecha:null,
+    idAlta:null,
+    inestable:null,
+    internacion:null,
+    muerto:null,
+    nombre:null,
+    observacion:null,
+    referencia:null,
+    servicio:null,
+    vivo:null,
+  }
   ngOnInit(): void {
   }
 
@@ -289,7 +311,7 @@ export class AdmisionComponent implements OnInit {
         if (res.object != null) {
           this.idAm = res.object
           console.log(this.idAm);
-      //    this.MessageSuccess(" Admision  creado")
+          this.MessageSuccess(" Admision  creado")
           this.recuperarAdmision()
           console.log(this.admision);
         } else {
@@ -315,6 +337,7 @@ export class AdmisionComponent implements OnInit {
           this.guardarIngreso();
           this.guardarAlta();
           this.guardarTrata();
+          this.guardarAl();
           console.log(this.admision);
         } else {
           this.mensajeError("error al crear ficha de admision")
@@ -374,7 +397,8 @@ export class AdmisionComponent implements OnInit {
   }
 
   guardarAlta() {
-    this.altaService.saveDiagnosticoAUsingPOST(this.alta).subscribe(data => {
+    this.Alta.establecimiento=this.establecimiento
+    this.diaAService.saveDiagnosticoAUsingPOST(this.alta).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
       } else {
@@ -396,6 +420,7 @@ export class AdmisionComponent implements OnInit {
       this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
     });
   }
+
   guardarEnfermedad() {
     this.enferService.saveEnferUsingPOST(this.enfermedad).subscribe(data => {
       if (data.object != null) {
@@ -420,12 +445,25 @@ export class AdmisionComponent implements OnInit {
           this.ingreso.admision = datos
           this.alta.admision = datos
           this.trata.admision=datos
+          this.Alta.admision=datos
           console.log(this.idAm);
           this.guardarAccident();
         }
       }
 
     })
+  }
+
+  guardarAl(){
+    this.altaService.savAltaUsingPOST(this.Alta).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
+    });
   }
 
   mensajeError(msg: String) {

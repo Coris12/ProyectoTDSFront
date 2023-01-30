@@ -1,5 +1,6 @@
 export * from './accidente';
 export * from './admision';
+export * from './alta';
 export * from './antecFamiliares';
 export * from './antecPersonales';
 export * from './autorizacion';

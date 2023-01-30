@@ -948,6 +948,117 @@
                 <b>9.Emergencia obstretica</b>
             </div>
         </p-divider>
+        <div class="grid p-fliud">
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Gestas</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Partos</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Cesareas</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Fecha de la ultima menstrauacion</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Semanas de gestacion</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Movimiento fetal</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Frecuencia c.fetal</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Membranas rotas</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="int" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Tiempo</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Altura uterina</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos ">Presentacion</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Dilatacion</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos ">Borramiento</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Plano</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Plano</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Pelvis util</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Sangrado Vaginal</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <label for="requisitos "> Contracciones</label>
+                </span>
+            </div>
+            
+        </div>
         <p-divider align="left">
             <div class="inline-flex align-items-center">
                 <i class="pi pi-user mr-2"></i>
@@ -1329,70 +1440,70 @@
         <div class="grid p-fliud">
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.domicilio" inputId="aa"
                         [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Domicilio</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.cExterna" inputId="aa"
                         [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Consulta externa</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.observacion" inputId="aa"
                         [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Observacion</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.internacion" inputId="aa"
                         [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Internacion</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.referencia" inputId="aa"
                         [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Referencia</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.vivo" inputId="aa"
                         [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Egresa vivo</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.estable" inputId="aa"
                         [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">En condicion estable</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.inestable" inputId="aa"
                         [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">En condicion inestable</label>
                 </div>
             </div>
             <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="selectedValue" inputId="aa"
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.muerto" inputId="aa"
                         [ngModelOptions]="{standalone: true}"></p-checkbox>
                     <label for="ch">Muerto en emergencia</label>
                 </div>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="int" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="Alta.causa" placeholder="">
                     <label for="requisitos "> Causa</label>
                 </span>
             </div>
@@ -1400,19 +1511,19 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="int" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="int" pInputText [(ngModel)]="Alta.dias" placeholder="">
                     <label for="requisitos "> Dias de incapacidad</label>
                 </span>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="Alta.servicio" placeholder="">
                     <label for="requisitos "> Servicio de referencia</label>
                 </span>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="establecimiento" value={{establecimiento}} placeholder="">
                     <label for="requisitos "> Establecimiento</label>
                 </span>
             </div>
@@ -1421,19 +1532,19 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="datetime-local" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="datetime-local" pInputText [(ngModel)]="Alta.fecha" placeholder="">
                     <label for="requisitos "> Fecha y Hora</label>
                 </span>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="int" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="int" pInputText [(ngModel)]="Alta.nombre" placeholder="">
                     <label for="requisitos "> Nombre Profesional</label>
                 </span>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="int" pInputText [(ngModel)]="selectedValue" placeholder="">
+                    <input type="int" pInputText [(ngModel)]="Alta.codigo" placeholder="">
                     <label for="requisitos "> Codigo</label>
                 </span>
             </div>
