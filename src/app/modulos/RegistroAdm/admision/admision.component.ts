@@ -5,6 +5,7 @@ import { AdmisionControllerService } from 'src/app/api/admisionController.servic
 import { AltaControllerService } from 'src/app/api/altaController.service';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { DiagnsticoAiControllerService } from 'src/app/api/diagnsticoAiController.service';
+import { EmergenciaControllerService } from 'src/app/api/emergenciaController.service';
 import { EnfermadAnteControllerService } from 'src/app/api/enfermadAnteController.service';
 import { IngresoDiaControllerService } from 'src/app/api/ingresoDiaController.service';
 
@@ -16,6 +17,7 @@ import { Accidente } from 'src/app/model/accidente';
 import { Admision } from 'src/app/model/admision';
 import { Alta } from 'src/app/model/alta';
 import { DiagnosticoAI } from 'src/app/model/diagnosticoAI';
+import { Emergencia } from 'src/app/model/emergencia';
 import { EnfermadAnte } from 'src/app/model/enfermadAnte';
 import { IngresoDia } from 'src/app/model/ingresoDia';
 import { LLegadaAd } from 'src/app/model/lLegadaAd';
@@ -44,7 +46,8 @@ export class AdmisionComponent implements OnInit {
     private ingreService: IngresoDiaControllerService,
     private trataService: TrataMControllerService,
     private altaService:AltaControllerService,
-    private diaAService:DiagnsticoAiControllerService
+    private diaAService:DiagnsticoAiControllerService,
+    private emergenciaService:EmergenciaControllerService
   ) { }
 
   //variables
@@ -284,6 +287,30 @@ export class AdmisionComponent implements OnInit {
     servicio:null,
     vivo:null,
   }
+
+emergencia:Emergencia={
+  abortos:null,
+  admision:null,
+  borramiento:null,
+  cesareas:null,
+  contraciones:null,
+  dilatacion:null,
+  fecha:null,
+  fetal:null,
+  frecuencia:null,
+  gestas:null,
+  idEmergencia:null,
+  membranas:null,
+  partos:null,
+  plano:null,
+  presentacion:null,
+  semanas:null,
+  snagrado:null,
+  tiempo:null,
+  uterina:null,
+  util:null,
+}
+
   ngOnInit(): void {
   }
 
@@ -338,6 +365,7 @@ export class AdmisionComponent implements OnInit {
           this.guardarAlta();
           this.guardarTrata();
           this.guardarAl();
+          this.guardarEmergencia();
           console.log(this.admision);
         } else {
           this.mensajeError("error al crear ficha de admision")
@@ -446,6 +474,7 @@ export class AdmisionComponent implements OnInit {
           this.alta.admision = datos
           this.trata.admision=datos
           this.Alta.admision=datos
+          this.emergencia.admision=datos
           console.log(this.idAm);
           this.guardarAccident();
         }
@@ -456,6 +485,18 @@ export class AdmisionComponent implements OnInit {
 
   guardarAl(){
     this.altaService.savAltaUsingPOST(this.Alta).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
+    });
+  }
+
+  guardarEmergencia(){
+    this.emergenciaService.saveEnferUsingPOST(this.emergencia).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
       } else {

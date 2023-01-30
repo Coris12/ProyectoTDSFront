@@ -924,22 +924,39 @@
                 <img src="../../../../assets/lesiones.png" class="img-thumbnail" width="300" height="200">
             </div>
         </div>
+        
         <div class="grid p-fliud">
             <div class="col-12 md:col-2">
-                <label for="inputtext">1.Herida penetrante</label>
-                <label for="inputtext">2.Herida cortante</label>
-                <label for="inputtext">3.Fractura expuesta</label>
-                <label for="inputtext">4.Fractura cerrada</label>
-                <label for="inputtext">5.Cuerpo extraño</label>
-                <label for="inputtext">6.Hemorragia</label>
-                <label for="inputtext">7.Mordedura</label>
-                <label for="inputtext">8.Picadura</label>
-                <label for="inputtext">9.Excoracion</label>
-                <label for="inputtext">10.Deformacion o masa</label>
-                <label for="inputtext">11.Hematoma</label>
-                <label for="inputtext">12.Eritema/Inflamacion</label>
-                <label for="inputtext">13.Luxacion/Esguince</label>
-                <label for="inputtext">14.Quemadura</label>
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="penetrante">
+                <label for="vehicle1">1.Herida penetrante</label><br>
+                <input type="checkbox" id="vehicle2" name="vehicle2" value="cortante">
+                <label for="vehicle2">2.Herida cortante</label><br>
+                <input type="checkbox" id="vehicle3" name="vehicle3" value="expuesta">
+                <label for="vehicle3">3.Fractura expuesta</label><br>
+                <input type="checkbox" id="vehicle4" name="vehicle4" value="cerrada">
+                <label for="vehicle4">4.Fractura cerrada</label><br>
+                <input type="checkbox" id="vehicle5" name="vehicle5" value="estraño">
+                <label for="vehicle5">5.Cuerpo extraño</label><br>
+                <input type="checkbox" id="vehicle6" name="vehicle6" value="hemorragia">
+                <label for="inputtext">6.Hemorragia</label><br>
+                <input type="checkbox" id="vehicle7" name="vehicle7" value="mordedura">
+                <label for="vehicle7">7.Mordedura</label><br>
+            </div>
+            <div class="col-12 md:col-2">
+                <input type="checkbox" id="vehicle8" name="vehicle8" value="picadura">
+                <label for="vehicle8">8.Picadura</label><br>
+                <input type="checkbox" id="vehicle9" name="vehicle9" value="excoracion">
+                <label for="vehicle9">9.Excoracion</label><br>
+                <input type="checkbox" id="vehicle10" name="vehicle10" value="deformacion">
+                <label for="vehicle10">10.Deformacion o masa</label><br>
+                <input type="checkbox" id="vehicle11" name="vehicle11" value="hematoma">
+                <label for="vehicle11">11.Hematoma</label><br>
+                <input type="checkbox" id="vehicle12" name="vehicle12" value="inflamacion">
+                <label for="vehicle12">12.Eritema/Inflamacion</label><br>
+                <input type="checkbox" id="vehicle13" name="vehicle13" value="luxacion">
+                <label for="vehicle13">13.Luxacion/Esguince</label><br>
+                <input type="checkbox" id="vehicle14" name="vehicle14" value="quemadura">
+                <label for="vehicle14">14.Quemadura</label>
             </div>
         </div>
         <p-divider align="left">
@@ -951,113 +968,107 @@
         <div class="grid p-fliud">
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.gestas" placeholder="">
                     <label for="requisitos "> Gestas</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="int" pInputText [(ngModel)]="emergencia.partos" placeholder="">
                     <label for="requisitos "> Partos</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.cesareas" placeholder="">
                     <label for="requisitos "> Cesareas</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="date" pInputText [(ngModel)]="emergencia.fecha" placeholder="">
                     <label for="requisitos "> Fecha de la ultima menstrauacion</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.semanas  " placeholder="">
                     <label for="requisitos "> Semanas de gestacion</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.fetal" placeholder="">
                     <label for="requisitos "> Movimiento fetal</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.frecuencia" placeholder="">
                     <label for="requisitos "> Frecuencia c.fetal</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.membranas" placeholder="">
                     <label for="requisitos "> Membranas rotas</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="int" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="int" pInputText [(ngModel)]="emergencia.tiempo" placeholder="">
                     <label for="requisitos "> Tiempo</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.uterina" placeholder="">
                     <label for="requisitos "> Altura uterina</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.presentacion" placeholder="">
                     <label for="requisitos ">Presentacion</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.dilatacion" placeholder="">
                     <label for="requisitos "> Dilatacion</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.borramiento" placeholder="">
                     <label for="requisitos ">Borramiento</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.plano" placeholder="">
                     <label for="requisitos "> Plano</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
-                    <label for="requisitos "> Plano</label>
-                </span>
-            </div>
-            <div class="col-12 md:col-2">
-                <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.util" placeholder="">
                     <label for="requisitos "> Pelvis util</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.snagrado" placeholder="">
                     <label for="requisitos "> Sangrado Vaginal</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="selectedValue"  placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.contraciones" placeholder="">
                     <label for="requisitos "> Contracciones</label>
                 </span>
             </div>
-            
+
         </div>
         <p-divider align="left">
             <div class="inline-flex align-items-center">
@@ -1523,7 +1534,8 @@
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="establecimiento" value={{establecimiento}} placeholder="">
+                    <input type="text" pInputText [(ngModel)]="establecimiento" value={{establecimiento}}
+                        placeholder="">
                     <label for="requisitos "> Establecimiento</label>
                 </span>
             </div>
@@ -1550,5 +1562,5 @@
             </div>
         </div>
         <button pButton type="button" icon="pi pi-check" label="Guardar" (click)="cargarPersona()"></button>
-        
+
     </div>

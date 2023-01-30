@@ -17,6 +17,7 @@ export * from './datosTarjetaDto';
 export * from './diagnosticoAI';
 export * from './diagnosticoO';
 export * from './diagnosticos';
+export * from './emergencia';
 export * from './empleado';
 export * from './enfermadAnte';
 export * from './equipoOperatorio';
