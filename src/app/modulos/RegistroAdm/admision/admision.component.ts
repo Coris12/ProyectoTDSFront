@@ -18,7 +18,7 @@ import { TrataMControllerService } from 'src/app/api/trataMController.service';
 import { Accidente } from 'src/app/model/accidente';
 import { Admision } from 'src/app/model/admision';
 import { Alta } from 'src/app/model/alta';
-import { DatosTarjetaAllDTO } from 'src/app/model/datosTarjetaAllDTO';
+
 import { DiagnosticoAI } from 'src/app/model/diagnosticoAI';
 import { Emergencia } from 'src/app/model/emergencia';
 import { EnfermadAnte } from 'src/app/model/enfermadAnte';

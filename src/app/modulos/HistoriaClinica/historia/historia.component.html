@@ -20,30 +20,36 @@
                         <div class="field col-12 md:col-4">
                             <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
                         </div>
-
+                        <div class="field col-12 md:col-4">
+                            <button type="button" pButton pRipple label="LIMPIAR" (click)="limpiarAll()"></button>
+                        </div>
                     </div>
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre">
-                            <label for="inputtext">Nombre</label>
-                        </span>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre" ngModel
+                                    required="">
+
+                                <label for="inputtext">Nombre</label>
+                            </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                            <input type="date" id="inputtext" pInputText [(ngModel)]="historia.fecha">
-                            <label for="inputtext"></label>
-                        </span>
+                                <input type="date" id="inputtext" pInputText [(ngModel)]="historia.fecha">
+
+                                <label for="inputtext"></label>
+                            </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText [(ngModel)]="historia.numCl">
-                            <label for="inputtext">Número HC</label>
-                        </span>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="historia.numCl">
+                                <label for="inputtext">Número HC</label>
+                            </span>
                         </div>
                         <div class="col-12 md:col-4">
                             <div class="p-inputgroup">
-                                <button type="button" pButton pRipple label="LISTADO HISTORIAS CLINICAS" (click)="listDialog = true;"></button>
+                                <button type="button" pButton pRipple label="LISTADO HISTORIAS CLINICAS"
+                                    (click)="listDialog = true;"></button>
                             </div>
                         </div>
                     </div>
@@ -52,126 +58,124 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
-                                        <label for="requisitos ">Edad:</label>
-                                        <input type="text" pInputText placeholder="Edad" [(ngModel)]="historia.edad">
-                                    </span>
+                                <label for="requisitos ">Edad:</label>
+                                <input type="text" pInputText placeholder="Edad" [(ngModel)]="historia.edad">
+                            </span>
+
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
-                                        <label for="requisitos ">Procedencia:</label>
-                                        <input type="text" pInputText placeholder="Procedencia"
-                                            [(ngModel)]="historia.procedencia">
-                                    </span>
+                                <label for="requisitos ">Procedencia:</label>
+                                <input type="text" pInputText placeholder="Procedencia"
+                                    [(ngModel)]="historia.procedencia">
+                            </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
-                                        <label for="requisitos ">Residencia:</label>
-                                        <input type="text" pInputText placeholder="Residencia"
-                                            [(ngModel)]="historia.residencia">
-                                    </span>
-                        </div>
-                    </div>
-                    <div class="grid p-fluid">
-                        <div class="field col-12 md:col-4">
-                            <span class="p-input-icon-left">
-                                        <label for="requisitos ">Estado Civil:</label>
-                                        <input type="text" pInputText placeholder="Estado Civil"
-                                            [(ngModel)]="historia.estadoCivil">
-                                    </span>
-                        </div>
-                        <div class="field col-12 md:col-4">
-                            <span class="p-input-icon-left">
-                                        <label for="requisitos ">Religión:</label>
-                                        <input type="text" pInputText placeholder="Religiòn"
-                                            [(ngModel)]="historia.religion">
-                                    </span>
-                        </div>
-                        <div class="field col-12 md:col-4">
-                            <span class="p-input-icon-left">
-                                        <label for="requisitos ">Motivio de consulta:</label>
-                                        <input type="text" pInputText placeholder="Motivo de consulta"
-                                            [(ngModel)]="historia.motivo">
-                                    </span>
+                                <label for="requisitos ">Residencia:</label>
+                                <input type="text" pInputText placeholder="Residencia"
+                                    [(ngModel)]="historia.residencia">
+                            </span>
                         </div>
                     </div>
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
-                                        <label for="requisitos ">Enfermedad Actual:</label>
-                                        <input type="text" pInputText placeholder="Enfermedad Actual"
-                                            [(ngModel)]="historia.enfermedad">
-                                    </span>
+                                <label for="requisitos ">Estado Civil:</label>
+                                <input type="text" pInputText placeholder="Estado Civil"
+                                    [(ngModel)]="historia.estadoCivil">
+                            </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
-                                        <label for="requisitos ">Alergias:</label>
-                                        <input type="text" pInputText placeholder="alergias"
-                                            [(ngModel)]="historia.alergia">
-                                    </span>
+                                <label for="requisitos ">Religión:</label>
+                                <input type="text" pInputText placeholder="Religiòn" [(ngModel)]="historia.religion">
+                            </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
-                                        <label for="requisitos ">APP:</label>
-                                        <input type="text" pInputText placeholder="APP" [(ngModel)]="historia.app">
-                                    </span>
-                        </div>
-                    </div>
-                    <div class="grid p-fluid">
-                        <div class="field col-12 md:col-4">
-                            <span class="p-input-icon-left">
-                                        <label for="requisitos ">APF:</label>
-                                        <input type="text" pInputText placeholder="APF" [(ngModel)]="historia.apf">
-                                    </span>
-                        </div>
-                        <div class="field col-12 md:col-4">
-                            <span class="p-input-icon-left">
-                                        <label for="requisitos ">Tipo de sangre:</label>
-                                        <input type="text" pInputText placeholder="tipo sangre"
-                                            [(ngModel)]="historia.tipoSangre">
-                                    </span>
-                        </div>
-                        <div class="field col-12 md:col-4">
-                            <span class="p-input-icon-left">
-                                        <label for="requisitos ">Habitos:</label>
-                                        <input type="text" pInputText placeholder="Habitos"
-                                            [(ngModel)]="historia.habitos">
-                                    </span>
+                                <label for="requisitos ">Motivio de consulta:</label>
+                                <input type="text" pInputText placeholder="Motivo de consulta"
+                                    [(ngModel)]="historia.motivo">
+                            </span>
                         </div>
                     </div>
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
-                                        <label for="requisitos "> Signos Vitales:</label>
-                                    </span>
+                                <label for="requisitos ">Enfermedad Actual:</label>
+                                <input type="text" pInputText placeholder="Enfermedad Actual"
+                                    [(ngModel)]="historia.enfermedad">
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-input-icon-left">
+                                <label for="requisitos ">Alergias:</label>
+                                <input type="text" pInputText placeholder="alergias" [(ngModel)]="historia.alergia">
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-input-icon-left">
+                                <label for="requisitos ">APP:</label>
+                                <input type="text" pInputText placeholder="APP" [(ngModel)]="historia.app">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-input-icon-left">
+                                <label for="requisitos ">APF:</label>
+                                <input type="text" pInputText placeholder="APF" [(ngModel)]="historia.apf">
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-input-icon-left">
+                                <label for="requisitos ">Tipo de sangre:</label>
+                                <input type="text" pInputText placeholder="tipo sangre"
+                                    [(ngModel)]="historia.tipoSangre">
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-input-icon-left">
+                                <label for="requisitos ">Habitos:</label>
+                                <input type="text" pInputText placeholder="Habitos" [(ngModel)]="historia.habitos">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-input-icon-left">
+                                <label for="requisitos "> Signos Vitales:</label>
+                            </span>
                             <div class="field col-12 md:col-4">
                                 <span class="p-float-label">
-                                            <input type="text" id="inputtext" pInputText [(ngModel)]="historia.ta">
-                                            <label for="inputtext">TA</label>
-                                        </span>
+                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.ta">
+                                    <label for="inputtext">TA</label>
+                                </span>
                             </div>
                             <div class="field col-12 md:col-4">
                                 <span class="p-float-label">
-                                            <input type="text" id="inputtext" pInputText [(ngModel)]="historia.fc">
-                                            <label for="inputtext">FC</label>
-                                        </span>
+                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.fc">
+                                    <label for="inputtext">FC</label>
+                                </span>
                             </div>
                             <div class="field col-12 md:col-4">
                                 <span class="p-float-label">
-                                            <input type="text" id="inputtext" pInputText [(ngModel)]="historia.spo2">
-                                            <label for="inputtext">SPO2</label>
-                                        </span>
+                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.spo2">
+                                    <label for="inputtext">SPO2</label>
+                                </span>
                             </div>
                             <div class="field col-12 md:col-4">
                                 <span class="p-float-label">
-                                            <input type="text" id="inputtext" pInputText [(ngModel)]="historia.fr">
-                                            <label for="inputtext">FR</label>
-                                        </span>
+                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.fr">
+                                    <label for="inputtext">FR</label>
+                                </span>
                             </div>
                             <div class="field col-12 md:col-4">
                                 <span class="p-float-label">
-                                            <input type="text" id="inputtext" pInputText [(ngModel)]="historia.tem">
-                                            <label for="inputtext">Tº</label>
-                                        </span>
+                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.tem">
+                                    <label for="inputtext">Tº</label>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -182,28 +186,29 @@
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
-                                        <label for="requisitos ">DX:</label>
-                                        <input type="text" pInputText placeholder="DX" [(ngModel)]="historia.dx">
-                                    </span>
+                                <label for="requisitos ">DX:</label>
+                                <input type="text" pInputText placeholder="DX" [(ngModel)]="historia.dx">
+                            </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
-                                        <label for="requisitos ">Realizado por:</label>
-                                        <input type="text" pInputText placeholder="Realizado por"
-                                            [(ngModel)]="historia.realizado">
-                                    </span>
+                                <label for="requisitos ">Realizado por:</label>
+                                <input type="text" pInputText placeholder="Realizado por"
+                                    [(ngModel)]="historia.realizado">
+                            </span>
                         </div>
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="p-input-icon-left">
-                                        <label for="requisitos "> DR:</label>
-                                        <input type="text" pInputText placeholder="DR:" [(ngModel)]="historia.dr">
-                                    </span>
+                            <label for="requisitos "> DR:</label>
+                            <input type="text" pInputText placeholder="DR:" [(ngModel)]="historia.dr">
+                        </span>
                     </div>
                     <div class="row">
                         <p-card>
                             <div class="col-1">
-                                <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="guardarTodo()" styleClass="p-button-text">
+                                <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="guardarTodo()"
+                                    styleClass="p-button-text">
                                 </p-button>
                             </div>
                         </p-card>
@@ -217,11 +222,16 @@
     <p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
         <div class="col-12 flex align-items-center justify-content-center">
             <div class="p-fluid">
-                <p-table #dt [value]="historias" [lazy]="true" (onLazyLoad)="CargarHistoria($event)" selectionMode="single" [loading]="loading" responsiveLayout="scroll" [resizableColumns]="true" styleClass="p-datatable-gridlines p-datatable-sm" [globalFilterFields]="['nombres','historia_clinica', 'identificacion']"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true" [rows]="10">
+                <p-table #dt [value]="historias" [lazy]="true" (onLazyLoad)="CargarHistoria($event)"
+                    selectionMode="single" [loading]="loading" responsiveLayout="scroll" [resizableColumns]="true"
+                    styleClass="p-datatable-gridlines p-datatable-sm"
+                    [globalFilterFields]="['nombres','historia_clinica', 'identificacion']"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true"
+                    [rows]="10">
                     <ng-template pTemplate="caption">
                         <div class="flex">
-                            <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+                            <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
+                                (click)="clear(dt)"></button>
 
                             <span class="p-input-icon-left ml-auto">
                                 <i class="pi pi-search"></i>
@@ -267,7 +277,9 @@
                             <td style="text-align:center">{{historia.numCl}}</td>
                             <td style="text-align:center"> {{historia.fecha}}</td>
                             <td style="text-align:center">
-                                <button pButton pRipple type="button" icon="pi pi-print" (click)="imprimirPDFSinceButton(historia.idHistoria)" class="p-button-rounded p-button-text">
+                                <button pButton pRipple type="button" icon="pi pi-print"
+                                    (click)="imprimirPDFSinceButton(historia.idHistoria)"
+                                    class="p-button-rounded p-button-text">
                                 </button>
                             </td>
                         </tr>

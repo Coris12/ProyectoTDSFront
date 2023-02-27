@@ -1,164 +1,162 @@
 <app-header></app-header>
 <p-toast></p-toast>
 <div id="htmlData">
-<div class="animated fadeIn mt-4">
+  <div class="animated fadeIn mt-4">
     <div class="p-5 bg-light">
-        <div class="d-flex justify-content-between">
-            <div class="p-2">
-                <h2>CONSENTIMIENTO PARA PROCEDIMIENTOS MÉDICOS</h2>
-            </div>
-            <div class="col-12 md:col-2">
-                <div class="p-inputgroup">
-                  <button type="button" pButton pRipple label="LIMPIAR" ></button>
-                </div>
-              </div>
-              <div class="col-12 md:col-2">
-                <div class="p-inputgroup">
-                  <button type="button" pButton pRipple label="LISTADO CONSENTIMIENTOS" (click)="listDialog = true;"></button>
-                </div>
-              </div>
+      <div class="d-flex justify-content-between">
+        <div class="p-2">
+          <h2>CONSENTIMIENTO PARA PROCEDIMIENTOS MÉDICOS</h2>
         </div>
-        
-        <div class="content-section implementation mt-2">
-            <p-card [style]="{'width': '900px', 'margin-bottom': '2em'}">
-                <ng-template pTemplate="header">
-                </ng-template>
-
-                Yo (paciente) <input type="text" id="inputtext" pInputText  [(ngModel)]="Medico.nombrePaciente"> portador de la cédula de identidad No.
-                <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.cedula"> con el fin de diagnosticar
-                y/o tratar los sintomas o signos en relación con mi enfermedad doy mi <b>CONSENTIMIENTO</b> que se me
-                efectúe el (los) siguiente (s) procedimiento(s) <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.procedimientos">
-                diagnóstico(s),terapéutico(s) y/o quirúrgico(s) que sera realizado por o bajo la dirección del
-                Dr. <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.nombreDoc"> y/o personal designado por el médico y/o cirujano.
-                <br>
-                <br>
-                He sido informado de los riesgos o complicaciones ( tales como: perforaciones,
-                sangrado,dolor,aspiraciones shock),secuelas y eventualmente la muerte
-                asociados al mencionado procedimiento diagnóstico,terapéutico y/o quirúrgico.Se me ha explicado que
-                durante el curso del mismo pudieran presentarse condiciones imprevistas
-                necesitándose extensión del procedimiento especificado anteriormente o terminar en cirugía con remoción
-                de órganos y tejidos.Asi mismo reconozco que se me ha informado que por convenio
-                ejecutado entre el equipo médico y ENTIDAD: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.entidad" > solo existe la
-                presentacion de instalaciones para dicho(s) procemiento(s).
-                <br>
-                <br>
-                <h3>DECLARACIÓN DEL MÉDICO</h3>
-                <br>
-                Yo (Dr.)<input type="text" id="inputtext" pInputText [(ngModel)]="Medico.nombreDoc"> médico especialista <b>Cirujano</b> <input
-                    type="text" id="inputtext" pInputText [(ngModel)]="Medico.especialidad">, con código (MSP) No.<input type="text" id="inputtext"
-                    pInputText [(ngModel)]="Medico.codigo">,he explicado en lenguaje
-                común al paciente y/o representante , las condiciones de enfermedad y la necesidad de realizar los
-                procedimientos de diagnóstico y/o de tratamiento,asi como posibles riesgos y complicaciones asociados a
-                los mismos.
-                <br>
-                Firma: 
-                <br>                                                                         
-                C.I: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.cedula">
-                <br>
-                <b>(Paciente)</b>
-                <br>
-                Firma:
-                <br>                                                                          
-                C.I: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.personaA">
-                <br>
-                <b>(Testigo o persona autorizada a consentir a la persona )</b>
-                <br>
-                Fecha y Hora :  <input type="datetime-local" id="inputtext" pInputText [(ngModel)]="Medico.fecha">
-                <br>
-                Fecha Nacimiento : <input type="date" id="inputtext" pInputText [(ngModel)]="Medico.fechaNaci">   Edad: <input type="int" pInputText  [(ngModel)]="Medico.edad">
-                <br>
-                Direccion: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.direccion">
-                <br>
-                Telefono: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.telefono">
-                <br>
-                Alergia: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.alergia">
-
-
-
-            </p-card>
-               
+        <div class="col-12 md:col-2">
+          <div class="p-inputgroup">
+            <button type="button" pButton pRipple label="LIMPIAR" (click)="limpiarAll()"></button>
           </div>
+        </div>
+        <div class="col-12 md:col-2">
+          <div class="p-inputgroup">
+            <button type="button" pButton pRipple label="LISTADO CONSENTIMIENTOS" (click)="listDialog = true;"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section implementation mt-2">
+        <p-card [style]="{'width': '900px', 'margin-bottom': '2em'}">
+          <ng-template pTemplate="header">
+          </ng-template>
+
+          Yo (paciente) <input type="text" id="inputtext" pInputText  [(ngModel)]="Medico.nombrePaciente"> portador de la
+          cédula de identidad No.
+          <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.cedula"> con el fin de diagnosticar
+          y/o tratar los sintomas o signos en relación con mi enfermedad doy mi <b>CONSENTIMIENTO</b> que se me
+          efectúe el (los) siguiente (s) procedimiento(s) <input type="text" id="inputtext" pInputText
+            [(ngModel)]="Medico.procedimientos">
+          diagnóstico(s),terapéutico(s) y/o quirúrgico(s) que sera realizado por o bajo la dirección del
+          Dr. <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.nombreDoc"> y/o personal designado por el
+          médico y/o cirujano.
+          <br>
+          <br>
+          He sido informado de los riesgos o complicaciones ( tales como: perforaciones,
+          sangrado,dolor,aspiraciones shock),secuelas y eventualmente la muerte
+          asociados al mencionado procedimiento diagnóstico,terapéutico y/o quirúrgico.Se me ha explicado que
+          durante el curso del mismo pudieran presentarse condiciones imprevistas
+          necesitándose extensión del procedimiento especificado anteriormente o terminar en cirugía con remoción
+          de órganos y tejidos.Asi mismo reconozco que se me ha informado que por convenio
+          ejecutado entre el equipo médico y ENTIDAD: <input type="text" id="inputtext" pInputText
+            [(ngModel)]="Medico.entidad"> solo existe la
+          presentacion de instalaciones para dicho(s) procemiento(s).
+          <br>
+          <br>
+          <h3>DECLARACIÓN DEL MÉDICO</h3>
+          <br>
+          Yo (Dr.)<input type="text" id="inputtext" pInputText [(ngModel)]="Medico.nombreDoc" required="es requerido"> médico especialista
+          <b>Cirujano</b> <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.especialidad">, con código
+          (MSP) No.<input type="text" id="inputtext" pInputText [(ngModel)]="Medico.codigo">,he explicado en lenguaje
+          común al paciente y/o representante , las condiciones de enfermedad y la necesidad de realizar los
+          procedimientos de diagnóstico y/o de tratamiento,asi como posibles riesgos y complicaciones asociados a
+          los mismos.
+          <br>
+          Firma:
+          <br>
+          C.I: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.cedula">
+          <br>
+          <b>(Paciente)</b>
+          <br>
+          Firma:
+          <br>
+          C.I: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.personaA">
+          <br>
+          <b>(Testigo o persona autorizada a consentir a la persona )</b>
+          <br>
+          Fecha y Hora : <input type="datetime-local" id="inputtext" pInputText [(ngModel)]="Medico.fecha">
+          <br>
+          Fecha Nacimiento : <input type="date" id="inputtext" pInputText [(ngModel)]="Medico.fechaNaci"> Edad: <input
+            type="int" pInputText [(ngModel)]="Medico.edad">
+          <br>
+          Direccion: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.direccion">
+          <br>
+          Telefono: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.telefono">
+          <br>
+          Alergia: <input type="text" id="inputtext" pInputText [(ngModel)]="Medico.alergia">
+
+        </p-card>
+
+      </div>
 
     </div>
-</div>
+  </div>
 </div>
 <div>
-
-    
-    <p-button label="Save" (click)="saveConsentimiento()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
-    </p-button>
- 
-        
+  <p-button label="Guardar" (click)="saveConsentimiento()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
+  </p-button>
 </div>
 
 <p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
-    <div class="col-12 flex align-items-center justify-content-center">
-        <div class="p-fluid">
-            <p-table #dt [value]="Medicos" [lazy]="true" (onLazyLoad)="CargarConsentimientos($event)"
-            selectionMode="single" [loading]="loading"  responsiveLayout="scroll" [resizableColumns]="true"
-            styleClass="p-datatable-gridlines p-datatable-sm"
-            [globalFilterFields]="['nombres', 'identificacion']"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true" [rows]="10">
-            <ng-template pTemplate="caption">
-                <div class="flex">
-                  <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
-                    (click)="clear(dt)"></button>
-                
-                  <span class="p-input-icon-left ml-auto">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" autocomplete="off" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                      placeholder="BUSCAR" />
-                  </span>
-                </div>
-              </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th pResizableColumn style="width:110px">
-                          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
-                            IDENTIFICACIÓN
-                          </div>
-                        </th>
-                        <th pResizableColumn>
-                          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
-                            NOMBRES PACIENTE
-                          </div>
-                        </th>
-                        <th pResizableColumn style="width:100px">
-                          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
-                            FECHA
-                          </div>
-                        </th>
-                        
-                        <th pResizableColumn style="width:50px">
-                          <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
-                            PRINT
-                          </div>
-                        </th>
-                      </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-medi>
-                    <tr>
-                        <td style="text-align:center">{{medi.idMediC}}</td>
-                        <td style="text-align:center">{{medi.nombrePaciente}}</td>
-                        <td style="text-align:center"> {{medi.fecha}}</td>
-                        <td style="text-align:center">
-                            <button pButton pRipple type="button" icon="pi pi-print" (click)="imprimirPDFSinceButton(medi.idMediC)"
-                            class="p-button-rounded p-button-text">
-                            </button>
-                          </td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="summary">
-                    <div class="p-d-flex p-ai-center p-jc-between">
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="emptymessage">
-                    <tr>
-                        <td colspan="8">Ningun registro.</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
+  <div class="col-12 flex align-items-center justify-content-center">
+    <div class="p-fluid">
+      <p-table #dt [value]="Medicos" [lazy]="true" (onLazyLoad)="CargarConsentimientos($event)" selectionMode="single"
+        [loading]="loading" responsiveLayout="scroll" [resizableColumns]="true"
+        styleClass="p-datatable-gridlines p-datatable-sm" [globalFilterFields]="['nombres', 'identificacion']"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
+              (click)="clear(dt)"></button>
+
+            <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" autocomplete="off"
+                (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="BUSCAR" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pResizableColumn style="width:110px">
+              <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                IDENTIFICACIÓN
+              </div>
+            </th>
+            <th pResizableColumn>
+              <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                NOMBRES PACIENTE
+              </div>
+            </th>
+            <th pResizableColumn style="width:100px">
+              <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                FECHA
+              </div>
+            </th>
+
+            <th pResizableColumn style="width:50px">
+              <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                PRINT
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-medi>
+          <tr>
+            <td style="text-align:center">{{medi.idMediC}}</td>
+            <td style="text-align:center">{{medi.nombrePaciente}}</td>
+            <td style="text-align:center"> {{medi.fecha}}</td>
+            <td style="text-align:center">
+              <button pButton pRipple type="button" icon="pi pi-print" (click)="imprimirPDFSinceButton(medi.idMediC)"
+                class="p-button-rounded p-button-text">
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="p-d-flex p-ai-center p-jc-between">
+          </div>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">Ningun registro.</td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
-  
-  </p-sidebar>
+  </div>
+
+</p-sidebar>

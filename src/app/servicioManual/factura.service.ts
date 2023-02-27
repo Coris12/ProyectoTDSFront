@@ -35,4 +35,7 @@ export class FacturaService {
   genePdHistoria(idHi: number){
     return this.http.get(this.baseUrl+'/HistoriaClinica/generarPdf?idHi='+idHi,{responseType:'blob' as 'json'});
   }
+  geneProtocolo(proto: number){
+    return this.http.get(this.baseUrl+'/diagnostico/generarPdf?proto='+proto,{responseType:'blob' as 'json'});
+  }
 }

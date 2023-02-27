@@ -33,7 +33,7 @@ export class MedicamentosComponent implements OnInit {
   Medi: Medicamentos = {
     abreviaturaFun: null,
     fecha: null,
-    establecimiento:null,
+    establecimiento: null,
     hora: null,
     idMedicamentos: null,
     inicialesRespon: null,
@@ -183,11 +183,16 @@ export class MedicamentosComponent implements OnInit {
   }
 
   vaciarbuscar() {
-    this.buscarcedula = ""
-    this.buscarnombre = ""
-    this.sexo = ""
-    this.numHoja = ""
-    this.numHistoria = ""
+    this.Medi.abreviaturaFun = "";
+    this.Medi.establecimiento = "";
+    this.Medi.hora = "";
+    this.Medi.idMedicamentos = +"";
+    this.Medi.inicialesRespon = "";
+    this.Medi.nombreMedicamento = "";
+    this.buscarcedula = "";
+    this.buscarnombre="";
+    this.sexo="";
+
   }
 
   imprimirPDFSinceButton(buscarcedula) {
@@ -227,7 +232,7 @@ export class MedicamentosComponent implements OnInit {
       let hora = fech.getHours() + ":" + fech.getMinutes() + ":" + fech.getSeconds();
       var link = document.createElement('a');
       link.href = url;
-      link.download = 'Medicamento_' + nomPer +  '-' + fecha + '-h' + hora + '-' + numAlea + '.pdf';
+      link.download = 'Medicamento_' + nomPer + '-' + fecha + '-h' + hora + '-' + numAlea + '.pdf';
       link.click();
       window.open(url);
     } else {
@@ -243,7 +248,7 @@ export class MedicamentosComponent implements OnInit {
 
 
 
-  
+
   ///WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWw
 
   /*convetToPDF1() {
@@ -267,6 +272,6 @@ export class MedicamentosComponent implements OnInit {
     });
   }*/
 
-  
+
 
 }

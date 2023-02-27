@@ -7,12 +7,18 @@
                 <h1>Evolución y Prescripciones</h1>
             </div>
         </div>
+        <div class="col-12 md:col-2">
+            <div class="p-inputgroup">
+                <button type="button" pButton pRipple label="LISTADO EVOLUCIONES" (click)="listDialog = true;"></button>
+            </div>
+        </div>
         <div class="content-section implementation mt-2">
             <div class="mt-4">
                 <div class="grid p-fluid">
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" [(ngModel)]="establecimiento" value={{establecimiento}} pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="establecimiento" value={{establecimiento}}
+                                pInputText>
                             <label for="inputtext">Establecimiento</label>
                         </span>
                     </div>
@@ -89,20 +95,98 @@
                                     PERSONAL)</label>
                                 <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Evolu.indicaciones"></textarea>
                             </div>
-                            <div class="form-group mt-2" >
-                                <label for="requisitos " >Administrar,Farmacos,Insumos</label>
-                                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Evolu.medicamentoAD" ></textarea>
+                            <div class="form-group mt-2">
+                                <label for="requisitos ">Administrar,Farmacos,Insumos</label>
+                                <textarea rows="5" cols="30" pInputTextarea
+                                    [(ngModel)]="Evolu.medicamentoAD"></textarea>
                             </div>
                         </div>
                     </p-card>
                 </div>
             </div>
         </div>
-        <p-button label="Save" (click)="cargarPersona()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
+        <p-button label="Guardar" (click)="cargarPersona()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
         </p-button>
-        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.6em'}">
-        </p-button>
-        <p-button label="IMPRIMIR" (click)=" imprimirPDFSinceButton(buscarcedula)" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
+        <p-button label="Cancel" (click)="limpiarCampos()" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.6em'}">
         </p-button>
     </div>
+    <p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
+        <div class="col-12 flex align-items-center justify-content-center">
+            <div class="p-fluid">
+                <p-table #dt [value]="Evoluciones" [lazy]="true" (onLazyLoad)="cargarEvolucion($event)"
+                    selectionMode="single" [loading]="loading" responsiveLayout="scroll" [resizableColumns]="true"
+                    styleClass="p-datatable-gridlines p-datatable-sm"
+                    [globalFilterFields]="['nombres','historia_clinica', 'identificacion']"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true"
+                    [rows]="10">
+                    <ng-template pTemplate="caption">
+                        <div class="flex">
+                            <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
+                                (click)="clear(dt)"></button>
+
+                            <span class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" autocomplete="off"
+                                    (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="BUSCAR" />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pResizableColumn style="width:110px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    IDENTIFICACIÓN
+                                </div>
+                            </th>
+                            <th pResizableColumn>
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    NOMBRES
+                                </div>
+                            </th>
+                            <th pResizableColumn style="width:30px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    #HC
+                                </div>
+                            </th>
+                            <th pResizableColumn style="width:100px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    FECHA
+                                </div>
+                            </th>
+
+                            <th pResizableColumn style="width:50px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    PRINT
+                                </div>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-evo>
+                        <tr>
+                            <td style="text-align:center">{{evo.usuario.identificacion}}</td>
+                            <td style="text-align:center">{{evo.usuario.nombres}}</td>
+                            <td style="text-align:center">{{evo.numCl}}</td>
+                            <td style="text-align:center"> {{evo.fecha}}</td>
+                            <td style="text-align:center">
+                                <button pButton pRipple type="button" icon="pi pi-print"
+                                    (click)="imprimirPDFSinceButton(evo.usuario.identificacion)"
+                                    class="p-button-rounded p-button-text">
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="8">Ningun registro.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+    </p-sidebar>
 </div>

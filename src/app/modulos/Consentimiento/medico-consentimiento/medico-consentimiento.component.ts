@@ -68,6 +68,7 @@ export class MedicoConsentimientoComponent implements OnInit {
           this.idMe = res.object
           console.log(this.idMe);
           this.MessageSuccess(" Consentimiento Medico guardado")
+          this.limpiarAll()
           console.log(this.Medico);
 
         } else {
@@ -110,13 +111,29 @@ export class MedicoConsentimientoComponent implements OnInit {
       detail: 'Correcto!: ' + msg,
     });
   }
+  limpiarAll(){
+    this.Medico.alergia="";
+    this.Medico.cedula="";
+   this.Medico.codigo="";
+   this.Medico. direccion="";
+   this.Medico. edad=+"";
+   this.Medico. especialidad="";
+   this.Medico. estado=+"";
+   this.Medico. idMediC=+"";
+   this.Medico. nombreDoc="";
+   this.Medico. nombrePaciente="";
+   this.Medico.   personaA="";
+   this.Medico. procedimientos="";
+   this.Medico. telefono="";
+   this.Medico. entidad="";
+  }
 
   imprimirPDFSinceButton(idmeC:number) {
     this.serviceGenPdf.genePdfMedicoConsentimietno(idmeC).subscribe(data => {
       if (data) {
         //this.cargarConsultaExterna(idConsExterno);
         this.descargarPdf(data);
-        //this.limpiarAll();
+        this.limpiarAll();
       } else {
         this.mensajeError("No PDF document found");
       }

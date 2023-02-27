@@ -11,7 +11,7 @@
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
                     <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="establecimiento"
-                        value={{establecimiento}} (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                        value={{establecimiento}} (keypress)="validacionAlfanumerica($event)" maxlength="255"ngModel required>
                     <label for="inputtext">INSTITUCIÓN DEL SISTEMA</label>
                 </span>
             </div>
@@ -25,8 +25,8 @@
             </div>
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
-                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="admision.codUd"
-                        (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="admision.codUd" required
+                        (keypress)="validacionAlfanumerica($event)" maxlength="255" >
                     <label for="inputtext">COD. UD</label>
                 </span>
             </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MessageService,LazyLoadEvent } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { EquiposControllerService } from 'src/app/api/equiposController.service';
 import { ProtocoloControllerService } from 'src/app/api/protocoloController.service';
@@ -7,6 +8,7 @@ import { TipoQuiControllerService } from 'src/app/api/tipoQuiController.service'
 import { EquipoOperatorio } from 'src/app/model/equipoOperatorio';
 import { Protocolos } from 'src/app/model/protocolos';
 import { TiposQuirurgicos } from 'src/app/model/tiposQuirurgicos';
+import { FacturaService } from 'src/app/servicioManual/factura.service';
 
 @Component({
   selector: 'app-protocolo',
@@ -23,7 +25,19 @@ export class ProtocoloComponent implements OnInit {
   idProto: any
   idEqui: any;
   idTipo: any;
+  loading:boolean=true;
+  listDialog: boolean;
+  Protocolos: any[] = [];
+  submitted:boolean
 
+  openNew() {
+    this.submitted = false;
+    this.listDialog = true;
+  }
+
+  clear(table: Table) {
+    table.clear();
+  }
   proto: Protocolos = {
     escrita: null,
     estado: null,
@@ -75,7 +89,8 @@ export class ProtocoloComponent implements OnInit {
     private messageService: MessageService,
     private protocoloService: ProtocoloControllerService,
     private equipoService: EquiposControllerService,
-    private tipoService: TipoQuiControllerService
+    private tipoService: TipoQuiControllerService,
+    private serviceGenPdf: FacturaService
   ) { }
 
   ngOnInit(): void {
@@ -226,5 +241,77 @@ export class ProtocoloComponent implements OnInit {
     });
   }
 
+  imprimirPDFSinceButton(proto: number) {
+    this.serviceGenPdf.geneProtocolo(proto).subscribe(data => {
+      if (data) {
+        //this.cargarConsultaExterna(idConsExterno);
+        this.descargarPdf(data);
+        //this.limpiarAll();
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+  }
+  
+  createId(): string {
+    let id = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+  }
 
+  descargarPdf(pdfSrc: any) {
+    let pdf: any = pdfSrc;
+    let numAlea = this.createId();
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var url = window.URL.createObjectURL(blob);
+    if (this.proto.fecha != null) {
+      let nomPer = this.proto.usuario.nombres;
+
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'RECORD OPERATORIO_' + nomPer + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    } else {
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'RECORD OPERATORIO_' + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    }
+
+  }
+
+  imprimirPDF(proto: number) {
+    this.serviceGenPdf.geneProtocolo(proto).subscribe(data => {
+      if (data) {
+        this.descargarPdf(data);
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+  }
+
+  cargarProtocolo(event: LazyLoadEvent) {
+    this.loading = true;
+    setTimeout(() => {
+      this.protocoloService.listUsingGET11().subscribe(
+        data => {
+          this.Protocolos = data;
+          console.log(data);
+          this.loading = false;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }, 100);
+  }
 }

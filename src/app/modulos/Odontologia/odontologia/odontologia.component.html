@@ -7,6 +7,7 @@
                 <h1>Odontologia</h1>
             </div>
         </div>
+        <div id="htmlData">
         <div class="content-section implementation mt-2">
             <div class="mt-4">
                 <div class="grid p-fluid">
@@ -53,6 +54,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <p-divider align="left">
             <div class="inline-flex align-items-center">
                 <i class="pi pi-user mr-2"></i>
@@ -835,32 +837,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid p-fluid">
-            <div class="col-12 md:col-4">
-                <span class="p-input-icon-left">
-                    <label for="requisitos "></label>
-                    <input type="text" pInputText placeholder="">
-                </span>
-            </div>
-            <label for="requisitos ">CIE</label>
-            <div class="col-12 md:col-2">
-                <span class="p-input-icon-left">
-                    <input type="text" pInputText placeholder="">
-                </span>
-            </div>
-            <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                    <label for="ch">PRE</label>
-                </div>
-            </div>
-            <div class="col-12 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
-                    <label for="ch">DEF</label>
-                </div>
-            </div>
-        </div>
+        
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
@@ -959,5 +936,6 @@
         </div>
         <p-button label="Save" (click)="cargarPersona()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
         </p-button>
+        <button style="text-align: center" class="btn btn-dark  ml-4" (click)="downloadPDF()"><i class="fas fa-print"></i> Descargar PDF</button>
 
     </div>

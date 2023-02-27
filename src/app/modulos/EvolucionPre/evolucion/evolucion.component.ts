@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { EvolucionControllerService } from 'src/app/api/evolucionController.service';
@@ -61,7 +61,6 @@ export class EvolucionComponent implements OnInit {
     table.clear();
   }
   ngOnInit(): void {
-    this.cargarEvolucion()
   }
 
 
@@ -80,7 +79,8 @@ export class EvolucionComponent implements OnInit {
       }
     })
   }
-  cargarEvolucion() {
+  
+  cargarEvolucion(event: LazyLoadEvent) {
     this.loading = true;
     setTimeout(() => {
       this.evolucionService.listUsingGET4().subscribe(
@@ -96,6 +96,17 @@ export class EvolucionComponent implements OnInit {
     }, 100);
   }
 
+  limpiarCampos() {
+    this.buscarcedula="";
+    this.buscarnombre="";
+    this.Evolu.establecimiento = "";
+    this.Evolu.evolucion = "";
+    this.Evolu.idEvolucion = +"";
+    this.Evolu.hora = "",
+    this.Evolu.indicaciones = "";
+    this.Evolu.medicamentoAD = "",
+    this.Evolu.usuario.nombres = "";
+  }
 
   buscarPersona() {
     this.persnaService.listaUsingGET().subscribe((res) => {
@@ -112,7 +123,6 @@ export class EvolucionComponent implements OnInit {
             this.buscarnombre = datos.nombres
             this.sexo = datos.sexo
             break;
-            //        this.numHoja= datos.dondeesa lo del numero de hoja?????????????????????????????????? eso todavia no le pongo ajajja le qu jaejajjaja chiiiiiiiiiiii bueno le haces como le hago yo
           }
         } else if (this.buscarnombre != "" && this.buscarnombre != undefined) {
           //console.log(datos.nombres, this.buscarnombre);
@@ -153,6 +163,7 @@ export class EvolucionComponent implements OnInit {
         }
       })
   }
+
   imprimirPDFSinceButton(buscarcedula) {
     this.serviceGenPdf.genePdfEvolucion(buscarcedula).subscribe(data => {
       if (data) {
@@ -166,6 +177,7 @@ export class EvolucionComponent implements OnInit {
       this.mensajeError("ERROR AL GENERAR PDF");
     });
   }
+
   createId(): string {
     let id = '';
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -202,6 +214,17 @@ export class EvolucionComponent implements OnInit {
 
   }
 
+  imprimirPDF(buscarcedula) {
+    this.serviceGenPdf.genePdfEvolucion(buscarcedula).subscribe(data => {
+      if (data) {
+        this.descargarPdf(data);
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+  }
   /* buscarMedicamento() {
      var medi2: string
      var i: any = 0

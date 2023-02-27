@@ -175,6 +175,33 @@ export class HistoriaComponent implements OnInit {
       this.mensajeError("ERROR AL GENERAR PDF");
     });
   }
+  limpiarAll() {
+    this.historia.alergia = "";
+    this.historia.examen = "";
+    this.historia.apf = "";
+    this.historia.app = "";
+    this.historia.edad = +"";
+    this.historia.enfermedad = "";
+    this.historia.estado = +"";
+    this.historia.estadoCivil = "";
+    this.historia.fc = "";
+    this.historia.fr = "";
+    this.historia.habitos = "";
+    this.historia.idHistoria = +"";
+    this.historia.motivo = "";
+    this.historia.numCl = +"";
+    this.historia.procedencia = "";
+    this.historia.religion = "";
+    this.historia.residencia = "";
+    this.historia.spo2 = "";
+    this.historia.dx = "";
+    this.historia.ta = "";
+    this.historia.dr = "";
+    this.historia.tem = +"";
+    this.historia.tipoSangre = "";
+    this.buscarcedula = "";
+    this.buscarnombre="";
+  }
   createId(): string {
     let id = '';
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -226,9 +253,9 @@ export class HistoriaComponent implements OnInit {
     this.historiaService.listUsingGET6().subscribe((res) => {
       for (let datos of res) {
         i++
-        numhistoria= i+1
-       console.log(numhistoria,"!!!!!!!!!!!!!!!!!!!!!!!!!111");
-       this.historia.numCl= numhistoria       
+        numhistoria = i + 1
+        console.log(numhistoria, "!!!!!!!!!!!!!!!!!!!!!!!!!111");
+        this.historia.numCl = numhistoria
       }
 
     })
