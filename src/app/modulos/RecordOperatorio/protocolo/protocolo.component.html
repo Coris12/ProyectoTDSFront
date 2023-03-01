@@ -9,9 +9,15 @@
         </div>
         <div class="col-12 md:col-2">
             <div class="p-inputgroup">
-              <button type="button" pButton pRipple label="LISTADO PROTOCOLO" (click)="listDialog = true;"></button>
+                <button type="button" pButton pRipple label="LISTADO PROTOCOLO" (click)="listDialog = true;"></button>
             </div>
-          </div>
+
+        </div>
+        <div class="col-12 md:col-2">
+            <div class="p-inputgroup">
+                <button type="button" pButton pRipple label="LIMPIAR" (click)="limpiar()"></button>
+            </div>
+        </div>
         <div class="mt-4">
             <div class="grid p-fluid">
                 <div class="field col-12 md:col-2">
@@ -22,7 +28,7 @@
                         <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula" ngModel required="">
                         <label for="inputtext">Cedula</label>
                     </span>
-                    
+
                 </div>
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
@@ -61,22 +67,26 @@
                                     <div class="grid p-fluid">
                                         <div class="form-group mt-2">
                                             <label for="float-input">Preoperatorio</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="proto.preoperatorio"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="proto.preoperatorio"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Postoperatorio</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="proto.postoperatorio"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="proto.postoperatorio"></textarea>
                                         </div>
                                     </div>
                                     <h3>OPERACION</h3>
                                     <div class="grid p-fluid">
                                         <div class="form-group mt-2">
                                             <label for="float-input">Tipo de Cirujia</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="proto.tipoCirujia"> </textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="proto.tipoCirujia"> </textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Realizada</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="proto.realizada"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="proto.realizada"></textarea>
                                         </div>
                                     </div>
                                 </p-card>
@@ -89,19 +99,22 @@
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Redactada por:</label>
-                                            <input type="text" pInputText placeholder="Redactada" [(ngModel)]="proto.redactado">
+                                            <input type="text" pInputText placeholder="Redactada"
+                                                [(ngModel)]="proto.redactado">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Fecha de Dictado</label>
-                                            <input type="datetime-local" pInputText placeholder="" [(ngModel)]="proto.fecha">
+                                            <input type="datetime-local" pInputText placeholder=""
+                                                [(ngModel)]="proto.fecha">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Escrita por:</label>
-                                            <input type="text" pInputText placeholder="Escrita" [(ngModel)]="proto.escrita">
+                                            <input type="text" pInputText placeholder="Escrita"
+                                                [(ngModel)]="proto.escrita">
                                         </span>
                                     </div>
                                 </div>
@@ -110,45 +123,53 @@
                         </div>
                         <div class="col-4">
                             <div class="p-fluid">
-                                <p-card header="EQUIPO OPERATORIO" [style]="{width: '360px'}" styleClass="p-card-shadow">
+                                <p-card header="EQUIPO OPERATORIO" [style]="{width: '360px'}"
+                                    styleClass="p-card-shadow">
                                     <ng-template pTemplate="header">
                                     </ng-template>
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Cirujano</label>
-                                            <input type="text" pInputText placeholder="Cirujano"[(ngModel)]="equi.cirujano">
+                                            <input type="text" pInputText placeholder="Cirujano"
+                                                [(ngModel)]="equi.cirujano">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Primer ayudante</label>
-                                            <input type="text" pInputText placeholder="Primer ayudante" [(ngModel)]="equi.primerAyudante">
+                                            <input type="text" pInputText placeholder="Primer ayudante"
+                                                [(ngModel)]="equi.primerAyudante">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Segundo ayudante</label>
-                                            <input type="text" pInputText placeholder="Segundo ayudante" [(ngModel)]="equi.segundoAyudante">
+                                            <input type="text" pInputText placeholder="Segundo ayudante"
+                                                [(ngModel)]="equi.segundoAyudante">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Tercer ayudante</label>
-                                            <input type="text" pInputText placeholder="Tercer ayudante" [(ngModel)]="equi. tercerAyudante">
+                                            <input type="text" pInputText placeholder="Tercer ayudante"
+                                                [(ngModel)]="equi. tercerAyudante">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
                                         <label for="float-input">Instrumentista</label>
-                                        <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="equi.instrumentista"></textarea>
+                                        <textarea rows="5" cols="30" pInputTextarea
+                                            [(ngModel)]="equi.instrumentista"></textarea>
                                     </div>
                                     <div class="form-group mt-2">
                                         <label for="float-input">Anestesiologo</label>
-                                        <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="equi.anestesiologo"></textarea>
+                                        <textarea rows="5" cols="30" pInputTextarea
+                                            [(ngModel)]="equi.anestesiologo"></textarea>
                                     </div>
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Fecha de operacion</label>
-                                            <input type="date" pInputText placeholder="Fecha de operacion" [(ngModel)]="equi.fecha">
+                                            <input type="date" pInputText placeholder="Fecha de operacion"
+                                                [(ngModel)]="equi.fecha">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
@@ -166,7 +187,8 @@
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Tipo de anestesia</label>
-                                            <input type="text" pInputText placeholder="Tipo de anestesia" [(ngModel)]="equi.tipoAnestesia">
+                                            <input type="text" pInputText placeholder="Tipo de anestesia"
+                                                [(ngModel)]="equi.tipoAnestesia">
                                         </span>
                                     </div>
                                 </p-card>
@@ -174,37 +196,45 @@
                         </div>
                         <div class="col-4">
                             <div class="p-fluid">
-                                <p-card header="TIEMPOS QUIRÚRGICOS" [style]="{width: '360px'}" styleClass="p-card-shadow">
+                                <p-card header="TIEMPOS QUIRÚRGICOS" [style]="{width: '360px'}"
+                                    styleClass="p-card-shadow">
                                     <ng-template pTemplate="header">
                                     </ng-template>
                                     <div class="grid p-fluid">
                                         <div class="form-group mt-2">
                                             <label for="float-input">Diéresis</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.dieresis"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="tipo.dieresis"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Exposición</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.exposicion"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="tipo.exposicion"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Exploración y hallazgos quirúrgicos</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.exploracion"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="tipo.exploracion"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Procedimiento operatorio</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.procedimiento"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="tipo.procedimiento"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Sintesis</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.sintesis"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="tipo.sintesis"></textarea>
                                         </div>
                                         <div class="form-gr     oup mt-2">
                                             <label for="float-input">Complicaciones del acto operatorio</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.complicaciones"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="tipo.complicaciones"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Examen Hisopatológico</label>
-                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.examen"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea
+                                                [(ngModel)]="tipo.examen"></textarea>
                                         </div>
                                     </div>
                                 </p-card>
@@ -218,7 +248,8 @@
                 <div class="row">
                     <p-card>
                         <div class="col-12">
-                            <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="cargarPersona()" styleClass="p-button-text">
+                            <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="cargarPersona()"
+                                styleClass="p-button-text">
                             </p-button>
                         </div>
                     </p-card>
@@ -229,11 +260,16 @@
     <p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
         <div class="col-12 flex align-items-center justify-content-center">
             <div class="p-fluid">
-                <p-table #dt [value]="Protocolos" [lazy]="true" (onLazyLoad)="cargarProtocolo($event)" selectionMode="single" [loading]="loading" responsiveLayout="scroll" [resizableColumns]="true" styleClass="p-datatable-gridlines p-datatable-sm" [globalFilterFields]="['nombres','historia_clinica', 'identificacion']"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true" [rows]="10">
+                <p-table #dt [value]="Protocolos" [lazy]="true" (onLazyLoad)="cargarProtocolo($event)"
+                    selectionMode="single" [loading]="loading" responsiveLayout="scroll" [resizableColumns]="true"
+                    styleClass="p-datatable-gridlines p-datatable-sm"
+                    [globalFilterFields]="['nombres','historia_clinica', 'identificacion']"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true"
+                    [rows]="10">
                     <ng-template pTemplate="caption">
                         <div class="flex">
-                            <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash" (click)="clear(dt)"></button>
+                            <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
+                                (click)="clear(dt)"></button>
 
                             <span class="p-input-icon-left ml-auto">
                                 <i class="pi pi-search"></i>
@@ -279,7 +315,9 @@
                             <td style="text-align:center">{{proto.numCl}}</td>
                             <td style="text-align:center"> {{proto.fecha}}</td>
                             <td style="text-align:center">
-                                <button pButton pRipple type="button" icon="pi pi-print" (click)="imprimirPDFSinceButton(proto.idProtocolo)" class="p-button-rounded p-button-text">
+                                <button pButton pRipple type="button" icon="pi pi-print"
+                                    (click)="imprimirPDFSinceButton(proto.idProtocolo)"
+                                    class="p-button-rounded p-button-text">
                                 </button>
                             </td>
                         </tr>

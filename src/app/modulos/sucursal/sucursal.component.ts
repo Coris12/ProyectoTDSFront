@@ -63,7 +63,6 @@ export class SucursalComponent implements OnInit {
         });
       });
     this.sucursalDialog = true;
-
   }
 
   guardarSucursal() {
@@ -96,6 +95,7 @@ export class SucursalComponent implements OnInit {
         nombreSuc: null,
         telefonoSuc: null
       })
+      this.limpiar()
 
     }
   }
@@ -113,10 +113,12 @@ export class SucursalComponent implements OnInit {
     );
   }
 
-
+  limpiar() {
+    this.sucursalForm.reset();
+  }
   //metodo de borrado logico
-borrarSucursal(idSucursal: number): void {
-console.log(idSucursal)
+  borrarSucursal(idSucursal: number): void {
+    console.log(idSucursal)
     this.confirmationService.confirm({
       message: 'Esta seguro de eliminar la sucursal?',
       accept: () => {

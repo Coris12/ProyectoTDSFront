@@ -148,6 +148,7 @@ import { TrataMControllerService } from './api/trataMController.service';
 import { AltaControllerService } from './api/altaController.service';
 import { EmergenciaControllerService } from './api/emergenciaController.service';
 import { LesionesControllerService } from './api/lesionesController.service';
+import { AnestesiaComponent } from './modulos/Anestesia/anestesia/anestesia.component';
 
 @NgModule({
   declarations: [
@@ -184,6 +185,7 @@ import { LesionesControllerService } from './api/lesionesController.service';
     ProtocoloComponent,
     HistoriaComponent,
     OdontologiaComponent,
+    AnestesiaComponent,
 
 
   ],

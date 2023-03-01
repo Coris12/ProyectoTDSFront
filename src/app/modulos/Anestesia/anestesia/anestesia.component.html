@@ -1,0 +1,1138 @@
+<app-header></app-header>
+<p-toast></p-toast>
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Ficha Anestesia</h1>
+            </div>
+        </div>
+        <div class="content-section implementation mt-2">
+            <p-scrollPanel [style]="{width: '100%', height: '700px'}">
+                <div class="mt-4">
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-2">
+                            <button type="button" pButton pRipple label="LIMPIAR"></button>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText>
+                                <label for="inputtext">Cedula</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext"[(ngModel)]="buscarnombre" pInputText>
+                                <label for="inputtext">Nombre</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext"[(ngModel)]="numcli" pInputText>
+                                <label for="inputtext">Num.Historia clinica</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <input type="date" id="inputtext" pInputText>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" [(ngModel)]="edad"pInputText>
+                                <label for="inputtext">Edad</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext"[(ngModel)]="sexo" pInputText>
+                                <label for="inputtext">Sexo</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Estatura</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Peso</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Ocupacion Actual</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Servicio</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Sala</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Cama</label>
+                            </span>
+                        </div>
+                    </div>
+                    <p-divider></p-divider>
+                    <br>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Diagnostico Preoperatorio</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Diagnostico Postoperatorio</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Operacion propuesta</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Cirujano</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Ayudantes</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Operacion realizada</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Anestesiologo</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Ayudantes</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Intrumentista</label>
+                            </span>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-check mr-2"></i>
+                            <b>Registro Trans-Anestesico</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="container mt-2" style="text-align: center;">
+                            <img src="../../../../assets/transAnestesico.jpg" class="img-thumbnail" width="800"
+                                height="800">
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Drogas Administradas</b>
+                        </div>
+                    </p-divider>
+                    <p-editor [style]="{'height':'120px'}" (keypress)="validacionAlfanumerica($event)">
+                        <ng-template pTemplate="header">
+                            <span class="ql-formats">
+                                <button type="button" class="ql-bold" aria-label="Bold"></button>
+                                <button type="button" class="ql-italic" aria-label="Italic"></button>
+                                <button type="button" class="ql-underline" aria-label="Underline"></button>
+                            </span>
+                        </ng-template>
+                    </p-editor>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Tiempos</b>
+                        </div>
+                    </p-divider>
+                    <b>Duracion Anestesia</b>
+                    <br>
+                    <br>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Horas</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Minutos</label>
+                            </span>
+                        </div>
+                    </div>
+                    <b>Duracion Operacion</b>
+                    <br>
+                    <br>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Horas</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Minutos</label>
+                            </span>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Tecnicas</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">General</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Sistem.Abierto</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Sistem.Cerrado</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Sistem.Semi-Cerrado</label>
+                            </div>
+                        </div>
+                    </div>
+                    <b>Aparatos Usados</b>
+                    <br>
+                    <br>
+                    <div class="grid p-fluid">
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Circ.</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Vaiven</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Mascara</label>
+                            </div>
+                        </div>
+                    </div>
+                    <b>Intb.Traqueal</b>
+                    <br>
+                    <br>
+                    <div class="grid p-fluid">
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Oral</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Nasal</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Rapid.</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">I_ent.</label>
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Tubo Nº</label>
+                            </span>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Manguito Inflab.</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Taponamiento</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Anst Topica</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Anst Continua</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Conductiva</label>
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Asepsia de piel con </label>
+                            </span>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Habon</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Raquidea</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Espidural Caud</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Simple</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Continua</label>
+                            </div>
+                        </div>
+                    </div>
+                    <b>Altura Puncion</b>
+                    <br>
+                    <br>
+                    <div class="grid p-fluid">
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Puncion Lat.</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Linea Media</label>
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Nivel</label>
+                            </span>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Hiperbara</label>
+                            </div>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Infunciones</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Dextrosas</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Ringer</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Sangre</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Expansores</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Total</label>
+                            </span>
+                        </div>
+                    </div>
+                    <b>Hemorragias </b>
+                    <br>
+                    <br>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">hemorragia</label>
+                            </span>
+                        </div>
+                        <b>APGAR</b>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">1 min. 5 min. 10 min. F.muerto</label>
+                            </span>
+                        </div>
+                    </div>
+                    <b>Tecnicas especiales </b>
+                    <br>
+                    <br>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <textarea id="float-input" rows="5" cols="60" pInputTextarea></textarea>
+                                <label for="float-input"></label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Conducido a:</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Por:</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Hora:</label>
+                            </span>
+                        </div>
+                    </div>
+                    <b>Complicaciones Operatorias </b>
+                    <br>
+                    <br>
+                    <div class="grid p-fluid">
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Hipertension</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Depresion Respiratoria</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Conductiva insuficiente</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Paro Cardiaco</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Arritmias</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Perforacion duramadre</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Nauseas-Vomito</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">LaringoEspamo</label>
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Cambios de Tecnica</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Comentarios</label>
+                            </span>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Pre-Anestesico</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Operacion propuesta</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Informacion Especial</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Grupo Sanguineo</label>
+                            </span>
+                        </div>
+
+                        <p-fieldset legend="Riesgo" [toggleable]="false">
+                            <div class="grid p-fluid">
+                                <div class="col-12 md:col-4">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                            inputId="p1"></p-radioButton>
+                                        <label for="p1">1</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                            inputId="p1"></p-radioButton>
+                                        <label for="p1">2</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                            inputId="p1"></p-radioButton>
+                                        <label for="p1">3</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                            inputId="p1"></p-radioButton>
+                                        <label for="p1">4</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                            inputId="p1"></p-radioButton>
+                                        <label for="p1">5</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-fieldset>
+
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Region Preoperatorio</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">1.Cabeza</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">2.Org.Sentidos</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">3.Endoscopia</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">4.Intradural</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">5.Extradural</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">6.Cuello</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">7.Extratoracicas</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">8.Intratoracicas</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">9.Abdomen</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">10.Extramidades</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">11.Obstreticas</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-4">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">12.Perineales</label>
+                            </div>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Examenes de Laboratorio</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Uroanalisis</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Hematologico</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                    pInputText>
+                                <label for="inputtext">Quimica Sanguinea</label>
+                            </span>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Sistema Respiratorio</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-2">
+                            <label for="inputtext">Asma</label>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <label for="inputtext">Enfisema</label>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <label for="inputtext">Actelectasia</label>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <label for="inputtext">Capacidad Viral</label>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <label for="inputtext">Neumotorax</label>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <label for="inputtext">Bronquiectasias</label>
+                        </div>
+                        <div class="field col-12 md:col-2">
+                            <label for="inputtext">Otros</label>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext"></label>
+                            </span>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Sistema Circulatorio</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Atrrimias</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Atrrimias</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Hipertension</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Enf.Valvulares</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Enf.Congenitas</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Infartos</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">P.A</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">E.C.G</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Anestesias anteriores y complicaciones</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Ultima ingestion hora:</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Hora del accidente o dolor</label>
+                            </span>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Sistema Nervioso Central</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Convulsiones Epilepsia</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Traumatismos Craneales</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Perdida de Conciencia</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Cefálea</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Otros</label>
+                            </span>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Otros Sistemas</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Alergias-Habitos</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Hipertiroidismo-Diabetes</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Insuf.Hepatica o Renal</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Desequilibrio Electrolitico</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Toxemias</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Traumatismos multiples</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Shocks</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Otros</label>
+                            </span>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Terapia Anterior</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Digitalicos</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Esteroides</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Tranquilizantes</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Hipotensores</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Otros</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Diagnostico Preperatorio</label>
+                            </span>
+                        </div>
+                    </div>
+                    <b>Medicamentos Pre Anestesica</b>
+                    <br>
+                    <br>
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Fecha</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Hora</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Medicamento</label>
+                            </span>
+                        </div>
+                        <p-fieldset legend="Efecto" [toggleable]="false">
+                            <div class="grid p-fluid">
+                                <div class="col-12 md:col-4">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                            inputId="p1"></p-radioButton>
+                                        <label for="p1">Insuficiente</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                            inputId="p1"></p-radioButton>
+                                        <label for="p1">Bueno</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                            inputId="p1"></p-radioButton>
+                                        <label for="p1">Deprimido</label>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </p-fieldset>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <input type="text" id="inputtext" pInputText>
+                                <label for="inputtext">Elaborado por:</label>
+                            </span>
+                        </div>
+                    </div>
+
+                    <p-divider align="left">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-book mr-2"></i>
+                            <b>Complicaciones y/o visitas durante Post/Anestesia</b>
+                        </div>
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <p-fieldset legend="Recordatorio" [toggleable]="false">
+                            <div class="grid p-fluid">
+                                <div class="col-12 md:col-4">
+                                    <label for="p1">Traumatica</label>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <label for="p1">Paresias</label>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <label for="p1">Respiratorias </label>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <label for="p1">Apar.Cardiovasculares</label>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <label for="p1">Sistem.Nervioso.Centr.</label>
+                                </div>
+                                <div class="col-12 md:col-4">
+                                    <label for="p1">Urologicas</label>
+                                </div>
+                            </div>
+                        </p-fieldset>
+
+                    </div>
+                    <b>Poner hora y fecha firmar al pie de cada nota</b>
+                    <br>
+                    <div class="col-12 md:col-4">
+                        <p-editor [style]="{'height':'120px'}" (keypress)="validacionAlfanumerica($event)">
+                            <ng-template pTemplate="header">
+                                <span class="ql-formats">
+                                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                                </span>
+                            </ng-template>
+                        </p-editor>
+                    </div>
+                </div>
+            </p-scrollPanel>
+        </div>
+    </div>
+</div>

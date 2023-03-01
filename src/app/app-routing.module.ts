@@ -44,6 +44,7 @@ import { ErrorComponent } from './modulos/user/componentes/error/error.component
 import { ProtocoloComponent } from './modulos/RecordOperatorio/protocolo/protocolo.component';
 import { HistoriaComponent } from './modulos/HistoriaClinica/historia/historia.component';
 import { OdontologiaComponent } from './modulos/Odontologia/odontologia/odontologia.component';
+import { AnestesiaComponent } from './modulos/Anestesia/anestesia/anestesia.component';
 
 
 
@@ -73,6 +74,7 @@ const routes: Routes = [
   { path: 'ConsentimientoMedico', component: MedicoConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'Protocolo', component: ProtocoloComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'Historia-clinica', component: HistoriaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'anestesia', component: AnestesiaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
   { path: 'error', component: ErrorComponent, canActivate: [LoginGuard] },
 

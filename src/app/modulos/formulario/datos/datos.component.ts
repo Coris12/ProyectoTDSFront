@@ -23,6 +23,8 @@ export class DatosComponent implements OnInit {
 
   formuData: Formulario[] = [];
   idForm: any;
+  idpersona: number;
+  usuarioN: any
   ObjDatorTarj: DatosTarjetaDto = {
     canton: null,
     celular: null,
@@ -166,5 +168,22 @@ export class DatosComponent implements OnInit {
         }
       })
   }
+ saveDatos(){
+  this.formularioService.createUsingPOST3
+ }
+ guardarTodo(){
+  this.personaService.listaUsingGET().subscribe((res) => {
+    for (let datos of res) {
 
+      if (datos.id == this.idpersona && this.idpersona != 0 && this.idpersona != undefined) {
+        console.log(datos.id, this.idpersona);
+        this.usuarioN = datos
+        this.formula.usuario = this.usuarioN
+        console.log(this.formula);
+        this.saveFormulario()
+
+      }
+    }
+  })
+ }
 }

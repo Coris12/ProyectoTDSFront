@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService,LazyLoadEvent } from 'primeng/api';
+import { MessageService, LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { EquiposControllerService } from 'src/app/api/equiposController.service';
@@ -25,10 +25,10 @@ export class ProtocoloComponent implements OnInit {
   idProto: any
   idEqui: any;
   idTipo: any;
-  loading:boolean=true;
+  loading: boolean = true;
   listDialog: boolean;
   Protocolos: any[] = [];
-  submitted:boolean
+  submitted: boolean
 
   openNew() {
     this.submitted = false;
@@ -148,7 +148,7 @@ export class ProtocoloComponent implements OnInit {
     this.protocoloService.listUsingGET11().subscribe((res) => {
       for (let datos of res) {
         if (datos.idProtocolo == this.idPro) {
-          
+
           this.equi.protocolo = datos
           this.tipo.protocolo = datos
           console.log(this.idPro);
@@ -224,7 +224,39 @@ export class ProtocoloComponent implements OnInit {
       }
     })
   }
-
+  limpiar() {
+    this.buscarcedula="";
+    this.buscarnombre="";
+    this.proto.escrita = "";
+    this.proto.estado =+ "";
+    this.proto.idProtocolo = +"";
+    this.proto.nCama =+ "";
+    this.proto.postoperatorio = "";
+    this.proto.preoperatorio = "";
+    this.proto.realizada = "";
+    this.proto.redactado = "";
+    this.proto.sala = "";
+    this.proto.servicio = "";
+    this.proto.tipoCirujia = "";
+    this.equi.anestesiologo = "";
+    this.equi.cirujano = "";
+    this.equi.horaFin = "";
+    this.equi.horaInicio = "";
+    this.equi.idEquipo = +"";
+    this.equi.instrumentista = "";
+    this.equi.primerAyudante = "";
+    this.equi.segundoAyudante = "";
+    this.equi.tercerAyudante = "";
+    this.equi.tipoAnestesia = "";
+    this.tipo.complicaciones = "";
+    this.tipo.dieresis = "";
+    this.tipo.examen = "";
+    this.tipo.exploracion = "";
+    this.tipo.exposicion = "";
+    this.tipo.idTipo = +"";
+    this.tipo.procedimiento = "";
+    this.tipo.sintesis = "";
+  }
   mensajeError(msg: String) {
     this.messageService.add({
       severity: 'error',
@@ -254,7 +286,7 @@ export class ProtocoloComponent implements OnInit {
       this.mensajeError("ERROR AL GENERAR PDF");
     });
   }
-  
+
   createId(): string {
     let id = '';
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

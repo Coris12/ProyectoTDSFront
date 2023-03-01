@@ -8,17 +8,20 @@
                 <h1>Gestión de sucursales</h1>
             </div>
             <div class="ml-auto p-2">
-                <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay" class="p-button-rounded p-button-text red" (click)="cargarSucursales()">
+                <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay"
+                    class="p-button-rounded p-button-text red" (click)="cargarSucursales()">
                 </button>
             </div>
         </div>
         <p-toolbar>
             <div class="p-toolbar-group-left">
                 <!-- (click)="showDialog()" -->
-                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text" label="Crear" icon="pi pi-plus" (click)="sucursalDialog=true"></button>
+                <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text"
+                    label="Crear" icon="pi pi-plus" (click)="sucursalDialog=true"></button>
                 <!--  (click)="showCatalogosEliminados()" 
                 <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Papelera" icon="pi pi-trash" (click)="papeleraConvocatorias=true"></button>
 -->
+
             </div>
             <div class="p-toolbar-group-right">
             </div>
@@ -50,8 +53,12 @@
                         <td>{{sucu.direccionSuc}}</td>
                         <td>{{sucu.telefonoSuc}} </td>
                         <td>{{sucu.correoSuc}}</td>
-                        <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-raised p-button-text" (click)="borrarSucursal(sucu.idSucursal)"></button>
-                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text"  (click)="updateSucursal(sucu.idSucursal)"></button>
+                        <td><button pButton pRipple type="button" icon="pi pi-trash"
+                                class="p-button-raised p-button-text"
+                                (click)="borrarSucursal(sucu.idSucursal)"></button>
+                            <button pButton pRipple type="button" icon="pi pi-pencil"
+                                class="p-button-raised p-button-text"
+                                (click)="updateSucursal(sucu.idSucursal)"></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -71,7 +78,8 @@
 </div>
 
 
-<p-dialog header="Gestión de sucursales." [(visible)]="sucursalDialog" [modal]="true" [draggable]="false" [style]="{width: '450px'}" [resizable]="false" class="p-fluid">
+<p-dialog header="Gestión de sucursales." [(visible)]="sucursalDialog" [modal]="true" [draggable]="false"
+    [style]="{width: '450px'}" [resizable]="false" class="p-fluid">
     <form [formGroup]="sucursalForm" (ngSubmit)="guardarSucursal()">
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
@@ -91,13 +99,17 @@
         </div>
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
-                    <p-inputMask mask="9999999999" formControlName="telefonoSuc" placeholder="Telefono Sucursal">
-                    </p-inputMask>
-                </span>
+                <p-inputMask mask="9999999999" formControlName="telefonoSuc" placeholder="Telefono Sucursal">
+                </p-inputMask>
+            </span>
         </div>
 
         <div style="text-align:right">
-            <p-button type="submit" icon="pi pi-check" [disabled]="sucursalForm.invalid" label="Guardar" styleClass="p-button-text"></p-button>
+            <p-button type="submit" icon="pi pi-check" [disabled]="sucursalForm.invalid" label="Guardar"
+                styleClass="p-button-text"></p-button>
+        </div>
+        <div style="text-align:right">
+            <p-button  type="submit" label="Limpiar"  (click)="limpiar()"></p-button>
         </div>
     </form>
 </p-dialog>

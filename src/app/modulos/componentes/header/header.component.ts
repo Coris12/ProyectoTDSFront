@@ -48,6 +48,12 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isFarmacia
       },
       {
+        label: 'Ficha Anestesia',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/anestesia'],
+        visible: this.isLogged && this.isAdmin
+      },
+      {
         label: 'Formulario',
         icon: 'pi pi-fw pi-list',
         routerLink: ['/formulario'],
