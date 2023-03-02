@@ -149,6 +149,7 @@ import { AltaControllerService } from './api/altaController.service';
 import { EmergenciaControllerService } from './api/emergenciaController.service';
 import { LesionesControllerService } from './api/lesionesController.service';
 import { AnestesiaComponent } from './modulos/Anestesia/anestesia/anestesia.component';
+import { AnestesiaControllerService } from './api/anestesiaController.service';
 
 @NgModule({
   declarations: [
@@ -303,7 +304,8 @@ import { AnestesiaComponent } from './modulos/Anestesia/anestesia/anestesia.comp
     TrataMControllerService,
     AltaControllerService,
     EmergenciaControllerService,
-    LesionesControllerService
+    LesionesControllerService,
+    AnestesiaControllerService
   ],
   bootstrap: [AppComponent]
 })

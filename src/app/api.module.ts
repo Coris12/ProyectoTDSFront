@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { AccidenteControllerService } from './api/accidenteController.service';
 import { AdmisionControllerService } from './api/admisionController.service';
 import { AltaControllerService } from './api/altaController.service';
+import { AnestesiaControllerService } from './api/anestesiaController.service';
 import { AntecFamiliaresControllerService } from './api/antecFamiliaresController.service';
 import { AntecPersonalesControllerService } from './api/antecPersonalesController.service';
 import { AuthControllerService } from './api/authController.service';
@@ -66,6 +67,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     AccidenteControllerService,
     AdmisionControllerService,
     AltaControllerService,
+    AnestesiaControllerService,
     AntecFamiliaresControllerService,
     AntecPersonalesControllerService,
     AuthControllerService,

@@ -1,6 +1,7 @@
 export * from './accidente';
 export * from './admision';
 export * from './alta';
+export * from './anestesia';
 export * from './antecFamiliares';
 export * from './antecPersonales';
 export * from './autorizacion';
@@ -68,6 +69,7 @@ export * from './producto';
 export * from './protocolos';
 export * from './proveedor';
 export * from './refiereDeriva';
+export * from './residencia';
 export * from './residenciaDto';
 export * from './revOrganoSistem';
 export * from './rol';
