@@ -30,4 +30,5 @@ export interface Complicaciones {
     r4?: string;
     r5?: string;
     respiratoria?: string;
+    vomito?: string;
 }

@@ -570,28 +570,28 @@
                         </div>
                         <div class="col-12 md:col-2">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Compli.vomito"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">Nauseas-Vomito</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-2">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Compli.espamo"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">LaringoEspamo</label>
                             </div>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                <input type="text" id="inputtext" [(ngModel)]="Compli.cambioT" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
                                     pInputText>
                                 <label for="inputtext">Cambios de Tecnica</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                <input type="text" id="inputtext" [(ngModel)]="Compli.comentarios" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
                                     pInputText>
                                 <label for="inputtext">Comentarios</label>
                             </span>
@@ -606,21 +606,21 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                <input type="text" id="inputtext"  [(ngModel)]="Aneste.propuesta" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
                                     pInputText>
                                 <label for="inputtext">Operacion propuesta</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                <input type="text" id="inputtext" [(ngModel)]="Compli.informacion" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
                                     pInputText>
                                 <label for="inputtext">Informacion Especial</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
+                                <input type="text" id="inputtext"  [(ngModel)]="Compli.grupoS" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
                                     pInputText>
                                 <label for="inputtext">Grupo Sanguineo</label>
                             </span>
@@ -630,35 +630,35 @@
                             <div class="grid p-fluid">
                                 <div class="col-12 md:col-4">
                                     <div class="field-radiobutton">
-                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="Compli.r1"
                                             inputId="p1"></p-radioButton>
                                         <label for="p1">1</label>
                                     </div>
                                 </div>
                                 <div class="col-12 md:col-4">
                                     <div class="field-radiobutton">
-                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="Compli.r2"
                                             inputId="p1"></p-radioButton>
                                         <label for="p1">2</label>
                                     </div>
                                 </div>
                                 <div class="col-12 md:col-4">
                                     <div class="field-radiobutton">
-                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="Compli.r3"
                                             inputId="p1"></p-radioButton>
                                         <label for="p1">3</label>
                                     </div>
                                 </div>
                                 <div class="col-12 md:col-4">
                                     <div class="field-radiobutton">
-                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="Compli.r4"
                                             inputId="p1"></p-radioButton>
                                         <label for="p1">4</label>
                                     </div>
                                 </div>
                                 <div class="col-12 md:col-4">
                                     <div class="field-radiobutton">
-                                        <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                        <p-radioButton name="p16" value="X" [(ngModel)]="Compli.r5"
                                             inputId="p1"></p-radioButton>
                                         <label for="p1">5</label>
                                     </div>
@@ -676,42 +676,42 @@
                     <div class="grid p-fluid">
                         <div class="col-12 md:col-4">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Region.cabeza"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">1.Cabeza</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-4">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Region.sentidos"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">2.Org.Sentidos</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-4">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Region.endoscopia"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">3.Endoscopia</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-4">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Region.intra"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">4.Intradural</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-4">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Region.extra"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">5.Extradural</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-4">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Region.cuello"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">6.Cuello</label>
                             </div>
@@ -725,7 +725,7 @@
                         </div>
                         <div class="col-12 md:col-4">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Region.intraT"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">8.Intratoracicas</label>
                             </div>

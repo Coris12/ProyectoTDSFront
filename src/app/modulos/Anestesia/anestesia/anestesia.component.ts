@@ -144,6 +144,7 @@ export class AnestesiaComponent implements OnInit {
     r4: null,
     r5: null,
     respiratoria: null,
+    vomito:null,
   }
 
   Tec: Tecnicas = {
