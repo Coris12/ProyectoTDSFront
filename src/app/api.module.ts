@@ -13,6 +13,7 @@ import { AuthControllerService } from './api/authController.service';
 import { AutorizacionControllerService } from './api/autorizacionController.service';
 import { BasicErrorControllerService } from './api/basicErrorController.service';
 import { ClienteControllerService } from './api/clienteController.service';
+import { ComplicacionesControllerService } from './api/complicacionesController.service';
 import { ConsentimientoControllerService } from './api/consentimientoController.service';
 import { ConsultaExternaControllerService } from './api/consultaExternaController.service';
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
@@ -34,6 +35,7 @@ import { HistoriaControllerService } from './api/historiaController.service';
 import { IndiceControlllerService } from './api/indiceControlller.service';
 import { IndicesFamilControllerService } from './api/indicesFamilController.service';
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
+import { InfusionControllerService } from './api/infusionController.service';
 import { IngresoDiaControllerService } from './api/ingresoDiaController.service';
 import { LesionesControllerService } from './api/lesionesController.service';
 import { LlegadaAdServiceService } from './api/llegadaAdService.service';
@@ -46,6 +48,7 @@ import { PlanesControllerService } from './api/planesController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { ProtocoloControllerService } from './api/protocoloController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
+import { RegionControllerService } from './api/regionController.service';
 import { ResidenciaControllerService } from './api/residenciaController.service';
 import { RevOrganoSistemControllerService } from './api/revOrganoSistemController.service';
 import { SaludControllerService } from './api/saludController.service';
@@ -55,6 +58,8 @@ import { SolicitudEControllerService } from './api/solicitudEController.service'
 import { SucursalControllerService } from './api/sucursalController.service';
 import { TarjetaControllerService } from './api/tarjetaController.service';
 import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadController.service';
+import { TecnicaControllerService } from './api/tecnicaController.service';
+import { TerapiaControllerService } from './api/terapiaController.service';
 import { TipoQuiControllerService } from './api/tipoQuiController.service';
 import { TrataMControllerService } from './api/trataMController.service';
 import { TratamientoControllerService } from './api/tratamientoController.service';
@@ -74,6 +79,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     AutorizacionControllerService,
     BasicErrorControllerService,
     ClienteControllerService,
+    ComplicacionesControllerService,
     ConsentimientoControllerService,
     ConsultaExternaControllerService,
     CuerpoFacturaControllerService,
@@ -95,6 +101,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     IndiceControlllerService,
     IndicesFamilControllerService,
     InformacionTratamientoControllerService,
+    InfusionControllerService,
     IngresoDiaControllerService,
     LesionesControllerService,
     LlegadaAdServiceService,
@@ -107,6 +114,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     ProductoControllerService,
     ProtocoloControllerService,
     ProveedorControllerService,
+    RegionControllerService,
     ResidenciaControllerService,
     RevOrganoSistemControllerService,
     SaludControllerService,
@@ -116,6 +124,8 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     SucursalControllerService,
     TarjetaControllerService,
     TarjetaEspecialidadControllerService,
+    TecnicaControllerService,
+    TerapiaControllerService,
     TipoQuiControllerService,
     TrataMControllerService,
     TratamientoControllerService ]

@@ -17,17 +17,17 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { Anestesia } from '../model/anestesia';
 import { GenericResponsestring } from '../model/genericResponsestring';
+import { Tecnicas } from '../model/tecnicas';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class AnestesiaControllerService {
+export class TecnicaControllerService {
 
-    protected basePath = '//localhost:8080';
+    protected basePath = '//localhost:8080/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -63,13 +63,13 @@ export class AnestesiaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET2(id: number, observe?: 'body', reportProgress?: boolean): Observable<Anestesia>;
-    public getByIdUsingGET2(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Anestesia>>;
-    public getByIdUsingGET2(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Anestesia>>;
-    public getByIdUsingGET2(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET28(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tecnicas>;
+    public getByIdUsingGET28(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tecnicas>>;
+    public getByIdUsingGET28(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tecnicas>>;
+    public getByIdUsingGET28(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET2.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET28.');
         }
 
         let headers = this.defaultHeaders;
@@ -92,7 +92,7 @@ export class AnestesiaControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Anestesia>('get',`${this.basePath}/Anestesia/detallesAnestesia/${encodeURIComponent(String(id))}`,
+        return this.httpClient.request<Tecnicas>('get',`${this.basePath}/Tecnicas/detallesTecnicas/${encodeURIComponent(String(id))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -108,10 +108,10 @@ export class AnestesiaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET2(observe?: 'body', reportProgress?: boolean): Observable<Array<Anestesia>>;
-    public listUsingGET2(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Anestesia>>>;
-    public listUsingGET2(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Anestesia>>>;
-    public listUsingGET2(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET28(observe?: 'body', reportProgress?: boolean): Observable<Array<Tecnicas>>;
+    public listUsingGET28(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tecnicas>>>;
+    public listUsingGET28(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tecnicas>>>;
+    public listUsingGET28(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -133,7 +133,7 @@ export class AnestesiaControllerService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<Anestesia>>('get',`${this.basePath}/Anestesia/listaDiagnostico`,
+        return this.httpClient.request<Array<Tecnicas>>('get',`${this.basePath}/Tecnicas/listaDiagnostico`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -144,19 +144,19 @@ export class AnestesiaControllerService {
     }
 
     /**
-     * saveAnestesia
+     * saveTecnica
      * 
-     * @param body anest
+     * @param body tec
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveAnestesiaUsingPOST(body: Anestesia, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
-    public saveAnestesiaUsingPOST(body: Anestesia, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
-    public saveAnestesiaUsingPOST(body: Anestesia, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
-    public saveAnestesiaUsingPOST(body: Anestesia, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public saveTecnicaUsingPOST(body: Tecnicas, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public saveTecnicaUsingPOST(body: Tecnicas, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public saveTecnicaUsingPOST(body: Tecnicas, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public saveTecnicaUsingPOST(body: Tecnicas, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling saveAnestesiaUsingPOST.');
+            throw new Error('Required parameter body was null or undefined when calling saveTecnicaUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -184,7 +184,7 @@ export class AnestesiaControllerService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/Anestesia/saveAnestesia`,
+        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/Tecnicas/saveTecnica`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

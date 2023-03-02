@@ -150,6 +150,11 @@ import { EmergenciaControllerService } from './api/emergenciaController.service'
 import { LesionesControllerService } from './api/lesionesController.service';
 import { AnestesiaComponent } from './modulos/Anestesia/anestesia/anestesia.component';
 import { AnestesiaControllerService } from './api/anestesiaController.service';
+import { RegionControllerService } from './api/regionController.service';
+import { InfusionControllerService } from './api/infusionController.service';
+import { ComplicacionesControllerService } from './api/complicacionesController.service';
+import { TecnicaControllerService } from './api/tecnicaController.service';
+import { TerapiaControllerService } from './api/terapiaController.service';
 
 @NgModule({
   declarations: [
@@ -305,7 +310,12 @@ import { AnestesiaControllerService } from './api/anestesiaController.service';
     AltaControllerService,
     EmergenciaControllerService,
     LesionesControllerService,
-    AnestesiaControllerService
+    AnestesiaControllerService,
+    RegionControllerService,
+    InfusionControllerService,
+    ComplicacionesControllerService,
+    TecnicaControllerService,
+    TerapiaControllerService
   ],
   bootstrap: [AppComponent]
 })
