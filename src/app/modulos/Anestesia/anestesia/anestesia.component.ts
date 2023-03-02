@@ -73,14 +73,18 @@ export class AnestesiaComponent implements OnInit {
   Region: Region = {
     anestesia: null,
     cabeza: null,
+    abdomen:null,
     cefalea: null,
     convulsiones: null,
     craneales: null,
+    conciencia:null,
     cuello: null,
     diabetes: null,
     electro: null,
     endoscopia: null,
     estramidades: null,
+    descripcion:null,
+    otrosR:null,
     extra: null,
     habitos: null,
     idRegion: null,
@@ -194,6 +198,7 @@ export class AnestesiaComponent implements OnInit {
     otrosT: null,
     recordatorio: null,
     tran: null,
+    medicamento:null,
   }
 
   ngOnInit(): void {

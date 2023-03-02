@@ -12,12 +12,15 @@
 import { Anestesia } from './anestesia';
 
 export interface Region { 
+    abdomen?: string;
     anestesia?: Anestesia;
     cabeza?: string;
     cefalea?: string;
+    conciencia?: string;
     convulsiones?: string;
     craneales?: string;
     cuello?: string;
+    descripcion?: string;
     diabetes?: string;
     electro?: string;
     endoscopia?: string;
@@ -29,6 +32,7 @@ export interface Region {
     intraTor?: string;
     multiples?: string;
     obstreticas?: string;
+    otrosR?: string;
     otrosS?: string;
     perinales?: string;
     renal?: string;

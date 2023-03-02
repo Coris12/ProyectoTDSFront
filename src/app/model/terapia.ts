@@ -23,6 +23,7 @@ export interface Terapia {
     hora?: string;
     idTera?: number;
     insu?: string;
+    medicamento?: string;
     otrosT?: string;
     recordatorio?: string;
     tran?: string;
