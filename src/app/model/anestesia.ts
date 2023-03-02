@@ -33,7 +33,6 @@ export interface Anestesia {
     realizada?: string;
     sala?: string;
     servicio?: string;
-    tecnica?: string;
     tipoD?: string;
     usuario?: Usuario;
 }

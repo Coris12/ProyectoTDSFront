@@ -35,6 +35,7 @@ export interface Tecnicas {
     rap?: string;
     raquidea?: string;
     semiCerrado?: string;
+    simple?: string;
     tapo?: string;
     topica?: string;
     tubo?: string;

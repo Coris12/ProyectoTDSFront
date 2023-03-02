@@ -159,6 +159,7 @@ export class AnestesiaComponent implements OnInit {
     habon: null,
     hiperbara: null,
     i: null,
+    simple:null,
     idTecnica: null,
     manguito: null,
     mascara: null,
