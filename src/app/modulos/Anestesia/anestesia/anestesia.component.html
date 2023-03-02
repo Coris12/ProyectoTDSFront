@@ -392,7 +392,7 @@
                         </div>
                         <div class="col-12 md:col-2">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Tec.simple"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">Simple</label>
                             </div>
@@ -411,7 +411,7 @@
                     <div class="grid p-fluid">
                         <div class="col-12 md:col-2">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Tec.lat"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">Puncion Lat.</label>
                             </div>
@@ -446,31 +446,31 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.dext" pInputText>
                                 <label for="inputtext">Dextrosas</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.ringer" pInputText>
                                 <label for="inputtext">Ringer</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.sangre" pInputText>
                                 <label for="inputtext">Sangre</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.ex" pInputText>
                                 <label for="inputtext">Expansores</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="number" id="inputtext" [(ngModel)]="In.total" pInputText>
                                 <label for="inputtext">Total</label>
                             </span>
                         </div>
@@ -481,14 +481,14 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.hemorragia" pInputText>
                                 <label for="inputtext">hemorragia</label>
                             </span>
                         </div>
                         <b>APGAR</b>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.apga" pInputText>
                                 <label for="inputtext">1 min. 5 min. 10 min. F.muerto</label>
                             </span>
                         </div>
@@ -499,25 +499,25 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <textarea id="float-input" rows="5" cols="60" pInputTextarea></textarea>
+                                <textarea id="float-input" rows="5" cols="60" [(ngModel)]="In.especiales" pInputTextarea></textarea>
                                 <label for="float-input"></label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext"[(ngModel)]="In.conducido" pInputText>
                                 <label for="inputtext">Conducido a:</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.por" pInputText>
                                 <label for="inputtext">Por:</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.hora"pInputText>
                                 <label for="inputtext">Hora:</label>
                             </span>
                         </div>
@@ -528,42 +528,42 @@
                     <div class="grid p-fluid">
                         <div class="col-12 md:col-2">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Compli.hipertension"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">Hipertension</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-2">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Compli.respiratoria"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">Depresion Respiratoria</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-2">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Compli.insuficiente"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">Conductiva insuficiente</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-2">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Compli.cardiaco"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">Paro Cardiaco</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-2">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Compli.atrri"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">Arritmias</label>
                             </div>
                         </div>
                         <div class="col-12 md:col-2">
                             <div class="field-radiobutton">
-                                <p-radioButton name="p16" value="X" [(ngModel)]="selectedValue"
+                                <p-radioButton name="p16" value="X" [(ngModel)]="Compli.duramadre"
                                     inputId="p1"></p-radioButton>
                                 <label for="p1">Perforacion duramadre</label>
                             </div>
@@ -832,67 +832,61 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.at" pInputText>
                                 <label for="inputtext">Atrrimias</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
-                                <label for="inputtext">Atrrimias</label>
-                            </span>
-                        </div>
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext"  [(ngModel)]="In.hiper" pInputText>
                                 <label for="inputtext">Hipertension</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.valvulares" pInputText>
                                 <label for="inputtext">Enf.Valvulares</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.congenitas" pInputText>
                                 <label for="inputtext">Enf.Congenitas</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.infartos" pInputText>
                                 <label for="inputtext">Infartos</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.pa" pInputText>
                                 <label for="inputtext">P.A</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext"  [(ngModel)]="In.ecg"pInputText>
                                 <label for="inputtext">E.C.G</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.anteriorA"pInputText>
                                 <label for="inputtext">Anestesias anteriores y complicaciones</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.horaI"pInputText>
                                 <label for="inputtext">Ultima ingestion hora:</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.horaD" pInputText>
                                 <label for="inputtext">Hora del accidente o dolor</label>
                             </span>
                         </div>

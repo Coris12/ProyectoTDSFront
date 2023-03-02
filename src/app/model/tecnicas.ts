@@ -26,6 +26,7 @@ export interface Tecnicas {
     hiperbara?: string;
     i?: string;
     idTecnica?: number;
+    lat?: string;
     manguito?: string;
     mascara?: string;
     media?: string;

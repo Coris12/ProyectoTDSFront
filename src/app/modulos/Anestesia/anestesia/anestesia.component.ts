@@ -100,6 +100,7 @@ export class AnestesiaComponent implements OnInit {
   In: Infusion = {
     anestesia: null,
     anteriorA: null,
+    apga: null,
     at: null,
     conducido: null,
     congenitas: null,
@@ -159,7 +160,7 @@ export class AnestesiaComponent implements OnInit {
     habon: null,
     hiperbara: null,
     i: null,
-    simple:null,
+    simple: null,
     idTecnica: null,
     manguito: null,
     mascara: null,
@@ -168,6 +169,7 @@ export class AnestesiaComponent implements OnInit {
     nivel: null,
     oral: null,
     rap: null,
+    lat: null,
     raquidea: null,
     semiCerrado: null,
     tapo: null,
@@ -273,6 +275,8 @@ export class AnestesiaComponent implements OnInit {
           console.log(this.idTec);
           this.MessageSuccess("Exito")
           this.saveInfucion()
+          this.saveComplicacion()
+          this.saveTerapia
           console.log(this.Aneste);
         } else {
           this.mensajeError("error al crear ficha aodontologica")
@@ -294,12 +298,51 @@ export class AnestesiaComponent implements OnInit {
       this.mensajeError("ERROR AL GUARDAR EN EL SERVIDOR");
     });
   }
+
+  sveRegion() {
+    this.regionService.saveRegionUsingPOST(this.Region).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR EN EL SERVIDOR");
+    });
+  }
+
+  saveComplicacion() {
+    this.comService.saveCompliUsingPOST(this.Compli).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR EN EL SERVIDOR");
+    });
+  }
+
+  saveTerapia() {
+    this.terService.saveTerapiaUsingPOST(this.Tera).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR EN EL SERVIDOR");
+    });
+  }
+
   recuperarAne() {
     this.anesSservice.listUsingGET2().subscribe((res) => {
       for (let datos of res) {
         if (datos.idAnes == this.idAnes) {
           this.Tec.anestesia = datos
-
+          this.Tera.anestesia = datos
+          this.Compli.anestesia=datos
+          this.In.anestesia=datos
           console.log(this.idAnes);
           this.saveTecnica();
         }
