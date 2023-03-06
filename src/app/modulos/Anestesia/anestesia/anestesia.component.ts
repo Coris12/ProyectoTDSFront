@@ -73,18 +73,18 @@ export class AnestesiaComponent implements OnInit {
   Region: Region = {
     anestesia: null,
     cabeza: null,
-    abdomen:null,
+    abdomen: null,
     cefalea: null,
     convulsiones: null,
     craneales: null,
-    conciencia:null,
+    conciencia: null,
     cuello: null,
     diabetes: null,
     electro: null,
     endoscopia: null,
     estramidades: null,
-    descripcion:null,
-    otrosR:null,
+    descripcion: null,
+    otrosR: null,
     extra: null,
     habitos: null,
     idRegion: null,
@@ -148,7 +148,7 @@ export class AnestesiaComponent implements OnInit {
     r4: null,
     r5: null,
     respiratoria: null,
-    vomito:null,
+    vomito: null,
   }
 
   Tec: Tecnicas = {
@@ -198,7 +198,7 @@ export class AnestesiaComponent implements OnInit {
     otrosT: null,
     recordatorio: null,
     tran: null,
-    medicamento:null,
+    medicamento: null,
   }
 
   ngOnInit(): void {
@@ -282,7 +282,8 @@ export class AnestesiaComponent implements OnInit {
           this.MessageSuccess("Exito")
           this.saveInfucion()
           this.saveComplicacion()
-          this.saveTerapia
+          this.saveTerapia()
+          this.sveRegion()
           console.log(this.Aneste);
         } else {
           this.mensajeError("error al crear ficha aodontologica")
@@ -347,8 +348,9 @@ export class AnestesiaComponent implements OnInit {
         if (datos.idAnes == this.idAnes) {
           this.Tec.anestesia = datos
           this.Tera.anestesia = datos
-          this.Compli.anestesia=datos
-          this.In.anestesia=datos
+          this.Compli.anestesia = datos
+          this.Region.anestesia = datos
+          this.In.anestesia = datos
           console.log(this.idAnes);
           this.saveTecnica();
         }
@@ -387,7 +389,8 @@ export class AnestesiaComponent implements OnInit {
       detail: 'Correcto!: ' + msg,
     });
   }
-  validacionAlfanumerica(event) {
+
+  validarAlfanumerica(event) {
     const patron = /[a-zA-ZÑ0-9 ,:-]/;
     const permitidos = event.keyCode;
     if (permitidos === 8) {
@@ -434,4 +437,174 @@ export class AnestesiaComponent implements OnInit {
       return false;
     }
   }
+  validarNumero(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarCedula(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/;
+    const permitidos = event.keyCode;
+    if (permitidos === 10) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  limpiar() {
+    this.Aneste.anestecio = "";
+    this.Aneste.ayudanteA = "";
+    this.Aneste.ayudanteC = "";
+    this.Aneste.cama = +"";
+    this.Aneste.cirujano = "";
+    this.Aneste.estatura = +"";
+    this.Aneste.horaA = +"";
+    this.Aneste.horaO = +"";
+    this.Aneste.intrumentista = "";
+    this.Aneste.minA = +"";
+    this.Aneste.ocupacion = "";
+    this.Aneste.peso = +"";
+    this.Aneste.post = "";
+    this.Aneste.pre = "";
+    this.Aneste.propuesta = "";
+    this.Aneste.realizada = "";
+    this.Aneste.sala = "";
+    this.Aneste.servicio = "";
+    this.Aneste.tipoD = "";
+    this.Region.cabeza = "";
+    this.Region.abdomen = "";
+    this.Region.cefalea = "";
+    this.Region.convulsiones = "";
+    this.Region.craneales = "";
+    this.Region.conciencia = "";
+    this.Region.cuello = "";
+    this.Region.diabetes = "";
+    this.Region.electro = "";
+    this.Region.endoscopia = "";
+    this.Region.estramidades = "";
+    this.Region.descripcion = "";
+    this.Region.otrosR = "";
+    this.Region.extra = "";
+    this.Region.habitos = "";
+    this.Region.intra = "";
+    this.Region.intraTor = "";
+    this.Region.multiples = "";
+    this.Region.obstreticas = "";
+    this.Region.otrosS = "";
+    this.Region.perinales = "";
+    this.Region.renal = "";
+    this.Region.sentidos = "";
+    this.Region.shocks = "";
+    this.Region.toraicas = "";
+    this.Region.toxemias = "";
+    this.In.anteriorA = "";
+    this.In.apga = "";
+    this.In.at = "";
+    this.In.conducido = "";
+    this.In.congenitas = "";
+    this.In.dext = "";
+    this.In.ecg = "";
+    this.In.especiales = "";
+    this.In.ex = "";
+    this.In.hema = "";
+    this.In.hemorragia = "";
+    this.In.hiper = "";
+    this.In.hora = "";
+    this.In.horaD = "";
+    this.In.horaI = "";
+    this.In.idInfu = + "";
+    this.In.infartos = "";
+    this.In.pa = "";
+    this.In.por = "";
+    this.In.quimicaS = "";
+    this.In.ringer = "";
+    this.In.sangre = "";
+    this.In.total = +"";
+    this.In.uro = "";
+    this.In.valvulares = "";
+    this.Compli.atrri = "";
+    this.Compli.cambioT = "";
+    this.Compli.cardiaco = "";
+    this.Compli.comentarios = "";
+    this.Compli.duramadre = "";
+    this.Compli.espamo = "";
+    this.Compli.grupoS = "";
+    this.Compli.hipertension = "";
+    this.Compli.idCom = + "";
+    this.Compli.informacion = "";
+    this.Compli.insuficiente = "";
+    this.Compli.r2 = "";
+    this.Compli.r3 = "";
+    this.Compli.r4 = "";
+    this.Compli.r5 = "";
+    this.Compli.respiratoria = "";
+    this.Compli.vomito = "";
+    this.Tec.abierto = "";
+    this.Tec.apsepsia = "";
+    this.Tec.cerrado = "";
+    this.Tec.cir = "";
+    this.Tec.conductiva = "";
+    this.Tec.continua = "";
+    this.Tec.continuaA = "";
+    this.Tec.espidural = "";
+    this.Tec.general = "";
+    this.Tec.habon = "";
+    this.Tec.hiperbara = "";
+    this.Tec.i = "";
+    this.Tec.simple = "";
+    this.Tec.idTecnica = +"";
+    this.Tec.manguito = "";
+    this.Tec.mascara = "";
+    this.Tec.media = "";
+    this.Tec.nasal = "";
+    this.Tec.nivel = "";
+    this.Tec.oral = "";
+    this.Tec.rap = "";
+    this.Tec.lat = "";
+    this.Tec.raquidea = "";
+    this.Tec.semiCerrado = "";
+    this.Tec.tapo = "";
+    this.Tec.topica = "";
+    this.Tec.tubo = "";
+    this.Tec.vaiven="";
+    this.Tera.bueno = "";
+    this.Tera.depri = "";
+    this.Tera.digitalicos = "";
+    this.Tera.elaborado = "";
+    this.Tera.esteroides = "";
+    this.Tera.hipo = "";
+    this.Tera.hora = "";
+    this.Tera.idTera = +"";
+    this.Tera.insu = "";
+    this.Tera.otrosT = "";
+    this.Tera.recordatorio = "";
+    this.Tera.tran = "";
+    this.Tera.medicamento="";
+    this.edad=+"";
+    this.buscarcedula="";
+    this.buscarnombre="";
+    this.numcli=+"";
+    this.sexo="";
+
+  }
+
 }

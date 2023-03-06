@@ -49,7 +49,7 @@
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="p-float-label">
-                            <input autocomplete="off" type="text" id="inputtext" pInputText
+                            <input autocomplete="off" type="text" id="inputtext" pInputText ngModel required
                                 [(ngModel)]="admision.provincia" (keypress)="validarSoloLetras($event)" maxlength="255">
                             <label for="inputtext">PROVINCIA</label>
                         </span>
@@ -58,7 +58,7 @@
             </div>
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
-                    <input autocomplete="off" type="text" id="inputtext" pInputText
+                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="numcli"
                         (keypress)="validacionSoloNumeros($event)" maxlength="10">
                     <label for="inputtext"># HISTORIA CLÍNICA</label>
                 </span>
@@ -110,7 +110,7 @@
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.estadoC">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="estado">
                     <label for="inputtext">Estado Civil</label>
                 </span>
             </div>

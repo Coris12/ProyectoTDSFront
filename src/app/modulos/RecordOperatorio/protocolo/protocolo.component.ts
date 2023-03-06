@@ -9,6 +9,8 @@ import { EquipoOperatorio } from 'src/app/model/equipoOperatorio';
 import { Protocolos } from 'src/app/model/protocolos';
 import { TiposQuirurgicos } from 'src/app/model/tiposQuirurgicos';
 import { FacturaService } from 'src/app/servicioManual/factura.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-protocolo',
@@ -29,7 +31,8 @@ export class ProtocoloComponent implements OnInit {
   listDialog: boolean;
   Protocolos: any[] = [];
   submitted: boolean
-
+  formCabezera: FormGroup;
+  form:any
   openNew() {
     this.submitted = false;
     this.listDialog = true;
@@ -38,6 +41,8 @@ export class ProtocoloComponent implements OnInit {
   clear(table: Table) {
     table.clear();
   }
+
+  
   proto: Protocolos = {
     escrita: null,
     estado: null,
@@ -90,10 +95,14 @@ export class ProtocoloComponent implements OnInit {
     private protocoloService: ProtocoloControllerService,
     private equipoService: EquiposControllerService,
     private tipoService: TipoQuiControllerService,
-    private serviceGenPdf: FacturaService
+    private serviceGenPdf: FacturaService,
+    private formbuider:FormBuilder,
+    
   ) { }
 
   ngOnInit(): void {
+   
+   
   }
 
   buscarPersona() {
@@ -119,32 +128,34 @@ export class ProtocoloComponent implements OnInit {
   }
 
   saveDiagnostico() {
-
+    
+      this.protocoloService.saveDiagnosticoUsingPOST1(this.proto).subscribe(
+        res => {
+          if (res.object != null) {
+            this.idPro = res.object
+            console.log(this.idPro);
+  
+            this.MessageSuccess(" diagnostico  creado")
+            //console.log(this.idPro);
+            this.recuperarprotocolo()
+  
+  
+          } else {
+            this.mensajeError("error al crear diagnostico")
+            //console.log(" holii" + this.idPro);
+            //console.log("error" + this.idPro)
+            console.log(res.object);
+          }
+        })
+    
     console.log(this.proto);
-    this.protocoloService.saveDiagnosticoUsingPOST1(this.proto).subscribe(
-      res => {
-        if (res.object != null) {
-          this.idPro = res.object
-          console.log(this.idPro);
-
-          this.MessageSuccess(" diagnostico  creado")
-          //console.log(this.idPro);
-          this.recuperarprotocolo()
-
-
-        } else {
-          this.mensajeError("error al crear diagnostico")
-          //console.log(" holii" + this.idPro);
-          //console.log("error" + this.idPro)
-          console.log(res.object);
-        }
-      })
+    
 
 
 
   }
   recuperarprotocolo() {
-
+    
     this.protocoloService.listUsingGET11().subscribe((res) => {
       for (let datos of res) {
         if (datos.idProtocolo == this.idPro) {
@@ -157,6 +168,7 @@ export class ProtocoloComponent implements OnInit {
       }
 
     })
+  
   }
   saveEquipo() {
 
@@ -345,5 +357,76 @@ export class ProtocoloComponent implements OnInit {
         }
       );
     }, 100);
+  }
+
+  validacionAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetras(event) {
+    const patron = /[a-zA-Z ]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarNumero(event){
+    const patron=/^-?(0|[0-9]\d*)?$/
+    const permitidos=event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

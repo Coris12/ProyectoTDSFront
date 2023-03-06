@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { AutorizacionControllerService } from 'src/app/api/autorizacionController.service';
+import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 import { OrganosControllerService } from 'src/app/api/organosController.service';
 import { PersonaControllerService } from 'src/app/api/personaController.service';
 import { Autorizacion } from 'src/app/model/autorizacion';
@@ -64,9 +65,11 @@ export class AutorizacionComponent implements OnInit {
     private messageService: MessageService,
     private personaService: AuthControllerService,
     private autoService: AutorizacionControllerService,
-    private organoService: OrganosControllerService
+    private organoService: OrganosControllerService,
+    private historiaService: HistoriaControllerService
   ) { }
-
+  edad: any
+  numcli: any
   ngOnInit(): void {
   }
 
@@ -102,7 +105,57 @@ export class AutorizacionComponent implements OnInit {
       console.log(res);
 
     })
-  }
+
+    this.historiaService.listUsingGET6().subscribe((res) => {
+      for (let datos of res) {
+        if (this.buscarcedula != "" && this.buscarcedula != undefined) {
+          if (datos.usuario.identificacion == this.buscarcedula) {
+            this.idpersona = datos.usuario.id
+            this.edad = datos.edad
+            this.numcli = datos.numCl
+
+            break;
+          }
+        } else if (this.buscarnombre != "" && this.buscarnombre != undefined) {
+          if (datos.usuario.nombres == this.buscarnombre) {
+            this.idpersona = datos.usuario.id
+            this.edad = datos.edad
+            this.numcli = datos.numCl
+          }
+        }
+      }
+      console.log(res);
+    })
+  }  
+   limpiar(){
+    this.Auto.cama="",
+    this.Auto. canton="",
+    this.Auto. codUd ="",
+    this.Auto. idAutorizacion=+"",
+    this.Auto. instutucionSistema ="",
+    this.Auto. numeroHistoriaClinica =+"",
+    this.Auto. parroquia ="",
+    this.Auto. provincia ="",
+    this.Auto. sala="",
+    this.Auto. servicio="",
+    this.Auto. unidadOperativa="",
+    this.Auto. cedulaMe ="",
+    this.Auto.  cedulaRe="",
+    this.Auto.  cedulaTra ="",
+    this.Auto.  nombreMedico="",
+    this.Auto. nombreRepre ="",
+    this.Auto. nombreTratante ="",
+    this.Auto. parentesco="",
+    this.Auto.telefonoMedico ="",
+    this.Auto. telefonoParien ="",
+    this.Auto. telefonoTra="",
+    this.organos.idOrganos=+"",
+    this.organos. nombreOrgano ="",
+    this.organos.nombreReceptor =""
+    this.buscarcedula=""
+    this.buscarnombre=""
+    this.numcli=""
+   }
 
   saveAutorizacion() {
     console.log(this.Auto);
@@ -152,7 +205,7 @@ export class AutorizacionComponent implements OnInit {
           console.log(this.idOr);
           this.MessageSuccess(" correcto ")
           console.log(this.idOr);
-          
+
 
         } else {
           this.mensajeError("error al guardar organos donados")
@@ -202,19 +255,8 @@ export class AutorizacionComponent implements OnInit {
     });
   }
 
-  validacionAlfanumerica(event) {
-    const patron = /[a-zA-ZÑñ0-9 ,:-]/;
-    const permitidos = event.keyCode;
-    if (permitidos === 8) {
-      return true;
-    } else if (patron.test(event.key)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  validacionNumerosLetras(event) {
-    const patron = /[a-zA-ZÑñ0-9 ]/;
+  validarAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
     const permitidos = event.keyCode;
     if (permitidos === 8) {
       return true;
@@ -225,7 +267,7 @@ export class AutorizacionComponent implements OnInit {
     }
   }
 
-  validarSoloLetras(event) {
+  validarLetras(event) {
     const patron = /[a-zA-Z ]/;
     const permitidos = event.keyCode;
     if (permitidos === 8) {
@@ -237,8 +279,8 @@ export class AutorizacionComponent implements OnInit {
     }
   }
 
-  validacionSoloNumeros(event) {
-    const patron = /[0-9]/;
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
     const permitidos = event.keyCode;
     if (permitidos === 8) {
       return true;
@@ -248,4 +290,51 @@ export class AutorizacionComponent implements OnInit {
       return false;
     }
   }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarNumero(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarCedula(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/;
+    const permitidos = event.keyCode;
+    if (permitidos === 10) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
 }

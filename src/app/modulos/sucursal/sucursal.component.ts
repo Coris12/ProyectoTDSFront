@@ -35,6 +35,7 @@ export class SucursalComponent implements OnInit {
 
   //! lista las convocatorias
   sucursal: Sucursal[] = [];
+  submitted: boolean;
 
 
   constructor(private sucursalController: SucursalControllerService,
@@ -95,9 +96,9 @@ export class SucursalComponent implements OnInit {
         nombreSuc: null,
         telefonoSuc: null
       })
-      this.limpiar()
-
     }
+    this.limpiar();
+    
   }
 
 
@@ -136,5 +137,65 @@ export class SucursalComponent implements OnInit {
 
   }
   // fin del metodo
+
+  validacionAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetras(event) {
+    const patron = /[a-zA-Z ]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

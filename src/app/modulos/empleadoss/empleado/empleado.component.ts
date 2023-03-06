@@ -46,7 +46,9 @@ export class EmpleadoComponent implements OnInit {
     })
   }
 
-
+  limpiar() {
+    this.empleForm.reset();
+  }
   cargarEmpleados(event?: LazyLoadEvent) {
     this.loading = true;
     setTimeout(() => {
@@ -69,11 +71,11 @@ export class EmpleadoComponent implements OnInit {
       .subscribe(emple => {
         console.log(emple.idEmpleado)
         this.empleForm.setValue({
-          idEmpleado:emple.idEmpleado,
-          cargoEmple:emple.cargoEmple,
-          estado:emple.estado,
-          usuario:emple.usuario
-          
+          idEmpleado: emple.idEmpleado,
+          cargoEmple: emple.cargoEmple,
+          estado: emple.estado,
+          usuario: emple.usuario
+
         });
       });
     this.EmpleadoDialog = true;
@@ -81,6 +83,7 @@ export class EmpleadoComponent implements OnInit {
   }
 
   saveEmpleado(): void {
+    
     console.log(this.empleForm.value)
     if (this.empleForm.value?.idEmpleado !== null) {
       this.empleadoController.updateUsingPUT1(
@@ -100,20 +103,21 @@ export class EmpleadoComponent implements OnInit {
         this.empleForm.value,
         this.empleForm.value?.usuario.idUsuario
       ).subscribe(data => {
-        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Sucursal creada con exito.' });
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Empleado creado con exito.' });
 
       },
         error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
 
-        this.EmpleadoDialog = false;
+      this.EmpleadoDialog = false;
 
-        this.empleForm.setValue({
-          idEmpleado: null,
-          cargoEmple: null,
-          usuario: null
+      this.empleForm.setValue({
+        idEmpleado: null,
+        cargoEmple: null,
+        usuario: null
       })
-
+      
     }
+    this.limpiar();
   }
 
   cargarUsuarios(): void {

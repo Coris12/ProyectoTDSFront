@@ -60,10 +60,11 @@
                         <td>{{empleados. usuario.sexo}}</td>
                         <td>{{empleados. cargoEmple}}</td>
                         <td>{{empleados.usuario.roles[0].rolNombre}}</td>
-                        <td><button pButton pRipple type="button" 
-                            class="p-button-raised p-button-text p-button-danger" icon="pi pi-trash"
-                            (click)="borrarEmple(empleados.idEmpleado)"></button>
-                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="updateEmpleado(empleados.idEmpleado)"></button>
+                        <td><button pButton pRipple type="button" class="p-button-raised p-button-text p-button-danger"
+                                icon="pi pi-trash" (click)="borrarEmple(empleados.idEmpleado)"></button>
+                            <button pButton pRipple type="button" icon="pi pi-pencil"
+                                class="p-button-raised p-button-text"
+                                (click)="updateEmpleado(empleados.idEmpleado)"></button>
 
                     </tr>
                 </ng-template>
@@ -101,6 +102,8 @@
 
         <div style="text-align:right">
             <p-button type="submit" icon="pi pi-check" label="Guardar" styleClass="p-button-text"></p-button>
+            <p-button type="button" label="Limpiar" (click)="limpiar()"></p-button>
+
         </div>
     </form>
 </p-dialog>

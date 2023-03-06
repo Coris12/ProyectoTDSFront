@@ -7,13 +7,17 @@
                 <h1>Historia clinica</h1>
             </div>
         </div>
+
         <div class="content-section implementation mt-2">
             <p-scrollPanel [style]="{width: '100%', height: '700px'}">
                 <div class="mt-4">
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula">
+                            <span class="p-float-label" [formGroup]="form" errorTailor>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula"
+                                    formControlName="cedula" [controlErrorsTpl]="messageCedula" />
+                                <ng-container
+                                    *ngTemplateOutlet="messageCedula;context:{error:form.get('cedula').errors}"></ng-container>
                                 <label for="inputtext">Cedula</label>
                             </span>
                         </div>
@@ -26,16 +30,21 @@
                     </div>
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre" ngModel
-                                    required="">
+                            <span class="p-float-label" [formGroup]="form" errorTailor>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre"
+                                    formControlName="texto" [controlErrorsTpl]="messageletras">
+                                <ng-container
+                                    *ngTemplateOutlet="messageletras;context:{error:form.get('texto').errors}"></ng-container>
 
                                 <label for="inputtext">Nombre</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="date" id="inputtext" pInputText [(ngModel)]="historia.fecha">
+                            <span class="p-float-label" >
+                                <input type="date" id="inputtext" pInputText [(ngModel)]="historia.fecha"
+                                    >
+                                <ng-container
+                                    *ngTemplateOutlet="messageCedula;context:{error:form.get('cedula').errors}"></ng-container>
 
                                 <label for="inputtext"></label>
                             </span>
@@ -59,7 +68,8 @@
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Edad:</label>
-                                <input type="text" pInputText placeholder="Edad" [(ngModel)]="historia.edad">
+                                <input type="text" pInputText placeholder="Edad" [(ngModel)]="historia.edad"
+                                required>
                             </span>
 
                         </div>
@@ -217,6 +227,7 @@
                 </div>
             </p-scrollPanel>
         </div>
+
     </div>
 
     <p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
@@ -298,3 +309,51 @@
         </div>
 
     </p-sidebar>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <ng-template #messageNumero let-error="error">
+        <!--{{error | json}}-->
+        <div *ngIf="error?.pattern?.requiredPattern">
+            <b>Error: </b><i> Solo debe ingresar números</i>
+        </div>
+    </ng-template>
+
+    <ng-template #messageletras let-error="error">
+        <!--{{error | json}}-->
+        <div *ngIf="error?.pattern?.requiredPattern">
+            <b>Error: </b><i> Solo debe ingresar letras</i>
+        </div>
+    </ng-template>
+
+    <ng-template #messageCedula let-error="error">
+        <!--{{error | json}}-->
+        <div *ngIf="error?.pattern?.requiredPattern">
+            <i> Solo debe ingresar números</i>
+        </div>
+        <div *ngIf="error?.pattern?.requiredPattern == null && error?.minlength?.requiredLength">
+            <i> Debe ingresar 10 carácteres, ingresados {{error?.minlength?.actualLength}}</i>
+        </div>
+        <div *ngIf="error?.pattern?.requiredPattern == null && error?.maxlength?.requiredLength">
+            <i>Solo debe ingresar 10 carácteres, ingresados {{error?.maxlength?.actualLength}}</i>
+        </div>
+    </ng-template>
+
+    <ng-template #messageEmail let-error="error">
+        <!--{{error | json}}-->
+        <div *ngIf="error?.email">
+            <b>Error: </b><i> Ingresar correo válido</i>
+        </div>
+    </ng-template>

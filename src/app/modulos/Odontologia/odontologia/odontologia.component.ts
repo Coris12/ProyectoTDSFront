@@ -38,7 +38,8 @@ export class OdontologiaComponent implements OnInit {
     private examenEsto: ExamenEstoControllerService,
     private planesService: PlanesControllerService,
     private diagnosticoService: DiagnosticoOControllerService,
-    private salService: SaludControllerService
+    private salService: SaludControllerService,
+    private historiaService: HistoriaControllerService
 
   ) {
 
@@ -58,8 +59,98 @@ export class OdontologiaComponent implements OnInit {
   errMsj: String;
   usuarioE: any;
   idIndi: any
- 
+  edad: any
+  numcli: any
   //
+  limpiar() {
+    this.Odonto.codigo = "";
+    this.Odonto.diagnostico = "";
+    this.Odonto.enfermedad = "";
+    this.Odonto.establecimiento = "";
+    this.Odonto.frecCardiaca = +"";
+    this.Odonto.frecRespi = +"";
+    this.Odonto.motivo = "";
+    this.Odonto.prescripcion = "";
+    this.Odonto.presion = +"";
+    this.Odonto.procedimiento = "";
+    this.Odonto.sesion = "";
+    this.Odonto.temperatura = +"";
+    this.indice.c = +"";
+    this.indice.c1 = +"";
+    this.indice.d = +"";
+    this.indice.d1 = +"";
+    this.indice.o = +""
+    this.indice.o1 = +""
+    this.indice.p = +""
+    this.indice.p1 = +"";
+    this.indice.totalD = +"";
+    this.indice.totald1 = +"";
+    this.examenE.descripcion = "";
+    this.planes.quimicaS = "";
+    this.planes.descripcion ="";
+    this.diagnostico.cie1 = "";
+    this.diagnostico.cie2 = "";
+    this.diagnostico.def = "";
+    this.diagnostico.def2 = "";
+    this.diagnostico.descripcion1 = "";
+    this.diagnostico.descripcion2 = "";
+    this.diagnostico.pre1 = "";
+    this.diagnostico.pre2 = "";
+    this.diagnostico.profesional = "";
+    this.salud.angleI = "";
+    this.salud.angleII = "";
+    this.salud.angleIII = "";
+    this.salud.cal1 = +"";
+    this.salud.cal2 = +"";
+    this.salud.cal3 = +"";
+    this.salud.cal4 = +"";
+    this.salud.cal5 = +"";
+    this.salud.calcul6 =+ "";
+    this.salud.gin1 = +"";
+    this.salud.gin2 = +"";
+    this.salud.gin3 = +"";
+    this.salud.gin4 = +"";
+    this.salud.gin5 = +"";
+    this.salud.gin6 = +"";
+    this.salud.leve = "";
+    this.salud.leveF = "";
+    this.salud.moderada = "";
+    this.salud.moderadaF = "";
+    this.salud.p11 = "";
+    this.salud.p16 = "";
+    this.salud.p17 = "";
+    this.salud.p21 = "";
+    this.salud.p26 = "";
+    this.salud.p27 = "";
+    this.salud.p31 = "";
+    this.salud.p36 = "";
+    this.salud.p37 = "";
+    this.salud.p41 = "";
+    this.salud.p46 = "";
+    this.salud.p47 = "";
+    this.salud.p55 = "";
+    this.salud.p65 = "";
+    this.salud.p71 = "";
+    this.salud.p75 = "";
+    this.salud.p85 = "";
+    this.salud.placa1 = +"";
+    this.salud.placa2 = +"";
+    this.salud.placa3 = +"";
+    this.salud.placa4 = +"";
+    this.salud.placa5 = +"";
+    this.salud.placa6 =+ "";
+    this.salud.severa = "";
+    this.salud.severaF = "";
+    this.salud.toatlG1 = +"";
+    this.salud.toatlP1 = +"";
+    this.salud.totalC2 = +"";
+    this.sexo="";
+    this.buscarcedula="";
+    this.buscarnombre="";
+    this.edad=+"";
+    this.numcli=+"";
+
+  }
   Odonto: Odontologia = {
     codigo: null,
     diagnostico: null,
@@ -379,12 +470,12 @@ export class OdontologiaComponent implements OnInit {
           //this.buscarnombre = ""
           if (datos.identificacion == this.buscarcedula) {
             this.idper = datos.id
-            
+
             this.buscarcedula = datos.identificacion
             this.buscar();
             this.buscarnombre = datos.nombres
             this.sexo = datos.sexo
-            
+
             break;
           }
 
@@ -404,6 +495,26 @@ export class OdontologiaComponent implements OnInit {
       console.log(res);
       console.log('per' + this.idper);
 
+    })
+    this.historiaService.listUsingGET6().subscribe((res) => {
+      for (let datos of res) {
+        if (this.buscarcedula != "" && this.buscarcedula != undefined) {
+          if (datos.usuario.identificacion == this.buscarcedula) {
+            this.idper = datos.usuario.id
+            this.edad = datos.edad
+            this.numcli = datos.numCl
+
+            break;
+          }
+        } else if (this.buscarnombre != "" && this.buscarnombre != undefined) {
+          if (datos.usuario.nombres == this.buscarnombre) {
+            this.idper = datos.usuario.id
+            this.edad = datos.edad
+            this.numcli = datos.numCl
+          }
+        }
+      }
+      console.log(res);
     })
 
   }
@@ -447,21 +558,102 @@ export class OdontologiaComponent implements OnInit {
     this.historia = []
     this.histService.listUsingGET6().subscribe((res) => {
       for (let datos of res) {
-        console.log(datos, this.idper, datos.usuario.id,datos.numCl);
+        console.log(datos, this.idper, datos.usuario.id, datos.numCl);
         if (this.idper == datos.usuario.id) {
           console.log("siiiiiiiiiiiiiiiiiiiii", datos);
           console.log(this.historia);
           this.historia.push({
             his: datos.numCl
-            
+
 
           });
 
 
         }
       }
-     // console.log('jjj'+res);
+      // console.log('jjj'+res);
 
     })
+  }
+
+  validarAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetras(event) {
+    const patron = /[a-zA-Z ]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarNumero(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarCedula(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/;
+    const permitidos = event.keyCode;
+    if (permitidos === 10) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

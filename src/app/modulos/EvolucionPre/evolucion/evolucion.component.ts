@@ -3,6 +3,7 @@ import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { EvolucionControllerService } from 'src/app/api/evolucionController.service';
+import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 import { MedicamentosControllerService } from 'src/app/api/medicamentosController.service';
 import { Evolucion } from 'src/app/model/evolucion';
 import { Medicamentos } from 'src/app/model/medicamentos';
@@ -20,7 +21,8 @@ export class EvolucionComponent implements OnInit {
     private evolucionService: EvolucionControllerService,
     private messageService: MessageService,
     private medicaService: MedicamentosControllerService,
-    private serviceGenPdf: FacturaService
+    private serviceGenPdf: FacturaService,
+    private historiaService:HistoriaControllerService
   ) { }
 
   //!variables
@@ -51,6 +53,8 @@ export class EvolucionComponent implements OnInit {
   }
   listDialog: boolean
   submitted: boolean;
+  edad:any
+  numcli:any
 
   openNew() {
     this.submitted = false;
@@ -140,6 +144,27 @@ export class EvolucionComponent implements OnInit {
       }
       console.log(res);
 
+    })
+    
+    this.historiaService.listUsingGET6().subscribe((res) => {
+      for (let datos of res) {
+        if (this.buscarcedula != "" && this.buscarcedula != undefined) {
+          if (datos.usuario.identificacion == this.buscarcedula) {
+            this.idper = datos.usuario.id
+            this.edad = datos.edad
+            this.numcli = datos.numCl
+
+            break;
+          }
+        } else if (this.buscarnombre != "" && this.buscarnombre != undefined) {
+          if (datos.usuario.nombres == this.buscarnombre) {
+            this.idper = datos.usuario.id
+            this.edad = datos.edad
+            this.numcli = datos.numCl
+          }
+        }
+      }
+      console.log(res);
     })
   }
 
@@ -275,4 +300,97 @@ export class EvolucionComponent implements OnInit {
       detail: 'Correcto!: ' + msg,
     });
   }
+
+  validarAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetras(event) {
+    const patron = /[a-zA-Z ]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarNumero(event){
+    const patron=/^-?(0|[0-9]\d*)?$/
+    const permitidos=event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+ validarCedula(event){
+  const patron=/^-?(0|[0-9]\d*)?$/;
+  const permitidos=event.keyCode;
+  if (permitidos === 10) {
+    return true;
+  } else if (patron.test(event.key)) {
+    return true;
+  } else {
+    return false;
+  }
+ }
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarFecha(event){
+    const patron=/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/;
+    const permitidos=event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }

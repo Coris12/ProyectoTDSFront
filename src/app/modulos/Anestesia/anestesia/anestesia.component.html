@@ -11,18 +11,20 @@
             <p-scrollPanel [style]="{width: '100%', height: '700px'}">
                 <div class="mt-4">
                     <div class="grid p-fluid">
-                        <div class="field col-12 md:col-2">
-                            <button type="button" pButton pRipple label="LIMPIAR"></button>
-                        </div>
+
                         <div class="field col-12 md:col-2">
                             <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
                         </div>
                         <div class="field col-12 md:col-2">
                             <button pButton type="button" label="Guardar"(click)="guardar()" ></button>
                         </div>
+                        <div class="field col-12 md:col-2">
+                            <button pButton type="button" label="Limpiar"(click)="limpiar()" ></button>
+                        </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText
+                                ngModel required="" (keypress)="validarCedula($event)" maxlength="255">
                                 <label for="inputtext">Cedula</label>
                             </span>
                         </div>
@@ -30,64 +32,75 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255"  >
                                 <label for="inputtext">Nombre</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="numcli" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="numcli" pInputText
+                                ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                                 <label for="inputtext">Num.Historia clinica</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
-                            <input type="date" id="inputtext" [(ngModel)]="Aneste.fecha" pInputText>
+                            <input type="date" id="inputtext" [(ngModel)]="Aneste.fecha" pInputText
+                            ngModel required="">
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="edad" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="edad" pInputText
+                                ngModel required="" (keypress)="validarNumero($event)" maxlength="2">
                                 <label for="inputtext">Edad</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Sexo</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Aneste.estatura" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Aneste.estatura" pInputText
+                                ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                                 <label for="inputtext">Estatura</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Aneste.peso" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Aneste.peso" pInputText
+                                ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                                 <label for="inputtext">Peso</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Aneste.ocupacion" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Aneste.ocupacion" pInputText
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Ocupacion Actual</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Aneste.servicio" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Aneste.servicio" pInputText
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Servicio</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Aneste.sala" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Aneste.sala" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Sala</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Aneste.cama" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Aneste.cama" pInputText 
+                                ngModel required="" (keypress)="validarNumero($event)">
                                 <label for="inputtext">Cama</label>
                             </span>
                         </div>
@@ -98,63 +111,72 @@
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    [(ngModel)]="Aneste.pre" pInputText>
+                                    [(ngModel)]="Aneste.pre" pInputText
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Diagnostico Preoperatorio</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    [(ngModel)]="Aneste.post" pInputText>
+                                    [(ngModel)]="Aneste.post" pInputText
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Diagnostico Postoperatorio</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    [(ngModel)]="Aneste.propuesta" pInputText>
+                                    [(ngModel)]="Aneste.propuesta" pInputText
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Operacion propuesta</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    [(ngModel)]="Aneste.cirujano" pInputText>
+                                    [(ngModel)]="Aneste.cirujano" pInputText
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Cirujano</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    [(ngModel)]="Aneste.ayudanteC" pInputText>
+                                    [(ngModel)]="Aneste.ayudanteC" pInputText
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Ayudantes</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    [(ngModel)]="Aneste.realizada" pInputText>
+                                    [(ngModel)]="Aneste.realizada" pInputText
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Operacion realizada</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    [(ngModel)]="Aneste.anestecio" pInputText>
+                                    [(ngModel)]="Aneste.anestecio" pInputText
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Anestesiologo</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    [(ngModel)]="Aneste.ayudanteA" pInputText>
+                                    [(ngModel)]="Aneste.ayudanteA" pInputText
+                                    >
                                 <label for="inputtext">Ayudantes</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    [(ngModel)]="Aneste.intrumentista" pInputText>
+                                    [(ngModel)]="Aneste.intrumentista" pInputText
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                                 <label for="inputtext">Intrumentista</label>
                             </span>
                         </div>
@@ -178,7 +200,7 @@
                         </div>
                     </p-divider>
                     <p-editor [(ngModel)]="Aneste.tipoD" [style]="{'height':'120px'}"
-                        (keypress)="validacionAlfanumerica($event)">
+                        (keypress)="validarAlfanumerica($event)" ngModel required="">
                         <ng-template pTemplate="header">
                             <span class="ql-formats">
                                 <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -200,13 +222,14 @@
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="number" id="inputtext" [(ngModel)]="Aneste.horaA" pInputText
-                                    (keypress)="validacionAlfanumerica($event)">
+                                    (keypress)="validarAlfanumerica($event)" ngModel required="">
                                 <label for="inputtext">Horas</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="number" id="inputtext" [(ngModel)]="Aneste.minA" pInputText>
+                                <input type="number" id="inputtext" [(ngModel)]="Aneste.minA" pInputText
+                                ngModel required="" (keypress)="validarNumero($event)" >
                                 <label for="inputtext">Minutos</label>
                             </span>
                         </div>
@@ -217,13 +240,15 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="number" id="inputtext" [(ngModel)]="Aneste.horaO" pInputText>
+                                <input type="number" id="inputtext" [(ngModel)]="Aneste.horaO" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Horas</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="number" id="inputtext" [(ngModel)]="Aneste.minO" pInputText>
+                                <input type="number" id="inputtext" [(ngModel)]="Aneste.minO" pInputText
+                                ngModel required="" (keypress)="validarNumero($event)">
                                 <label for="inputtext">Minutos</label>
                             </span>
                         </div>
@@ -425,7 +450,8 @@
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Tec.nivel" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Tec.nivel" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" >
                                 <label for="inputtext">Nivel</label>
                             </span>
                         </div>
@@ -446,31 +472,36 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.dext" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.dext" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" >
                                 <label for="inputtext">Dextrosas</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.ringer" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.ringer" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)">
                                 <label for="inputtext">Ringer</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.sangre" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.sangre" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Sangre</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.ex" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.ex" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Expansores</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="number" id="inputtext" [(ngModel)]="In.total" pInputText>
+                                <input type="number" id="inputtext" [(ngModel)]="In.total" pInputText
+                                ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                                 <label for="inputtext">Total</label>
                             </span>
                         </div>
@@ -481,14 +512,16 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.hemorragia" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.hemorragia" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">hemorragia</label>
                             </span>
                         </div>
                         <b>APGAR</b>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.apga" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.apga" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">1 min. 5 min. 10 min. F.muerto</label>
                             </span>
                         </div>
@@ -499,25 +532,29 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <textarea id="float-input" rows="5" cols="60" [(ngModel)]="In.especiales" pInputTextarea></textarea>
+                                <textarea id="float-input" rows="5" cols="60" [(ngModel)]="In.especiales" pInputTextarea
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255"></textarea>
                                 <label for="float-input"></label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"[(ngModel)]="In.conducido" pInputText>
+                                <input type="text" id="inputtext"[(ngModel)]="In.conducido" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Conducido a:</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.por" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.por" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Por:</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.hora"pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.hora"pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Hora:</label>
                             </span>
                         </div>
@@ -585,14 +622,16 @@
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" [(ngModel)]="Compli.cambioT" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    pInputText>
+                                    pInputText
+                                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Cambios de Tecnica</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" [(ngModel)]="Compli.comentarios" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    pInputText>
+                                    pInputText
+                                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Comentarios</label>
                             </span>
                         </div>
@@ -607,21 +646,24 @@
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext"  [(ngModel)]="Aneste.propuesta" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    pInputText>
+                                    pInputText
+                                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Operacion propuesta</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" [(ngModel)]="Compli.informacion" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    pInputText>
+                                    pInputText
+                                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Informacion Especial</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext"  [(ngModel)]="Compli.grupoS" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    pInputText>
+                                    pInputText
+                                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Grupo Sanguineo</label>
                             </span>
                         </div>
@@ -769,21 +811,24 @@
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext"[(ngModel)]="In.uro" style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    pInputText>
+                                    pInputText
+                                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Uroanalisis</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" [(ngModel)]="In.hema"style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    pInputText>
+                                    pInputText
+                                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Hematologico</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-2">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" [(ngModel)]="In.quimicaS"style="WIDTH: 228px; HEIGHT: 98px" size=32 name=text1
-                                    pInputText>
+                                    pInputText
+                                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Quimica Sanguinea</label>
                             </span>
                         </div>
@@ -818,7 +863,8 @@
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Region.descripcion" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Region.descripcion" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext"></label>
                             </span>
                         </div>
@@ -832,61 +878,70 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.at" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.at" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Atrrimias</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"  [(ngModel)]="In.hiper" pInputText>
+                                <input type="text" id="inputtext"  [(ngModel)]="In.hiper" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255" >
                                 <label for="inputtext">Hipertension</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.valvulares" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.valvulares" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Enf.Valvulares</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.congenitas" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.congenitas" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Enf.Congenitas</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.infartos" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.infartos" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255" >
                                 <label for="inputtext">Infartos</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.pa" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.pa" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">P.A</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"  [(ngModel)]="In.ecg"pInputText>
+                                <input type="text" id="inputtext"  [(ngModel)]="In.ecg"pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">E.C.G</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.anteriorA"pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="In.anteriorA"pInputTe>
                                 <label for="inputtext">Anestesias anteriores y complicaciones</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.horaI"pInputText>
+                                <input type="time" id="inputtext" [(ngModel)]="In.horaI"pInputText
+                                ngModel required="">
                                 <label for="inputtext">Ultima ingestion hora:</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="In.horaD" pInputText>
+                                <input type="time" id="inputtext" [(ngModel)]="In.horaD" pInputText
+                                ngModel required="" >
                                 <label for="inputtext">Hora del accidente o dolor</label>
                             </span>
                         </div>
@@ -900,31 +955,36 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"  [(ngModel)]="Region.convulsiones"pInputText>
+                                <input type="text" id="inputtext"  [(ngModel)]="Region.convulsiones"pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Convulsiones Epilepsia</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Region.craneales" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Region.craneales" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Traumatismos Craneales</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"  pInputText>
+                                <input type="text" id="inputtext"  pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Perdida de Conciencia</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Region.cefalea" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Region.cefalea" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Cefálea</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"[(ngModel)]="Region.otrosS" pInputText>
+                                <input type="text" id="inputtext"[(ngModel)]="Region.otrosS" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Otros</label>
                             </span>
                         </div>
@@ -938,49 +998,57 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Region.habitos"pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Region.habitos"pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Alergias-Habitos</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Region.diabetes" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Region.diabetes" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Hipertiroidismo-Diabetes</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Region.renal" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Region.renal" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Insuf.Hepatica o Renal</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Region.electro" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Region.electro" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Desequilibrio Electrolitico</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Region.toxemias"pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Region.toxemias"pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Toxemias</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Region.multiples"pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Region.multiples"pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Traumatismos multiples</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Region.shocks" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Region.shocks" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Shocks</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"[(ngModel)]="Region.otrosR" pInputText>
+                                <input type="text" id="inputtext"[(ngModel)]="Region.otrosR" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Otros</label>
                             </span>
                         </div>
@@ -994,37 +1062,43 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Tera.digitalicos" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Tera.digitalicos" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Digitalicos</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Tera.esteroides"pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Tera.esteroides"pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Esteroides</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Tera.tran" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Tera.tran" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Tranquilizantes</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" [(ngModel)]="Tera.hipo" pInputText>
+                                <input type="text" id="inputtext" [(ngModel)]="Tera.hipo" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Hipotensores</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"[(ngModel)]="Tera.otrosT" pInputText>
+                                <input type="text" id="inputtext"[(ngModel)]="Tera.otrosT" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Otros</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"  [(ngModel)]="Aneste.pre"pInputText>
+                                <input type="text" id="inputtext"  [(ngModel)]="Aneste.pre"pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Diagnostico Preperatorio</label>
                             </span>
                         </div>
@@ -1035,19 +1109,22 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"  [(ngModel)]="Tera.fecha" pInputText>
+                                <input type="text" id="inputtext"  [(ngModel)]="Tera.fecha" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Fecha</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"  [(ngModel)]="Tera.hora" pInputText>
+                                <input type="time" id="inputtext"  [(ngModel)]="Tera.hora" pInputText
+                                ngModel required="" >
                                 <label for="inputtext">Hora</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"  [(ngModel)]="Tera.medicamento"pInputText>
+                                <input type="text" id="inputtext"  [(ngModel)]="Tera.medicamento"pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Medicamento</label>
                             </span>
                         </div>
@@ -1080,7 +1157,8 @@
                         </p-fieldset>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"  [(ngModel)]="Tera.elaborado" pInputText>
+                                <input type="text" id="inputtext"  [(ngModel)]="Tera.elaborado" pInputText
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                                 <label for="inputtext">Elaborado por:</label>
                             </span>
                         </div>
@@ -1120,7 +1198,7 @@
                     <b>Poner hora y fecha firmar al pie de cada nota</b>
                     <br>
                     <div class="col-12 md:col-4">
-                        <p-editor [style]="{'height':'120px'}"[(ngModel)]="Tera.recordatorio" (keypress)="validacionAlfanumerica($event)">
+                        <p-editor [style]="{'height':'120px'}"[(ngModel)]="Tera.recordatorio" (keypress)="validarAlfanumerica($event)">
                             <ng-template pTemplate="header">
                                 <span class="ql-formats">
                                     <button type="button" class="ql-bold" aria-label="Bold"></button>

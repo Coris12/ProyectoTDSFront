@@ -79,9 +79,13 @@ export class ProveedorComponent implements OnInit {
         });
       });
     this.proveDialog = true;
+    this.limpiar();
   }
-
+  limpiar() {
+    this.proveForm.reset()
+  }
   saveProveedor() {
+
     console.log(this.proveForm.value)
     if (this.proveForm.value?.idProveedor !== null) {
       this.proveedorController.updateUsingPUT3(
@@ -122,6 +126,7 @@ export class ProveedorComponent implements OnInit {
         usuario: null
       })
     }
+    this.limpiar();
   }
 
   borrarProveedor(idProveedor): void {
@@ -161,5 +166,65 @@ export class ProveedorComponent implements OnInit {
 
     );
 
+  }
+  
+  validacionAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetras(event) {
+    const patron = /[a-zA-Z ]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

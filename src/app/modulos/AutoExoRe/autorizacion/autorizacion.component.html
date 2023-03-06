@@ -11,22 +11,23 @@
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
                     <input autocomplete="off" type="text" id="inputtext" pInputText
-                        [(ngModel)]="Auto.instutucionSistema" (keypress)="validacionAlfanumerica($event)"
-                        maxlength="255">
+                        [(ngModel)]="Auto.instutucionSistema" (keypress)="validarAlfanumerica($event)" ngModel
+                        required="" maxlength="255">
                     <label for="inputtext">INSTITUCIÓN DEL SISTEMA</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
                     <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="Auto.unidadOperativa"
-                        (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                        ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255" ngModel
+                        required="">
                     <label for="inputtext">UNIDAD OPERATIVA</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
                     <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="Auto.codUd"
-                        (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                        (keypress)="validarAlfanumerica($event)" ngModel required="" maxlength="255">
                     <label for="inputtext">COD. UD</label>
                 </span>
             </div>
@@ -36,21 +37,21 @@
                     <div class="field col-12 md:col-4">
                         <span class="p-float-label">
                             <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="Auto.parroquia"
-                                (keypress)="validarSoloLetras($event)" maxlength="255">
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             <label for="inputtext">PARROQUIA</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="p-float-label">
                             <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="Auto.canton"
-                                (keypress)="validarSoloLetras($event)" maxlength="255">
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             <label for="inputtext">CANTÓN</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="p-float-label">
                             <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="Auto.provincia"
-                                (keypress)="validarSoloLetras($event)" maxlength="255">
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             <label for="inputtext">PROVINCIA</label>
                         </span>
                     </div>
@@ -58,9 +59,8 @@
             </div>
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
-                    <input autocomplete="off" type="text" id="inputtext" pInputText
-                        [(ngModel)]="Auto.numeroHistoriaClinica" (keypress)="validacionSoloNumeros($event)"
-                        maxlength="10">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="numcli"
+                        (keypress)="validarNumero($event)" ngModel required="" maxlength="10">
                     <label for="inputtext"># HISTORIA CLÍNICA</label>
                 </span>
             </div>
@@ -70,41 +70,52 @@
                 <div class="grid p-fluid">
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula" ngModel required=""
+                                (keypress)="validarCedula($event)" maxlength="13">
                             <label for="inputtext">Cedula</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre" ngModel required=""
+                                (keypress)="validarLetras($event)">
+
                             <label for="inputtext">Nombres</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.servicio">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.servicio" ngModel required=""
+                                (keypress)="validarLetras($event)">
+
                             <label for="inputtext">Servicio</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.sala">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.sala" ngModel required=""
+                                (keypress)="validarAlfanumerica($event)">
                             <label for="inputtext">Sala</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cama">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cama" ngModel required=""
+                                (keypress)="validarNumero($event)">
                             <label for="inputtext">Cama</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="datetime-local" id="inputtext" pInputText [(ngModel)]="Auto.fecha">
+                            <input type="datetime-local" id="inputtext" pInputText [(ngModel)]="Auto.fecha" ngModel
+                                required="">
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                            <button type="button" pButton pRipple label="LIMPIAR" (click)="limpiar()"></button>
                     </div>
                 </div>
             </div>
@@ -125,21 +136,24 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="buscarnombre">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre" ngModel required=""
+                        (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del paciente</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="telefono">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="telefono" ngModel required=""
+                        (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="buscarcedula">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula" ngModel required=""
+                        (keypress)="validarCedula($event)" maxlength="13">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -149,27 +163,31 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.nombreRepre">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre" ngModel required=""
+                        (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del representante</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.parentesco">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco" ngModel required=""
+                        (keypress)="validarLetras($event)">
                     <label for="inputtext">Parentesco</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.telefonoParien">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien" ngModel required=""
+                        (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.cedulaRe">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe" ngModel required=""
+                        (keypress)="validarCedula($event)" maxlength="13">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -193,21 +211,24 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre" ngModel required=""
+                        (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del paciente</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="telefono">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="telefono" ngModel required=""
+                        (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula" ngModel required=""
+                        (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -217,27 +238,31 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre" ngModel required=""
+                        (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del representante</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco" ngModel required=""
+                        (keypress)="validarLetras($event)">
                     <label for="inputtext">Parentesco</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien"ngModel required=""
+                    (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe"ngModel required=""
+                    (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -260,21 +285,24 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre"ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del paciente</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="telefono">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="telefono"ngModel required=""
+                    (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula"ngModel required=""
+                    (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -284,27 +312,31 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre" ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del representante</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco"ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Parentesco</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien"ngModel required=""
+                    (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe"ngModel required=""
+                    (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -312,21 +344,24 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreTratante">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreTratante"ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del profesinal de salud</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.telefonoTra">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoTra"ngModel required=""
+                    (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.cedulaTra">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaTra"ngModel required=""
+                    (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -356,27 +391,31 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.nombreRepre">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre" ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del representante</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.parentesco">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco"ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Parentesco</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.telefonoParien">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien" ngModel required=""
+                    (keypress)="validarAlfanumerica($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.cedulaRe">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe" ngModel required=""
+                    (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -386,27 +425,31 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.nombreRepre">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre" ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del testigo</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.parentesco">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco" ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Parentesco</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.telefonoParien">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien"ngModel required=""
+                    (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.cedulaRe">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe" ngModel required=""
+                    (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -415,21 +458,24 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText  [(ngModel)]="Auto.nombreMedico">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreMedico" ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del medico</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoMedico">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoMedico"ngModel required=""
+                    (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaMe">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaMe"ngModel required=""
+                    (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -457,13 +503,15 @@
             <div class="grid p-fluid">
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="organos.nombreOrgano">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="organos.nombreOrgano"ngModel required=""
+                        (keypress)="validarLetras($event)">
                         <label for="inputtext">Organos donados</label>
                     </span>
                 </div>
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="organos.nombreReceptor">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="organos.nombreReceptor"ngModel required=""
+                        (keypress)="validarLetras($event)">
                         <label for="inputtext">Nombre de los receptores</label>
                     </span>
                 </div>
@@ -473,27 +521,31 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre" >
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre"ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del representante</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco"ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Parentesco</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien"ngModel required=""
+                    (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe"ngModel required=""
+                    (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -503,27 +555,31 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre"ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del testigo o representante</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco"ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Parentesco</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien"ngModel required=""
+                    (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe"ngModel required=""
+                    (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -532,21 +588,24 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreTratante">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreTratante"ngModel required=""
+                    (keypress)="validarLetras($event)">
                     <label for="inputtext">Nombre del profesional tratante</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoTra">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoTra"ngModel required=""
+                    (keypress)="validarNumero($event)">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
 
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaTra">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaTra"ngModel required=""
+                    (keypress)="validarCedula($event)">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
@@ -568,27 +627,31 @@
             <div class="grid p-fluid">
                 <div class="field col-12 md:col-4">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre"ngModel required=""
+                        (keypress)="validarLetras($event)">
                         <label for="inputtext">Nombre del representante</label>
                     </span>
                 </div>
 
                 <div class="field col-12 md:col-4">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco"ngModel required=""
+                        (keypress)="validarLetras($event)">
                         <label for="inputtext">Parentesco</label>
                     </span>
                 </div>
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien"ngModel required=""
+                        (keypress)="validarNumero($event)">
                         <label for="inputtext">Telefono</label>
                     </span>
                 </div>
 
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe"ngModel required=""
+                        (keypress)="validarCedula($event)">
                         <label for="inputtext">Cedula</label>
                     </span>
                 </div>
@@ -597,27 +660,31 @@
             <div class="grid p-fluid">
                 <div class="field col-12 md:col-4">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreRepre"ngModel required=""
+                        (keypress)="validarLetras($event)">
                         <label for="inputtext">Nombre del testigo</label>
                     </span>
                 </div>
 
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.parentesco"ngModel required=""
+                        (keypress)="validarLetras($event)">
                         <label for="inputtext">Parentesco</label>
                     </span>
                 </div>
 
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoParien"ngModel required=""
+                        (keypress)="validarNumero($event)">
                         <label for="inputtext">Telefono</label>
                     </span>
                 </div>
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaRe"ngModel required=""
+                        (keypress)="validarCedula($event)">
                         <label for="inputtext">Cedula</label>
                     </span>
                 </div>
@@ -625,30 +692,32 @@
             <div class="grid p-fluid">
                 <div class="field col-12 md:col-4">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreMedico">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.nombreMedico"ngModel required=""
+                        (keypress)="validarLetras($event)">
                         <label for="inputtext">Nombre del medico</label>
                     </span>
                 </div>
 
                 <div class="field col-12 md:col-4">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoMedico">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.telefonoMedico"ngModel required=""
+                        (keypress)="validarNumero($event)">
                         <label for="inputtext">Telefono</label>
                     </span>
                 </div>
 
                 <div class="field col-12 md:col-4">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaMe">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="Auto.cedulaMe"ngModel required=""
+                        (keypress)="validarCedula($event)">
                         <label for="inputtext">Cedula</label>
                     </span>
                 </div>
-                
+
             </div>
 
         </div>
     </div>
-    <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="guardarTodo()"
-                styleClass="p-button-text">
-            </p-button>
+    <p-button type="submit" icon="pi pi-check" label="Guardar" (click)="guardarTodo()" styleClass="p-button-text">
+    </p-button>
 </div>

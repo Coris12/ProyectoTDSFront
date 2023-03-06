@@ -7,6 +7,7 @@ import { AuthControllerService } from 'src/app/api/authController.service';
 import { DiagnsticoAiControllerService } from 'src/app/api/diagnsticoAiController.service';
 import { EmergenciaControllerService } from 'src/app/api/emergenciaController.service';
 import { EnfermadAnteControllerService } from 'src/app/api/enfermadAnteController.service';
+import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 import { IngresoDiaControllerService } from 'src/app/api/ingresoDiaController.service';
 import { LesionesControllerService } from 'src/app/api/lesionesController.service';
 
@@ -53,13 +54,14 @@ export class AdmisionComponent implements OnInit {
     private diaAService: DiagnsticoAiControllerService,
     private emergenciaService: EmergenciaControllerService,
     private lesionService: LesionesControllerService,
-    private residenService:ResidenciaControllerService,
+    private residenService: ResidenciaControllerService,
+    private historiaService: HistoriaControllerService
   ) { }
 
 
 
 
-  
+
   //variables
   usuarioE: any
   cel: string
@@ -74,8 +76,9 @@ export class AdmisionComponent implements OnInit {
   errMsj: String
   idper: number
   selectedValue: string;
-
- 
+  estado: any
+  edad: any
+  numcli: any
 
   res: ResidenciaDto = {
     barrio: null,
@@ -324,22 +327,22 @@ export class AdmisionComponent implements OnInit {
   }
 
   lesion: Lesiones = {
-    admision:null,
-    cerrada:null,
-    cortante:null,
-    esguince:null,
-    excoracion:null,
-    expuesta:null,
-    extraa:null,
-    hematoma:null,
-    hemorragia:null,
-    idLesiones:null,
-    inflamacion:null,
-    masa:null,
-    mordedura:null,
-    pentrante:null,
-    picadura:null,
-    quemadura:null,
+    admision: null,
+    cerrada: null,
+    cortante: null,
+    esguince: null,
+    excoracion: null,
+    expuesta: null,
+    extraa: null,
+    hematoma: null,
+    hemorragia: null,
+    idLesiones: null,
+    inflamacion: null,
+    masa: null,
+    mordedura: null,
+    pentrante: null,
+    picadura: null,
+    quemadura: null,
   }
 
   ngOnInit(): void {
@@ -493,7 +496,7 @@ export class AdmisionComponent implements OnInit {
     });
   }
 
-  guardarLesion(){
+  guardarLesion() {
     this.lesionService.saveLesionUsingPOST(this.lesion).subscribe(data => {
       if (data.object != null) {
         this.MessageSuccess(data.message);
@@ -519,7 +522,7 @@ export class AdmisionComponent implements OnInit {
           this.trata.admision = datos
           this.Alta.admision = datos
           this.emergencia.admision = datos
-          this.lesion.admision=datos
+          this.lesion.admision = datos
           console.log(this.idAm);
           this.guardarAccident();
         }
@@ -603,9 +606,34 @@ export class AdmisionComponent implements OnInit {
       console.log(res);
 
     })
+    this.historiaService.listUsingGET6().subscribe((res) => {
+      for (let datos of res) {
+        if (this.buscarcedula != "" && this.buscarcedula != undefined) {
+          if (datos.usuario.identificacion == this.buscarcedula) {
+            this.idper = datos.usuario.id
+            this.edad = datos.edad
+            this.numcli = datos.numCl
+            this.estado = datos.estadoCivil
+            break;
+          }
+        } else if (this.buscarnombre != "" && this.buscarnombre != undefined) {
+          if (datos.usuario.nombres == this.buscarnombre) {
+            this.idpersona = datos.usuario.id
+            this.edad = datos.edad
+            this.numcli = datos.numCl
+            this.estado = datos.estadoCivil
+            
+          }
+        }
+      }
+      console.log(res);
+    })
+
+    
+
   }
 
- 
+
   validacionAlfanumerica(event) {
     const patron = /[a-zA-ZÑñ0-9 ,:-]/;
     const permitidos = event.keyCode;
@@ -654,5 +682,5 @@ export class AdmisionComponent implements OnInit {
     }
   }
 
- 
+
 }

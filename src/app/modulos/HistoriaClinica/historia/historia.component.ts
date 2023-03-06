@@ -5,6 +5,8 @@ import { AuthControllerService } from 'src/app/api/authController.service';
 import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 import { HistoriaClinica } from 'src/app/model/historiaClinica';
 import { FacturaService } from 'src/app/servicioManual/factura.service';
+import { FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-historia',
@@ -18,6 +20,10 @@ export class HistoriaComponent implements OnInit {
   idpersona: number;
   idHistoria: any
   usuarioN: any
+
+  //
+  form: any
+  //
 
   historia: HistoriaClinica = {
     alergia: null,
@@ -64,12 +70,62 @@ export class HistoriaComponent implements OnInit {
     private persnaService: AuthControllerService,
     private historiaService: HistoriaControllerService,
     private messageService: MessageService,
-    private serviceGenPdf: FacturaService
+    private serviceGenPdf: FacturaService,
+    private formbuider: FormBuilder,
+
 
   ) { }
 
   ngOnInit(): void {
     this.HistoriaCNum();
+
+    //validacionesssssssssssssssssssssss
+    this.form = this.formbuider.group({
+      numero: ['',
+        [
+          Validators.required,
+          Validators.pattern(/^-?(0|[0-9]\d*)?$/),
+          Validators.minLength(1),
+        ]
+      ],
+      numerotelefono: ['',
+        [
+          Validators.required,
+          Validators.pattern(/^-?(0|[0-9]\d*)?$/),
+          Validators.minLength(1),
+        ]
+      ],
+      numerocelular: ['',// asi porq si no si pones mal en el uno te sale el error en otro tambien ... creo que era de cada uno esto
+        [
+          Validators.required,
+          Validators.pattern(/^-?(0|[0-9]\d*)?$/),
+          Validators.minLength(1),
+        ]
+      ],
+      cedula: ['',
+        [
+          Validators.required,
+          Validators.pattern(/^-?(0|[0-9]\d*)?$/),
+          Validators.minLength(10),
+          Validators.maxLength(10)
+        ]
+      ],
+      //esto tiene que ser para cada componente creo que era
+      texto: ['',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z\s]*$/),
+        ]
+      ],
+      email: ['',
+        [
+          Validators.required,
+          Validators.email,
+        ]
+      ]
+    });
+    //
+    //
   }
 
   buscarPersona() {
@@ -96,6 +152,9 @@ export class HistoriaComponent implements OnInit {
 
 
   guardarTodo() {
+
+
+    this.submitted = true;
     this.persnaService.listaUsingGET().subscribe((res) => {
       for (let datos of res) {
 
@@ -109,6 +168,19 @@ export class HistoriaComponent implements OnInit {
         }
       }
     })
+  }
+
+  
+  validacionAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 
@@ -200,7 +272,7 @@ export class HistoriaComponent implements OnInit {
     this.historia.tem = +"";
     this.historia.tipoSangre = "";
     this.buscarcedula = "";
-    this.buscarnombre="";
+    this.buscarnombre = "";
   }
   createId(): string {
     let id = '';

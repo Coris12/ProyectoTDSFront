@@ -13,31 +13,35 @@
                 <div class="grid p-fluid">
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" [(ngModel)]="establecimiento" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="establecimiento" pInputText
+                            ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             <label for="inputtext">Establecimiento</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText
+                            ngModel required="" (keypress)="validarCedula($event)" maxlength="13">
                             <label for="inputtext">Cedula</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText
+                            ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             <label for="inputtext">Nombres</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" [(ngModel)]="sexo"  pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="sexo"  pInputText
+                            ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             <label for="inputtext">Sexo</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="numcli"  ngModel required="" (keypress)="validarLetras($event)" maxlength="255"> 
                             <label for="inputtext">N° Historia Clinica</label>
                         </span>
                     </div>

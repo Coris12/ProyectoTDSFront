@@ -44,16 +44,16 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
-import {CarouselModule} from 'primeng/carousel';
-import {GMapModule} from 'primeng/gmap';
-import {InputMaskModule} from 'primeng/inputmask';
+import { CarouselModule } from 'primeng/carousel';
+import { GMapModule } from 'primeng/gmap';
+import { InputMaskModule } from 'primeng/inputmask';
 import { SidebarModule } from 'primeng/sidebar';
-import {CheckboxModule} from 'primeng/checkbox';
+import { CheckboxModule } from 'primeng/checkbox';
 import { FieldsetModule, } from 'primeng/fieldset';
-import {ScrollPanelModule} from 'primeng/scrollpanel';
-import {AutoCompleteModule} from 'primeng/autocomplete';
-import {EditorModule} from 'primeng/editor';
-import {KeyFilterModule} from 'primeng/keyfilter';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { EditorModule } from 'primeng/editor';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -101,7 +101,7 @@ import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalCon
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { MessagesModule } from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import { MessageModule } from 'primeng/message';
 import { LectorComponent } from './modulos/tarjeta/lector/lector.component';
 import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-tarjetas.component';
 import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
@@ -155,6 +155,7 @@ import { InfusionControllerService } from './api/infusionController.service';
 import { ComplicacionesControllerService } from './api/complicacionesController.service';
 import { TecnicaControllerService } from './api/tecnicaController.service';
 import { TerapiaControllerService } from './api/terapiaController.service';
+import { ErrorTailorModule } from '@ngneat/error-tailor';
 
 @NgModule({
   declarations: [
@@ -192,7 +193,7 @@ import { TerapiaControllerService } from './api/terapiaController.service';
     HistoriaComponent,
     OdontologiaComponent,
     AnestesiaComponent,
-
+    ErrorComponent,
 
   ],
   imports: [
@@ -207,6 +208,7 @@ import { TerapiaControllerService } from './api/terapiaController.service';
     RouterModule,
     Ng2SearchPipeModule,
     FileUploadModule,
+
     // *primeng
     InputMaskModule,
     ScrollPanelModule,
@@ -246,9 +248,21 @@ import { TerapiaControllerService } from './api/terapiaController.service';
     MessagesModule,
     MessageModule,
     KeyFilterModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
     // ! primeng
 
+    ErrorTailorModule.forRoot({
+      errors: {
+        useFactory() {
+          return {
+            required: 'Es requerido',
+            minlength: ({ requiredLength, actualLength }) => `Expect ${requiredLength} but got ${actualLength}`,
+            invalidAddress: error => `Address not valid`
+          };
+        },
+        deps: []
+      }
+    })
 
   ],
   providers: [
@@ -316,6 +330,7 @@ import { TerapiaControllerService } from './api/terapiaController.service';
     ComplicacionesControllerService,
     TecnicaControllerService,
     TerapiaControllerService
+    
   ],
   bootstrap: [AppComponent]
 })

@@ -75,7 +75,8 @@ export class DatosComponent implements OnInit {
   constructor(
     private personaService: AuthControllerService,
     private messageService: MessageService,
-    private formularioService: FormularioControllerService
+    private formularioService: FormularioControllerService,
+   
 
   ) {
   }
@@ -168,9 +169,7 @@ export class DatosComponent implements OnInit {
         }
       })
   }
- saveDatos(){
-  this.formularioService.createUsingPOST3
- }
+
  guardarTodo(){
   this.personaService.listaUsingGET().subscribe((res) => {
     for (let datos of res) {

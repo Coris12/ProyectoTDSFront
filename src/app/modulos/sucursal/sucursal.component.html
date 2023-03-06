@@ -84,15 +84,18 @@
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
                 <i class="pi pi-flag"></i>
-                <input type="text" pInputText placeholder="Nombre sucursal" formControlName="nombreSuc">
+                <input type="text" pInputText placeholder="Nombre sucursal"  formControlName="nombreSuc"
+                (keypress)="validarLetras($event)" >
             </span>
         </div>
         <div class="form-group mt-2"><span class="p-input-icon-left">
                 <i class="pi pi-map-marker"></i>
-                <input type="text" pInputText placeholder="Direccion Sucursal" formControlName="direccionSuc" />
+                <input type="text" pInputText placeholder="Direccion Sucursal" formControlName="direccionSuc" 
+                (keypress)="validacionAlfanumerica($event)"/>
             </span>
         </div>
-        <div class="form-group mt-2"> <span class="p-input-icon-left">
+        <div class="form-group mt-2"> 
+            <span class="p-input-icon-left">
                 <i class="pi pi-envelope"></i>
                 <input type="text" pInputText placeholder="Correo Sucursal" formControlName="correoSuc" />
             </span>
@@ -109,7 +112,7 @@
                 styleClass="p-button-text"></p-button>
         </div>
         <div style="text-align:right">
-            <p-button  type="submit" label="Limpiar"  (click)="limpiar()"></p-button>
+            <p-button type="button" label="Limpiar" (click)="limpiar()"></p-button>
         </div>
     </form>
 </p-dialog>

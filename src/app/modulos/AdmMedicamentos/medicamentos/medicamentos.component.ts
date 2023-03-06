@@ -8,6 +8,7 @@ import { Usuario } from 'src/app/model/usuario';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { FacturaService } from 'src/app/servicioManual/factura.service';
+import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 
 @Component({
   selector: 'app-medicamentos',
@@ -47,12 +48,15 @@ export class MedicamentosComponent implements OnInit {
   idusuario2: number;
   medica: string;
   errMsj: string;
+  edad:any
+  numcli:any
 
   constructor(
     private medicamentoService: MedicamentosControllerService,
     private messageService: MessageService,
     private persnaService: AuthControllerService,
-    private serviceGenPdf: FacturaService
+    private serviceGenPdf: FacturaService,
+    private historiaService:HistoriaControllerService
   ) { }
 
   buscarPerIdent: string = "";
@@ -67,6 +71,7 @@ export class MedicamentosComponent implements OnInit {
       this.Medi.hora = null,
       this.Medi.inicialesRespon = null,
       this.Medi.nombreMedicamento = null
+      this.numcli=""
   }
 
   cargarPersona() {
@@ -156,6 +161,27 @@ export class MedicamentosComponent implements OnInit {
       console.log(res);
 
     })
+
+    this.historiaService.listUsingGET6().subscribe((res) => {
+      for (let datos of res) {
+        if (this.buscarcedula != "" && this.buscarcedula != undefined) {
+          if (datos.usuario.identificacion == this.buscarcedula) {
+            this.idpersona = datos.usuario.id
+            this.edad = datos.edad
+            this.numcli = datos.numCl
+
+            break;
+          }
+        } else if (this.buscarnombre != "" && this.buscarnombre != undefined) {
+          if (datos.usuario.nombres == this.buscarnombre) {
+            this.idpersona = datos.usuario.id
+            this.edad = datos.edad
+            this.numcli = datos.numCl
+          }
+        }
+      }
+      console.log(res);
+    })
   }
 
   buscarMedicamento() {
@@ -192,6 +218,7 @@ export class MedicamentosComponent implements OnInit {
     this.buscarcedula = "";
     this.buscarnombre="";
     this.sexo="";
+    this.numcli=""
 
   }
 
@@ -247,6 +274,86 @@ export class MedicamentosComponent implements OnInit {
   }
 
 
+  validarAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetras(event) {
+    const patron = /[a-zA-Z ]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarNumero(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarCedula(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/;
+    const permitidos = event.keyCode;
+    if (permitidos === 10) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 
   ///WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWw
