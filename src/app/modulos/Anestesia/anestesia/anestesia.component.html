@@ -24,7 +24,7 @@
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText
-                                ngModel required="" (keypress)="validarCedula($event)" maxlength="255">
+                                ngModel required="" (keypress)="validarCedula($event)" maxlength="13">
                                 <label for="inputtext">Cedula</label>
                             </span>
                         </div>
@@ -65,14 +65,14 @@
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" [(ngModel)]="Aneste.estatura" pInputText
-                                ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
+                                ngModel required="" (keypress)="validarNumero($event)" >
                                 <label for="inputtext">Estatura</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
                                 <input type="text" id="inputtext" [(ngModel)]="Aneste.peso" pInputText
-                                ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
+                                ngModel required="" (keypress)="validarNumero($event)" >
                                 <label for="inputtext">Peso</label>
                             </span>
                         </div>

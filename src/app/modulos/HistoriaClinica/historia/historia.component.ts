@@ -170,20 +170,6 @@ export class HistoriaComponent implements OnInit {
     })
   }
 
-  
-  validacionAlfanumerica(event) {
-    const patron = /[a-zA-ZÑ0-9 ,:-]/;
-    const permitidos = event.keyCode;
-    if (permitidos === 8) {
-      return true;
-    } else if (patron.test(event.key)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-
   saveHistoriaClinica() {
     console.log(this.historia);
     this.historiaService.saveHistoriaClinicaUsingPOST(this.historia).subscribe(
@@ -331,5 +317,85 @@ export class HistoriaComponent implements OnInit {
       }
 
     })
+  }
+  validarAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetras(event) {
+    const patron = /[a-zA-Z ]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarNumero(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarCedula(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/;
+    const permitidos = event.keyCode;
+    if (permitidos === 10) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

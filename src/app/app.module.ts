@@ -255,7 +255,7 @@ import { ErrorTailorModule } from '@ngneat/error-tailor';
       errors: {
         useFactory() {
           return {
-            required: 'Es requerido',
+            required: '',
             minlength: ({ requiredLength, actualLength }) => `Expect ${requiredLength} but got ${actualLength}`,
             invalidAddress: error => `Address not valid`
           };

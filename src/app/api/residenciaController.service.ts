@@ -18,6 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { GenericResponsestring } from '../model/genericResponsestring';
+import { Residencia } from '../model/residencia';
 import { ResidenciaDto } from '../model/residenciaDto';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -55,6 +56,52 @@ export class ResidenciaControllerService {
         return false;
     }
 
+
+    /**
+     * getById
+     * 
+     * @param id id
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getByIdUsingGET25(id: number, observe?: 'body', reportProgress?: boolean): Observable<ResidenciaDto>;
+    public getByIdUsingGET25(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResidenciaDto>>;
+    public getByIdUsingGET25(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResidenciaDto>>;
+    public getByIdUsingGET25(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET25.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<ResidenciaDto>('get',`${this.basePath}/residencia/detallesResidencia/${encodeURIComponent(String(id))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
     /**
      * guardarResidencia
@@ -100,6 +147,47 @@ export class ResidenciaControllerService {
         return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/residencia/save`,
             {
                 body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Muestra una lista de residencias
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public listUsingGET26(observe?: 'body', reportProgress?: boolean): Observable<Array<Residencia>>;
+    public listUsingGET26(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Residencia>>>;
+    public listUsingGET26(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Residencia>>>;
+    public listUsingGET26(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Residencia>>('get',`${this.basePath}/residencia/listaResidencia`,
+            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

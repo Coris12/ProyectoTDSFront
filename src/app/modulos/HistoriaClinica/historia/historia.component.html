@@ -13,11 +13,11 @@
                 <div class="mt-4">
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
-                            <span class="p-float-label" [formGroup]="form" errorTailor>
+                            <span class="p-float-label">
                                 <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula"
-                                    formControlName="cedula" [controlErrorsTpl]="messageCedula" />
-                                <ng-container
-                                    *ngTemplateOutlet="messageCedula;context:{error:form.get('cedula').errors}"></ng-container>
+                                    formControlName="cedula" ngModel required="" (keypress)="validarCedula($event)"
+                                    maxlength="13">
+
                                 <label for="inputtext">Cedula</label>
                             </span>
                         </div>
@@ -30,28 +30,24 @@
                     </div>
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
-                            <span class="p-float-label" [formGroup]="form" errorTailor>
+                            <span class="p-float-label">
                                 <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre"
-                                    formControlName="texto" [controlErrorsTpl]="messageletras">
-                                <ng-container
-                                    *ngTemplateOutlet="messageletras;context:{error:form.get('texto').errors}"></ng-container>
-
+                                    formControlName="texto" ngModel required="" (keypress)="validarLetras($event)"
+                                    maxlength="255">
                                 <label for="inputtext">Nombre</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
-                            <span class="p-float-label" >
-                                <input type="date" id="inputtext" pInputText [(ngModel)]="historia.fecha"
-                                    >
-                                <ng-container
-                                    *ngTemplateOutlet="messageCedula;context:{error:form.get('cedula').errors}"></ng-container>
+                            <span class="p-float-label">
+                                <input type="date" id="inputtext" pInputText [(ngModel)]="historia.fecha" ngModel required>
 
                                 <label for="inputtext"></label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="historia.numCl">
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="historia.numCl"
+                                ngModel required="" (keypress)="validarNumero($event)" >
                                 <label for="inputtext">Número HC</label>
                             </span>
                         </div>
@@ -68,8 +64,8 @@
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Edad:</label>
-                                <input type="text" pInputText placeholder="Edad" [(ngModel)]="historia.edad"
-                                required>
+                                <input type="text" pInputText placeholder="Edad" [(ngModel)]="historia.edad" 
+                                ngModel required="" (keypress)="validarNumero($event)" maxlength="3">
                             </span>
 
                         </div>
@@ -77,14 +73,17 @@
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Procedencia:</label>
                                 <input type="text" pInputText placeholder="Procedencia"
-                                    [(ngModel)]="historia.procedencia">
+                                    [(ngModel)]="historia.procedencia"
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                                    
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Residencia:</label>
                                 <input type="text" pInputText placeholder="Residencia"
-                                    [(ngModel)]="historia.residencia">
+                                    [(ngModel)]="historia.residencia"
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             </span>
                         </div>
                     </div>
@@ -93,20 +92,23 @@
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Estado Civil:</label>
                                 <input type="text" pInputText placeholder="Estado Civil"
-                                    [(ngModel)]="historia.estadoCivil">
+                                    [(ngModel)]="historia.estadoCivil"
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Religión:</label>
-                                <input type="text" pInputText placeholder="Religiòn" [(ngModel)]="historia.religion">
+                                <input type="text" pInputText placeholder="Religiòn" [(ngModel)]="historia.religion"
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Motivio de consulta:</label>
                                 <input type="text" pInputText placeholder="Motivo de consulta"
-                                    [(ngModel)]="historia.motivo">
+                                    [(ngModel)]="historia.motivo"
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="225">
                             </span>
                         </div>
                     </div>
@@ -115,19 +117,22 @@
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Enfermedad Actual:</label>
                                 <input type="text" pInputText placeholder="Enfermedad Actual"
-                                    [(ngModel)]="historia.enfermedad">
+                                    [(ngModel)]="historia.enfermedad"
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Alergias:</label>
-                                <input type="text" pInputText placeholder="alergias" [(ngModel)]="historia.alergia">
+                                <input type="text" pInputText placeholder="alergias" [(ngModel)]="historia.alergia"
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">APP:</label>
-                                <input type="text" pInputText placeholder="APP" [(ngModel)]="historia.app">
+                                <input type="text" pInputText placeholder="APP" [(ngModel)]="historia.app"
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                             </span>
                         </div>
                     </div>
@@ -135,20 +140,23 @@
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">APF:</label>
-                                <input type="text" pInputText placeholder="APF" [(ngModel)]="historia.apf">
+                                <input type="text" pInputText placeholder="APF" [(ngModel)]="historia.apf"
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Tipo de sangre:</label>
                                 <input type="text" pInputText placeholder="tipo sangre"
-                                    [(ngModel)]="historia.tipoSangre">
+                                    [(ngModel)]="historia.tipoSangre"
+                                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Habitos:</label>
-                                <input type="text" pInputText placeholder="Habitos" [(ngModel)]="historia.habitos">
+                                <input type="text" pInputText placeholder="Habitos" [(ngModel)]="historia.habitos"
+                                ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             </span>
                         </div>
                     </div>
@@ -159,31 +167,36 @@
                             </span>
                             <div class="field col-12 md:col-4">
                                 <span class="p-float-label">
-                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.ta">
+                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.ta"
+                                    ngModel required="" (keypress)="validarNumero($event)" >
                                     <label for="inputtext">TA</label>
                                 </span>
                             </div>
                             <div class="field col-12 md:col-4">
                                 <span class="p-float-label">
-                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.fc">
+                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.fc"
+                                    ngModel required="" (keypress)="validarNumero($event)" >
                                     <label for="inputtext">FC</label>
                                 </span>
                             </div>
                             <div class="field col-12 md:col-4">
                                 <span class="p-float-label">
-                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.spo2">
+                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.spo2"
+                                    ngModel required="" (keypress)="validarNumero($event)">
                                     <label for="inputtext">SPO2</label>
                                 </span>
                             </div>
                             <div class="field col-12 md:col-4">
                                 <span class="p-float-label">
-                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.fr">
+                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.fr"
+                                    ngModel required="" (keypress)="validarNumero($event)">
                                     <label for="inputtext">FR</label>
                                 </span>
                             </div>
                             <div class="field col-12 md:col-4">
                                 <span class="p-float-label">
-                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.tem">
+                                    <input type="text" id="inputtext" pInputText [(ngModel)]="historia.tem"
+                                    ngModel required="" (keypress)="validarNumero($event)">
                                     <label for="inputtext">Tº</label>
                                 </span>
                             </div>
@@ -192,26 +205,30 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <label for="float-input">Examen Fisico</label>
-                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="historia.examen"></textarea>
+                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="historia.examen"
+                            ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255"></textarea>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">DX:</label>
-                                <input type="text" pInputText placeholder="DX" [(ngModel)]="historia.dx">
+                                <input type="text" pInputText placeholder="DX" [(ngModel)]="historia.dx"
+                                ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
                             <span class="p-input-icon-left">
                                 <label for="requisitos ">Realizado por:</label>
                                 <input type="text" pInputText placeholder="Realizado por"
-                                    [(ngModel)]="historia.realizado">
+                                    [(ngModel)]="historia.realizado"
+                                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                             </span>
                         </div>
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="p-input-icon-left">
                             <label for="requisitos "> DR:</label>
-                            <input type="text" pInputText placeholder="DR:" [(ngModel)]="historia.dr">
+                            <input type="text" pInputText placeholder="DR:" [(ngModel)]="historia.dr"
+                            ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                         </span>
                     </div>
                     <div class="row">

@@ -1,6 +1,6 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
 import jspdf, { jsPDF } from 'jspdf';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { DiagnosticoOControllerService } from 'src/app/api/diagnosticoOController.service';
@@ -19,6 +19,8 @@ import { Odontologia } from 'src/app/model/odontologia';
 import { PlanesDiagnostico } from 'src/app/model/planesDiagnostico';
 import { SaludBucal } from 'src/app/model/saludBucal';
 import html2canvas from 'html2canvas';
+import { FacturaService } from 'src/app/servicioManual/factura.service';
+import { Table } from 'primeng/table';
 
 
 @Component({
@@ -39,7 +41,8 @@ export class OdontologiaComponent implements OnInit {
     private planesService: PlanesControllerService,
     private diagnosticoService: DiagnosticoOControllerService,
     private salService: SaludControllerService,
-    private historiaService: HistoriaControllerService
+    private historiaService: HistoriaControllerService,
+    private serviceGenPdf:FacturaService,
 
   ) {
 
@@ -47,6 +50,7 @@ export class OdontologiaComponent implements OnInit {
 
   establecimiento = "C.E.M. MEDIVALLE";
   historia: any[] = [];
+  odontologia:any[]=[];
   //variables
   buscarcedula: string;
   buscarnombre: string;
@@ -61,6 +65,9 @@ export class OdontologiaComponent implements OnInit {
   idIndi: any
   edad: any
   numcli: any
+  listDialog: boolean
+  submitted: boolean;
+  loading: boolean = true;
   //
   limpiar() {
     this.Odonto.codigo = "";
@@ -527,7 +534,7 @@ export class OdontologiaComponent implements OnInit {
       var imgHeight = canvas.height * imgWidth / canvas.width;
       let pdf = new jspdf('p', 'mm', 'a4');
       var position = 0;
-      pdf.save('InformeConcesionaria.pdf')
+      pdf.save('FichaOdontologica.pdf')
     });
   }
   downloadPDF() {
@@ -550,7 +557,7 @@ export class OdontologiaComponent implements OnInit {
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
       return doc;
     }).then((docResult) => {
-      docResult.save(`${new Date().toISOString()}_InformeConcesionaria.pdf`);
+      docResult.save(`${new Date().toISOString()}_FichaOdontloica.pdf`);
     });
   }
 
@@ -656,4 +663,108 @@ export class OdontologiaComponent implements OnInit {
       return false;
     }
   }
+
+
+   /*convetToPDF1() {
+    this.dialogo56 = true
+    var data = document.getElementById('medicamentospdf');
+    var width = document.getElementById('medicamentospdf').offsetWidth;
+    html2canvas(data, {
+      allowTaint: false, useCORS: false, logging: true,
+    }).then(canvas => {
+      var imgWidth = 140;
+      var imgHeight = canvas.height * imgWidth / canvas.width;// espera veo algo
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf.jsPDF('p', 'mm', 'a5');
+      var position = 5;
+      pdf.addImage(contentDataURL, 'JPEG', 5, position, imgWidth - 7, imgHeight)
+      pdf.save('Medicamentos' + '.pdf');
+      //for (let datos of this.Ordenlist) {
+      // pdf.save('Orden_Pedido_' + datos.secuencia + '.pdf');
+      //}
+
+    });
+  }*/
+  createId(): string {
+    let id = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+  }
+
+  descargarPdf(pdfSrc: any) {
+    let pdf: any = pdfSrc;
+    let numAlea = this.createId();
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var url = window.URL.createObjectURL(blob);
+    if (this.Odonto.fecha != null) {
+      let nomPer = this.Odonto.usuario.nombres;
+
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'HISTORIA CLINICA_' + nomPer + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    } else {
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'HISTORIA CLINICA_' + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    }
+
+  }
+
+  imprimirPDF(idOdon: number) {
+    this.serviceGenPdf.geneOdontologia(idOdon).subscribe(data => {
+      if (data) {
+        this.descargarPdf(data);
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+  }
+  imprimirPDFSinceButton(idOdon: number) {
+    this.serviceGenPdf.geneOdontologia(idOdon).subscribe(data => {
+      if (data) {
+        //this.cargarConsultaExterna(idConsExterno);
+        this.descargarPdf(data);
+        //this.limpiarAll();
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+  }
+  
+  openNew() {
+    this.submitted = false;
+    this.listDialog = true;
+  }
+
+  clear(table: Table) {
+    table.clear();
+  }
+
+  CargarOdon(event: LazyLoadEvent) {
+    this.loading = true;
+    setTimeout(() => {
+      this.odonService.listUsingGET11().subscribe(
+        data => {
+          this.odontologia = data;
+          console.log(data);
+          this.loading = false;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }, 100);
+  }
+
 }

@@ -59,6 +59,10 @@
                     <div class="field col-12 md:col-2">
                         <button pButton type="button" label="Limpiar"(click)="limpiar()" ></button>
                     </div>
+                    <div class="field col-12 md:col-2">
+                        <button pButton type="button" label="Listado"    (click)="listDialog = true;" ></button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -982,6 +986,78 @@
         </div>
         <p-button label="Guardar" (click)="cargarPersona()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
         </p-button>
-        <button style="text-align: center" class="btn btn-dark  ml-4" (click)="downloadPDF()"><i class="fas fa-print"></i> Descargar PDF</button>
-
     </div>
+    <p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
+        <div class="col-12 flex align-items-center justify-content-center">
+            <div class="p-fluid">
+                <p-table #dt [value]="odontologia" [lazy]="true" (onLazyLoad)="CargarOdon($event)"
+                    selectionMode="single" [loading]="loading" responsiveLayout="scroll" [resizableColumns]="true"
+                    styleClass="p-datatable-gridlines p-datatable-sm"
+                    [globalFilterFields]="['nombres','historia_clinica', 'identificacion']"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true"
+                    [rows]="10">
+                    <ng-template pTemplate="caption">
+                        <div class="flex">
+                            <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
+                                (click)="clear(dt)"></button>
+
+                            <span class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" autocomplete="off"
+                                    (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="BUSCAR" />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pResizableColumn style="width:110px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    IDENTIFICACIÓN
+                                </div>
+                            </th>
+                            <th pResizableColumn>
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    NOMBRES
+                                </div>
+                            </th>
+                            
+                            <th pResizableColumn style="width:100px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    FECHA
+                                </div>
+                            </th>
+
+                            <th pResizableColumn style="width:50px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    PRINT
+                                </div>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-odo>
+                        <tr>
+                            <td style="text-align:center">{{odo.usuario.identificacion}}</td>
+                            <td style="text-align:center">{{odo.usuario.nombres}}</td>
+                            <td style="text-align:center"> {{odo.fecha}}</td>
+                            <td style="text-align:center">
+                                <button pButton pRipple type="button" icon="pi pi-print"
+                                    (click)="imprimirPDFSinceButton(odo.idOdonto)"
+                                    class="p-button-rounded p-button-text">
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="8">Ningun registro.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+    </p-sidebar>

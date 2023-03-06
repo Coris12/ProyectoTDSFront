@@ -11,14 +11,14 @@
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
                     <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="establecimiento"
-                        value={{establecimiento}} (keypress)="validacionAlfanumerica($event)" maxlength="255"ngModel required>
+                        value={{establecimiento}} (keypress)="validarAlfanumerica($event)" maxlength="255"ngModel required>
                     <label for="inputtext">INSTITUCIÓN DEL SISTEMA</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
                     <input autocomplete="off" type="text" id="inputtext" pInputText
-                        [(ngModel)]="admision.unidadOperativa" (keypress)="validacionAlfanumerica($event)"
+                        [(ngModel)]="admision.unidadOperativa" ngModel required (keypress)="validarAlfanumerica($event)"
                         maxlength="255">
                     <label for="inputtext">UNIDAD OPERATIVA</label>
                 </span>
@@ -26,7 +26,7 @@
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
                     <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="admision.codUd" required
-                        (keypress)="validacionAlfanumerica($event)" maxlength="255" >
+                        (keypress)="validarAlfanumerica($event)" maxlength="255" >
                     <label for="inputtext">COD. UD</label>
                 </span>
             </div>
@@ -36,21 +36,21 @@
                     <div class="field col-12 md:col-4">
                         <span class="p-float-label">
                             <input autocomplete="off" type="text" id="inputtext" pInputText
-                                [(ngModel)]="admision.parroquia" (keypress)="validarSoloLetras($event)" maxlength="255">
+                                [(ngModel)]="admision.parroquia" ngModel required (keypress)="validarLetras($event)" maxlength="255">
                             <label for="inputtext">PARROQUIA</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="p-float-label">
                             <input autocomplete="off" type="text" id="inputtext" pInputText
-                                [(ngModel)]="admision.canton" (keypress)="validarSoloLetras($event)" maxlength="255">
+                                [(ngModel)]="admision.canton" (keypress)="validarLetras($event)" maxlength="255">
                             <label for="inputtext">CANTÓN</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-4">
                         <span class="p-float-label">
                             <input autocomplete="off" type="text" id="inputtext" pInputText ngModel required
-                                [(ngModel)]="admision.provincia" (keypress)="validarSoloLetras($event)" maxlength="255">
+                                [(ngModel)]="admision.provincia" (keypress)="validarLetras($event)" maxlength="255">
                             <label for="inputtext">PROVINCIA</label>
                         </span>
                     </div>
@@ -59,7 +59,7 @@
             <div class="field col-12 md:col-2 centrar">
                 <span class="p-float-label">
                     <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="numcli"
-                        (keypress)="validacionSoloNumeros($event)" maxlength="10">
+                        (keypress)="validarNumero($event)" maxlength="10">
                     <label for="inputtext"># HISTORIA CLÍNICA</label>
                 </span>
             </div>
@@ -74,133 +74,158 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText>
+                    <input type="text" id="inputtext"  [(ngModel)]="buscarcedula" pInputText
+                    ngModel required="" (keypress)="validarCedula($event)" maxlength="13">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
             </div>
+            <div class="field col-12 md:col-2">
+                <button pButton type="button" label="Limpiar"(click)="limpiar()" ></button>
+            </div>
         </div>
         <div class="grid p-fluid">
 
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Nombres Completos</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="direccion" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="direccion" pInputText 
+                     ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Direccion</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="cel" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="cel" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" >
                     <label for="inputtext">Celular</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Sexo</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="estado">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="estado"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Estado Civil</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" pInputText
+                    [(ngModel)]="barrio"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Barrio</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" pInputText  [(ngModel)]="parrio" 
+                     ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Parroquia</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="canton"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Canton</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="provi"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Provincia</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="na"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Nacionalidad</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.instruccion">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.instruccion"
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                     <label for="inputtext">Instruccion ultimo año aprobado</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="date" id="inputtext" pInputText [(ngModel)]="admision.fechaA">
+                    <input type="date" id="inputtext" pInputText [(ngModel)]="admision.fechaA"
+                    ngModel required="" >
                     <label for="inputtext">Fecha Admision</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.ocupacion">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.ocupacion"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Ocupacion</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.empresa">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.empresa"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Empresa donde trabaja</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.tipoS">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.tipoS"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Tipo de seguro</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.referidoD">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.referidoD"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Referido de</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.emergencia">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.emergencia"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">En caso de emergencia llamar a </label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.parantesco">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.parantesco"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Parentesco</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.direccP">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.direccP"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Direcion</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.telefono">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.telefono"
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                     <label for="inputtext">Telefono</label>
                 </span>
             </div>
@@ -302,13 +327,15 @@
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="llegada.desc">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="llegada.desc"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Descripcion</label>
                 </span>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText [(ngModel)]="llegada.grupo">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="llegada.grupo"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Grupo Sanguineo</label>
                 </span>
             </div>
@@ -329,13 +356,15 @@
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="accidente.nombreE" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="accidente.nombreE" pInputText
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Lugar del evento</label>
                 </span>
             </div>
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="accidente.direccionE" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="accidente.direccionE" pInputText
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Direccion del evento</label>
                 </span>
             </div>
@@ -524,7 +553,7 @@
 
         </div>
         <label for="cd">Observaciones</label>
-        <p-editor [(ngModel)]="accidente.desc" [style]="{'height':'120px'}">
+        <p-editor [(ngModel)]="accidente.desc" [style]="{'height':'120px'}"  ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -544,7 +573,8 @@
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="accidente.valor" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="accidente.valor" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                     <label for="inputtext">Valor alcocheck</label>
                 </span>
             </div>
@@ -616,7 +646,7 @@
             </div>
         </div>
         <label for="cd">Observaciones</label>
-        <p-editor [(ngModel)]="enfermedad.descripcionA" [style]="{'height':'120px'}">
+        <p-editor [(ngModel)]="enfermedad.descripcionA" [style]="{'height':'120px'}"  ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -664,7 +694,7 @@
                 </div>
             </div>
         </div>
-        <p-editor [(ngModel)]="enfermedad.descripcion" [style]="{'height':'120px'}">
+        <p-editor [(ngModel)]="enfermedad.descripcion" [style]="{'height':'120px'}"  ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -682,92 +712,107 @@
         <div class="grid p-fliud">
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.presion" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.presion" pInputText
+                      ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                     <label for="inputtext">Presion arterial</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.fCardiaca" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.fCardiaca" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                     <label for="inputtext">F.Cardiaca</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.respira" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.respira" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                     <label for="inputtext">F.Respiratoria</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.bucal" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.bucal" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                     <label for="inputtext">Temp.bucal °C</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.axilar" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.axilar" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                     <label for="inputtext">Temp.axilar °C</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.peso" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.peso" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" >
                     <label for="inputtext">Peso Kg</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.talla" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.talla" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)">
                     <label for="inputtext">Talla m </label>
                 </span>
             </div>
             <label for="inputtext">Glasgow </label>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.ocular" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.ocular" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)">
                     <label for="inputtext">Ocular (4)</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.verbal" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.verbal" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" >
                     <label for="inputtext">Verbal (5)</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.motora" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.motora" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" >
                     <label for="inputtext">Motora (6)</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.total" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.total" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" >
                     <label for="inputtext">Total (15)</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.pupilaD" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.pupilaD" pInputText
+                    ngModel required="" (keypress)="validarAlfanumerica($event)">
                     <label for="inputtext">Reaccion pupila der.</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.pupilaI" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.pupilaI" pInputText
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                     <label for="inputtext">Reaccion pupila izq.</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.capilar" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.capilar" pInputText
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                     <label for="inputtext">T.llenado capilar</label>
                 </span>
             </div>
             <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" [(ngModel)]="signos.oxigeno" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.oxigeno" pInputText
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                     <label for="inputtext">Satura Oxigeno</label>
                 </span>
             </div>
@@ -903,7 +948,7 @@
                 </div>
             </div>
         </div>
-        <p-editor [(ngModel)]="signos.descripcion" [style]="{'height':'120px'}">
+        <p-editor [(ngModel)]="signos.descripcion" [style]="{'height':'120px'}"  ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -968,7 +1013,8 @@
         <div class="grid p-fliud">
             <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="emergencia.gestas" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="emergencia.gestas" placeholder=""
+                    >
                     <label for="requisitos "> Gestas</label>
                 </span>
             </div>
@@ -1192,7 +1238,7 @@
                 </div>
             </div>
         </div>
-        <p-editor [(ngModel)]="soli.desc" [style]="{'height':'120px'}">
+        <p-editor [(ngModel)]="soli.desc" [style]="{'height':'120px'}" ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -1213,13 +1259,15 @@
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion1" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion1" placeholder=""  
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="ingreso.cie1" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.cie1" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                 </span>
             </div>
 
@@ -1238,13 +1286,15 @@
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion2" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion2" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="ingreso.cie2" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.cie2" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                 </span>
             </div>
 
@@ -1263,13 +1313,15 @@
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion3" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion3" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="ingreso.cie3" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="ingreso.cie3" placeholder=""
+                     ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                 </span>
             </div>
 
@@ -1298,13 +1350,15 @@
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="alta.descripcion1" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.descripcion1" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="alta.cie1" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.cie1" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                 </span>
             </div>
 
@@ -1323,13 +1377,15 @@
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="alta.descripcion2" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.descripcion2" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="alta.cie2" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.cie2" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                 </span>
             </div>
 
@@ -1348,13 +1404,15 @@
             <div class="col-12 md:col-4">
                 <span class="p-input-icon-left">
                     <label for="requisitos "></label>
-                    <input type="text" pInputText [(ngModel)]="alta.descripcion3" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.descripcion3" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                 </span>
             </div>
             <label for="requisitos ">CIE</label>
             <div class="col-12 md:col-2">
                 <span class="p-input-icon-left">
-                    <input type="text" pInputText [(ngModel)]="alta.cie3" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="alta.cie3" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                 </span>
             </div>
 
@@ -1380,7 +1438,7 @@
         <br>
         <label for="cd">Indicaciones</label>
 
-        <p-editor [(ngModel)]="trata.indicaciones" [style]="{'height':'100px'}">
+        <p-editor [(ngModel)]="trata.indicaciones" [style]="{'height':'100px'}" ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
             <ng-template pTemplate="header">
                 <span class="ql-formats">
                     <button type="button" class="ql-bold" aria-label="Bold"></button>
@@ -1398,14 +1456,16 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="trata.medica1" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="trata.medica1" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="requisitos "> Medicamento</label>
                 </span>
             </div>
 
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="trata.posologia1" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="trata.posologia1" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="requisitos "> Posologia</label>
                 </span>
             </div>
@@ -1414,14 +1474,16 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="trata.medica2" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="trata.medica2" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                     <label for="requisitos "> Medicamento</label>
                 </span>
             </div>
 
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="trata.posologia2" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="trata.posologia2" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                     <label for="requisitos "> Posologia</label>
                 </span>
             </div>
@@ -1430,14 +1492,16 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="trata.medica3" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="trata.medica3" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                     <label for="requisitos "> Medicamento</label>
                 </span>
             </div>
 
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="trata.poso3" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="trata.poso3" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="requisitos "> Posologia</label>
                 </span>
             </div>
@@ -1514,7 +1578,8 @@
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="Alta.causa" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="Alta.causa" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="requisitos "> Causa</label>
                 </span>
             </div>
@@ -1522,20 +1587,22 @@
         <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="int" pInputText [(ngModel)]="Alta.dias" placeholder="">
+                    <input type="int" pInputText [(ngModel)]="Alta.dias" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                     <label for="requisitos "> Dias de incapacidad</label>
                 </span>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText [(ngModel)]="Alta.servicio" placeholder="">
+                    <input type="text" pInputText [(ngModel)]="Alta.servicio" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="requisitos "> Servicio de referencia</label>
                 </span>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
                     <input type="text" pInputText [(ngModel)]="establecimiento" value={{establecimiento}}
-                        placeholder="">
+                        placeholder="" ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="requisitos "> Establecimiento</label>
                 </span>
             </div>
@@ -1550,13 +1617,15 @@
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="int" pInputText [(ngModel)]="Alta.nombre" placeholder="">
+                    <input type="int" pInputText [(ngModel)]="Alta.nombre" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="requisitos "> Nombre Profesional</label>
                 </span>
             </div>
             <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="int" pInputText [(ngModel)]="Alta.codigo" placeholder="">
+                    <input type="int" pInputText [(ngModel)]="Alta.codigo" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                     <label for="requisitos "> Codigo</label>
                 </span>
             </div>

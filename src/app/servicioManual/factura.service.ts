@@ -38,4 +38,7 @@ export class FacturaService {
   geneProtocolo(proto: number){
     return this.http.get(this.baseUrl+'/diagnostico/generarPdf?proto='+proto,{responseType:'blob' as 'json'});
   }
+  geneOdontologia(idOdon:number){
+    return this.http.get(this.baseUrl+'/odontologia/generarPdf?idOdon='+idOdon,{responseType:'blob' as 'json'});
+  }
 }
