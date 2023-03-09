@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { AnestesiaControllerService } from 'src/app/api/anestesiaController.service';
 import { AuthControllerService } from 'src/app/api/authController.service';
 import { ComplicacionesControllerService } from 'src/app/api/complicacionesController.service';
@@ -14,6 +15,7 @@ import { Infusion } from 'src/app/model/infusion';
 import { Region } from 'src/app/model/region';
 import { Tecnicas } from 'src/app/model/tecnicas';
 import { Terapia } from 'src/app/model/terapia';
+import { FacturaService } from 'src/app/servicioManual/factura.service';
 
 @Component({
   selector: 'app-anestesia',
@@ -32,6 +34,10 @@ export class AnestesiaComponent implements OnInit {
   errMsj: string
   idper: number
   usuarioE: any
+  submitted: boolean;
+  loading: boolean = true;
+  listDialog: boolean
+  Anestesia:any[]=[];
 
   constructor(
     private persnaService: AuthControllerService,
@@ -43,8 +49,33 @@ export class AnestesiaComponent implements OnInit {
     private comService: ComplicacionesControllerService,
     private tecService: TecnicaControllerService,
     private terService: TerapiaControllerService,
-  ) { }
+    private serviceGenPdf: FacturaService,
 
+  ) { }
+ openNew() {
+    this.submitted = false;
+    this.listDialog = true;
+  }
+
+  clear(table: Table) {
+    table.clear();
+  }
+
+  cargarAnestesia(event: LazyLoadEvent) {
+    this.loading = true;
+    setTimeout(() => {
+      this.anesSservice.listUsingGET2().subscribe(
+        data => {
+          this.Anestesia = data;
+          console.log(data);
+          this.loading = false;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }, 100);
+  }
   Aneste: Anestesia = {
     anestecio: null,
     ayudanteA: null,
@@ -375,6 +406,57 @@ export class AnestesiaComponent implements OnInit {
   }
 
 
+  
+  imprimirPDFSinceButton(idA:number) {
+    this.serviceGenPdf.geneAnestesia(idA).subscribe(data => {
+      if (data) {
+        //this.cargarConsultaExterna(idConsExterno);
+        this.descargarPdf(data);
+        //this.limpiarAll();
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+    this.limpiar();
+  }
+
+  createId(): string {
+    let id = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+  }
+
+  descargarPdf(pdfSrc: any) {
+    let pdf: any = pdfSrc;
+    let numAlea = this.createId();
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var url = window.URL.createObjectURL(blob);
+    if (this.Aneste.fecha != null) {
+      let fech = this.Aneste.fecha;
+      let nomPer = this.Aneste.usuario.nombres;
+
+      let fecha = fech.getDate() + "/" + (fech.getMonth() + 1) + "/" + fech.getFullYear();
+      let hora = fech.getHours() + ":" + fech.getMinutes() + ":" + fech.getSeconds();
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'FICHA ANESTESIA_' + nomPer + '-' + fecha + '-h' + hora + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    } else {
+      let nomPer = this.buscarnombre;
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'FICHA ANESTESIA_' + '-' + nomPer + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    }
+
+  }
   mensajeError(msg: String) {
     this.messageService.add({
       severity: 'error',

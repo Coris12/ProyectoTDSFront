@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { AccidenteControllerService } from 'src/app/api/accidenteController.service';
 import { AdmisionControllerService } from 'src/app/api/admisionController.service';
 import { AltaControllerService } from 'src/app/api/altaController.service';
@@ -31,6 +32,7 @@ import { ResidenciaDto } from 'src/app/model/residenciaDto';
 import { SignosE } from 'src/app/model/signosE';
 import { SolicitudE } from 'src/app/model/solicitudE';
 import { TrataM } from 'src/app/model/trataM';
+import { FacturaService } from 'src/app/servicioManual/factura.service';
 
 @Component({
   selector: 'app-admision',
@@ -47,6 +49,7 @@ export class AdmisionComponent implements OnInit {
     private accService: AccidenteControllerService,
     private enferService: EnfermadAnteControllerService,
     private SignoService: SignosEControllerService,
+    private serviceGenPdf:FacturaService,
     private SoliService: SolicitudEControllerService,
     private ingreService: IngresoDiaControllerService,
     private trataService: TrataMControllerService,
@@ -59,6 +62,8 @@ export class AdmisionComponent implements OnInit {
   ) { }
 
   //variables
+  listDialog: boolean
+  admi:any[]=[];
   usuarioE: any
   cel: string
   direccion: string
@@ -81,6 +86,8 @@ export class AdmisionComponent implements OnInit {
   provi: any
   na: any
 
+  submitted: boolean;
+  loading: boolean = true;
 
   admision: Admision = {
     canton: null,
@@ -461,10 +468,7 @@ export class AdmisionComponent implements OnInit {
   cargarPersona() {
     console.log(this.idper);
 
-    if (this.canton != 0 && this.canton != undefined && this.canton != null) {
-      console.log("si validaaaaaaaaaaaaaaaaaaa ");
-
-
+    
       this.persnaService.listaUsingGET().subscribe((res) => {
         console.log(res);
         for (let datos of res) {
@@ -478,38 +482,13 @@ export class AdmisionComponent implements OnInit {
           }
         }
       })
-    } else {
-      this.mensajeError("Todos los datos son obligatorios")
-    }
+    
   }
 
   guardarAdmision() {
     console.log(this.admision);
     this.admision.instutucionSistema = this.establecimiento
-    if (this.admision.canton != null && this.admision.canton != undefined ||
-      this.admision.codUd != null && this.admision.codUd != undefined ||
-      this.admision.direccP != null && this.admision.direccP != undefined ||
-      this.admision.empresa != null && this.admision.empresa != undefined ||
-      this.admision.emergencia != null && this.admision.emergencia != undefined ||
-      this.admision.fecha != null && this.admision.fecha != undefined ||
-      this.admision.fechaA != null && this.admision.fechaA != undefined ||
-      this.admision.fuente != null && this.admision.fuente != undefined ||
-      this.admision.instruccion != null && this.admision.instruccion != undefined ||
-      this.admision.instutucionSistema != null && this.admision.instutucionSistema != undefined ||
-      this.admision.nombre != null && this.admision.nombre != undefined ||
-      this.admision.numero != null && this.admision.numero != undefined ||
-      this.admision.ocupacion != null && this.admision.ocupacion != undefined ||
-      this.admision.parantesco != null && this.admision.parantesco != undefined ||
-      this.admision.parroquia != null && this.admision.parroquia != undefined ||
-      this.admision.persona != null && this.admision.persona != undefined ||
-      this.admision.provincia != null && this.admision.provincia != undefined ||
-      this.admision.referidoD != null && this.admision.referidoD != undefined ||
-      this.admision.servicio != null && this.admision.servicio != undefined ||
-      this.admision.telefono != null && this.admision.telefono != undefined ||
-      this.admision.tipoS != null && this.admision.tipoS != undefined ||
-      this.admision.unidadOperativa != null && this.admision.unidadOperativa != undefined
-    ) {
-      console.log("si validaaaaaaaaaaaaaaaaaaa ");
+    
       this.adService.saveAdUsingPOST(this.admision).subscribe(
         res => {
           if (res.object != null) {
@@ -525,44 +504,11 @@ export class AdmisionComponent implements OnInit {
             console.log(res.object);
           }
         })
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios Admision")
-    }
+   
   }
 
   guardarAccident() {
-    console.log(this.accidente);
-    if (this.accidente.abusoF != null && this.accidente.abusoF != undefined ||
-      this.accidente.abusoS != null && this.accidente.abusoS != undefined ||
-      this.accidente.ahogamiento != null && this.accidente.ahogamiento != undefined ||
-      this.accidente.alcolica != null && this.accidente.alcolica != undefined ||
-      this.accidente.alimentaria != null && this.accidente.alimentaria != undefined ||
-      this.accidente.ana != null && this.accidente.ana != undefined ||
-      this.accidente.aplas != null && this.accidente.aplas != undefined ||
-      this.accidente.apsicolgico != null && this.accidente.apsicolgico != undefined ||
-      this.accidente.caida != null && this.accidente.caida != undefined ||
-      this.accidente.corto != null && this.accidente.corto != undefined ||
-      this.accidente.desc != null && this.accidente.desc != undefined ||
-      this.accidente.direccionE != null && this.accidente.direccionE != undefined ||
-      this.accidente.drogas != null && this.accidente.drogas != undefined ||
-      this.accidente.enve != null && this.accidente.enve != undefined ||
-      this.accidente.etilico != null && this.accidente.etilico != undefined ||
-      this.accidente.extrao != null && this.accidente.extrao != undefined ||
-      this.accidente.fecha != null && this.accidente.fecha != undefined ||
-      this.accidente.fuego != null && this.accidente.fuego != undefined ||
-      this.accidente.gases != null && this.accidente.gases != undefined ||
-      this.accidente.mode != null && this.accidente.mode != undefined ||
-      this.accidente.nombreE != null && this.accidente.nombreE != undefined ||
-      this.accidente.otaraV != null && this.accidente.otaraV != undefined ||
-      this.accidente.picadura != null && this.accidente.picadura != undefined ||
-      this.accidente.policial != null && this.accidente.policial != undefined ||
-      this.accidente.quemadura != null && this.accidente.quemadura != undefined ||
-      this.accidente.rina != null && this.accidente.rina != undefined ||
-      this.accidente.transito != null && this.accidente.transito != undefined ||
-      this.accidente.valor != null && this.accidente.valor != undefined ||
-      this.accidente.vfamiliar != null && this.accidente.vfamiliar != undefined
-
-    ) {
+   
       console.log("si validaaaaaaaaaaaaaaaaaaa ");
 
       this.accService.saveAccidenteUsingPOST(this.accidente).subscribe(
@@ -588,26 +534,11 @@ export class AdmisionComponent implements OnInit {
             console.log(res.object);
           }
         })
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios ")
-    }
+    
   }
 
   guardarLlegada() {
-    if (this.llegada.ambulancia != null && this.llegada.ambulancia != undefined ||
-      this.llegada.ambulat != null && this.llegada.ambulat != undefined ||
-      this.llegada.causaC != null && this.llegada.causaC != undefined ||
-      this.llegada.desc != null && this.llegada.desc != undefined ||
-      this.llegada.grupo != null && this.llegada.grupo != undefined ||
-      this.llegada.hora != null && this.llegada.hora != undefined ||
-      this.llegada.motivo != null && this.llegada.motivo != undefined ||
-      this.llegada.obstretica != null && this.llegada.obstretica != undefined ||
-      this.llegada.otro != null && this.llegada.otro != undefined ||
-      this.llegada.policia != null && this.llegada.policia != undefined ||
-      this.llegada.quirurgica != null && this.llegada.quirurgica != undefined ||
-      this.llegada.trauma != null && this.llegada.causaC != undefined
-
-    ) {
+    
       this.llegService.saveLlegadaUsingPOST(this.llegada).subscribe(data => {
         if (data.object != null) {
           this.MessageSuccess(data.message);
@@ -617,37 +548,11 @@ export class AdmisionComponent implements OnInit {
       }, error => {
         this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
       });
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios llegada")
-    }
+    
   }
 
   guardarSigno() {
-    if (this.signos.abdomen != null && this.signos.abdomen != undefined ||
-      this.signos.axilar != null && this.signos.axilar != undefined ||
-      this.signos.bucal != null && this.signos.bucal != undefined ||
-      this.signos.cabeza != null && this.signos.cabeza != undefined ||
-      this.signos.capilar != null && this.signos.capilar != undefined ||
-      this.signos.columna != null && this.signos.columna != undefined ||
-      this.signos.cuello != null && this.signos.cuello != undefined ||
-      this.signos.descripcion != null && this.signos.descripcion != undefined ||
-      this.signos.extremidades != null && this.signos.extremidades != undefined ||
-      this.signos.fCardiaca != null && this.signos.fCardiaca != undefined ||
-      this.signos.motora != null && this.signos.motora != undefined ||
-      this.signos.ocular != null && this.signos.ocular != undefined ||
-      this.signos.oxigeno != null && this.signos.oxigeno != undefined ||
-      this.signos.pelvis != null && this.signos.pelvis != undefined ||
-      this.signos.peso != null && this.signos.peso != undefined ||
-      this.signos.presion != null && this.signos.presion != undefined ||
-      this.signos.pupilaD != null && this.signos.pupilaD != undefined ||
-      this.signos.pupilaI != null && this.signos.pupilaI != undefined ||
-      this.signos.respira != null && this.signos.respira != undefined ||
-      this.signos.talla != null && this.signos.talla != undefined ||
-      this.signos.torax != null && this.signos.torax != undefined ||
-      this.signos.total != null && this.signos.total != undefined ||
-      this.signos.verbal != null && this.signos.verbal != undefined ||
-      this.signos.viaObost != null && this.signos.viaObost != undefined
-    ) {
+    
       this.SignoService.saveSignosEUsingPOST(this.signos).subscribe(data => {
         if (data.object != null) {
           this.MessageSuccess(data.message);
@@ -657,30 +562,11 @@ export class AdmisionComponent implements OnInit {
       }, error => {
         this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
       });
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios signo")
-    }
+    
   }
 
   guardarSoli() {
-    if (this.soli.abdomen != null && this.soli.abdomen != undefined ||
-      this.soli.biometrica != null && this.soli.biometrica != undefined ||
-      this.soli.cardiograma != null && this.soli.cardiograma != undefined ||
-      this.soli.desc != null && this.soli.desc != undefined ||
-      this.soli.ecoA != null && this.soli.ecoA != undefined ||
-      this.soli.elec != null && this.soli.elec != undefined ||
-      this.soli.endo != null && this.soli.endo != undefined ||
-      this.soli.gastro != null && this.soli.gastro != undefined ||
-      this.soli.inter != null && this.soli.inter != undefined ||
-      this.soli.osea != null && this.soli.osea != undefined ||
-      this.soli.otros != null && this.soli.otros != undefined ||
-      this.soli.pelvica != null && this.soli.pelvica != undefined ||
-      this.soli.reso != null && this.soli.reso != undefined ||
-      this.soli.sanguinea != null && this.soli.sanguinea != undefined ||
-      this.soli.tomo != null && this.soli.tomo != undefined ||
-      this.soli.torax != null && this.soli.torax != undefined ||
-      this.soli.uro != null && this.soli.uro != undefined
-    ) {
+    
       this.SoliService.saveSoliUsingPOST(this.soli).subscribe(data => {
         if (data.object != null) {
           this.MessageSuccess(data.message);
@@ -690,22 +576,11 @@ export class AdmisionComponent implements OnInit {
       }, error => {
         this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
       });
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios 55")
-    }
+   
   }
 
   guardarIngreso() {
-    if (this.ingreso.cie1 != null && this.ingreso.cie1 != undefined ||
-      this.ingreso.cie2 != null && this.ingreso.cie2 != undefined ||
-      this.ingreso.cie3 != null && this.ingreso.cie3 != undefined ||
-      this.ingreso.d1 != null && this.ingreso.d1 != undefined ||
-      this.ingreso.d2 != null && this.ingreso.d2 != undefined ||
-      this.ingreso.d3 != null && this.ingreso.d3 != undefined ||
-      this.ingreso.descripcion1 != null && this.ingreso.descripcion1 != undefined ||
-      this.ingreso.descripcion2 != null && this.ingreso.descripcion2 != undefined ||
-      this.ingreso.descripcion3 != null && this.ingreso.descripcion3 != undefined
-    ) {
+   
       console.log("si validaaaaaaaaaaaaaaaaaaa ");
 
       this.ingreService.saveDiagnosticoAUsingPOST1(this.ingreso).subscribe(data => {
@@ -717,22 +592,11 @@ export class AdmisionComponent implements OnInit {
       }, error => {
         this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
       });
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios 55")
-    }
+    
   }
 
   guardarAlta() {
-    if (this.alta.cie1 != null && this.alta.cie1 != undefined ||
-      this.alta.cie2 != null && this.alta.cie2 != undefined ||
-      this.alta.cie3 != null && this.alta.cie3 != undefined ||
-      this.alta.d1 != null && this.alta.d1 != undefined ||
-      this.alta.d2 != null && this.alta.d2 != undefined ||
-      this.alta.d3 != null && this.alta.d3 != undefined ||
-      this.alta.descripcion1 != null && this.alta.descripcion1 != undefined ||
-      this.alta.descripcion2 != null && this.alta.descripcion2 != undefined ||
-      this.alta.descripcion3 != null && this.ingreso.descripcion3 != undefined
-    ) {
+   
       console.log("si validaaaaaaaaaaaaaaaaaaa ");
       this.Alta.establecimiento = this.establecimiento
       this.diaAService.saveDiagnosticoAUsingPOST(this.alta).subscribe(data => {
@@ -744,19 +608,11 @@ export class AdmisionComponent implements OnInit {
       }, error => {
         this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
       });
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios 55")
-    }
+    
   }
 
   guardarTrata() {
-    if (this.trata.indicaciones != null && this.trata.indicaciones != undefined ||
-      this.trata.medica1 != null && this.trata.medica1 != undefined ||
-      this.trata.medica3 != null && this.trata.medica3 != undefined ||
-      this.trata.poso3 != null && this.trata.poso3 != undefined ||
-      this.trata.posologia1 != null && this.trata.posologia1 != undefined ||
-      this.trata.posologia2 != null && this.trata.posologia2 != undefined
-    ) {
+   
       console.log("si validaaaaaaaaaaaaaaaaaaa ");
       this.trataService.saveDiagnosticoAUsingPOST2(this.trata).subscribe(data => {
         if (data.object != null) {
@@ -767,27 +623,11 @@ export class AdmisionComponent implements OnInit {
       }, error => {
         this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
       });
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios 55")
-    }
+    
   }
 
   guardarEnfermedad() {
-    if (this.enfermedad.alergico != null && this.enfermedad.alergico != undefined ||
-      this.enfermedad.clinico != null && this.enfermedad.clinico != undefined ||
-      this.enfermedad.descripcion != null && this.enfermedad.descripcion != undefined ||
-      this.enfermedad.descripcionA != null && this.enfermedad.descripcionA != undefined ||
-      this.enfermedad.estable != null && this.enfermedad.estable != undefined ||
-      this.enfermedad.farma != null && this.enfermedad.farma != undefined ||
-      this.enfermedad.gine != null && this.enfermedad.gine != undefined ||
-      this.enfermedad.inestable != null && this.enfermedad.inestable != undefined ||
-      this.enfermedad.libre != null && this.enfermedad.libre != undefined ||
-      this.enfermedad.obstruida != null && this.enfermedad.obstruida != undefined ||
-      this.enfermedad.otro != null && this.enfermedad.otro != undefined ||
-      this.enfermedad.psiquiatrico != null && this.enfermedad.psiquiatrico != undefined ||
-      this.enfermedad.quirur != null && this.enfermedad.quirur != undefined ||
-      this.enfermedad.trau != null && this.enfermedad.trau != undefined
-    ) {
+   
       this.enferService.saveEnferUsingPOST(this.enfermedad).subscribe(data => {
         if (data.object != null) {
           this.MessageSuccess(data.message);
@@ -797,27 +637,11 @@ export class AdmisionComponent implements OnInit {
       }, error => {
         this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
       });
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios 55")
-    }
+    
   }
 
   guardarLesion() {
-    if (this.lesion.cerrada != null && this.lesion.cerrada != undefined ||
-      this.lesion.cortante != null && this.lesion.cortante != undefined ||
-      this.lesion.esguince != null && this.lesion.esguince != undefined ||
-      this.lesion.excoracion != null && this.lesion.excoracion != undefined ||
-      this.lesion.expuesta != null && this.lesion.expuesta != undefined ||
-      this.lesion.extraa != null && this.lesion.extraa != undefined ||
-      this.lesion.hematoma != null && this.lesion.hematoma != undefined ||
-      this.lesion.hemorragia != null && this.lesion.hemorragia != undefined ||
-      this.lesion.inflamacion != null && this.lesion.inflamacion != undefined ||
-      this.lesion.masa != null && this.lesion.masa != undefined ||
-      this.lesion.mordedura != null && this.lesion.mordedura != undefined ||
-      this.lesion.pentrante != null && this.lesion.pentrante != undefined ||
-      this.lesion.picadura != null && this.lesion.picadura != undefined ||
-      this.lesion.quemadura != null && this.lesion.quemadura != undefined
-    ) {
+   
       this.lesionService.saveLesionUsingPOST(this.lesion).subscribe(data => {
         if (data.object != null) {
           this.MessageSuccess(data.message);
@@ -827,9 +651,7 @@ export class AdmisionComponent implements OnInit {
       }, error => {
         this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
       });
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios 55")
-    }
+    
   }
 
   recuperarAdmision() {
@@ -856,23 +678,7 @@ export class AdmisionComponent implements OnInit {
   }
 
   guardarAl() {
-    if (this.Alta.cExterna != null && this.Alta.cExterna != undefined ||
-      this.Alta.causa != null && this.Alta.causa != undefined ||
-      this.Alta.codigo != null && this.Alta.codigo != undefined ||
-      this.Alta.dias != null && this.Alta.dias != undefined ||
-      this.Alta.domicilio != null && this.Alta.domicilio != undefined ||
-      this.Alta.estable != null && this.Alta.estable != undefined ||
-      this.Alta.establecimiento != null && this.Alta.establecimiento != undefined ||
-      this.Alta.fecha != null && this.Alta.fecha != undefined ||
-      this.Alta.inestable != null && this.Alta.inestable != undefined ||
-      this.Alta.internacion != null && this.Alta.internacion != undefined ||
-      this.Alta.muerto != null && this.Alta.muerto != undefined ||
-      this.Alta.nombre != null && this.Alta.nombre != undefined ||
-      this.Alta.observacion != null && this.Alta.observacion != undefined ||
-      this.Alta.referencia != null && this.Alta.referencia != undefined ||
-      this.Alta.servicio != null && this.Alta.servicio != undefined ||
-      this.Alta.vivo != null && this.Alta.vivo != undefined
-    ) {
+    
       console.log("si validaaaaaaaaaaaaaaaaaaa ");
       this.altaService.savAltaUsingPOST(this.Alta).subscribe(data => {
         if (data.object != null) {
@@ -883,9 +689,7 @@ export class AdmisionComponent implements OnInit {
       }, error => {
         this.mensajeError("ERROR AL GUARDAR LLEGADA EN EL SERVIDOR");
       });
-    } else {
-      this.mensajeError(" Todos los datos son obligatorios 55")
-    }
+    
   }
 
   guardarEmergencia() {
@@ -1070,5 +874,88 @@ export class AdmisionComponent implements OnInit {
       return false;
     }
   }
+  createId(): string {
+    let id = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+  }
+
+  descargarPdf(pdfSrc: any) {
+    let pdf: any = pdfSrc;
+    let numAlea = this.createId();
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var url = window.URL.createObjectURL(blob);
+    if (this.admision.fecha != null) {
+      let nomPer = this.admision.usuario.nombres;
+
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'REGISTRO ADMISION_' + nomPer + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    } else {
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'REGISTRO ADMISION_' + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    }
+
+  }
+
+  imprimirPDF(idAd: number) {
+    this.serviceGenPdf.geneAdmision(idAd).subscribe(data => {
+      if (data) {
+        this.descargarPdf(data);
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+  }
+  imprimirPDFSinceButton(idAd: number) {
+    this.serviceGenPdf.geneAdmision(idAd).subscribe(data => {
+      if (data) {
+        //this.cargarConsultaExterna(idConsExterno);
+        this.descargarPdf(data);
+        //this.limpiarAll();
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+  }
+  
+  openNew() {
+    this.submitted = false;
+    this.listDialog = true;
+  }
+
+  clear(table: Table) {
+    table.clear();
+  }
+
+  cargarAdmision(event: LazyLoadEvent) {
+    this.loading = true;
+    setTimeout(() => {
+      this.adService.listUsingGET().subscribe(
+        data => {
+          this.admi = data;
+          console.log(data);
+          this.loading = false;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }, 100);
+  }
+
+
 
 }
