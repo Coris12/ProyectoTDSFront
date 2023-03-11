@@ -69,6 +69,7 @@ export * from './planesDiagnostico';
 export * from './producto';
 export * from './protocolos';
 export * from './proveedor';
+export * from './refiereDeriva';
 export * from './region';
 export * from './residencia';
 export * from './residenciaDto';

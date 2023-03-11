@@ -11,6 +11,7 @@ import { DatosInstitucionales } from 'src/app/model/datosInstitucionales';
 import { DatosInsControllerService } from 'src/app/api/datosInsController.service';
 import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 import { ResidenciaControllerService } from 'src/app/api/residenciaController.service';
+import { RefiereControllerService } from 'src/app/api/refiereController.service';
 
 
 
@@ -24,22 +25,22 @@ export class DatosComponent implements OnInit {
 
   selectedCities: string[] = [];
   buscarcedula: string;
-  dire:string
+  dire: string
   buscarnombre: string;
-  provi:String
-  tele:string
-  canton:string
-  barrio:string
-  na:string
-  pais:string
-  parrio:string;
+  provi: String
+  tele: string
+  canton: string
+  barrio: string
+  na: string
+  pais: string
+  parrio: string;
   sexo: any;
   idpersona: any
   formuData: Formulario[] = [];
   idForm: any;
   idD: any
-  edad:any
-  numcli:any
+  edad: any
+  numcli: any
   usuarioN: any
   ObjDatorTarj: DatosTarjetaDto = {
     canton: null,
@@ -59,21 +60,21 @@ export class DatosComponent implements OnInit {
     especialidadReferido: null,
     establecimientoRefer: null,
     fecha: null,
+    formulario: null,
     idRefiere: null,
-    motivo: null,
     servicioReferido: null,
   }
 
   formula: Formulario = {
-    cie1: null,
-    contra: null,
+    //cie1: null,
+   // contra: null,
     cuadroClinico: null,
-    dato: null,
+   // dato: null,
     derivacion: null,
     diagnostico: null,
     hallazgos: null,
     idFormulario: null,
-    inversa: null,
+    //inversa: null,
     referencia: null,
     usuario: null,
   }
@@ -95,8 +96,9 @@ export class DatosComponent implements OnInit {
     tipo: null,
   }
 
+  establecimiento = "C.E.M. MEDIVALLE";
 
-
+  usuarioE: any;
 
   constructor(
     private personaService: AuthControllerService,
@@ -104,7 +106,8 @@ export class DatosComponent implements OnInit {
     private formularioService: FormularioControllerService,
     private datosService: DatosInsControllerService,
     private historiaService: HistoriaControllerService,
-    private residenciaService:ResidenciaControllerService,
+    private residenciaService: ResidenciaControllerService,
+    private refiereService: RefiereControllerService,
 
   ) {
   }
@@ -201,8 +204,29 @@ export class DatosComponent implements OnInit {
 
   saveDatos() {
     console.log(this.formula);
-    this.datosin.histClinNum=this.numcli
+    this.datosin.histClinNum = this.numcli
+    this.datosin.establecimiento = this.establecimiento
     this.datosService.saveDatosUsingPOST(this.datosin).subscribe(
+      res => {
+        if (res.object != null) {
+          this.idD = res.object
+          console.log(this.idD);
+          this.MessageSuccess(" Formulario guardado")
+          this.saveRefiere()
+          console.log(this.idD);
+        } else {
+          this.mensajeError("error al guardar el formulario")
+          console.log(" holii" + this.idD);
+          console.log("error" + this.idD)
+          console.log(res.object);
+        }
+      })
+  }
+
+  saveRefiere() {
+    console.log(this.refiere);
+    this.refiere.establecimientoRefer = this.establecimiento
+    this.refiereService.saveRefiereUsingPOST(this.refiere).subscribe(
       res => {
         if (res.object != null) {
           this.idD = res.object
@@ -224,7 +248,7 @@ export class DatosComponent implements OnInit {
       for (let datos of res) {
         if (datos.idFormulario == this.idForm) {
           this.datosin.formulario = datos
-          
+          this.refiere.formulario = datos
           console.log(this.idForm);
           this.saveDatos();
         }
@@ -243,8 +267,8 @@ export class DatosComponent implements OnInit {
             this.buscarcedula = datos.identificacion
             this.buscarnombre = datos.nombres
             this.sexo = datos.sexo
-            this.tele=datos.celular
-            this.dire=datos.direccion
+            this.tele = datos.celular
+            this.dire = datos.direccion
             break;
           }
         } else if (this.buscarnombre != "" && this.buscarnombre != undefined) {
@@ -253,8 +277,8 @@ export class DatosComponent implements OnInit {
             this.buscarcedula = datos.identificacion
             this.buscarnombre = datos.nombres
             this.sexo = datos.sexo
-            this.tele=datos.celular
-            this.dire=datos.direccion
+            this.tele = datos.celular
+            this.dire = datos.direccion
           }
         }
       }
@@ -290,7 +314,7 @@ export class DatosComponent implements OnInit {
             this.parrio = datos.parroquia
             this.provi = datos.provincia
             this.na = datos.nacionalidad
-            this.pais=datos.pais
+            this.pais = datos.pais
             break;
           }
         } else if (this.buscarnombre != "" && this.buscarnombre != undefined) {
@@ -300,7 +324,7 @@ export class DatosComponent implements OnInit {
             this.barrio = datos.barrio
             this.parrio = datos.parroquia
             this.na = datos.nacionalidad
-            this.pais=datos.pais
+            this.pais = datos.pais
           }
         }
       }
@@ -309,20 +333,102 @@ export class DatosComponent implements OnInit {
 
   }
 
-  
+
   guardarTodo() {
     this.personaService.listaUsingGET().subscribe((res) => {
       for (let datos of res) {
 
         if (datos.id == this.idpersona && this.idpersona != 0 && this.idpersona != undefined) {
           console.log(datos.id, this.idpersona);
-          this.idpersona = datos
-          this.formula.usuario = this.idpersona
+          this.usuarioE = datos
+          this.formula.usuario = this.usuarioE
           console.log(this.formula);
           this.saveFormulario()
+          console.log("" + this.usuarioE);
 
         }
       }
     })
   }
+  validarAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetras(event) {
+    const patron = /[a-zA-Z ]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarNumero(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validarCedula(event) {
+    const patron = /^-?(0|[0-9]\d*)?$/;
+    const permitidos = event.keyCode;
+    if (permitidos === 10) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }

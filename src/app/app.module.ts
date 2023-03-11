@@ -157,6 +157,7 @@ import { TecnicaControllerService } from './api/tecnicaController.service';
 import { TerapiaControllerService } from './api/terapiaController.service';
 import { ErrorTailorModule } from '@ngneat/error-tailor';
 import { DatosInsControllerService } from './api/datosInsController.service';
+import { RefiereControllerService } from './api/refiereController.service';
 
 @NgModule({
   declarations: [
@@ -332,6 +333,7 @@ import { DatosInsControllerService } from './api/datosInsController.service';
     TecnicaControllerService,
     TerapiaControllerService,
     DatosInsControllerService,
+    RefiereControllerService,
   ],
   bootstrap: [AppComponent]
 })

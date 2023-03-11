@@ -49,6 +49,7 @@ import { PlanesControllerService } from './api/planesController.service';
 import { ProductoControllerService } from './api/productoController.service';
 import { ProtocoloControllerService } from './api/protocoloController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
+import { RefiereControllerService } from './api/refiereController.service';
 import { RegionControllerService } from './api/regionController.service';
 import { ResidenciaControllerService } from './api/residenciaController.service';
 import { RevOrganoSistemControllerService } from './api/revOrganoSistemController.service';
@@ -116,6 +117,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     ProductoControllerService,
     ProtocoloControllerService,
     ProveedorControllerService,
+    RefiereControllerService,
     RegionControllerService,
     ResidenciaControllerService,
     RevOrganoSistemControllerService,

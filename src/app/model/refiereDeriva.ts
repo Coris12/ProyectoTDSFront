@@ -9,14 +9,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Motivos } from './motivos';
+import { Formulario } from './formulario';
 
 export interface RefiereDeriva { 
     entidadSistema?: string;
     especialidadReferido?: string;
     establecimientoRefer?: string;
     fecha?: Date;
+    formulario?: Formulario;
     idRefiere?: number;
-    motivo?: Motivos;
     servicioReferido?: string;
 }
