@@ -13,15 +13,39 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"[(ngModel)]="buscarPerIdent" pInputText > 
+                                <input type="text" id="inputtext" [(ngModel)]="buscarPerIdent"
+                                    [(ngModel)]="buscarcedula" pInputText>
                                 <label for="inputtext">Cedula</label>
                             </span>
                         </div>
                         <div class="field col-12 md:col-4">
-                            <button pButton type="button" label="Buscar" (click)="buscarPersonaPorIdentificacion()"></button>
+                            <button pButton type="button" label="Buscar" (click)="buscar()"></button>
                         </div>
-                        
+
                     </div>
+                    <p-divider align="left">
+
+                    </p-divider>
+                    <div class="grid p-fluid">
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p16" value="X" [(ngModel)]="formula.referencia"
+                                    inputId="p1"></p-radioButton>
+                                <label for="p1">Referencia</label>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-2">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="p17" value="X" [(ngModel)]="formula.derivacion"
+                                    inputId="p2"></p-radioButton>
+                                <label for="p2">Inversa</label>
+                            </div>
+                        </div>
+                    </div>
+                    <p-divider align="left">
+
+                    </p-divider>
+
                     <p-divider align="left">
                         <div class="inline-flex align-items-center">
                             <i class="pi pi-user mr-2"></i>
@@ -32,21 +56,23 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext"  pInputText  [(ngModel)]="ObjDatorTarj.nombres"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="buscarnombre"
+                                    [(ngModel)]="ObjDatorTarj.nombres">
                                 <label for="inputtext">Nombres</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
-                                <label for="inputtext">Fecha de nacimiento</label>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="edad">
+                                <label for="inputtext">Edad</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.provincia"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="provi"
+                                    [(ngModel)]="ObjDatorTarj.provincia">
                                 <label for="inputtext">Provincia</label>
                             </span>
                         </div>
@@ -55,21 +81,24 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText  [(ngModel)]="ObjDatorTarj.nacionalidad" > 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="na"
+                                    [(ngModel)]="ObjDatorTarj.nacionalidad">
                                 <label for="inputtext">Nacionalidad</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText  [(ngModel)]="ObjDatorTarj.pais"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="pais"
+                                    [(ngModel)]="ObjDatorTarj.pais">
                                 <label for="inputtext">Pais</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.parroquia"  > 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="parrio"
+                                    [(ngModel)]="ObjDatorTarj.parroquia">
                                 <label for="inputtext">Parroquia</label>
                             </span>
                         </div>
@@ -78,25 +107,29 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.direccion"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="dire"
+                                    [(ngModel)]="ObjDatorTarj.direccion">
                                 <label for="inputtext">Domicilio</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText  [(ngModel)]="ObjDatorTarj.celular"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="tele"
+                                    [(ngModel)]="ObjDatorTarj.celular">
                                 <label for="inputtext">Numero telefono/celular</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.canton" > 
-                                <label for="inputtext">Caton</label>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="canton"
+                                    [(ngModel)]="ObjDatorTarj.canton">
+                                <label for="inputtext">Canton</label>
                             </span>
                         </div>
                     </div>
+
                     <!-- grupo de 3 para el formulario-->
                     <p-divider align="left">
                         <div class="inline-flex align-items-center">
@@ -108,21 +141,21 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="datosin.entidad"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="datosin.entidad">
                                 <label for="inputtext">Entidad del sistema</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="datosin.histClinNum"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="numcli">
                                 <label for="inputtext">Hist. Clinica N.</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="datosin.establecimiento"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="datosin.establecimiento">
                                 <label for="inputtext">Establecimiento de salud</label>
                             </span>
                         </div>
@@ -130,24 +163,19 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="datosin.tipo"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="datosin.tipo">
                                 <label for="inputtext">Tipo</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="datosin.districto" > 
-                                <label for="inputtext">Distrito</label>
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="datosin.districto">
+                                <label for="inputtext">Distrito/Area</label>
                             </span>
                         </div>
 
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="datosin.area"> 
-                                <label for="inputtext">Area</label>
-                            </span>
-                        </div>
+
                     </div>
                     <!-- grupo de 3 para el formulario-->
                     <p-divider align="left">
@@ -160,21 +188,21 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="refiere.entidadSistema" > 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="refiere.entidadSistema">
                                 <label for="inputtext">Entidad del sistema</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="refiere.establecimientoRefer"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="refiere.establecimientoRefer">
                                 <label for="inputtext">Establecimiento de salud</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="refiere.servicioReferido"> 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="refiere.servicioReferido">
                                 <label for="inputtext">Servicio</label>
                             </span>
                         </div>
@@ -182,30 +210,15 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="refiere.especialidadReferido" > 
+                                <input type="text" id="inputtext" pInputText [(ngModel)]="refiere.especialidadReferido">
                                 <label for="inputtext">Especialidad</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
-                                <label for="inputtext">Dia</label>
-                            </span>
-                        </div>
-
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
-                                <label for="inputtext">Mes</label>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="grid p-fluid">
-                        <div class="field col-12 md:col-4">
-                            <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText [(ngModel)]="refiere.fecha"> 
-                                <label for="inputtext">Anio</label>
+                                <input type="date" id="inputtext" pInputText [(ngModel)]="refiere.fecha" >
+                                <label for="inputtext">Fecha</label>
                             </span>
                         </div>
                     </div>
@@ -220,19 +233,22 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <div class="field-checkbox">
-                                <p-checkbox name="group1" value="New York" [(ngModel)]="selectedCities" inputId="ny"></p-checkbox>
+                                <p-checkbox name="group1" value="New York" [(ngModel)]="selectedCities"
+                                    inputId="ny"></p-checkbox>
                                 <label for="ny">Limitada capacidad resolutiva:</label>
                             </div>
                         </div>
                         <div class="field col-12 md:col-4">
                             <div class="field-checkbox">
-                                <p-checkbox name="group1" value="San Francisco" [(ngModel)]="selectedCities" inputId="sf"></p-checkbox>
+                                <p-checkbox name="group1" value="San Francisco" [(ngModel)]="selectedCities"
+                                    inputId="sf"></p-checkbox>
                                 <label for="sf">Ausencia temporal del profesional:</label>
                             </div>
                         </div>
                         <div class="field col-12 md:col-4">
                             <div class="field-checkbox">
-                                <p-checkbox name="group1" value="Los Angeles" [(ngModel)]="selectedCities" inputId="la"></p-checkbox>
+                                <p-checkbox name="group1" value="Los Angeles" [(ngModel)]="selectedCities"
+                                    inputId="la"></p-checkbox>
                                 <label for="la">Falta de profesional:</label>
                             </div>
                         </div>
@@ -240,7 +256,8 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <div class="field-checkbox">
-                                <p-checkbox name="group1" value="Chicago" [(ngModel)]="selectedCities" inputId="ch"></p-checkbox>
+                                <p-checkbox name="group1" value="Chicago" [(ngModel)]="selectedCities"
+                                    inputId="ch"></p-checkbox>
                                 <label for="ch">Saturacion de la capacidad instalada:</label>
                             </div>
                         </div>
@@ -248,7 +265,7 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
+                                <input type="text" id="inputtext" pInputText>
                                 <label for="inputtext">Otros/Especifique</label>
                             </span>
                         </div>
@@ -264,7 +281,8 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <textarea id="float-input" rows="5" cols="242" pInputTextarea  [(ngModel)]=" formula.cuadroClinico"></textarea>
+                                <textarea id="float-input" rows="5" cols="242" pInputTextarea
+                                    [(ngModel)]=" formula.cuadroClinico"></textarea>
                                 <label for="float-input">Resumen</label>
                             </span>
                         </div>
@@ -280,7 +298,8 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <textarea id="float-input" rows="5" cols="242" pInputTextarea  [(ngModel)]=" formula.hallazgos"  ></textarea>
+                                <textarea id="float-input" rows="5" cols="242" pInputTextarea
+                                    [(ngModel)]=" formula.hallazgos"></textarea>
                                 <label for="float-input">Resumen</label>
                             </span>
                         </div>
@@ -296,7 +315,8 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <textarea id="float-input" rows="5" cols="242" pInputTextarea  [(ngModel)]=" formula.diagnostico"></textarea>
+                                <textarea id="float-input" rows="5" cols="242" pInputTextarea
+                                    [(ngModel)]=" formula.diagnostico"></textarea>
                                 <label for="float-input">Resumen</label>
                             </span>
                         </div>
@@ -312,21 +332,21 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
+                                <input type="text" id="inputtext" pInputText>
                                 <label for="inputtext">Nombres</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
+                                <input type="text" id="inputtext" pInputText>
                                 <label for="inputtext">Codigo</label>
                             </span>
                         </div>
 
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
+                                <input type="text" id="inputtext" pInputText>
                                 <label for="inputtext">Contrareferencia</label>
                             </span>
                         </div>
@@ -334,14 +354,14 @@
                     <div class="grid p-fluid">
                         <div class="field col-12 md:col-4">
                             <span class="p-float-label">
-                                <input type="text" id="inputtext" pInputText > 
+                                <input type="text" id="inputtext" pInputText>
                                 <label for="inputtext">Referenciainversa</label>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class="field col-12 md:col-4">
-                    <button pButton type="button" label="Guardar"(click)="saveFormulario()" ></button>
+                    <button pButton type="button" label="Guardar" (click)="guardarTodo()"></button>
                 </div>
             </p-scrollPanel>
         </div>

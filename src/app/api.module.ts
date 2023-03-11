@@ -17,6 +17,7 @@ import { ComplicacionesControllerService } from './api/complicacionesController.
 import { ConsentimientoControllerService } from './api/consentimientoController.service';
 import { ConsultaExternaControllerService } from './api/consultaExternaController.service';
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
+import { DatosInsControllerService } from './api/datosInsController.service';
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
 import { DiagnosticoOControllerService } from './api/diagnosticoOController.service';
 import { DiagnsticoAiControllerService } from './api/diagnsticoAiController.service';
@@ -83,6 +84,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     ConsentimientoControllerService,
     ConsultaExternaControllerService,
     CuerpoFacturaControllerService,
+    DatosInsControllerService,
     DiagnosticoControllerService,
     DiagnosticoOControllerService,
     DiagnsticoAiControllerService,

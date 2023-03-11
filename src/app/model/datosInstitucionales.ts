@@ -9,13 +9,20 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Formulario } from './formulario';
 
 export interface DatosInstitucionales { 
-    area?: string;
+    ausencia?: string;
+    descripcion?: string;
     districto?: string;
     entidad?: string;
     establecimiento?: string;
+    falta?: string;
+    formulario?: Formulario;
     histClinNum?: string;
     idDatos?: number;
+    limitada?: string;
+    otros?: string;
+    satu?: string;
     tipo?: string;
 }

@@ -9,16 +9,18 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { DatosInstitucionales } from './datosInstitucionales';
-import { RefiereDeriva } from './refiereDeriva';
 import { Usuario } from './usuario';
 
 export interface Formulario { 
+    cie1?: string;
+    contra?: string;
     cuadroClinico?: string;
-    datos?: DatosInstitucionales;
+    dato?: string;
+    derivacion?: string;
     diagnostico?: string;
     hallazgos?: string;
     idFormulario?: number;
-    refiere?: RefiereDeriva;
+    inversa?: string;
+    referencia?: string;
     usuario?: Usuario;
 }

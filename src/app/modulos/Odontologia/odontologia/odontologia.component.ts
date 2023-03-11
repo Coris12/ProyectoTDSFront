@@ -526,7 +526,7 @@ export class OdontologiaComponent implements OnInit {
 
   }
 
-  capturarContenido() {
+ /* capturarContenido() {
     var data = document.getElementById('contenidoAConvertir');
     html2canvas(data).then(canvas => {
 
@@ -536,7 +536,7 @@ export class OdontologiaComponent implements OnInit {
       var position = 0;
       pdf.save('FichaOdontologica.pdf')
     });
-  }
+  }*/
   downloadPDF() {
     const DATA = document.getElementById('htmlData');
     const doc = new jsPDF('p', 'pt', 'a4');
