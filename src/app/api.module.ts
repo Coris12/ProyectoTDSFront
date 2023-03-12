@@ -31,7 +31,7 @@ import { ExamenEstoControllerService } from './api/examenEstoController.service'
 import { FacturaControllerService } from './api/facturaController.service';
 import { FamiliaresControllerService } from './api/familiaresController.service';
 import { FaramaciaControllerService } from './api/faramaciaController.service';
-import { FormularioControllerService } from './api/formularioController.service';
+import { FormsControllerService } from './api/formsController.service';
 import { HistoriaControllerService } from './api/historiaController.service';
 import { IndiceControlllerService } from './api/indiceControlller.service';
 import { IndicesFamilControllerService } from './api/indicesFamilController.service';
@@ -99,7 +99,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     FacturaControllerService,
     FamiliaresControllerService,
     FaramaciaControllerService,
-    FormularioControllerService,
+    FormsControllerService,
     HistoriaControllerService,
     IndiceControlllerService,
     IndicesFamilControllerService,

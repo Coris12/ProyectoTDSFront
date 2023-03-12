@@ -25,7 +25,7 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class FormularioControllerService {
+export class FormsControllerService {
 
     protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();

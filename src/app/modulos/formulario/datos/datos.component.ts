@@ -12,6 +12,7 @@ import { DatosInsControllerService } from 'src/app/api/datosInsController.servic
 import { HistoriaControllerService } from 'src/app/api/historiaController.service';
 import { ResidenciaControllerService } from 'src/app/api/residenciaController.service';
 import { RefiereControllerService } from 'src/app/api/refiereController.service';
+import { FormsControllerService } from 'src/app/api/formsController.service';
 
 
 
@@ -40,10 +41,13 @@ export class DatosComponent implements OnInit {
   idForm: any;
   idD: any
   edad: any
-  numcli: any
+  numcli: any  
   usuarioN: any
+//
+  resumenCuadroClinico :any
+  HallazgosRele :any
 
-  
+
   ObjDatorTarj: DatosTarjetaDto = {
     canton: null,
     celular: null,
@@ -99,13 +103,13 @@ export class DatosComponent implements OnInit {
   }
 
   establecimiento = "C.E.M. MEDIVALLE";
-
+  idPro: any
   usuarioE: any;
-
+  idre: any
   constructor(
     private personaService: AuthControllerService,
     private messageService: MessageService,
-    private formularioService: FormularioControllerService,
+    private formularioService: FormsControllerService,
     private datosService: DatosInsControllerService,
     private historiaService: HistoriaControllerService,
     private residenciaService: ResidenciaControllerService,
@@ -117,145 +121,11 @@ export class DatosComponent implements OnInit {
   buscarPerIdent: string;
 
   ngOnInit(): void {
-    this.selectedCities
+
   }
 
   idPerPrin: number = 0;
-  /* buscarPersonaPorIdentificacion() {
-     this.personaService.searchDateTarjetaUserUsingGET(this.buscarPerIdent).pipe(takeUntil(this.unsuscribes$)).subscribe((res) => {
-       if (res.object != null) {
-         this.ObjDatorTarj = res.object;
-         this.idPerPrin = res.object.id;
-         console.log("id de la perosna es: " + this.idPerPrin)
-         this.buscarDatos(this.idPerPrin);
-       } else {
-         this.mensajeError("ERROR AL BUSCAR PERSONA");
-         this.ObjDatorTarj = { canton: null, celular: null, direccion: null, id: null, idRecidencia: null, nacionalidad: null, nombres: null, pais: null, provincia: null, parroquia: null }
-       }
-     }, error => {
-       this.mensajeError("ERROR AL BUSCAR!!");
-     });
-   }*/
-
-
-  mensajeError(msg: String) {
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Error: ' + msg,
-    });
-  }
-
-  MessageSuccess(msg: String) {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Resultado',
-      detail: 'Correcto!: ' + msg,
-    });
-  }
-
-
-  /* buscarDatos(idPersona: number): void {
-     this.formularioService.getByIdConvocatoriaUsingGET(idPersona).subscribe(data => {
-       this.formuData = data
-       console.log(data)
-       for (let datos of data) {
-         if (this.idPerPrin != undefined) {
-           if (datos.usuario.id == this.idPerPrin) {
- 
-             this.datosin.districto = datos.datos.districto
-             this.datosin.entidad = datos.datos.entidad
-             this.datosin.establecimiento = datos.datos.establecimiento
-             this.datosin.histClinNum = datos.datos.histClinNum
-             this.datosin.tipo = datos.datos.tipo
-             this.refiere.entidadSistema = datos.refiere.entidadSistema
-             this.refiere.establecimientoRefer = datos.refiere.establecimientoRefer
-             this.refiere.servicioReferido = datos.refiere.servicioReferido
-             this.refiere.especialidadReferido = datos.refiere.especialidadReferido
-             this.refiere.fecha = datos.refiere.fecha
-             this.formula.cuadroClinico = datos.cuadroClinico
-             this.formula.diagnostico = datos.diagnostico
-             this.formula.hallazgos = datos.hallazgos
-           }
-         }
- 
- 
-       }
-     })
- 
-   }*/
-  ///guarr
-  saveFormulario() {
-    console.log(this.formula);
-    this.formularioService.saveAdUsingPOST1(this.formula).subscribe(
-      res => {
-        if (res.object != null) {
-          this.idForm = res.object
-          console.log("jhkjk"+this.idForm);
-          this.MessageSuccess(" Formulario guardado")
-          this.recuperarForm();
-          console.log(this.formula);
-        } else {
-          this.mensajeError("error al guardar el formulario")
-          console.log(" holii" + this.idForm);
-          console.log("error" + this.idForm)
-          console.log(res.object);
-        }
-      })
-
-  }
-
   
-  saveRefiere() {
-    this.refiereService.saveRefiereUsingPOST(this.refiere).subscribe(data => {
-      if (data.object != null) {
-        this.MessageSuccess(data.message);
-      } else {
-        this.mensajeError("Error al intententar guardar");
-      }
-    }, error => {
-      this.mensajeError("ERROR AL GUARDAR LOS ANTECEDENTES PERSONALES EN EL SERVIDOR");
-    });
-  }
-
-  saveDatos() {
-    console.log(this.datosin);
-    
-    this.datosService.saveDatosUsingPOST(this.datosin).subscribe(
-      res => {
-        if (res.object != null) {
-          this.idD = res.object
-          console.log(this.idD);
-          this.MessageSuccess(" Datos guardado")
-          this.saveRefiere()
-          console.log(this.datosin);
-        } else {
-          this.mensajeError("error al guardar el formulario")
-          console.log(" holii" + this.idD);
-          console.log("error" + this.idD)
-          console.log(res.object);
-        }
-      })
-  }
-
-
-
-  recuperarForm() {
-
-    this.formularioService.listUsingGET14().subscribe((res) => {
-      for (let datos of res) {
-        if (datos.idFormulario == this.idForm) {
-          console.log(this.idForm);
-          this.datosin.formulario = datos
-          this.refiere.formulario = datos
-          console.log(this.idForm);
-          this.saveDatos();
-        }
-      }
-
-    })
-  }
-
 
   buscar() {
     this.personaService.listaUsingGET().subscribe((res) => {
@@ -329,9 +199,162 @@ export class DatosComponent implements OnInit {
       }
       console.log(res);
     })
+  }
+/* buscarPersonaPorIdentificacion() {
+     this.personaService.searchDateTarjetaUserUsingGET(this.buscarPerIdent).pipe(takeUntil(this.unsuscribes$)).subscribe((res) => {
+       if (res.object != null) {
+         this.ObjDatorTarj = res.object;
+         this.idPerPrin = res.object.id;
+         console.log("id de la perosna es: " + this.idPerPrin)
+         this.buscarDatos(this.idPerPrin);
+       } else {
+         this.mensajeError("ERROR AL BUSCAR PERSONA");
+         this.ObjDatorTarj = { canton: null, celular: null, direccion: null, id: null, idRecidencia: null, nacionalidad: null, nombres: null, pais: null, provincia: null, parroquia: null }
+       }
+     }, error => {
+       this.mensajeError("ERROR AL BUSCAR!!");
+     });
+   }*/
+
+
+  /* buscarDatos(idPersona: number): void {
+     this.formularioService.getByIdConvocatoriaUsingGET(idPersona).subscribe(data => {
+       this.formuData = data
+       console.log(data)
+       for (let datos of data) {
+         if (this.idPerPrin != undefined) {
+           if (datos.usuario.id == this.idPerPrin) {
+ 
+             this.datosin.districto = datos.datos.districto
+             this.datosin.entidad = datos.datos.entidad
+             this.datosin.establecimiento = datos.datos.establecimiento
+             this.datosin.histClinNum = datos.datos.histClinNum
+             this.datosin.tipo = datos.datos.tipo
+             this.refiere.entidadSistema = datos.refiere.entidadSistema
+             this.refiere.establecimientoRefer = datos.refiere.establecimientoRefer
+             this.refiere.servicioReferido = datos.refiere.servicioReferido
+             this.refiere.especialidadReferido = datos.refiere.especialidadReferido
+             this.refiere.fecha = datos.refiere.fecha
+             this.formula.cuadroClinico = datos.cuadroClinico
+             this.formula.diagnostico = datos.diagnostico
+             this.formula.hallazgos = datos.hallazgos
+           }
+         }
+ 
+ 
+       }
+     })
+ 
+   }*/
+  saveFormulario() {
+
+    this.formularioService.saveFormularioUsingPOST(this.formula).subscribe(
+      res => {
+        console.log(res);
+
+        if (res.object != null) {
+          this.idPro = res.object
+          console.log(res.object);
+
+          console.log(this.idPro);
+
+          this.MessageSuccess(" diagnostico  creado")
+          console.log("this.entrooooooooooooooooooo");//tengo un
+          this.recuperarForm()
+
+
+        } else {
+          this.mensajeError("error al crear diagnostico")
+          console.log(" holii" + this.idPro);
+          //console.log("error" + this.idPro)
+          console.log(res.object);
+        }
+      })
+
+    console.log(this.formula);
+
+
+
 
   }
 
+  saveDatos() {
+    console.log(this.datosin);
+    console.log(this.idForm);
+    this.datosin.establecimiento = this.establecimiento
+    this.datosin.histClinNum = this.numcli
+    this.datosService.saveDatosUsingPOST(this.datosin).subscribe(
+      res => {
+        console.log(res);
+        if (res.object != null) {
+          this.idD = res.object
+          console.log(this.idD,"id datos");
+          this.MessageSuccess(" Datos guardado")
+          this.saveRefiere()
+          //console.log(this.datosin);
+        } else {
+          this.mensajeError("error al guardar el formulario")
+          console.log(" holii" + this.idD);
+          console.log("error" + this.idD)
+          console.log(res.object);
+        }
+      })
+
+  }
+
+  saveRefiere() {
+    console.log(this.refiere)
+    this.refiereService.saveRefiereUsingPOST(this.refiere).subscribe(
+      res => {
+        if (res.object != null) {
+          this.idre = res.object
+          console.log(this.idre,"id re");
+          this.MessageSuccess(" Datos guardado")
+          //console.log(this.refiere);// y esto que es dela otra tabla
+        } else {
+          this.mensajeError("error al guardar el formulario")
+          //console.log(" holii" + this.idre);
+          //console.log("error" + this.idre)
+          //console.log(res.object);
+        }
+      })
+
+  }
+
+
+
+
+  recuperarForm() {
+    console.log(this.idPro);   
+    
+    this.datosin.histClinNum = this.numcli
+    this.formula.cuadroClinico= this.resumenCuadroClinico
+    this.formula.hallazgos=this.HallazgosRele
+
+
+
+    this.formularioService.listUsingGET14().subscribe((res) => {
+      for (let datos of res) {
+        //console.log(this.idPro, datos.idFormulario);
+        if (datos.cuadroClinico == this.resumenCuadroClinico && datos.hallazgos == this.HallazgosRele){
+          console.log( this.resumenCuadroClinico &&  this.HallazgosRele);
+          
+          console.log(this.idPro, datos.idFormulario);
+          this.idPro = datos.idFormulario
+          /*datos.idFormulario == this.idPro) {
+          console.log(this.idPro);*/
+          this.datosin.formulario = datos
+          this.refiere.formulario = datos
+          console.log(this.idPro);
+          this.saveDatos();
+        }
+      }
+
+    })
+  }
+
+
+ 
 
   guardarTodo() {
     this.personaService.listaUsingGET().subscribe((res) => {
@@ -342,13 +365,29 @@ export class DatosComponent implements OnInit {
           this.usuarioE = datos
           this.formula.usuario = this.usuarioE
           console.log(this.formula);
+
           this.saveFormulario()
-
-
         }
       }
     })
   }
+
+  mensajeError(msg: String) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Error: ' + msg,
+    });
+  }
+
+  MessageSuccess(msg: String) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Resultado',
+      detail: 'Correcto!: ' + msg,
+    });
+  }
+
   validarAlfanumerica(event) {
     const patron = /[a-zA-ZÑ0-9 ,:-]/;
     const permitidos = event.keyCode;
