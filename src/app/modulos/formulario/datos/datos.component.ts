@@ -42,6 +42,8 @@ export class DatosComponent implements OnInit {
   edad: any
   numcli: any
   usuarioN: any
+
+  
   ObjDatorTarj: DatosTarjetaDto = {
     canton: null,
     celular: null,
@@ -67,9 +69,9 @@ export class DatosComponent implements OnInit {
 
   formula: Formulario = {
     //cie1: null,
-   // contra: null,
+    // contra: null,
     cuadroClinico: null,
-   // dato: null,
+    // dato: null,
     derivacion: null,
     diagnostico: null,
     hallazgos: null,
@@ -185,14 +187,14 @@ export class DatosComponent implements OnInit {
   ///guarr
   saveFormulario() {
     console.log(this.formula);
-    this.formularioService.createUsingPOST3(this.formula).subscribe(
+    this.formularioService.saveAdUsingPOST1(this.formula).subscribe(
       res => {
         if (res.object != null) {
           this.idForm = res.object
-          console.log(this.idForm);
+          console.log("jhkjk"+this.idForm);
           this.MessageSuccess(" Formulario guardado")
-          this.recuperarprotocolo();
-          console.log(this.idForm);
+          this.recuperarForm();
+          console.log(this.formula);
         } else {
           this.mensajeError("error al guardar el formulario")
           console.log(" holii" + this.idForm);
@@ -200,20 +202,33 @@ export class DatosComponent implements OnInit {
           console.log(res.object);
         }
       })
+
+  }
+
+  
+  saveRefiere() {
+    this.refiereService.saveRefiereUsingPOST(this.refiere).subscribe(data => {
+      if (data.object != null) {
+        this.MessageSuccess(data.message);
+      } else {
+        this.mensajeError("Error al intententar guardar");
+      }
+    }, error => {
+      this.mensajeError("ERROR AL GUARDAR LOS ANTECEDENTES PERSONALES EN EL SERVIDOR");
+    });
   }
 
   saveDatos() {
-    console.log(this.formula);
-    this.datosin.histClinNum = this.numcli
-    this.datosin.establecimiento = this.establecimiento
+    console.log(this.datosin);
+    
     this.datosService.saveDatosUsingPOST(this.datosin).subscribe(
       res => {
         if (res.object != null) {
           this.idD = res.object
           console.log(this.idD);
-          this.MessageSuccess(" Formulario guardado")
+          this.MessageSuccess(" Datos guardado")
           this.saveRefiere()
-          console.log(this.idD);
+          console.log(this.datosin);
         } else {
           this.mensajeError("error al guardar el formulario")
           console.log(" holii" + this.idD);
@@ -223,30 +238,14 @@ export class DatosComponent implements OnInit {
       })
   }
 
-  saveRefiere() {
-    console.log(this.refiere);
-    this.refiere.establecimientoRefer = this.establecimiento
-    this.refiereService.saveRefiereUsingPOST(this.refiere).subscribe(
-      res => {
-        if (res.object != null) {
-          this.idD = res.object
-          console.log(this.idD);
-          this.MessageSuccess(" Formulario guardado")
-          console.log(this.idD);
-        } else {
-          this.mensajeError("error al guardar el formulario")
-          console.log(" holii" + this.idD);
-          console.log("error" + this.idD)
-          console.log(res.object);
-        }
-      })
-  }
 
-  recuperarprotocolo() {
 
-    this.formularioService.listUsingGET6().subscribe((res) => {
+  recuperarForm() {
+
+    this.formularioService.listUsingGET14().subscribe((res) => {
       for (let datos of res) {
         if (datos.idFormulario == this.idForm) {
+          console.log(this.idForm);
           this.datosin.formulario = datos
           this.refiere.formulario = datos
           console.log(this.idForm);
@@ -344,7 +343,7 @@ export class DatosComponent implements OnInit {
           this.formula.usuario = this.usuarioE
           console.log(this.formula);
           this.saveFormulario()
-          console.log("" + this.usuarioE);
+
 
         }
       }
