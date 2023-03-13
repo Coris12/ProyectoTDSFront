@@ -159,6 +159,8 @@ import { ErrorTailorModule } from '@ngneat/error-tailor';
 import { DatosInsControllerService } from './api/datosInsController.service';
 import { RefiereControllerService } from './api/refiereController.service';
 import { FormsControllerService } from './api/formsController.service';
+import { InversaControllerService } from './api/inversaController.service';
+import { ContraControllerService } from './api/contraController.service';
 
 @NgModule({
   declarations: [
@@ -335,7 +337,9 @@ import { FormsControllerService } from './api/formsController.service';
     TerapiaControllerService,
     DatosInsControllerService,
     RefiereControllerService,
-    FormsControllerService
+    FormsControllerService,
+    InversaControllerService,
+    ContraControllerService,
   ],
   bootstrap: [AppComponent]
 })

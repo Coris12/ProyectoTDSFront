@@ -16,6 +16,7 @@ import { ClienteControllerService } from './api/clienteController.service';
 import { ComplicacionesControllerService } from './api/complicacionesController.service';
 import { ConsentimientoControllerService } from './api/consentimientoController.service';
 import { ConsultaExternaControllerService } from './api/consultaExternaController.service';
+import { ContraControllerService } from './api/contraController.service';
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
 import { DatosInsControllerService } from './api/datosInsController.service';
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
@@ -38,6 +39,7 @@ import { IndicesFamilControllerService } from './api/indicesFamilController.serv
 import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
 import { InfusionControllerService } from './api/infusionController.service';
 import { IngresoDiaControllerService } from './api/ingresoDiaController.service';
+import { InversaControllerService } from './api/inversaController.service';
 import { LesionesControllerService } from './api/lesionesController.service';
 import { LlegadaAdServiceService } from './api/llegadaAdService.service';
 import { MedicamentosControllerService } from './api/medicamentosController.service';
@@ -84,6 +86,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     ComplicacionesControllerService,
     ConsentimientoControllerService,
     ConsultaExternaControllerService,
+    ContraControllerService,
     CuerpoFacturaControllerService,
     DatosInsControllerService,
     DiagnosticoControllerService,
@@ -106,6 +109,7 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
     InformacionTratamientoControllerService,
     InfusionControllerService,
     IngresoDiaControllerService,
+    InversaControllerService,
     LesionesControllerService,
     LlegadaAdServiceService,
     MedicamentosControllerService,

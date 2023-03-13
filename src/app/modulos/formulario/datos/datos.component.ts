@@ -13,6 +13,10 @@ import { HistoriaControllerService } from 'src/app/api/historiaController.servic
 import { ResidenciaControllerService } from 'src/app/api/residenciaController.service';
 import { RefiereControllerService } from 'src/app/api/refiereController.service';
 import { FormsControllerService } from 'src/app/api/formsController.service';
+import { Inversa } from 'src/app/model/inversa';
+import { InversaControllerService } from 'src/app/api/inversaController.service';
+import { Contrareferencia } from 'src/app/model/contrareferencia';
+import { ContraControllerService } from 'src/app/api/contraController.service';
 
 
 
@@ -108,10 +112,39 @@ export class DatosComponent implements OnInit {
     tipo: null,
   }
 
+  inversa: Inversa = {
+    cieC: null,
+    cieI: null,
+    cuadroC: null,
+    da: null,
+    diagnosIn: null,
+    formulario: null,
+    hallazgoI: null,
+    idInversa: null,
+    tratamiento: null,
+    tratamientoR: null,
+    diagnosI: null,
+    da1: null,
+  }
+
+  contra: Contrareferencia = {
+    distrito: null,
+    entidad: null,
+    especialS: null,
+    establecimiento: null,
+    fecha: null,
+    formulario: null,
+    idContra: null,
+    justificada: null,
+    numCli: null,
+    servicio: null,
+    tipo: null,
+  }
   establecimiento = "C.E.M. MEDIVALLE";
   idPro: any
   usuarioE: any;
   idre: any
+  idC: any
   constructor(
     private personaService: AuthControllerService,
     private messageService: MessageService,
@@ -120,6 +153,8 @@ export class DatosComponent implements OnInit {
     private historiaService: HistoriaControllerService,
     private residenciaService: ResidenciaControllerService,
     private refiereService: RefiereControllerService,
+    private inversaService: InversaControllerService,
+    private contrService: ContraControllerService,
 
   ) {
   }
@@ -131,7 +166,7 @@ export class DatosComponent implements OnInit {
   }
 
   idPerPrin: number = 0;
-
+  idI: any
 
   buscar() {
     this.personaService.listaUsingGET().subscribe((res) => {
@@ -237,6 +272,27 @@ export class DatosComponent implements OnInit {
     this.refiere.especialidadReferido = "";
     this.refiere.establecimientoRefer = "";
     this.refiere.servicioReferido = "";
+    this.inversa.cieC = "";
+    this.inversa.da1 = "";
+    this.inversa.cieI = "";
+    this.inversa.cuadroC = "";
+    this.inversa.da = "";
+    this.inversa.diagnosIn = "";
+    this.inversa.hallazgoI = "";
+    this.inversa.idInversa = +"";
+    this.inversa.tratamiento = "";
+    this.inversa.tratamientoR = "";
+    this.inversa.diagnosI = "";
+    this.contra.distrito = "";
+    this.contra.entidad = "";
+    this.contra.especialS = "";
+    this.contra.establecimiento = "";
+    this.contra.fecha = "";
+    this.contra.idContra = +"";
+    this.contra.justificada = "";
+    this.contra.numCli = "";
+    this.contra.servicio = "";
+    this.contra.tipo = "";
     this.buscarcedula = "";
     this.dire = "";
     this.buscarnombre = "";
@@ -297,6 +353,30 @@ export class DatosComponent implements OnInit {
      })
  
    }*/
+
+  saveInversa() {
+    this.inversaService.saveInversaUsingPOST(this.inversa).subscribe(
+      res => {
+        console.log(res);
+
+        if (res.object != null) {
+          this.idI = res.object
+          console.log(res.object);
+
+          console.log(this.idI);
+
+          this.MessageSuccess(" Datos guardado")
+          console.log("this.entrooooooooooooooooooo");//tengo un
+        } else {
+          this.mensajeError("error al crear diagnostico")
+          console.log(" holii" + this.idPro);
+          //console.log("error" + this.idPro)
+          console.log(res.object);
+        }
+      })
+
+    console.log(this.inversa);
+  }
   saveFormulario() {
 
     this.formularioService.saveFormularioUsingPOST(this.formula).subscribe(
@@ -342,6 +422,8 @@ export class DatosComponent implements OnInit {
           console.log(this.idD, "id datos");
           this.MessageSuccess(" Datos guardado")
           this.saveRefiere()
+          this.saveInversa()
+          this.saveContra()
           //console.log(this.datosin);
         } else {
           this.mensajeError("error al guardar el formulario")
@@ -353,6 +435,25 @@ export class DatosComponent implements OnInit {
 
   }
 
+  saveContra() {
+    this.contra.establecimiento = this.establecimiento
+    this.contrService.saveContraUsingPOST(this.contra).subscribe(
+      res => {
+        if (res.object != null) {
+          this.idC = res.object
+          console.log(this.idC, "id re");
+          this.MessageSuccess(" Datos guardado")
+          //console.log(this.refiere);// y esto que es dela otra tabla
+        } else {
+          this.mensajeError("error al guardar el formulario")
+          //console.log(" holii" + this.idre);
+          //console.log("error" + this.idre)
+          //console.log(res.object);
+        }
+      })
+
+  }
+  
   saveRefiere() {
     console.log(this.refiere)
     this.refiereService.saveRefiereUsingPOST(this.refiere).subscribe(
@@ -395,7 +496,8 @@ export class DatosComponent implements OnInit {
           console.log(this.idPro);*/
           this.datosin.formulario = datos
           this.refiere.formulario = datos
-
+          this.inversa.formulario = datos
+          this.contra.formulario = datos
           console.log(this.idPro);
           this.saveDatos();
         }
