@@ -327,16 +327,15 @@ export class DatosComponent implements OnInit {
   recuperarForm() {
     console.log(this.idPro);   
     
-    this.datosin.histClinNum = this.numcli
-    this.formula.cuadroClinico= this.resumenCuadroClinico
-    this.formula.hallazgos=this.HallazgosRele
+   
 
 
 
     this.formularioService.listUsingGET14().subscribe((res) => {
       for (let datos of res) {
         //console.log(this.idPro, datos.idFormulario);
-        if (datos.cuadroClinico == this.resumenCuadroClinico && datos.hallazgos == this.HallazgosRele){
+        console.log( this.resumenCuadroClinico &&  this.HallazgosRele);
+        if (datos.cuadroClinico == this.formula.cuadroClinico && datos.hallazgos == this.formula.hallazgos){
           console.log( this.resumenCuadroClinico &&  this.HallazgosRele);
           
           console.log(this.idPro, datos.idFormulario);
@@ -365,7 +364,9 @@ export class DatosComponent implements OnInit {
           this.usuarioE = datos
           this.formula.usuario = this.usuarioE
           console.log(this.formula);
-
+          this.datosin.histClinNum = this.numcli
+          this.formula.cuadroClinico
+          this.formula.hallazgos
           this.saveFormulario()
         }
       }
