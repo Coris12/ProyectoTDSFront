@@ -72,15 +72,17 @@ export class DatosComponent implements OnInit {
   }
 
   formula: Formulario = {
-    //cie1: null,
-    // contra: null,
+    cie1: null,
+    cie2: null,
+    contra: null,
     cuadroClinico: null,
-    // dato: null,
+    dato: null,
     derivacion: null,
     diagnostico: null,
+    diagnostico2: null,
     hallazgos: null,
     idFormulario: null,
-    //inversa: null,
+    inversa: null,
     referencia: null,
     usuario: null,
   }
@@ -89,6 +91,7 @@ export class DatosComponent implements OnInit {
   datosin: DatosInstitucionales = {
     ausencia: null,
     descripcion: null,
+    codigo: null,
     districto: null,
     entidad: null,
     establecimiento: null,
@@ -97,6 +100,7 @@ export class DatosComponent implements OnInit {
     histClinNum: null,
     idDatos: null,
     limitada: null,
+    nombreP: null,
     otros: null,
     satu: null,
     tipo: null,

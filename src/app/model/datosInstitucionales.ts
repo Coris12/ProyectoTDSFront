@@ -13,6 +13,7 @@ import { Formulario } from './formulario';
 
 export interface DatosInstitucionales { 
     ausencia?: string;
+    codigo?: string;
     descripcion?: string;
     districto?: string;
     entidad?: string;
@@ -22,6 +23,7 @@ export interface DatosInstitucionales {
     histClinNum?: string;
     idDatos?: number;
     limitada?: string;
+    nombreP?: string;
     otros?: string;
     satu?: string;
     tipo?: string;

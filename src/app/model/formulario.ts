@@ -13,11 +13,13 @@ import { Usuario } from './usuario';
 
 export interface Formulario { 
     cie1?: string;
+    cie2?: string;
     contra?: string;
     cuadroClinico?: string;
     dato?: string;
     derivacion?: string;
     diagnostico?: string;
+    diagnostico2?: string;
     hallazgos?: string;
     idFormulario?: number;
     inversa?: string;
