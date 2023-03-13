@@ -17,6 +17,7 @@ export interface Formulario {
     contra?: string;
     cuadroClinico?: string;
     dato?: string;
+    dato2?: string;
     derivacion?: string;
     diagnostico?: string;
     diagnostico2?: string;

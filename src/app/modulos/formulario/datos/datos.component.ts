@@ -36,16 +36,17 @@ export class DatosComponent implements OnInit {
   pais: string
   parrio: string;
   sexo: any;
+  edad: any
+  numcli: any
   idpersona: any
   formuData: Formulario[] = [];
   idForm: any;
   idD: any
-  edad: any
-  numcli: any  
+
   usuarioN: any
-//
-  resumenCuadroClinico :any
-  HallazgosRele :any
+  //
+  resumenCuadroClinico: any
+  HallazgosRele: any
 
 
   ObjDatorTarj: DatosTarjetaDto = {
@@ -85,6 +86,7 @@ export class DatosComponent implements OnInit {
     inversa: null,
     referencia: null,
     usuario: null,
+    dato2: null,
   }
 
 
@@ -129,7 +131,7 @@ export class DatosComponent implements OnInit {
   }
 
   idPerPrin: number = 0;
-  
+
 
   buscar() {
     this.personaService.listaUsingGET().subscribe((res) => {
@@ -204,21 +206,66 @@ export class DatosComponent implements OnInit {
       console.log(res);
     })
   }
-/* buscarPersonaPorIdentificacion() {
-     this.personaService.searchDateTarjetaUserUsingGET(this.buscarPerIdent).pipe(takeUntil(this.unsuscribes$)).subscribe((res) => {
-       if (res.object != null) {
-         this.ObjDatorTarj = res.object;
-         this.idPerPrin = res.object.id;
-         console.log("id de la perosna es: " + this.idPerPrin)
-         this.buscarDatos(this.idPerPrin);
-       } else {
-         this.mensajeError("ERROR AL BUSCAR PERSONA");
-         this.ObjDatorTarj = { canton: null, celular: null, direccion: null, id: null, idRecidencia: null, nacionalidad: null, nombres: null, pais: null, provincia: null, parroquia: null }
-       }
-     }, error => {
-       this.mensajeError("ERROR AL BUSCAR!!");
-     });
-   }*/
+
+  limpiar() {
+    this.datosin.ausencia = "";
+    this.datosin.descripcion = "";
+    this.datosin.codigo = "";
+    this.datosin.districto = "";
+    this.datosin.entidad = "";
+    this.datosin.establecimiento = "";
+    this.datosin.falta = "";
+    this.datosin.histClinNum = "";
+    this.datosin.limitada = "";
+    this.datosin.nombreP = "";
+    this.datosin.otros = "";
+    this.datosin.satu = "";
+    this.datosin.tipo = "";
+    this.formula.cie1 = "";
+    this.formula.cie2 = "";
+    this.formula.contra = "";
+    this.formula.cuadroClinico = "";
+    this.formula.dato = "";
+    this.formula.derivacion = "";
+    this.formula.diagnostico = "";
+    this.formula.diagnostico2 = "";
+    this.formula.hallazgos = "";
+    this.formula.inversa = "";
+    this.formula.referencia = "";
+    this.formula.dato2 = "";
+    this.refiere.entidadSistema = "";
+    this.refiere.especialidadReferido = "";
+    this.refiere.establecimientoRefer = "";
+    this.refiere.servicioReferido = "";
+    this.buscarcedula = "";
+    this.dire = "";
+    this.buscarnombre = "";
+    this.provi = "";
+    this.tele = "";
+    this.canton = "";
+    this.barrio = "";
+    this.na = "";
+    this.pais = "";
+    this.parrio = "";
+    this.sexo = "";
+    this.edad = "";
+    this.numcli = "";
+  }
+  /* buscarPersonaPorIdentificacion() {
+       this.personaService.searchDateTarjetaUserUsingGET(this.buscarPerIdent).pipe(takeUntil(this.unsuscribes$)).subscribe((res) => {
+         if (res.object != null) {
+           this.ObjDatorTarj = res.object;
+           this.idPerPrin = res.object.id;
+           console.log("id de la perosna es: " + this.idPerPrin)
+           this.buscarDatos(this.idPerPrin);
+         } else {
+           this.mensajeError("ERROR AL BUSCAR PERSONA");
+           this.ObjDatorTarj = { canton: null, celular: null, direccion: null, id: null, idRecidencia: null, nacionalidad: null, nombres: null, pais: null, provincia: null, parroquia: null }
+         }
+       }, error => {
+         this.mensajeError("ERROR AL BUSCAR!!");
+       });
+     }*/
 
 
   /* buscarDatos(idPersona: number): void {
@@ -292,7 +339,7 @@ export class DatosComponent implements OnInit {
         console.log(res);
         if (res.object != null) {
           this.idD = res.object
-          console.log(this.idD,"id datos");
+          console.log(this.idD, "id datos");
           this.MessageSuccess(" Datos guardado")
           this.saveRefiere()
           //console.log(this.datosin);
@@ -312,7 +359,7 @@ export class DatosComponent implements OnInit {
       res => {
         if (res.object != null) {
           this.idre = res.object
-          console.log(this.idre,"id re");
+          console.log(this.idre, "id re");
           this.MessageSuccess(" Datos guardado")
           //console.log(this.refiere);// y esto que es dela otra tabla
         } else {
@@ -329,25 +376,26 @@ export class DatosComponent implements OnInit {
 
 
   recuperarForm() {
-    console.log(this.idPro);   
-    
-   
+    console.log(this.idPro);
+
+
 
 
 
     this.formularioService.listUsingGET14().subscribe((res) => {
       for (let datos of res) {
         //console.log(this.idPro, datos.idFormulario);
-        console.log( this.resumenCuadroClinico &&  this.HallazgosRele);
-        if (datos.cuadroClinico == this.formula.cuadroClinico && datos.hallazgos == this.formula.hallazgos){
-          console.log( this.resumenCuadroClinico &&  this.HallazgosRele);
-          
+        console.log(this.resumenCuadroClinico && this.HallazgosRele);
+        if (datos.cuadroClinico == this.formula.cuadroClinico && datos.hallazgos == this.formula.hallazgos) {
+          console.log(this.resumenCuadroClinico && this.HallazgosRele);
+
           console.log(this.idPro, datos.idFormulario);
           this.idPro = datos.idFormulario
           /*datos.idFormulario == this.idPro) {
           console.log(this.idPro);*/
           this.datosin.formulario = datos
           this.refiere.formulario = datos
+
           console.log(this.idPro);
           this.saveDatos();
         }
@@ -357,7 +405,7 @@ export class DatosComponent implements OnInit {
   }
 
 
- 
+
 
   guardarTodo() {
     this.personaService.listaUsingGET().subscribe((res) => {
