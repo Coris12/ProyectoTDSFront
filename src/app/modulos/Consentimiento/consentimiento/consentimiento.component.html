@@ -103,7 +103,8 @@
           <div class="grid p-fluid">
             <div class="col-12 md:col-2">
               <div class="p-inputgroup">
-                <button [disabled]="updateSi ? 'disabled' : null" type="button" pButton pRipple label="Buscar" (click)="buscarPorCedula();"></button>
+                <button [disabled]="updateSi ? 'disabled' : null" type="button" pButton pRipple label="Buscar"
+                  (click)="buscarPorCedula();"></button>
                 <input autocomplete="off" type="text" pInputText placeholder="Cédula" formControlName="cedula"
                   (keypress)="validacionNumerosLetras($event)" maxlength="13">
               </div>
@@ -465,7 +466,7 @@
         <div class="grid p-fluid">
           <div class="field col-12 md:col-12">
             <b>A.</b> El profesional tratante me ha informado satisfactoriamente acerca de los motivos y
-              propositos del tratamiento planificado para mi enfermedad
+            propositos del tratamiento planificado para mi enfermedad
             <p><b>B.</b> El profesional tratante ha explicado adecuadamente las actividades ensenciales que se
               realizaran durante el tratamiento de mi enfermedad</p>
           </div>
@@ -503,7 +504,8 @@
     </div>
     <div class="col-12 md:col-2">
       <div class="p-inputgroup">
-        <button [label]="updateSi ? 'ACTUALIZAR' : 'GUARDAR'"  type="button" pButton pRipple (click)="updateSi ?updateDatos(): crearConsentimiento()"></button>
+        <button [label]="updateSi ? 'ACTUALIZAR' : 'GUARDAR'" type="button" pButton pRipple
+          (click)="updateSi ?updateDatos(): crearConsentimiento()"></button>
       </div>
     </div>
   </div>
@@ -589,3 +591,72 @@
     </p-table>
   </div>
 </p-sidebar>
+<button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text" label="PDF"
+  icon="pi pi-file-o" (click)="Dialog=true"></button>
+<p-dialog header="Consentimiento Informado." [(visible)]="Dialog" [modal]="true"
+  [style]="{width: '50vw', height: '30vw'}" [draggable]="false" [resizable]="false" class="p-fluid">
+  <div id="htmlData">
+    <div class="grid p-fluid">
+      <div class="container mt-2" style="text-align: center;">
+        <img src="../../../../assets/medivalleLa.png" class="img-thumbnail" width="600" height="800">
+      </div>
+    </div>
+    <br>
+    <div class="grid p-fluid">
+      <div class="field col-12 md:col-4">
+        <div class="flex justify-conten align-items-center letrasPequeñasNegrita">
+          Institucion del Sistema
+        </div>
+        <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="this.objConsentimieto.instutucionSistema">
+      </div>
+      <div>
+        <div class="field col-12 md:col-4">
+          <div class="flex justify-conten align-items-center letrasPequeñasNegrita">
+            Unidad operativa
+          </div>
+          <label for="inputtext">UNIDAD OPERATIVA</label>
+
+        </div>
+      </div>
+      <div class="field col-12 md:col-12">
+        <b>A.</b> El profesional tratante me ha informado satisfactoriamente acerca de los motivos y
+        propositos del tratamiento planificado para mi enfermedad objInformacionTto.proposito
+        <p><b>B.</b> El profesional tratante ha explicado adecuadamente las actividades ensenciales que se
+          realizaran durante el tratamiento de mi enfermedad</p>
+      </div>
+    </div>
+    <div class="grid p-fluid">
+      <div class="field col-12 md:col-12">
+        <p><b>C.</b> Conciento a que se realicen las intervenciones quirúrgicas
+          procedimientos diagnosticos y tratamientos necesarios para mi enfermedad</p>
+        <p><b>D.</b>Conciento a que me administren la anastecia propuesta</p>
+      </div>
+    </div>
+    <div class="grid p-fluid">
+      <div class="field col-12 md:col-12">
+        <p><b>E.</b> He entendido bien que existe garantia de la calidad de los medio utilizados para el
+          tratamiento pero no acerca de los resultados</p>
+        <p><b>F.</b>He comprendido plenamente los beneficios y los riesgos de complicaciones derivadas del
+          tratamiento</p>
+      </div>
+    </div>
+    <div class="grid p-fluid">
+      <div class="field col-12 md:col-12">
+        <p><b>G.</b> El profesional tratante me ha informado que existe garantia de respeto a mi identidad,a
+          mis creencias religiosas y a la confidencialidad de la informacion (inclusive en el caso de
+          VIH-SIDA)</p>
+        <p><b>H</b> He comprendido que tengo el derecho de anular este consentimiento informado en el meomento
+          que yo lo considere necesario</p>
+        <p><b>I</b> Declaro que me he entregado al profesional tratante informacion completa y fidedigna sobre los
+          antecedentes personales y familiares de mi estado de salud.Estoy
+          conciente de que mis omisiones o distorsiones deliberadas de los hechos pueden afectar los resultados del
+          tratamiento
+        </p>
+        
+      </div>
+    </div>
+  </div>
+  <button style="text-align: center" class="btn btn-dark  ml-4" (click)="downloadPDF()"><i class="fas fa-print"></i>
+    Descargar PDF</button>
+
+</p-dialog>

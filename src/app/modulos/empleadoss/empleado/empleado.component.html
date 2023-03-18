@@ -99,11 +99,14 @@
 
             </span>
         </div>
-
         <div style="text-align:right">
-            <p-button type="submit" icon="pi pi-check" label="Guardar" styleClass="p-button-text"></p-button>
+            <p-button type="submit" icon="pi pi-check" [disabled]="empleForm.invalid" label="Guardar"
+                styleClass="p-button-text"></p-button>
+        </div>
+        
+            
             <p-button type="button" label="Limpiar" (click)="limpiar()"></p-button>
 
-        </div>
+    
     </form>
 </p-dialog>

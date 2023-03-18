@@ -129,6 +129,7 @@ export class CounterComponent implements OnInit {
     total: null,
     valorUnitario: null,
   }
+  valorEntrada: 0.0;
 
   tratamiento: Tratamiento = {
     cantidad: null,
@@ -268,4 +269,5 @@ export class CounterComponent implements OnInit {
       this.usuarioForm.patchValue({ total: this.totalDes });
     }
   }
+  
 }

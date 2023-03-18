@@ -78,7 +78,9 @@ export class TratamientoComponent implements OnInit {
       });
     this.dialogo = true;
   }
-
+limpiar(){
+  this.tratamientoForm.reset();
+}
   cargarTratamientos(event?: LazyLoadEvent): void {
     this.loading = true;
 

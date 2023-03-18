@@ -3,7 +3,7 @@ import { AuthControllerService } from 'src/app/api/authController.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { DatosTarjetaDto } from 'src/app/model/datosTarjetaDto';
-import { MessageService } from 'primeng/api';
+import { LazyLoadEvent, MessageService } from 'primeng/api';
 import { FormularioControllerService } from 'src/app/api/formularioController.service';
 import { Formulario } from '../../../model/formulario';
 import { RefiereDeriva } from 'src/app/model/refiereDeriva';
@@ -17,6 +17,8 @@ import { Inversa } from 'src/app/model/inversa';
 import { InversaControllerService } from 'src/app/api/inversaController.service';
 import { Contrareferencia } from 'src/app/model/contrareferencia';
 import { ContraControllerService } from 'src/app/api/contraController.service';
+import { Table } from 'primeng/table';
+import { FacturaService } from 'src/app/servicioManual/factura.service';
 
 
 
@@ -155,6 +157,7 @@ export class DatosComponent implements OnInit {
     private refiereService: RefiereControllerService,
     private inversaService: InversaControllerService,
     private contrService: ContraControllerService,
+    private serviceGenPdf: FacturaService,
 
   ) {
   }
@@ -165,9 +168,37 @@ export class DatosComponent implements OnInit {
 
   }
 
+  submitted: boolean;
+  loading: boolean = true;
+  listDialog: boolean
+  Formulario:any[]=[];
   idPerPrin: number = 0;
   idI: any
 
+  openNew() {
+    this.submitted = false;
+    this.listDialog = true;
+  }
+
+  clear(table: Table) {
+    table.clear();
+  }
+
+  cargarFormulario(event: LazyLoadEvent) {
+    this.loading = true;
+    setTimeout(() => {
+      this.formularioService.listUsingGET14().subscribe(
+        data => {
+          this.Formulario = data;
+          console.log(data);
+          this.loading = false;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }, 100);
+  }
   buscar() {
     this.personaService.listaUsingGET().subscribe((res) => {
       for (let datos of res) {
@@ -389,10 +420,10 @@ export class DatosComponent implements OnInit {
 
           console.log(this.idPro);
 
-          this.MessageSuccess(" diagnostico  creado")
+          this.MessageSuccess(" Formulario  creado")
           console.log("this.entrooooooooooooooooooo");//tengo un
           this.recuperarForm()
-
+          this.limpiar();
 
         } else {
           this.mensajeError("error al crear diagnostico")
@@ -453,7 +484,7 @@ export class DatosComponent implements OnInit {
       })
 
   }
-  
+
   saveRefiere() {
     console.log(this.refiere)
     this.refiereService.saveRefiereUsingPOST(this.refiere).subscribe(
@@ -472,8 +503,6 @@ export class DatosComponent implements OnInit {
       })
 
   }
-
-
 
 
   recuperarForm() {
@@ -506,9 +535,6 @@ export class DatosComponent implements OnInit {
     })
   }
 
-
-
-
   guardarTodo() {
     this.personaService.listaUsingGET().subscribe((res) => {
       for (let datos of res) {
@@ -522,9 +548,59 @@ export class DatosComponent implements OnInit {
           this.formula.cuadroClinico
           this.formula.hallazgos
           this.saveFormulario()
+
         }
       }
     })
+  }
+
+  imprimirPDFSinceButton(idForm:number) {
+    this.serviceGenPdf.geneForm(idForm).subscribe(data => {
+      if (data) {
+        //this.cargarConsultaExterna(idConsExterno);
+        this.descargarPdf(data);
+        //this.limpiarAll();
+      } else {
+        this.mensajeError("No PDF document found");
+      }
+    }, err => {
+      this.mensajeError("ERROR AL GENERAR PDF");
+    });
+    this.limpiar();
+  }
+
+  createId(): string {
+    let id = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return id;
+  }
+
+  descargarPdf(pdfSrc: any) {
+    let pdf: any = pdfSrc;
+    let numAlea = this.createId();
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var url = window.URL.createObjectURL(blob);
+    if (this.contra.fecha != null) {
+      let fech = this.contra.fecha;
+      let nomPer = this.buscarnombre;
+
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'FORMULARIO_' +'-'+ '-' + nomPer + '-'  + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    } else {
+      let nomPer = this.buscarnombre;
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'FORMULARIO_' + '-' + nomPer + '-' + numAlea + '.pdf';
+      link.click();
+      window.open(url);
+    }
+
   }
 
   mensajeError(msg: String) {

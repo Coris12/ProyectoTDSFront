@@ -86,6 +86,7 @@ export class EmpleadoComponent implements OnInit {
     
     console.log(this.empleForm.value)
     if (this.empleForm.value?.idEmpleado !== null) {
+      
       this.empleadoController.updateUsingPUT1(
         this.empleForm.value,
         this.empleForm.value?.idEmpleado,
@@ -148,6 +149,22 @@ export class EmpleadoComponent implements OnInit {
       }
     });
 
+  }
+
+  mensajeError(msg: String) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Error: ' + msg,
+    });
+  }
+
+  MessageSuccess(msg: String) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Resultado',
+      detail: 'Correcto!: ' + msg,
+    });
   }
 }
 

@@ -19,7 +19,8 @@
               <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                   <input autocomplete="off" type="text" id="inputtext" (keypress)="keyPress($event)"
-                    [(ngModel)]="buscarPerIdent" pInputText formControlName="cedula">
+                    [(ngModel)]="buscarPerIdent" pInputText formControlName="cedula" [(ngModel
+                    )]="value">
                   <label for="inputtext">Cedula</label>
                 </span>
               </div>

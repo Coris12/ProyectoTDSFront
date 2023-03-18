@@ -339,5 +339,9 @@ export class ProductoComponent implements OnInit {
       }
     );
   }
+
+  limpiar(){
+    this.productoForm.reset();
+  }
 }
 // fin del metodo

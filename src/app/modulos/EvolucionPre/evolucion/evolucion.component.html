@@ -7,11 +7,7 @@
                 <h1>Evolución y Prescripciones</h1>
             </div>
         </div>
-        <div class="col-12 md:col-2">
-            <div class="p-inputgroup">
-                <button type="button" pButton pRipple label="LISTADO EVOLUCIONES" (click)="listDialog = true;"></button>
-            </div>
-        </div>
+        
         <div class="content-section implementation mt-2">
             <div class="mt-4">
                 <div class="grid p-fluid">
@@ -56,6 +52,17 @@
                     </div>
                     <div class="field col-12 md:col-2">
                         <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <button  pButton type="button"label="Guardar" (click)="cargarPersona()" >
+                        </button>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <button pButton type="button" label="Limpiar" (click)="limpiarCampos()" >
+                        </button>
+                    </div>
+                    <div class="col-12 md:col-2">
+                            <button type="button" pButton pRipple label="LISTADO EVOLUCIONES" (click)="listDialog = true;"></button>
                     </div>
                 </div>
             </div>
@@ -115,10 +122,7 @@
                 </div>
             </div>
         </div>
-        <p-button label="Guardar" (click)="cargarPersona()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
-        </p-button>
-        <p-button label="Cancel" (click)="limpiarCampos()" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.6em'}">
-        </p-button>
+        
     </div>
     <p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
         <div class="col-12 flex align-items-center justify-content-center">

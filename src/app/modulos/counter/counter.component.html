@@ -167,11 +167,15 @@
       [rowHover]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
       <ng-template pTemplate="header">
         <tr>
+          
           <th pResizableColumn style="width:500px">
             <div class="flex justify-content-center align-items-center"> NOMBRE</div>
           </th>
           <th pResizableColumn style="width:500px">
             <div class="flex justify-content-center align-items-center"> DESCRIPCIÓN</div>
+          </th>
+          <th pResizableColumn style="width:80px">
+            <div class="flex justify-content-center align-items-center"> CANT</div>
           </th>
           <th pResizableColumn style="width:80px">
             <div class="flex justify-content-center align-items-center"> P.V.P</div>
@@ -181,12 +185,14 @@
           </th>
         </tr>
       </ng-template>
+      
       <ng-template pTemplate="body" let-tto>
         <!-- <tr [pSelectableRow]="productosFac"> -->
         <tr>
           <td>{{tto.nombre}}</td>
           <td>{{tto.descripcion}}</td>
-          <td><b>{{tto.valor_unitario}}</b></td>
+          <td><b>{{tto.cantidad}}</b></td>
+          <td><b>{{tto.valorUnitario}}</b></td>
           <td style="text-align:center">
             <button pButton pRipple type="button" icon="pi pi-times" (click)="confirmacion(tto)"
               class="p-button-rounded p-button-text p-button-danger"></button>
@@ -289,8 +295,8 @@
         <tr [pSelectableRow]="tto">
           <td>{{tto.nombre}}</td>
           <td>{{tto.descripcion}}</td>
-          <td><b>{{tto.valor_unitario}}</b></td>
-          <td><b>{{tto.valor_unitario}}</b></td>
+          <td><b>{{tto.valorUnitario}}</b></td>
+          <td><b>{{tto.cantidad}}</b></td>
           <td>{{tto.categoria}}</td>
           <td>{{tto.codigo}}</td>
           <td>{{tto.precioProducto}}</td>

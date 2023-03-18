@@ -49,5 +49,7 @@ export class FacturaService {
     return this.http.get(this.baseUrl+'/Anestesia/generarPdf?idA='+idA,{responseType:'blob' as 'json'});
   }
 
-
+  geneForm(idForm:number){
+    return this.http.get(this.baseUrl+'/formulario/generarPdf?idForm='+idForm,{responseType:'blob' as 'json'});
+  }
 }

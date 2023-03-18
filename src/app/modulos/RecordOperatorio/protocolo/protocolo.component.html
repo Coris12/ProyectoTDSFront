@@ -7,21 +7,18 @@
                 <h2>RECORD OPERATORIO PROTOCOLO POSQUIRURGICO </h2>
             </div>
         </div>
-        <div class="col-12 md:col-2">
-            <div class="p-inputgroup">
+        <div class="grid p-fluid">
+            <div class=" field col-12 md:col-2">
                 <button type="button" pButton pRipple label="LISTADO PROTOCOLO" (click)="listDialog = true;"></button>
-            </div>
         </div>
-        <div class="col-12 md:col-2">
-            <div class="p-inputgroup">
-                <button type="button" pButton pRipple label="LIMPIAR" (click)="limpiar()"></button>
-            </div>
+        <div class="field col-12 md:col-2">
+            <button type="button" pButton pRipple label="LIMPIAR" (click)="limpiar()"></button>
         </div>
+        </div>
+        
         <div class="mt-4">
-            <div class="grid p-fluid"  >
-                <div class="field col-12 md:col-2">
-                    <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
-                </div>
+            <div class="grid p-fluid">
+
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
                         <input type="text" id="inputtext" pInputText [(ngModel)]="buscarcedula" ngModel required="">
@@ -37,45 +34,47 @@
                 </div>
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="proto.servicio"ngModel required="" >
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="proto.servicio" ngModel required="">
                         <label for="inputtext">Servicio</label>
                     </span>
 
                 </div>
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="proto.sala"   ngModel required=""
-                        (keypress)="validarLetras($event)">
+                        <input type="text" id="inputtext" pInputText [(ngModel)]="proto.sala" ngModel required=""
+                            (keypress)="validarLetras($event)">
                         <label for="inputtext">Sala</label>
                     </span>
                 </div>
                 <div class="field col-12 md:col-2">
                     <span class="p-float-label">
                         <input type="text" id="inputtext" pInputText [(ngModel)]="proto.nCama" ngModel required=""
-                        (keypress)="validarNumero($event)">
+                            (keypress)="validarNumero($event)">
                         <label for="inputtext">Cama N° </label>
-                        
+
                     </span>
                 </div>
-
-                <div class="container" >
+                <div class="field col-12 md:col-2">
+                    <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
+                </div>
+                <div class="container">
                     <div class="row">
-                        <div class="col-4" >
+                        <div class="col-4">
                             <div class="p-fluid">
-                                <p-card header="DIAGNOSTICO" [style]="{width: '360px'}" styleClass="p-card-shadow" >
+                                <p-card header="DIAGNOSTICO" [style]="{width: '360px'}" styleClass="p-card-shadow">
                                     <ng-template pTemplate="header">
                                     </ng-template>
                                     <div class="grid p-fluid">
                                         <div class="form-group mt-2">
                                             <label for="float-input">Preoperatorio</label>
-                                            <textarea rows="5" cols="30" pInputTextarea 
+                                            <textarea rows="5" cols="30" pInputTextarea
                                                 [(ngModel)]="proto.preoperatorio" ngModel required=""
                                                 (keypress)="validarLetras($event)"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Postoperatorio</label>
                                             <textarea rows="5" cols="30" pInputTextarea
-                                                [(ngModel)]="proto.postoperatorio"ngModel required=""
+                                                [(ngModel)]="proto.postoperatorio" ngModel required=""
                                                 (keypress)="validarLetras($event)"></textarea>
                                         </div>
                                     </div>
@@ -83,15 +82,13 @@
                                     <div class="grid p-fluid">
                                         <div class="form-group mt-2">
                                             <label for="float-input">Tipo de Cirujia</label>
-                                            <textarea rows="5" cols="30" pInputTextarea 
-                                                [(ngModel)]="proto.tipoCirujia" ngModel required=""
-                                                (keypress)="validarLetras($event)"> </textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="proto.tipoCirujia"
+                                                ngModel required="" (keypress)="validarLetras($event)"> </textarea>
                                         </div>
-                                        <div class="form-group mt-2" >
+                                        <div class="form-group mt-2">
                                             <label for="float-input">Realizada</label>
-                                            <textarea rows="5" cols="30" pInputTextarea
-                                                [(ngModel)]="proto.realizada" ngModel required=""
-                                                (keypress)="validarLetras($event)"></textarea>
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="proto.realizada"
+                                                ngModel required="" (keypress)="validarLetras($event)"></textarea>
                                         </div>
                                     </div>
                                 </p-card>
@@ -113,7 +110,7 @@
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Fecha de Dictado</label>
                                             <input type="datetime-local" pInputText placeholder=""
-                                                [(ngModel)]="proto.fecha"ngModel required="">
+                                                [(ngModel)]="proto.fecha" ngModel required="">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
@@ -127,7 +124,7 @@
                                 </div>
 
                             </p-card>
-                            
+
                         </div>
                         <div class="col-4">
                             <div class="p-fluid">
@@ -163,20 +160,18 @@
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Tercer ayudante</label>
                                             <input type="text" pInputText placeholder="Tercer ayudante"
-                                                [(ngModel)]="equi. tercerAyudante"ngModel required=""
+                                                [(ngModel)]="equi. tercerAyudante" ngModel required=""
                                                 (keypress)="validarLetras($event)">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
                                         <label for="float-input">Instrumentista</label>
-                                        <textarea rows="5" cols="30" pInputTextarea
-                                            [(ngModel)]="equi.instrumentista" 
+                                        <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="equi.instrumentista"
                                             (keypress)="validarLetras($event)"></textarea>
                                     </div>
                                     <div class="form-group mt-2">
                                         <label for="float-input">Anestesiologo</label>
-                                        <textarea rows="5" cols="30" pInputTextarea
-                                            [(ngModel)]="equi.anestesiologo"
+                                        <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="equi.anestesiologo"
                                             (keypress)="validarLetras($event)"></textarea>
                                     </div>
                                     <div class="form-group mt-2">
@@ -190,22 +185,21 @@
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Hora de inicio</label>
                                             <input type="time" pInputText placeholder="" [(ngModel)]="equi.horaInicio"
-                                            ngModel required=""
-                                            >
+                                                ngModel required="">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Hora de terminacion</label>
                                             <input type="time" pInputText placeholder="" [(ngModel)]="equi.horaFin"
-                                            ngModel required="">
+                                                ngModel required="">
                                         </span>
                                     </div>
                                     <div class="form-group mt-2">
                                         <span class="p-input-icon-left">
                                             <label for="requisitos ">Tipo de anestesia</label>
                                             <input type="text" pInputText placeholder="Tipo de anestesia"
-                                                [(ngModel)]="equi.tipoAnestesia"   ngModel required=""
+                                                [(ngModel)]="equi.tipoAnestesia" ngModel required=""
                                                 (keypress)="validarLetras($event)">
                                         </span>
                                     </div>
@@ -221,32 +215,27 @@
                                     <div class="grid p-fluid">
                                         <div class="form-group mt-2">
                                             <label for="float-input">Diéresis</label>
-                                            <textarea rows="5" cols="30" pInputTextarea
-                                                [(ngModel)]="tipo.dieresis"
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.dieresis"
                                                 (keypress)="validarLetras($event)"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Exposición</label>
-                                            <textarea rows="5" cols="30" pInputTextarea
-                                                [(ngModel)]="tipo.exposicion"
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.exposicion"
                                                 (keypress)="validarLetras($event)"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Exploración y hallazgos quirúrgicos</label>
-                                            <textarea rows="5" cols="30" pInputTextarea
-                                                [(ngModel)]="tipo.exploracion"
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.exploracion"
                                                 (keypress)="validarLetras($event)"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Procedimiento operatorio</label>
-                                            <textarea rows="5" cols="30" pInputTextarea
-                                                [(ngModel)]="tipo.procedimiento"
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.procedimiento"
                                                 (keypress)="validarLetras($event)"></textarea>
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Sintesis</label>
-                                            <textarea rows="5" cols="30" pInputTextarea
-                                                [(ngModel)]="tipo.sintesis"
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.sintesis"
                                                 (keypress)="validarLetras($event)"></textarea>
                                         </div>
                                         <div class="form-gr     oup mt-2">
@@ -257,8 +246,7 @@
                                         </div>
                                         <div class="form-group mt-2">
                                             <label for="float-input">Examen Hisopatológico</label>
-                                            <textarea rows="5" cols="30" pInputTextarea
-                                                [(ngModel)]="tipo.examen"
+                                            <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="tipo.examen"
                                                 (keypress)="validarLetras($event)"></textarea>
                                         </div>
                                     </div>
@@ -333,7 +321,7 @@
                             </th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-proto >
+                    <ng-template pTemplate="body" let-proto>
                         <tr>
                             <td style="text-align:center">{{proto.usuario.identificacion}}</td>
                             <td style="text-align:center">{{proto.usuario.nombres}}</td>

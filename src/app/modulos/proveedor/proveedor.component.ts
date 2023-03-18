@@ -168,6 +168,7 @@ export class ProveedorComponent implements OnInit {
 
   }
   
+  
   validacionAlfanumerica(event) {
     const patron = /[a-zA-ZÑ0-9 ,:-]/;
     const permitidos = event.keyCode;

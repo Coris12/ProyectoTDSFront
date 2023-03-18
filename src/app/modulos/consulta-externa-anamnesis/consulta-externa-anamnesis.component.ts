@@ -145,7 +145,7 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
   }
 
   ngOnInit(): void {
-    this.ConsultaExternaByHistoriaClinica();
+   // this.ConsultaExternaByHistoriaClinica();
     this.formCabezera = this.formBuilder.group({
       nombresApellidos: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       sexo: ['', [Validators.required]],
@@ -352,11 +352,11 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
         this.mensajesError('NO SE ENCONTRÓ LA PERSONA');
       }
       this.limpiarBuscar();
-      this.ConsultaExternaByHistoriaClinica();
+     // this.ConsultaExternaByHistoriaClinica();
     })
   }
 
-  ConsultaExternaByHistoriaClinica() {
+ /* ConsultaExternaByHistoriaClinica() {
     this.serviceConsExterna.getMaxHistoriaClinicaUsingGET().subscribe(data => {
       if (data) {
         this.ConsultaExternaObj.historiaClinica = data.object;
@@ -366,7 +366,7 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
     }, error => {
       this.mensajesError("OCURRIÓ UN ERROR AL OBTENER EL NUMERO DE HISTORIA CLINICA EN EL SERVIDOR");
     });
-  }
+  }*/
 
   consExtGPF = 0;
   crearConsultaExterna() {
@@ -396,7 +396,7 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
               this.crearPlanTratamiento();
               this.mensajeSatisfactorio(data.message);
 
-              this.ConsultaExternaByHistoriaClinica();
+             // this.ConsultaExternaByHistoriaClinica();
             } else {
               this.mensajesError("OCURRIÓ UN ERROR AL CREAR LA CONSULTA EXTERNA");
             }
@@ -868,7 +868,7 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
       this.planTratamientoObj.t = null,
       this.planTratamientoObj.o = null
       this.resetExcept();
-    this.ConsultaExternaByHistoriaClinica();
+   // this.ConsultaExternaByHistoriaClinica();
     this.submitted = false;
     this.updateSi = false;
     this.ngOnDestroy();

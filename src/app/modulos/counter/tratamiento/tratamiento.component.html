@@ -97,7 +97,7 @@
         <div class="form-group mt-2">
             <span class="p-input-icon-left">
             <label for="requisitos ">Descripcion</label>
-            <input type="number" pInputText placeholder="Descipcion" formControlName="descripcion">
+            <input type="text" pInputText placeholder="Descipcion" formControlName="descripcion">
         </span>
         </div>
 
@@ -148,6 +148,8 @@
 
         <div style="text-align:right">
             <p-button type="submit" icon="pi pi-check" label="Guardar" styleClass="p-button-text"></p-button>
+            <p-button type="button" label="Limpiar" (click)="limpiar()"></p-button>
         </div>
+
     </form>
 </p-dialog>

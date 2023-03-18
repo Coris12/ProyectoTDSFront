@@ -12,7 +12,8 @@ import { ConsentimientoDto } from 'src/app/model/consentimientoDto';
 import { ConsentimientoListDto } from 'src/app/model/consentimientoListDto';
 import { InformacionTratamientoDTO } from 'src/app/model/informacionTratamientoDTO';
 import { FacturaService } from 'src/app/servicioManual/factura.service';
-
+import html2canvas from 'html2canvas';
+import jspdf, { jsPDF } from 'jspdf';
 @Component({
   selector: 'app-consentimiento',
   templateUrl: './consentimiento.component.html',
@@ -32,7 +33,7 @@ export class ConsentimientoComponent implements OnInit, OnDestroy, AfterContentC
   loading: boolean = true;
   slectedConsentimiento: Consentimiento;
   aInformacionTratamiento: InformacionTratamientoDTO[];
-
+  Dialog: boolean;
   updateSi: boolean = false;
   private unsuscribes$ = new Subject<void>();
 
@@ -648,11 +649,47 @@ export class ConsentimientoComponent implements OnInit, OnDestroy, AfterContentC
     limpiarFormularios() {
       this.updateSi = false;
       this.formConsentimiento.get('cedula').enable();
-
       this.formCabezera.reset();
       this.formConsentimiento.reset();
       this.formProfesionalTratante.reset();
       this.formAnastesiologo.reset();
       this.formCirujano.reset();
     }
+
+
+  capturarContenido() {
+    var data = document.getElementById('contenidoAConvertir');
+    html2canvas(data).then(canvas => {
+
+      var imgWidth = 208;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      let pdf = new jspdf('p', 'mm', 'a4');
+      var position = 0;
+      pdf.save('Consentimiento Medico .pdf')
+    });
+  }
+  downloadPDF() {
+    const DATA = document.getElementById('htmlData');
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+    html2canvas(DATA, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 15;
+      const bufferY = 15;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      docResult.save(`${new Date().toISOString()}Consentimiento Informado.pdf`);
+    });
+  }
+    
   }

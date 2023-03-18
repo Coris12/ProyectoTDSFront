@@ -57,7 +57,7 @@ export class FormularioTarjetaComponent implements OnInit, OnDestroy {
 
   elementType = NgxQrcodeElementTypes.URL;
   correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
-  value: string;
+  value: string="";
   buscarPerIdent: string = "";
   buscar: string;
   totalRecords: number;
