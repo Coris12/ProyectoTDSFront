@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { TokenService } from 'src/app/service/token.service';
@@ -35,6 +36,12 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/'],
       },
       //! opciones para el administrador
+      {
+        label: 'Crear Persona',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/registroP'],
+        visible: this.isLogged && this.isAdmin
+      },
       {
         label: 'Lista Usuarios',
         icon: 'pi pi-fw pi-list',

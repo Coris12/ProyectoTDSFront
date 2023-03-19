@@ -52,7 +52,7 @@ import { AnestesiaComponent } from './modulos/Anestesia/anestesia/anestesia.comp
 const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
-  { path: 'registro', component: RegistrarUserComponent, canActivate: [LoginGuard] },
+ // { path: 'registro', component: RegistrarUserComponent, canActivate: [LoginGuard] },
 
   { path: 'ubicaciones', component: UbicacionesComponent, canActivate: [LoginGuard] },
   // { path: 'lista-proveedor', component: ControlProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
@@ -64,6 +64,7 @@ const routes: Routes = [
   { path: 'lista-productos', component: ProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['farmacia','user'] } },
   { path: 'lista-empleados', component: EmpleadoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin','user'] } },
   { path: 'Odontologia', component: OdontologiaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['odontologia', 'user'] } },
+  { path: 'registroP', component: RegistrarUserComponent, canActivate: [ProdGuardService] ,data:{expectedRo:['admin','user']}},
 
   { path: 'proveedores', component: ProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'medicamentos', component: MedicamentosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
