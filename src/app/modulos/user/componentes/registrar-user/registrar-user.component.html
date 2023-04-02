@@ -1,6 +1,6 @@
 <app-header>
 </app-header>
-<img src="../../../../assets/fondo1.png" class="img-fluid" style="position: absolute; right: 10;top: 0; z-index: -100; opacity: 0.60;">
+<img src="../../../../assets/fondo1.png" class="img-fluid" style="position: fixed; right: 10;top: 0; z-index: -100; opacity: 0.60;">
 <p-toast></p-toast>
 
 <div class="container d-flex justify-content-center mt-4">
@@ -18,7 +18,7 @@
             <img src="../../../../assets/medivalle.jpg" class="img-thumbnail" width="200" height="200">
         </div>
         <br>
-        <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+        <form #f="ngForm" (ngSubmit)="onRegister()" novalidate >
             <div class="grid p-fluid">
                 <div class="p-field p-col-12 p-md-3">
                     <span class="p-float-label p-input-icon-left">
@@ -158,8 +158,8 @@
             </div>
 
             <div class="form-group  mt-4" align='center'>
-                <p-button class="p-button-rounded" [disabled]="!f.valid" type="submit">
-                    <i class="fas fa-sign-in-alt"></i> Crear cuenta
+                <p-button class="p-button-rounded"  [disabled]="!f.valid" type="submit" >
+                    <i class="fas fa-sign-in-alt" ></i> Crear cuenta
                 </p-button>
             </div>
         </form>

@@ -52,7 +52,7 @@ import { AnestesiaComponent } from './modulos/Anestesia/anestesia/anestesia.comp
 const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
-  { path: 'registro', component: RegistrarUserComponent, canActivate: [LoginGuard] },
+ // { path: 'registro', component: RegistrarUserComponent, canActivate: [LoginGuard] },
 
   { path: 'ubicaciones', component: UbicacionesComponent, canActivate: [LoginGuard] },
   // { path: 'lista-proveedor', component: ControlProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },

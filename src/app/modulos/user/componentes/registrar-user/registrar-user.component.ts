@@ -83,9 +83,11 @@ export class RegistrarUserComponent implements OnInit {
         if (data.mensaje != null) {
           this.usuarioId = data.mensaje
           this.MessageSuccess("cuenta creada");
-        this.guardarRecidencia();
-       console.log(this.usuarioId);
-       
+          this.limpiar();
+          this.router.navigate(['/lista-usuarios']);
+          this.guardarRecidencia();
+          console.log(this.usuarioId);
+
         } else {
           this.mensajeError("error al crear")
           console.log(data.mensaje)
@@ -106,6 +108,7 @@ export class RegistrarUserComponent implements OnInit {
           console.log(this.idUs)
           this.MessageSuccess("guardado");
           console.log(this.Reside);
+          this.limpiar
         } else {
           this.mensajeError("error al guardar")
           console.log("error" + this.errMsj)
@@ -128,5 +131,22 @@ export class RegistrarUserComponent implements OnInit {
       detail: 'Correcto!: ' + msg,
     });
   }
-
+  limpiar() {
+    this.identificacion = "";
+    this.nombres = "";
+    this.direccion = "";
+    this.celular = "";
+    this.sexo = "";
+    this.email = "";
+    this.ciudad = "";
+    this.nombreUsuario = "";
+    this.password = "";
+    this.Reside.barrio = "";
+    this.Reside.canton = "";
+    this.Reside.nacionalidad = "";
+    this.Reside.pais = "";
+    this.Reside.parroquia = "";
+    this.Reside.provincia = "";
+    this.Reside.zona = "";
+  }
 }
