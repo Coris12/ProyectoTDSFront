@@ -183,6 +183,13 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isPaciente
       },
       {
+        label: 'Ubicaciones',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/ubicaciones'],
+       
+      },
+      
+      {
         label: 'Admiistrar tarjetas',
         icon: 'pi pi-fw pi-file-o',
         routerLink: ['/listaTarjetas'],
