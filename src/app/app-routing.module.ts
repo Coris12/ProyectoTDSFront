@@ -54,7 +54,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
  // { path: 'registro', component: RegistrarUserComponent, canActivate: [LoginGuard] },
 
-  { path: 'ubicaciones', component: UbicacionesComponent, canActivate: [LoginGuard] },
+  { path: 'ubicaciones', component: UbicacionesComponent, canActivate: [ProdGuardService] },
   // { path: 'lista-proveedor', component: ControlProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'lista', component: ControlProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   // { path: 'detalle/:id', component: DetallesProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
