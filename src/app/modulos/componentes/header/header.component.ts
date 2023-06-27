@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Ubicaciones',
         icon: 'pi pi-fw pi-users',
-       
+        routerLink: ['/'],
         
       },
       //! opciones para el administrador
