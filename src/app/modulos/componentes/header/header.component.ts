@@ -35,6 +35,12 @@ export class HeaderComponent implements OnInit {
         icon: 'pi pi-fw pi-home',
         routerLink: ['/'],
       },
+      {
+        label: 'Ubicaciones',
+        icon: 'pi pi-fw pi-users',
+       
+        routerLink: ['/ubicaciones'],
+      },
       //! opciones para el administrador
       {
         label: 'Crear Persona',
@@ -182,12 +188,7 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/lectorQr'],
         visible: this.isLogged && this.isPaciente
       },
-      {
-        label: 'Ubicaciones',
-        icon: 'pi pi-fw pi-users',
-        routerLink: ['/ubicaciones'],
-       
-      },
+      
       
       {
         label: 'Admiistrar tarjetas',
