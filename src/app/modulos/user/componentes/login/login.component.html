@@ -1,4 +1,5 @@
 <app-header></app-header>
+<img src="../../../../assets/fondo1.png" class="img-fluid" style="position: absolute; right: 10;top: 0; z-index: -100; opacity: 0.60;">
 <p-toast></p-toast>
 <div class="text-center" *ngIf="isLogged; else loggedOut">
     <h2>Ya has iniciado sesión</h2>
@@ -11,10 +12,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" routerLink="/login">Iniciar Sesión</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/registro">Crear Cuenta</a>
-                    </li>
-
                 </ul>
             </div>
             <div class="card-body">

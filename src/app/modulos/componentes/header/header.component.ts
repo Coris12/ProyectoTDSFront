@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { TokenService } from 'src/app/service/token.service';
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
   isPaciente = false;
   isFarmacia = false;
   isDoctor = false;
+  isOdontologia=false;
   constructor(private tokenService: TokenService) { }
 
   ngOnInit() {
@@ -25,6 +27,7 @@ export class HeaderComponent implements OnInit {
     this.isPaciente = this.tokenService.isPaciente();
     this.isFarmacia = this.tokenService.isFarmacia();
     this.isDoctor = this.tokenService.isDoctor();
+    this.isOdontologia=this.tokenService.isOdontologia();
     //items del menu
     this.items = [
       {
@@ -33,6 +36,12 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/'],
       },
       //! opciones para el administrador
+      {
+        label: 'Crear Persona',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/registroP'],
+        visible: this.isLogged && this.isAdmin
+      },
       {
         label: 'Lista Usuarios',
         icon: 'pi pi-fw pi-list',
@@ -44,6 +53,12 @@ export class HeaderComponent implements OnInit {
         icon: 'pi pi-fw pi-list',
         routerLink: ['/admision'],
         visible: this.isLogged && this.isFarmacia
+      },
+      {
+        label: 'Ficha Anestesia',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/anestesia'],
+        visible: this.isLogged && this.isAdmin
       },
       {
         label: 'Formulario',
@@ -75,6 +90,28 @@ export class HeaderComponent implements OnInit {
         label: 'Evolucion y Prescripciones',
         icon: 'pi pi-fw pi-list',
         routerLink: ['/evolucion'],
+        visible: this.isLogged && this.isAdmin
+      },
+
+      {
+        label: 'Consentimiento Medico',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/ConsentimientoMedico'],
+        visible: this.isLogged && this.isAdmin
+      },
+
+      {
+        label: 'Historia Clinica',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/Historia-clinica'],
+        visible: this.isLogged && this.isAdmin
+      },
+      
+      
+      {
+        label: 'Protocolo PosQuirurgico',
+        icon: 'pi pi-fw pi-list',
+        routerLink: ['/Protocolo'],
         visible: this.isLogged && this.isAdmin
       },
       //-! fin opciones para el administrador
@@ -146,6 +183,13 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isPaciente
       },
       {
+        label: 'Ubicaciones',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/ubicaciones'],
+       
+      },
+      
+      {
         label: 'Admiistrar tarjetas',
         icon: 'pi pi-fw pi-file-o',
         routerLink: ['/listaTarjetas'],
@@ -169,7 +213,13 @@ export class HeaderComponent implements OnInit {
         visible: this.isLogged && this.isFarmacia
       },
 
-
+      {
+        label: 'Odontologia',
+        icon: 'pi pi-fw pi-users',
+        routerLink: ['/Odontologia'],
+       visible: this.isLogged && this.isOdontologia
+       // visible: this.isLogged && this.isAdmin
+      },
       {
         label: 'Cerrar Sesión',
         icon: 'pi pi-fw pi-user-minus',

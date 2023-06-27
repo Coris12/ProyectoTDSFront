@@ -17,6 +17,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { DatosTarjetaAllDTO } from '../model/datosTarjetaAllDTO';
+import { GenericResponseDatosTarjetaAllDTO } from '../model/genericResponseDatosTarjetaAllDTO';
+import { GenericResponsestring } from '../model/genericResponsestring';
 import { Tarjeta } from '../model/tarjeta';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -59,16 +62,26 @@ export class TarjetaControllerService {
      * Crea la tarjeta
      * 
      * @param body tarjeta
+     * @param identificacion identificacion
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createUsingPOST5(body: Tarjeta, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public createUsingPOST5(body: Tarjeta, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public createUsingPOST5(body: Tarjeta, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public createUsingPOST5(body: Tarjeta, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createUsingPOST6(body: DatosTarjetaAllDTO, identificacion: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public createUsingPOST6(body: DatosTarjetaAllDTO, identificacion: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public createUsingPOST6(body: DatosTarjetaAllDTO, identificacion: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public createUsingPOST6(body: DatosTarjetaAllDTO, identificacion: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createUsingPOST5.');
+            throw new Error('Required parameter body was null or undefined when calling createUsingPOST6.');
+        }
+
+        if (identificacion === null || identificacion === undefined) {
+            throw new Error('Required parameter identificacion was null or undefined when calling createUsingPOST6.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (identificacion !== undefined && identificacion !== null) {
+            queryParameters = queryParameters.set('identificacion', <any>identificacion);
         }
 
         let headers = this.defaultHeaders;
@@ -99,6 +112,7 @@ export class TarjetaControllerService {
         return this.httpClient.request<any>('post',`${this.basePath}/tarjeta/creaTarjeta`,
             {
                 body: body,
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -166,13 +180,13 @@ export class TarjetaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET5(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tarjeta>;
-    public getByIdUsingGET5(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tarjeta>>;
-    public getByIdUsingGET5(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tarjeta>>;
-    public getByIdUsingGET5(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET18(id: number, observe?: 'body', reportProgress?: boolean): Observable<Tarjeta>;
+    public getByIdUsingGET18(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Tarjeta>>;
+    public getByIdUsingGET18(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Tarjeta>>;
+    public getByIdUsingGET18(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET5.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET18.');
         }
 
         let headers = this.defaultHeaders;
@@ -211,10 +225,10 @@ export class TarjetaControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET4(observe?: 'body', reportProgress?: boolean): Observable<Array<Tarjeta>>;
-    public listUsingGET4(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tarjeta>>>;
-    public listUsingGET4(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tarjeta>>>;
-    public listUsingGET4(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET18(observe?: 'body', reportProgress?: boolean): Observable<Array<Tarjeta>>;
+    public listUsingGET18(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Tarjeta>>>;
+    public listUsingGET18(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Tarjeta>>>;
+    public listUsingGET18(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -279,6 +293,110 @@ export class TarjetaControllerService {
 
         return this.httpClient.request<Array<Tarjeta>>('get',`${this.basePath}/tarjeta/tarjetasActivas`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * searchDateTarjetaUser
+     * 
+     * @param identificacion identificacion
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public searchDateTarjetaUserUsingGET1(identificacion: string, observe?: 'body', reportProgress?: boolean): Observable<GenericResponseDatosTarjetaAllDTO>;
+    public searchDateTarjetaUserUsingGET1(identificacion: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponseDatosTarjetaAllDTO>>;
+    public searchDateTarjetaUserUsingGET1(identificacion: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponseDatosTarjetaAllDTO>>;
+    public searchDateTarjetaUserUsingGET1(identificacion: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (identificacion === null || identificacion === undefined) {
+            throw new Error('Required parameter identificacion was null or undefined when calling searchDateTarjetaUserUsingGET1.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (identificacion !== undefined && identificacion !== null) {
+            queryParameters = queryParameters.set('identificacion', <any>identificacion);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<GenericResponseDatosTarjetaAllDTO>('get',`${this.basePath}/tarjeta/getAllDatosTarjeta`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * updateDatosTarjetaUser
+     * 
+     * @param body datosTarjetaAllDTO
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateDatosTarjetaUserUsingPUT(body: DatosTarjetaAllDTO, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public updateDatosTarjetaUserUsingPUT(body: DatosTarjetaAllDTO, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public updateDatosTarjetaUserUsingPUT(body: DatosTarjetaAllDTO, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public updateDatosTarjetaUserUsingPUT(body: DatosTarjetaAllDTO, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling updateDatosTarjetaUserUsingPUT.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<GenericResponsestring>('put',`${this.basePath}/tarjeta/updateDatosTarjetaUser`,
+            {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

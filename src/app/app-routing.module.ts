@@ -39,6 +39,12 @@ import { ConsultaExternaAnamnesisComponent } from './modulos/consulta-externa-an
 import { LectorComponent } from './modulos/tarjeta/lector/lector.component';
 import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-tarjetas.component';
 import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
+import { MedicoConsentimientoComponent } from './modulos/Consentimiento/medico-consentimiento/medico-consentimiento.component';
+import { ErrorComponent } from './modulos/user/componentes/error/error.component';
+import { ProtocoloComponent } from './modulos/RecordOperatorio/protocolo/protocolo.component';
+import { HistoriaComponent } from './modulos/HistoriaClinica/historia/historia.component';
+import { OdontologiaComponent } from './modulos/Odontologia/odontologia/odontologia.component';
+import { AnestesiaComponent } from './modulos/Anestesia/anestesia/anestesia.component';
 
 
 
@@ -46,7 +52,7 @@ import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta
 const routes: Routes = [
   { path: '', component: InicioComponent },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
-  { path: 'registro', component: RegistrarUserComponent, canActivate: [LoginGuard] },
+ // { path: 'registro', component: RegistrarUserComponent, canActivate: [LoginGuard] },
 
   { path: 'ubicaciones', component: UbicacionesComponent, canActivate: [LoginGuard] },
   // { path: 'lista-proveedor', component: ControlProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
@@ -57,6 +63,8 @@ const routes: Routes = [
   { path: 'lista-usuarios', component: UsuariosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lista-productos', component: ProductoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['farmacia','user'] } },
   { path: 'lista-empleados', component: EmpleadoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin','user'] } },
+  { path: 'Odontologia', component: OdontologiaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['odontologia', 'user'] } },
+  { path: 'registroP', component: RegistrarUserComponent, canActivate: [ProdGuardService] ,data:{expectedRo:['admin','user']}},
 
   { path: 'proveedores', component: ProveedorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'medicamentos', component: MedicamentosComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
@@ -64,8 +72,13 @@ const routes: Routes = [
   { path: 'autorizacion', component: AutorizacionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'admision', component: AdmisionComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'consentimiento', component: ConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'ConsentimientoMedico', component: MedicoConsentimientoComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'Protocolo', component: ProtocoloComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'Historia-clinica', component: HistoriaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
+  { path: 'anestesia', component: AnestesiaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
 
-  
+  { path: 'error', component: ErrorComponent, canActivate: [LoginGuard] },
+
   { path: 'formularioTarjeta', component: FormularioTarjetaComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'lectorQr', component: LectorComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },
   { path: 'listaTarjetas', component: ListaTarjetasComponent, canActivate: [ProdGuardService], data: { expectedRol: ['admin', 'user'] } },

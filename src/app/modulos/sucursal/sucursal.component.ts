@@ -35,6 +35,7 @@ export class SucursalComponent implements OnInit {
 
   //! lista las convocatorias
   sucursal: Sucursal[] = [];
+  submitted: boolean;
 
 
   constructor(private sucursalController: SucursalControllerService,
@@ -63,7 +64,6 @@ export class SucursalComponent implements OnInit {
         });
       });
     this.sucursalDialog = true;
-
   }
 
   guardarSucursal() {
@@ -75,7 +75,7 @@ export class SucursalComponent implements OnInit {
       ).subscribe(data => {
         this.messageService.add({
           severity: 'info',
-          summary: 'Producto Actualizado',
+          summary: 'Sucursal Actualizado',
           detail: data.object
         });
         this.sucursalDialog = false;
@@ -86,10 +86,8 @@ export class SucursalComponent implements OnInit {
         this.sucursalForm.value
       ).subscribe(data => {
         this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Sucursal creada con exito.' });
-
       },
         error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
-
       this.sucursalDialog = false;
       this.sucursalForm.setValue({
         idSucursal: null,
@@ -98,8 +96,9 @@ export class SucursalComponent implements OnInit {
         nombreSuc: null,
         telefonoSuc: null
       })
-
     }
+    this.limpiar();
+    
   }
 
 
@@ -115,10 +114,12 @@ export class SucursalComponent implements OnInit {
     );
   }
 
-
+  limpiar() {
+    this.sucursalForm.reset();
+  }
   //metodo de borrado logico
-borrarSucursal(idSucursal: number): void {
-console.log(idSucursal)
+  borrarSucursal(idSucursal: number): void {
+    console.log(idSucursal)
     this.confirmationService.confirm({
       message: 'Esta seguro de eliminar la sucursal?',
       accept: () => {
@@ -136,5 +137,65 @@ console.log(idSucursal)
 
   }
   // fin del metodo
+
+  validacionAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetras(event) {
+    const patron = /[a-zA-Z ]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

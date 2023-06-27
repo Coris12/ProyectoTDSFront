@@ -1,333 +1,662 @@
 <app-header></app-header>
-<div class="animated fadeIn mt-4">
-    <div class="p-5 bg-light">
-        <div class="d-flex justify-content-between">
-            <div class="p-2">
-                <h5>Consentimiento Informado</h5>
-            </div>
+<p-toast></p-toast>
+
+<div class="animated fadeIn mt-4 " >
+  <div class="p-5 bg-light">
+    <div class="d-flex justify-content-between">
+      <div class="p-2">
+        <h2>CONSENTIMIENTO INFORMADO</h2>
+      </div>
+      <div class="col-12 md:col-2">
+        <div class="p-inputgroup">
+          <button type="button" pButton pRipple label="LIMPIAR" (click)="limpiarFormularios()"></button>
         </div>
-        <div class="content-section implementation mt-2">
-            <div class="mt-4">
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Cedula</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Nombres</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Servicio</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Sala</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Cama</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="date" id="inputtext" pInputText>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="time" id="inputtext" pInputText>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <button pButton type="button" label="Buscar"></button>
-                    </div>
-                </div>
-                <!---------------------------------------------------------------------------->
-                <p-divider align="left">
-                    <div class="inline-flex align-items-center">
-                        <i class="pi pi-user mr-2"></i>
-                        <b>1.Informacion entregada por el profesional tratante sobre el tratamiento</b>
-                    </div>
-                </p-divider>
-                <br>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Propositos</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Terapia y procedimientos propuestos</label>
-                        </span>
-                    </div>
-                </div>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Resultados esperados</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Riesgos de complicaciones clinicas</label>
-                        </span>
-                    </div>
-                </div>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Nombre del profesional tratante</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Especialidad</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Telefono</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Codigo</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <textarea rows="2" cols="50" pInputTextarea></textarea>
-                            <label for="inputtext">Firma</label>
-                        </span>
-                    </div>
-                </div>
-                <!---------------------------------------------------------------------------->
-                <p-divider align="left">
-                    <div class="inline-flex align-items-center">
-                        <i class="pi pi-user mr-2"></i>
-                        <b>2.Informacion entregada por el cirujano sobre la intervencion quirúrgica</b>
-                    </div>
-                </p-divider>
-                <br>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Propositos</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Intervenciones quirúrgicas propuestas</label>
-                        </span>
-                    </div>
-                </div>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Resultados esperados</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Riesgos de complicaciones quirúrgicas</label>
-                        </span>
-                    </div>
-                </div>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Nombre del cirujano</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Especialidad</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Telefono</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Codigo</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <textarea rows="2" cols="50" pInputTextarea></textarea>
-                            <label for="inputtext">Firma</label>
-                        </span>
-                    </div>
-                </div>
-                <!---------------------------------------------------------------------------->
-                <p-divider align="left">
-                    <div class="inline-flex align-items-center">
-                        <i class="pi pi-user mr-2"></i>
-                        <b>3.Informacion entregada por el anestesiologo sobre la anestesia</b>
-                    </div>
-                </p-divider>
-                <br>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Propositos</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Anestesia propuesta</label>
-                        </span>
-                    </div>
-                </div>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Resultados esperados</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Riesgos de complicaciones anestésicas</label>
-                        </span>
-                    </div>
-                </div>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Nombre del cirujano</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Especialidad</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Telefono</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">Codigo</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <textarea rows="2" cols="50" pInputTextarea></textarea>
-                            <label for="inputtext">Firma del paciente</label>
-                        </span>
-                    </div>
-                </div>
-                <!---------------------------------------------------------------------------->
-                <p-divider align="left">
-                    <div class="inline-flex align-items-center">
-                        <i class="pi pi-user mr-2"></i>
-                        <b>4.Consentimiento informado del paciente</b>
-                    </div>
-                </p-divider>
-
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-8">
-                        <b>A. El profesional tratante me ha informado satisfactoriamente acerca de los motivos y
-                            propositos del tratamiento planificado para mi enfermedad</b>
-                        <p>B. El profesional tratante ha explicado adecuadamente las actividades ensenciales que se
-                            realizaran durante el tratamiento de mi enfermedad</p>
-                    </div>
-
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <textarea rows="4" cols="50" pInputTextarea></textarea>
-                            <label for="inputtext">Firma</label>
-                        </span>
-                    </div>
-                </div>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-8">
-                        <p>C. Conciento a que se realicen las intervenciones quirúrgicas
-                            procedimientos diagnosticos y tratamientos necesarios para mi enfermedad</p>
-                        <p>D. Conciento a que me administren la anastecia propuesta</p>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <textarea rows="4" cols="50" pInputTextarea></textarea>
-                            <label for="inputtext">Firma del paciente</label>
-                        </span>
-                    </div>
-                </div>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-8">
-                        <p>E. He entendido bien que existe garantia de la calidad de los medio utilizados para el
-                            tratamiento pero no acerca de los resultados</p>
-                        <p>F. He comprendido plenamente los beneficios y los riesgos de complicaciones derivadas del
-                            tratamiento</p>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <textarea rows="4" cols="50" pInputTextarea></textarea>
-                            <label for="inputtext">Firma del paciente</label>
-                        </span>
-                    </div>
-                </div>
-                <div class="grid p-fluid">
-                    <div class="field col-12 md:col-8">
-                        <p>G. El profesional tratante me ha informado que existe garantia de respeto a mi identidad,a
-                            mis creencias religiosas y a la confidencialidad de la informacion (inclusive en el caso de
-                            VIH-SIDA)</p>
-                        <p>H. He comprendido que tengo el derecho de anular este consentimiento informado en el meomento
-                            que yo lo considere necesario</p>
-                        <p>I. Declaro que me he entregado al profesional tratante informacion completa y fidedigna sobre los antecedentes personales y familiares de mi estado de salud.Estoy
-                            conciente de que mis omisiones o distorsiones deliberadas de los hechos pueden afectar los resultados del tratamiento
-                        </p>
-                    </div>
-                    <div class="field col-12 md:col-4">
-                        <span class="p-float-label">
-                            <textarea rows="6" cols="50" pInputTextarea></textarea>
-                            <label for="inputtext">Firma del paciente</label>
-                        </span>
-                    </div>
-                </div>
-                
-
-            </div>
+      </div>
+      <div class="col-12 md:col-2">
+        <div class="p-inputgroup">
+          <button type="button" pButton pRipple label="LISTADO CONSENTIMIENTOS" (click)="listDialog = true;"></button>
         </div>
+      </div>
+
     </div>
+    <form [formGroup]="formCabezera">
+      <div class="p-fluid grid">
+        <div class="field col-12 md:col-2 centrar">
+          <span class="p-float-label">
+            <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="institucionSistemas"
+              (keypress)="validacionAlfanumerica($event)" maxlength="255">
+            <label for="inputtext">INSTITUCIÓN DEL SISTEMA</label>
+          </span>
+          <small class="p-error"
+            *ngIf="dtFormCabezera.institucionSistemas.errors && dtFormCabezera.institucionSistemas.errors.required && submitted">INSTITUCIÓN
+            DE SISTEMA ES REQUERIDO.</small>
+        </div>
+        <div class="field col-12 md:col-2 centrar">
+          <span class="p-float-label">
+            <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="unidadOperativa"
+              (keypress)="validacionAlfanumerica($event)" maxlength="255">
+            <label for="inputtext">UNIDAD OPERATIVA</label>
+          </span>
+          <small class="p-error"
+            *ngIf="dtFormCabezera.unidadOperativa.errors && dtFormCabezera.unidadOperativa.errors.required && submitted">UNIDAD
+            OPERATIVA ES REQUERIDO.</small>
+        </div>
+        <div class="field col-12 md:col-2 centrar">
+          <span class="p-float-label">
+            <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="codUd"
+              (keypress)="validacionAlfanumerica($event)" maxlength="255">
+            <label for="inputtext">COD. UD</label>
+          </span>
+          <small class="p-error"
+            *ngIf="dtFormCabezera.codUd.errors && dtFormCabezera.codUd.errors.required && submitted">COD.UD ES
+            REQUERIDO.</small>
+        </div>
+        <div class="field col-12 md:col-4">
+          <label for="" class="centrarLabel">COD. LOCALIZACIÓN</label>
+          <div class="flexDerecha">
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="parroquia"
+                  (keypress)="validarSoloLetras($event)" maxlength="255">
+                <label for="inputtext">PARROQUIA</label>
+                <small class="p-error"
+                  *ngIf="dtFormCabezera.parroquia.errors && dtFormCabezera.parroquia.errors.required && submitted">PARROQUIA
+                  ES REQUERIDO.</small>
+              </span>
+            </div>
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="canton"
+                  (keypress)="validarSoloLetras($event)" maxlength="255">
+                <label for="inputtext">CANTÓN</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormCabezera.canton.errors && dtFormCabezera.canton.errors.required && submitted">CANTÓN ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="provincia"
+                  (keypress)="validarSoloLetras($event)" maxlength="255">
+                <label for="inputtext">PROVINCIA</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormCabezera.provincia.errors && dtFormCabezera.provincia.errors.required && submitted">PROVINCIA
+                ES REQUERIDO.</small>
+            </div>
+          </div>
+        </div>
+        <div class="field col-12 md:col-2 centrar">
+          <span class="p-float-label">
+            <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="historiaClinica"
+              (keypress)="validacionSoloNumeros($event)" maxlength="10">
+            <label for="inputtext"># HISTORIA CLÍNICA</label>
+          </span>
+          <small class="p-error"
+            *ngIf="dtFormCabezera.historiaClinica.errors && dtFormCabezera.historiaClinica.errors.required && submitted">HISTORIA
+            CLÍNICA ES REQUERIDO.</small>
+        </div>
+      </div>
+    </form>
+    <div class="content-section implementation mt-2">
+      <div class="mt-4">
+        <form [formGroup]="formConsentimiento">
+          <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+              <div class="p-inputgroup">
+                <button [disabled]="updateSi ? 'disabled' : null" type="button" pButton pRipple label="Buscar"
+                  (click)="buscarPorCedula();"></button>
+                <input autocomplete="off" type="text" pInputText placeholder="Cédula" formControlName="cedula"
+                  (keypress)="validacionNumerosLetras($event)" maxlength="13">
+              </div>
+              <small class="p-error"
+                *ngIf="dtFormConsentimiento.cedula.errors && dtFormConsentimiento.cedula.errors.required && submitted">BUSQUE
+                UN USUARIO POR CÉDULA.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText disabled formControlName="nombres">
+                <label for="inputtext">Nombres Completos</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormConsentimiento.nombres.errors && dtFormConsentimiento.nombres.errors.required && submitted">BUSQUE
+                UN USUARIO POR CÉDULA.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="servicio"
+                  (keypress)="validacionNumerosLetras($event)" maxlength="255">
+                <label for="inputtext">Servicio</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormConsentimiento.servicio.errors && dtFormConsentimiento.servicio.errors.required && submitted">SERVICIO
+                ES REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="sala"
+                  (keypress)="validacionNumerosLetras($event)" maxlength="255">
+                <label for="inputtext">Sala</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormConsentimiento.sala.errors && dtFormConsentimiento.sala.errors.required && submitted">SALA
+                ES REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="cama"
+                  (keypress)="validacionNumerosLetras($event)" maxlength="255">
+                <label for="inputtext">Cama</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormConsentimiento.cama.errors && dtFormConsentimiento.cama.errors.required && submitted">CAMA
+                ES REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <p-calendar class="p-inputtext-sm" [showTime]="true" [showSeconds]="true" inputId="time"
+                  formControlName="fecha"></p-calendar>
+                <label for="time">FECHA / HORA 24H</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormConsentimiento.fecha.errors && dtFormConsentimiento.fecha.errors.required && submitted">FECHA
+                ES REQUERIDO.</small>
+              <!-- <small class="p-error" *ngIf="submitted && !ConsultaExternaObj.fecha">ES REQUERIDO.</small> -->
+            </div>
+          </div>
+        </form>
+        <!---------------------------------------------------------------------------->
+        <p-divider align="left">
+          <div class="inline-flex align-items-center">
+            <i class="pi pi-user mr-2"></i>
+            <b>1.INFORMACIÓN ENTREGADA POR EL PROFESIONAL TRATANTE SOBRE EL TRATAMIENTO</b>
+          </div>
+        </p-divider>
+        <br>
+        <form [formGroup]="formProfesionalTratante">
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="propositos"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Propósitos</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormProfesionalTratante.propositos.errors && dtFormProfesionalTratante.propositos.errors.required && submitted">PROPÓSITO
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="terapiaProcedimiento"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Terapia y procedimientos propuestos</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormProfesionalTratante.terapiaProcedimiento.errors && dtFormProfesionalTratante.terapiaProcedimiento.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+          </div>
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="resultadosEsperados"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Resultados esperados</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormProfesionalTratante.resultadosEsperados.errors && dtFormProfesionalTratante.resultadosEsperados.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="riesgosComplicaciones"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Riesgos de complicaciones clinicas</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormProfesionalTratante.riesgosComplicaciones.errors && dtFormProfesionalTratante.riesgosComplicaciones.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+          </div>
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label p-input-icon-right">
+                <i *ngIf="buscarNombre" class="pi pi-spin pi-spinner"></i>
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="NombreProfesional"
+                  (keypress)="validarSoloLetras($event)" maxlength="255">
+                <label for="inputtext">Nombre del profesional tratante</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormProfesionalTratante.NombreProfesional.errors && dtFormProfesionalTratante.NombreProfesional.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="Especialidad"
+                  (keypress)="validarSoloLetras($event)" maxlength="255">
+                <label for="inputtext">Especialidad</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormProfesionalTratante.Especialidad.errors && dtFormProfesionalTratante.Especialidad.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="telefono"
+                  (keypress)="validacionSoloNumeros($event)" maxlength="10">
+                <label for="inputtext">Telefono</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormProfesionalTratante.telefono.errors && dtFormProfesionalTratante.telefono.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="codigo"
+                  (keypress)="validacionSoloNumeros($event)" maxlength="10">
+                <label for="inputtext">Codigo</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormProfesionalTratante.codigo.errors && dtFormProfesionalTratante.codigo.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+          </div>
+        </form>
+        <!---------------------------------------------------------------------------->
+        <p-divider align="left">
+          <div class="inline-flex align-items-center">
+            <i class="pi pi-user mr-2"></i>
+            <b>2.Informacion entregada por el cirujano sobre la intervencion quirúrgica</b>
+          </div>
+        </p-divider>
+        <br>
+        <form [formGroup]="formCirujano">
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="proposito"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Propositos</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormCirujano.proposito.errors && dtFormCirujano.proposito.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="intervencionQuirurgica"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Intervenciones quirúrgicas propuestas</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormCirujano.intervencionQuirurgica.errors && dtFormCirujano.intervencionQuirurgica.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+          </div>
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="resultadoEsperados"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Resultados esperados</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormCirujano.resultadoEsperados.errors && dtFormCirujano.resultadoEsperados.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="riesgosComplicaciones"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Riesgos de complicaciones quirúrgicas</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormCirujano.riesgosComplicaciones.errors && dtFormCirujano.riesgosComplicaciones.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+          </div>
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label p-input-icon-right">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="nombreCirujano"
+                  (keypress)="validarSoloLetras($event)" maxlength="255">
+                <i *ngIf="buscarNombre" class="pi pi-spin pi-spinner"></i>
+                <label for="inputtext">Nombre del cirujano</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormCirujano.nombreCirujano.errors && dtFormCirujano.nombreCirujano.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="Especialidad"
+                  (keypress)="validarSoloLetras($event)" maxlength="255">
+                <label for="inputtext">Especialidad</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormCirujano.Especialidad.errors && dtFormCirujano.Especialidad.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="telefono"
+                  (keypress)="validacionSoloNumeros($event)" maxlength="10">
+                <label for="inputtext">Telefono</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormCirujano.telefono.errors && dtFormCirujano.telefono.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="codigo"
+                  (keypress)="validacionSoloNumeros($event)" maxlength="10">
+                <label for="inputtext">Codigo</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormCirujano.codigo.errors && dtFormCirujano.codigo.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+          </div>
+        </form>
+        <!---------------------------------------------------------------------------->
+        <p-divider align="left">
+          <div class="inline-flex align-items-center">
+            <i class="pi pi-user mr-2"></i>
+            <b>3.Informacion entregada por el anestesiólogo sobre la anestesia</b>
+          </div>
+        </p-divider>
+        <br>
+        <form [formGroup]="formAnastesiologo">
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="proposito"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Propósitos</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormAnstesiolog.proposito.errors && dtFormAnstesiolog.proposito.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="anestesiaPropuesta"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Anestesia propuesta</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormAnstesiolog.anestesiaPropuesta.errors && dtFormAnstesiolog.anestesiaPropuesta.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+          </div>
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="resultadosEsperados"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Resultados esperados</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormAnstesiolog.resultadosEsperados.errors && dtFormAnstesiolog.resultadosEsperados.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-6">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="riesgosComplicaciones"
+                  (keypress)="validacionAlfanumerica($event)" maxlength="255">
+                <label for="inputtext">Riesgos de complicaciones anestésicas</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormAnstesiolog.riesgosComplicaciones.errors && dtFormAnstesiolog.riesgosComplicaciones.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+          </div>
+          <div class="grid p-fluid">
+            <div class="field col-12 md:col-4">
+              <span class="p-float-label p-input-icon-right">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="nombreCirujano"
+                  (keypress)="validarSoloLetras($event)" maxlength="255">
+                <i *ngIf="buscarNombre" class="pi pi-spin pi-spinner"></i>
+                <label for="inputtext">Nombre del cirujano</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormAnstesiolog.nombreCirujano.errors && dtFormAnstesiolog.nombreCirujano.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="especialidad"
+                  (keypress)="validarSoloLetras($event)" maxlength="255">
+                <label for="inputtext">Especialidad</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormAnstesiolog.especialidad.errors && dtFormAnstesiolog.especialidad.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="telefono"
+                  (keypress)="validacionSoloNumeros($event)" maxlength="10">
+                <label for="inputtext">Telefono</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormAnstesiolog.telefono.errors && dtFormAnstesiolog.telefono.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+            <div class="field col-12 md:col-2">
+              <span class="p-float-label">
+                <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="codigo"
+                  (keypress)="validacionSoloNumeros($event)" maxlength="10">
+                <label for="inputtext">Codigo</label>
+              </span>
+              <small class="p-error"
+                *ngIf="dtFormAnstesiolog.codigo.errors && dtFormAnstesiolog.codigo.errors.required && submitted">ES
+                REQUERIDO.</small>
+            </div>
+          </div>
+        </form>
+        <!---------------------------------------------------------------------------->
+        <p-divider align="left">
+          <div class="inline-flex align-items-center">
+            <i class="pi pi-user mr-2"></i>
+            <b>4.Consentimiento informado del paciente</b>
+          </div>
+        </p-divider>
+
+        <div class="grid p-fluid">
+          <div class="field col-12 md:col-12">
+            <b>A.</b> El profesional tratante me ha informado satisfactoriamente acerca de los motivos y
+            propositos del tratamiento planificado para mi enfermedad
+            <p><b>B.</b> El profesional tratante ha explicado adecuadamente las actividades ensenciales que se
+              realizaran durante el tratamiento de mi enfermedad</p>
+          </div>
+        </div>
+        <div class="grid p-fluid">
+          <div class="field col-12 md:col-12">
+            <p><b>C.</b> Conciento a que se realicen las intervenciones quirúrgicas
+              procedimientos diagnosticos y tratamientos necesarios para mi enfermedad</p>
+            <p><b>D.</b>Conciento a que me administren la anastecia propuesta</p>
+          </div>
+        </div>
+        <div class="grid p-fluid">
+          <div class="field col-12 md:col-12">
+            <p><b>E.</b> He entendido bien que existe garantia de la calidad de los medio utilizados para el
+              tratamiento pero no acerca de los resultados</p>
+            <p><b>F.</b>He comprendido plenamente los beneficios y los riesgos de complicaciones derivadas del
+              tratamiento</p>
+          </div>
+        </div>
+        <div class="grid p-fluid">
+          <div class="field col-12 md:col-12">
+            <p><b>G.</b> El profesional tratante me ha informado que existe garantia de respeto a mi identidad,a
+              mis creencias religiosas y a la confidencialidad de la informacion (inclusive en el caso de
+              VIH-SIDA)</p>
+            <p><b>H</b> He comprendido que tengo el derecho de anular este consentimiento informado en el meomento
+              que yo lo considere necesario</p>
+            <p><b>I</b> Declaro que me he entregado al profesional tratante informacion completa y fidedigna sobre los
+              antecedentes personales y familiares de mi estado de salud.Estoy
+              conciente de que mis omisiones o distorsiones deliberadas de los hechos pueden afectar los resultados del
+              tratamiento
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-2">
+      <div class="p-inputgroup">
+        <button [label]="updateSi ? 'ACTUALIZAR' : 'GUARDAR'" type="button" pButton pRipple
+          (click)="updateSi ?updateDatos(): crearConsentimiento()"></button>
+      </div>
+    </div>
+  </div>
 </div>
+<p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'47em'}" [modal]="false">
+  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+  </p-confirmDialog>
+  <p-toast></p-toast>
+  <div *ngIf="refreshTable">
+    <p-table #dt1 [value]="listConsentimiento" [lazy]="true" (onLazyLoad)="listarAllConsentimientos($event)"
+      selectionMode="single" [loading]="loading" [(selection)]="slectedConsentimiento"
+      (onRowSelect)="onRowSelect($event)" responsiveLayout="scroll" [resizableColumns]="true"
+      styleClass="p-datatable-gridlines p-datatable-sm"
+      [globalFilterFields]="['nombres','historia_clinica', 'identificacion']"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true" [rows]="10">
+
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
+            (click)="clear(dt1)"></button>
+          <button pButton type="button" icon="pi pi-refresh" class="p-button-text p-button-rounded alejar"
+            (click)="refresDateTable($event)"></button>
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" autocomplete="off" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+              placeholder="BUSCAR" />
+          </span>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th pResizableColumn style="width:110px">
+            <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+              IDENTIFICACIÓN
+            </div>
+          </th>
+          <th pResizableColumn>
+            <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+              NOMBRES PACIENTE
+            </div>
+          </th>
+          <th pResizableColumn style="width:50px">
+            <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+              #HC
+            </div>
+          </th>
+          <th pResizableColumn style="width:70px">
+            <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+              FECHA
+            </div>
+          </th>
+          <th pResizableColumn style="width:60px">
+            <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+              ELIMINAR
+            </div>
+          </th>
+          <th pResizableColumn style="width:50px">
+            <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+              PRINT
+            </div>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-data>
+        <tr [pSelectableRow]="data">
+          <td style="text-align:center">{{data.identificacion}}</td>
+          <td style="text-align:center">{{data.nombres}}</td>
+          <td style="text-align:center">{{data.numHistCli}}</td>
+          <td>{{data.fecha}}</td>
+          <td style="text-align:center">
+            <button pButton pRipple type="button" icon="pi pi-times" (click)="confirmacion(data.idConsentimiento)"
+              class="p-button-rounded p-button-text p-button-danger"></button>
+          </td>
+          <td style="text-align:center">
+            <button pButton pRipple type="button" icon="pi pi-print"
+              (click)="imprimirPDFSinceButton(data.idConsentimiento)" class="p-button-rounded p-button-text">
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</p-sidebar>
+<button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text" label="PDF"
+  icon="pi pi-file-o" (click)="Dialog=true"></button>
+<p-dialog header="Consentimiento Informado." [(visible)]="Dialog" [modal]="true"
+  [style]="{width: '50vw', height: '30vw'}" [draggable]="false" [resizable]="false" class="p-fluid">
+  <div id="htmlData">
+    <div class="grid p-fluid">
+      <div class="container mt-2" style="text-align: center;">
+        <img src="../../../../assets/medivalleLa.png" class="img-thumbnail" width="600" height="800">
+      </div>
+    </div>
+    <br>
+    <div class="grid p-fluid">
+      <div class="field col-12 md:col-4">
+        <div class="flex justify-conten align-items-center letrasPequeñasNegrita">
+          Institucion del Sistema
+        </div>
+        <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="this.objConsentimieto.instutucionSistema">
+      </div>
+      <div>
+        <div class="field col-12 md:col-4">
+          <div class="flex justify-conten align-items-center letrasPequeñasNegrita">
+            Unidad operativa
+          </div>
+          <label for="inputtext">UNIDAD OPERATIVA</label>
+
+        </div>
+      </div>
+      <div class="field col-12 md:col-12">
+        <b>A.</b> El profesional tratante me ha informado satisfactoriamente acerca de los motivos y
+        propositos del tratamiento planificado para mi enfermedad objInformacionTto.proposito
+        <p><b>B.</b> El profesional tratante ha explicado adecuadamente las actividades ensenciales que se
+          realizaran durante el tratamiento de mi enfermedad</p>
+      </div>
+    </div>
+    <div class="grid p-fluid">
+      <div class="field col-12 md:col-12">
+        <p><b>C.</b> Conciento a que se realicen las intervenciones quirúrgicas
+          procedimientos diagnosticos y tratamientos necesarios para mi enfermedad</p>
+        <p><b>D.</b>Conciento a que me administren la anastecia propuesta</p>
+      </div>
+    </div>
+    <div class="grid p-fluid">
+      <div class="field col-12 md:col-12">
+        <p><b>E.</b> He entendido bien que existe garantia de la calidad de los medio utilizados para el
+          tratamiento pero no acerca de los resultados</p>
+        <p><b>F.</b>He comprendido plenamente los beneficios y los riesgos de complicaciones derivadas del
+          tratamiento</p>
+      </div>
+    </div>
+    <div class="grid p-fluid">
+      <div class="field col-12 md:col-12">
+        <p><b>G.</b> El profesional tratante me ha informado que existe garantia de respeto a mi identidad,a
+          mis creencias religiosas y a la confidencialidad de la informacion (inclusive en el caso de
+          VIH-SIDA)</p>
+        <p><b>H</b> He comprendido que tengo el derecho de anular este consentimiento informado en el meomento
+          que yo lo considere necesario</p>
+        <p><b>I</b> Declaro que me he entregado al profesional tratante informacion completa y fidedigna sobre los
+          antecedentes personales y familiares de mi estado de salud.Estoy
+          conciente de que mis omisiones o distorsiones deliberadas de los hechos pueden afectar los resultados del
+          tratamiento
+        </p>
+        
+      </div>
+    </div>
+  </div>
+  <button style="text-align: center" class="btn btn-dark  ml-4" (click)="downloadPDF()"><i class="fas fa-print"></i>
+    Descargar PDF</button>
+
+</p-dialog>

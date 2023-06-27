@@ -4,8 +4,10 @@ import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api'
 import { Table } from 'primeng/table';
 import { ProductoControllerService } from 'src/app/api/productoController.service';
 import { ProveedorControllerService } from 'src/app/api/proveedorController.service';
+import { SucursalControllerService } from 'src/app/api/sucursalController.service';
 import { Producto } from 'src/app/model/producto';
 import { Proveedor } from 'src/app/model/proveedor';
+import { Sucursal } from 'src/app/model/sucursal';
 
 @Component({
   selector: 'app-producto',
@@ -30,11 +32,13 @@ export class ProductoComponent implements OnInit {
     proveedor: new FormControl(null, [Validators.nullValidator, Validators.required]),
     costoPromedio: new FormControl(null, [Validators.nullValidator, Validators.required]),
     ultimoCosto: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    sucursal: new FormControl(null, [Validators.nullValidator, Validators.required]),
+
   })
   //variables producto
   categoria: any[];
 
-  stock:any
+  stock: any
   categoriaProd: any//<---- guardeles asi
   codigo: string
 
@@ -47,18 +51,41 @@ export class ProductoComponent implements OnInit {
   produc: any[];
   proveedores: Proveedor[] = [];
 
+  sucursales: Sucursal[] = [];
   // * lazy load
   loading: boolean;
   totalRecords: number
   proveedor: Proveedor[];
   codRefe: any;
+  idPro: any
 
-
+  producto: Producto = {
+    idProducto: null,
+    categoriaProducto: null,
+    codBarra: null,
+    codigoRef: null,
+    descripcionProducto: null,
+    fechaExp: null,
+    inventarioProducto: null,
+    nombreProducto: null,
+    precioProducto: null,
+    regSanitario: null,
+    stock: null,
+    proveedor: null,
+    costoPromedio: null,
+    ultimoCosto: null,
+    sucursal: null,
+  }
+  errMsj: string;
   //! abre el dialogo de producto
   productoDialog: boolean;
 
-  constructor(private productoController: ProductoControllerService, private proveedorController: ProveedorControllerService,
-    private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(
+    private productoController: ProductoControllerService,
+    private proveedorController: ProveedorControllerService,
+    private messageService: MessageService,
+    private sucursalController: SucursalControllerService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.categoria = [
@@ -75,6 +102,7 @@ export class ProductoComponent implements OnInit {
 
     this.cargarProductos();
     this.cargarProveedores();
+    this.cargarSucursales();
   }
 
   generarcodigo() {
@@ -133,33 +161,38 @@ export class ProductoComponent implements OnInit {
     }, 1000);
   }
 
-   updateProducto(idProducto:number) {
-    this.productoController.getByIdUsingGET2(idProducto)
-      .subscribe( produc => {
-        console.log (produc.idProducto)
-        this.productoForm.setValue({
-          idProducto: produc.idProducto,
-          categoriaProducto: produc.categoriaProducto,
-          codBarra: produc.codBarra,
-          codigoRef: produc.codigoRef,
-          descripcionProducto: produc.descripcionProducto,
-          fechaExp: produc.fechaExp,
-          nombreProducto: produc.nombreProducto,
-          inventarioProducto: produc.inventarioProducto,
-          precioProducto: produc.precioProducto,
-          regSanitario: produc.regSanitario,
-          stock: produc.stock,
-          costoPromedio: produc.costoPromedio,
-          ultimoCosto: produc.ultimoCosto,
-          proveedor: produc.proveedor,
-        });
-      });
-      this.productoDialog = true;
+  updateProducto(idProducto: number) {
+    this.productoController.getByIdUsingGET9(idProducto).subscribe(produc => {
+      console.log(produc.idProducto)
+
+      this.producto.idProducto = produc.idProducto,
+        this.producto.categoriaProducto = produc.categoriaProducto,
+        this.producto.codBarra = produc.codBarra,
+        this.codigo = produc.codigoRef,
+        this.producto.descripcionProducto = produc.descripcionProducto,
+        this.producto.fechaExp = produc.fechaExp,
+        this.producto.nombreProducto = produc.nombreProducto,
+        this.producto.inventarioProducto = produc.inventarioProducto,
+        this.producto.precioProducto = produc.precioProducto,
+        this.producto.regSanitario = produc.regSanitario,
+        this.producto.stock = produc.stock,
+        this.producto.costoPromedio = produc.costoPromedio,
+        this.producto.ultimoCosto = produc.ultimoCosto,
+        this.producto.proveedor = produc.proveedor,
+        this.producto.sucursal = produc.sucursal
+        
+    })
+
+
+
+
+    this.productoDialog = true;
+    this.cargarProductos()
 
   }
 
   //metodo de guardar
-   saveProducto() {
+  saveProducto() {
     console.log(this.productoForm.value)
     if (this.productoForm.value?.idProducto !== null) {
       this.productoController.updateUsingPUT2(
@@ -175,13 +208,22 @@ export class ProductoComponent implements OnInit {
         this.cargarProductos();
       });
     } else {
-    this.productoController.createUsingPOST3(
-        this.productoForm.value,
+      this.productoController.createUsingPOST4(// y el idproducto?????' creoq sea guarda solo
+        this.productoForm.value?.idProducto, //para que sirve eso que pegue ? es para que te guarde lo de esoosea el producto
         this.productoForm.value?.proveedor.idProveedor,
+        this.productoForm.value?.sucursal.idSucural,
       ).subscribe(data => {
-        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto creado .' });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Exito',
+          detail: 'Producto creado .'
+        });
       },
-        error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+        error => this.messageService.add({
+          severity: 'danger',
+          summary: 'Error',
+          detail: error.mensaje
+        }));
 
       this.productoDialog = false;
       this.productoForm.setValue({
@@ -198,13 +240,50 @@ export class ProductoComponent implements OnInit {
         stock: null,
         costoPromedio: null,
         ultimoCosto: null,
-        proveedor: null
+        proveedor: null,
+        sucursal: null,
       })
 
     }
   }
   //fin del metodo
 
+  guardarProducto() {// este funcionaaaaaaaaaaaaaaa
+    console.log(this.producto);
+    this.producto.codigoRef = this.codigo
+    this.productoController.saveProductoUsingPOST(this.producto).subscribe(
+      res => {
+        console.log(res);
+        if (res.object != null) {//<_________________
+          this.idPro = res.object//esto que hace nose
+          console.log(this.idPro);
+          this.MessageSuccess(" Medicamento  guardado")
+          console.log(this.idPro);
+          this.productoDialog = false
+
+        } else {
+          this.mensajeError("error al guardar medicamento")
+          console.log(" holii" + this.idPro);
+          console.log("error" + this.errMsj)
+          console.log(res.object);
+        }
+      })
+  }
+  mensajeError(msg: String) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Error: ' + msg,
+    });
+  }
+
+  MessageSuccess(msg: String) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Resultado',
+      detail: 'Correcto!: ' + msg,
+    });
+  }
   //metodo de borrado logico
   borrarProducto(idProducto: number): void {
 
@@ -214,12 +293,20 @@ export class ProductoComponent implements OnInit {
         //Actual logic to perform a confirmation
         this.productoController.deleteProductoUsingPATCH(idProducto).subscribe(
           data => {
-            this.messageService.add({ severity: 'success', summary: 'Producto Eliminado', detail: 'eliminar.' });
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Producto Eliminado',
+              detail: 'eliminar.'
+            });
             setTimeout(() => {
               this.cargarProductos();
             }, 1000);
           },
-          error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+          error => this.messageService.add({
+            severity: 'danger',
+            summary: 'Error',
+            detail: error.mensaje
+          }));
       }
     });
 
@@ -229,7 +316,7 @@ export class ProductoComponent implements OnInit {
 
   //metodo cargar proveedores
   cargarProveedores(): void {
-    this.proveedorController.listUsingGET3().subscribe(
+    this.proveedorController.listUsingGET12().subscribe(
       data => {
         this.proveedores = data;
       },
@@ -237,6 +324,24 @@ export class ProductoComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+
+  // metodo para cargar las sucursales de la
+  cargarSucursales(): void {
+    this.sucursalController.listaUsingGET1().subscribe(
+      data => {
+        this.sucursales = data;
+        console.log(this.sucursales);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  limpiar(){
+    this.productoForm.reset();
   }
 }
 // fin del metodo

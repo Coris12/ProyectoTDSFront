@@ -16,6 +16,7 @@ export interface Tarjeta {
     fechaFin?: Date;
     fechaInicio?: Date;
     idTarjeta?: number;
+    idTarjetaEspecialidad?: number;
     numConsultas?: number;
     qr?: string;
     tarjetaEspecialidad?: TarjetaEspecialidad;

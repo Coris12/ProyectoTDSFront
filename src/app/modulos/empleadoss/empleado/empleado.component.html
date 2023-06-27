@@ -59,11 +59,12 @@
                         <td>{{empleados. usuario.email}}</td>
                         <td>{{empleados. usuario.sexo}}</td>
                         <td>{{empleados. cargoEmple}}</td>
-                        <td>{{empleados. usuario.roles[0].rolNombre}}</td>
-                        <td><button pButton pRipple type="button" 
-                            class="p-button-raised p-button-text p-button-danger" icon="pi pi-trash"
-                            (click)="borrarEmple(empleados.id_empleado)"></button>
-                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-raised p-button-text" (click)="updateEmpleado(empleados.id_empleado)"></button>
+                        <td>{{empleados.usuario.roles[0].rolNombre}}</td>
+                        <td><button pButton pRipple type="button" class="p-button-raised p-button-text p-button-danger"
+                                icon="pi pi-trash" (click)="borrarEmple(empleados.idEmpleado)"></button>
+                            <button pButton pRipple type="button" icon="pi pi-pencil"
+                                class="p-button-raised p-button-text"
+                                (click)="updateEmpleado(empleados.idEmpleado)"></button>
 
                     </tr>
                 </ng-template>
@@ -98,9 +99,14 @@
 
             </span>
         </div>
-
         <div style="text-align:right">
-            <p-button type="submit" icon="pi pi-check" label="Guardar" styleClass="p-button-text"></p-button>
+            <p-button type="submit" icon="pi pi-check" [disabled]="empleForm.invalid" label="Guardar"
+                styleClass="p-button-text"></p-button>
         </div>
+        
+            
+            <p-button type="button" label="Limpiar" (click)="limpiar()"></p-button>
+
+    
     </form>
 </p-dialog>

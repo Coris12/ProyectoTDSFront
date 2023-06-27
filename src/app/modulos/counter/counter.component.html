@@ -6,7 +6,7 @@
   <div class="p-5 bg-light">
     <div class="d-flex justify-content-between">
       <div class="p-2">
-        <h1>Gestión de Insumos</h1>
+        <h1>Gestión</h1>
       </div>
       <div class="ml-auto p-2">
         <button pTooltip="Reiniciar todo" pButton type="button" icon="pi pi-replay"
@@ -19,7 +19,7 @@
       <div class="p-toolbar-group-left">
         <!-- (click)="showDialog()" -->
         <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text"
-          label="Nuevo Producto" icon="pi pi-file-o" (click)="counterDialog=true"></button>
+          label="Nuevo Paciente" icon="pi pi-file-o" (click)="counterDialog=true"></button>
         <!--  (click)="showCatalogosEliminados()"
                 <button pButton pRipple type="button" style="margin: 10px" class="p-button-raised p-button-text p-button-danger" label="Papelera" icon="pi pi-trash" (click)="papeleraConvocatorias=true"></button>
 -->
@@ -167,11 +167,15 @@
       [rowHover]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
       <ng-template pTemplate="header">
         <tr>
+          
           <th pResizableColumn style="width:500px">
             <div class="flex justify-content-center align-items-center"> NOMBRE</div>
           </th>
           <th pResizableColumn style="width:500px">
             <div class="flex justify-content-center align-items-center"> DESCRIPCIÓN</div>
+          </th>
+          <th pResizableColumn style="width:80px">
+            <div class="flex justify-content-center align-items-center"> CANT</div>
           </th>
           <th pResizableColumn style="width:80px">
             <div class="flex justify-content-center align-items-center"> P.V.P</div>
@@ -181,12 +185,14 @@
           </th>
         </tr>
       </ng-template>
+      
       <ng-template pTemplate="body" let-tto>
         <!-- <tr [pSelectableRow]="productosFac"> -->
         <tr>
           <td>{{tto.nombre}}</td>
           <td>{{tto.descripcion}}</td>
-          <td><b>{{tto.valor_unitario}}</b></td>
+          <td><b>{{tto.cantidad}}</b></td>
+          <td><b>{{tto.valorUnitario}}</b></td>
           <td style="text-align:center">
             <button pButton pRipple type="button" icon="pi pi-times" (click)="confirmacion(tto)"
               class="p-button-rounded p-button-text p-button-danger"></button>
@@ -289,8 +295,8 @@
         <tr [pSelectableRow]="tto">
           <td>{{tto.nombre}}</td>
           <td>{{tto.descripcion}}</td>
-          <td><b>{{tto.valor_unitario}}</b></td>
-          <td><b>{{tto.valor_unitario}}</b></td>
+          <td><b>{{tto.valorUnitario}}</b></td>
+          <td><b>{{tto.cantidad}}</b></td>
           <td>{{tto.categoria}}</td>
           <td>{{tto.codigo}}</td>
           <td>{{tto.precioProducto}}</td>

@@ -1,0 +1,1063 @@
+<app-header></app-header>
+<p-toast></p-toast>
+<div class="animated fadeIn mt-4">
+    <div class="p-5 bg-light">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Odontologia</h1>
+            </div>
+        </div>
+        <div id="htmlData">
+        <div class="content-section implementation mt-2">
+            <div class="mt-4">
+                <div class="grid p-fluid">
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" [(ngModel)]="establecimiento" value={{establecimiento}}
+                                pInputText>
+                            <label for="inputtext">Establecimiento</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText
+                            ngModel required="" (keypress)="validarCedula($event)" maxlength="13">
+                            <label for="inputtext">Cedula</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText
+                            ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                            <label for="inputtext">Nombres</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText
+                            ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                            <label for="inputtext">Sexo</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="edad"
+                            ngModel required="" (keypress)="validarNumero($event)" maxlength="2">
+                            <label for="inputtext">Edad</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" [(ngModel)]="numcli" pInputText
+                            ngModel required="" (keypress)="validarNumero($event)"  >
+                            <label for="inputtext">N° Historia Clinica</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <button pButton type="button" label="Limpiar"(click)="limpiar()" ></button>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <button pButton type="button" label="Listado"    (click)="listDialog = true;" ></button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>1.Motivo de Consulta</b>
+            </div>
+        </p-divider>
+        <p-editor [(ngModel)]="Odonto.motivo" [style]="{'height':'120px'}" 
+        ngModel required="" (keypress)="validarLetras($event)" >
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>2.Enfermedad o Problema Actual</b>
+            </div>
+        </p-divider>
+        <p-editor [(ngModel)]="Odonto.enfermedad" [style]="{'height':'120px'}"
+        ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>3.Antecedentes Personales y Familiares</b>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.alergiaAntiabio" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">ALERGIA ANTISIOTICO</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.alergiaAnes" inputId="an"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">ALERGIA ANESTESIA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.hemR" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">HEMORRAGIAS</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.vh" inputId="vh"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">VIH/SIDA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.tuberculosis" inputId="tb"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">TUBERCULOSIS</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.asma" inputId="as"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">ASMA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.diabetes" inputId="db"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">DIABETES</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.enfCardiaca" inputId="ec"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">ENF.CARDIACA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="indiceF.otros" inputId="an"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">OTRO</label>
+                </div>
+            </div>
+            <div class="col-12 mt-3 md:col-12">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" type="text" [(ngModel)]="indiceF.descripcion"
+                        id="familiares" pInputText maxlength="500"
+                        ngModel required="" (keypress)="validarLetras($event)" >
+                    <label class="p-inputtext-sm" for="inputtext"></label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>4.Signos Vitales</b>
+            </div>
+        </p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" [(ngModel)]="Odonto.presion" autocomplete="off" type="text"
+                        id="PRESION" pInputText pKeyFilter="num"
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    <label class="p-inputtext-sm" for="inputtext">PRESION ARTERIAL</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" [(ngModel)]="Odonto.frecCardiaca" type="text"
+                        id="temperatura" pInputText pKeyFilter="num"
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    <label class="p-inputtext-sm" for="inputtext">FRECUENCIA CARDIACA min</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" [(ngModel)]="Odonto.temperatura" type="text"
+                        id="temperatura" pInputText pKeyFilter="num"
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    <label class="p-inputtext-sm" for="inputtext">TEMPERATURA °C</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" [(ngModel)]="Odonto.frecRespi" type="text"
+                        id="temperatura" pInputText pKeyFilter="num"
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    <label class="p-inputtext-sm" for="inputtext">F.RESPIRATORIA min</label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>5.Examen del sistema estomatognatico</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.labio" inputId="lb"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">LABIO</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.mejillas" inputId="mj"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">MEJILLA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.maxSuperior" inputId="ms"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">MAXILAR SUPERIOR</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.maxilarInf" inputId="mi"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">MAXILAR INFERIOR</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.lengua" inputId="lg"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">LENGUA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.paladar" inputId="pl"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">PALADAR</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.piso" inputId="ps"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">PISO</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.carrillos" inputId="cr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">CARRILLOS</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.glandulasSa" inputId="gs"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">GLANDULAS SALIBALES</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.oroFaringe" inputId="of"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">ORO FARINGE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.atm" inputId="at"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">A.T.M.</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="examenE.glangios" inputId="gl"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">GLANGLIOS</label>
+                </div>
+            </div>
+            <div class="col-12 mt-3 md:col-12">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" [(ngModel)]="examenE.descripcion" type="text"
+                        id="familiares" pInputText maxlength="500"
+                        ngModel required="" (keypress)="validarLetras($event)" >
+                    <label class="p-inputtext-sm" for="inputtext"></label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>6.Odontograma</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fluid">
+            <div class="container mt-2" style="text-align: center;">
+                <img src="../../../../assets/odontograma.jpg" class="img-thumbnail" width="600" height="800">
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>7.Indicadores de salud bucal</b>
+            </div>
+        </p-divider>
+        <p-fieldset legend="Higuiene oral simplificada">
+
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <label for="re">Piezas Dentales</label>
+                </div>
+                <div class="col-12 md:col-2">
+                    <label for="re"></label>
+                </div>
+                <div class="col-12 md:col-2">
+                    <label for="re"></label>
+                </div>
+                <div class="col-12 md:col-2">
+                    <label for="re">Placa 0-1-2-3</label>
+                </div>
+                <div class="col-12 md:col-2">
+                    <label for="re">Calculo 0-1-2-3</label>
+
+                </div>
+                <div class="col-12 md:col-2">
+                    <label for="re">Gingivitis 0-1-2-3</label>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p16" value="X" [(ngModel)]="salud.p16" inputId="p1"></p-radioButton>
+                        <label for="p1">16</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p17" value="X" [(ngModel)]="salud.p17" inputId="p2"></p-radioButton>
+                        <label for="p2">17</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p55" value="X" [(ngModel)]="salud.p55" inputId="p3"></p-radioButton>
+                        <label for="p3">55</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" [(ngModel)]="salud.placa1" pInputText placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" [(ngModel)]="salud.cal1" pInputText placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" [(ngModel)]="salud.gin1" pInputText placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p11" value="X" [(ngModel)]="salud.p11" inputId="p4"></p-radioButton>
+                        <label for="p4">11</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p21" value="X" [(ngModel)]="salud.p21" inputId="p5"></p-radioButton>
+                        <label for="p5">21</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p51" value="X" [(ngModel)]="salud.p51" inputId="p6"></p-radioButton>
+                        <label for="p6">51</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" [(ngModel)]="salud.placa2" pInputText placeholder="">
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText [(ngModel)]="salud.cal2" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText [(ngModel)]="salud.gin2" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p26" value="X" [(ngModel)]="salud.p26" inputId="p7"></p-radioButton>
+                        <label for="p6">26</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p27" value="X" [(ngModel)]="salud.p27" inputId="p8"></p-radioButton>
+                        <label for="p8">27</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p65" value="X" [(ngModel)]="salud.p65" inputId="p9"></p-radioButton>
+                        <label for="p9">65</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" [(ngModel)]="salud.placa3" pInputText placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText  [(ngModel)]="salud.cal3" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText [(ngModel)]="salud.gin3" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p36" value="X" [(ngModel)]="salud.p36" inputId="pz1"></p-radioButton>
+                        <label for="pz1">36</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p37" value="X" [(ngModel)]="salud.p37" inputId="pz2"></p-radioButton>
+                        <label for="pz2">27</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p75" value="X" [(ngModel)]="salud.p75" inputId="pz3"></p-radioButton>
+                        <label for="pz3">75</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number"  [(ngModel)]="salud.placa4"pInputText placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number"  [(ngModel)]="salud.cal4"pInputText placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number"  pInputText [(ngModel)]="salud.gin4" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p31" value="X" [(ngModel)]="salud.p31" inputId="pz4"></p-radioButton>
+                        <label for="pz4">31</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p41" value="X" [(ngModel)]="salud.p41" inputId="pz5"></p-radioButton>
+                        <label for="pz5">41</label>
+                    </div>
+                </div>
+
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p71" value="X" [(ngModel)]="salud.p71" inputId="pz6"></p-radioButton>
+                        <label for="pz3">71</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText  [(ngModel)]="salud.placa5" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number"  pInputText  [(ngModel)]="salud.cal5" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText  [(ngModel)]="salud.gin5" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p46" value="X" [(ngModel)]="salud.p46" inputId="z1"></p-radioButton>
+                        <label for="z1">46</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p47" value="X" [(ngModel)]="salud.p47" inputId="z2"></p-radioButton>
+                        <label for="z2">47</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="p85" value="X" [(ngModel)]="salud.p85" inputId="z3"></p-radioButton>
+                        <label for="z3">85</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText [(ngModel)]="salud.placa6" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText [(ngModel)]="salud.calcul6" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText [(ngModel)]="salud.gin6" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <label for="re"></label>
+                </div>
+                <div class="col-12 md:col-2">
+                    <label for="re">Totales</label>
+                </div>
+                <div class="col-12 md:col-2">
+                    <label for="re"></label>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText [(ngModel)]="salud.toatlP1" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText [(ngModel)]="salud.totalC2" placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+                <div class="col-12 md:col-2">
+                    <span class="p-input-icon-left">
+                        <input type="number" pInputText  [(ngModel)]="salud.toatlG1"placeholder=""
+                        ngModel required="" (keypress)="validarNumero($event)" >
+                    </span>
+                </div>
+            </div>
+        </p-fieldset>
+        <p-fieldset legend="">
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <label for="re">Enfermedad Periodontal</label>
+                </div>
+                <div class="col-12 md:col-2">
+                    <label for="re">Mal Oclusion</label>
+                </div>
+                <div class="col-12 md:col-2">
+                    <label for="re">Fluorosis</label>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="leve" value="X" [(ngModel)]="salud.leve" inputId="l"></p-radioButton>
+                        <label for="l">Leve</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="angle" value="X" [(ngModel)]="salud.angleI" inputId="a"></p-radioButton>
+                        <label for="a">Angle I</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="leveF" value="X" [(ngModel)]="salud.leveF" inputId="lF"></p-radioButton>
+                        <label for="lF">Leve</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="Moderada" value="X" [(ngModel)]="salud.moderada" inputId="m"></p-radioButton>
+                        <label for="m">Moderada</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="angle II" value="X" [(ngModel)]="salud.angleII" inputId="aI"></p-radioButton>
+                        <label for="aI">Angle II</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="ModeradaF" value="X" [(ngModel)]="salud.moderadaF" inputId="mF"></p-radioButton>
+                        <label for="mF">Moderada</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid p-fluid">
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="severa" value="X" [(ngModel)]="salud.severa" inputId="s"></p-radioButton>
+                        <label for="s">Severa</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <p-radioButton name="angleIII" value="X" [(ngModel)]="salud.angleIII" inputId="aII"></p-radioButton>
+                        <label for="aII">Angle III</label>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="severaF" value="X" [(ngModel)]="salud.severaF" inputId="sF"></p-radioButton>
+                        <label for="sF">Severa</label>
+                    </div>
+                </div>
+            </div>
+        </p-fieldset>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>8.Indices CPO-ceo</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">D</label>
+                    <input type="number" [(ngModel)]="indice.d" pInputText placeholder=""
+                    ngModel required="" (keypress)="validarNumero($event)" >
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">C</label>
+                    <input type="number" [(ngModel)]="indice.c" pInputText placeholder=""
+                    ngModel required="" (keypress)="validarNumero($event)" >
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-center">
+                    <label for="requisitos ">P</label>
+                    <input type="number" pInputText [(ngModel)]="indice.p" placeholder=""
+                    ngModel required="" (keypress)="validarNumero($event)" >
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-center">
+                    <label for="requisitos ">O</label>
+                    <input type="number" pInputText [(ngModel)]="indice.o" placeholder=""
+                    ngModel required="" (keypress)="validarNumero($event)" >
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">TOTAL</label>
+                    <input type="number" pInputText [(ngModel)]="indice.totalD" placeholder=""
+                    ngModel required="" (keypress)="validarNumero($event)">
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">d</label>
+                    <input type="number" pInputText [(ngModel)]="indice.d1" placeholder=""
+                    ngModel required="" (keypress)="validarNumero($event)" >
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">c</label>
+                    <input type="number" pInputText [(ngModel)]="indice.c1" placeholder=""
+                    ngModel required="" (keypress)="validarNumero($event)" >
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-center">
+                    <label for="requisitos ">p</label>
+                    <input type="number" pInputText [(ngModel)]="indice.p1" placeholder=""
+                    ngModel required="" (keypress)="validarNumero($event)" >
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-center">
+                    <label for="requisitos ">o</label>
+                    <input type="number" pInputText [(ngModel)]="indice.o1" placeholder=""
+                    ngModel required="" (keypress)="validarNumero($event)">
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">TOTAL</label>
+                    <input type="number" pInputText [(ngModel)]="indice.totald1" placeholder=""
+                    ngModel required="" (keypress)="validarNumero($event)">
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>9.Simbologia del odontograma</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fluid">
+            <div class="container mt-2" style="text-align: center;">
+                <img src="../../../../assets/SIMBOLOGIA.jpg" class="img-thumbnail" width="600" height="400">
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>10.Planes de diaginostico terapeutico y educacional</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.biometrica" inputId="bi"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">BIOMETRICA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.quimicaS" inputId="qs"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="qs">QUIMICA SANGUINEA</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.rayosx" inputId="rx"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">RAYOS-X</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="planes.otros" inputId="bi"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">OTROS</label>
+                </div>
+            </div>
+            <div class="col-12 mt-3 md:col-12">
+                <span class="p-float-label">
+                    <input class="p-inputtext-sm" autocomplete="off" type="text" [(ngModel)]="planes.descripcion"
+                        id="familiares" pInputText maxlength="500"
+                        ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label class="p-inputtext-sm" for="inputtext"></label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>11.Diagnostico PRE=PRESUNTIVO DEF=DEFINITIVO</b>
+            </div>
+        </p-divider>
+
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-input-icon-left">
+                    <label for="requisitos "></label>
+                    <input type="text" pInputText [(ngModel)]="diagnostico.descripcion1" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                </span>
+            </div>
+            <label for="requisitos ">CIE</label>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <input type="text" pInputText [(ngModel)]="diagnostico.cie1" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                </span>
+            </div>
+
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="pre1" value="X" [(ngModel)]="diagnostico.pre1" inputId="city1"></p-radioButton>
+                    <label for="city1">PRE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="def1" value="X" [(ngModel)]="diagnostico.def" inputId="city"></p-radioButton>
+                    <label for="city">DEF</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-input-icon-left">
+                    <label for="requisitos "></label>
+                    <input type="text" pInputText [(ngModel)]="diagnostico.descripcion2" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255"   >
+                </span>
+            </div>
+            <label for="requisitos ">CIE</label>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <input type="text" pInputText [(ngModel)]="diagnostico.cie2" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255"  >
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="pre2" value="X" [(ngModel)]="diagnostico.pre2" inputId="city2"></p-radioButton>
+                    <label for="city2">PRE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="def2" value="X" [(ngModel)]="diagnostico.def2" inputId="city3"></p-radioButton>
+                    <label for="city3">DEF</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">PRE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" inputId="ch"></p-checkbox>
+                    <label for="ch">DEF</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">Fecha de apertura</label>
+                    <input type="date" pInputText [(ngModel)]="diagnostico.fechaA" placeholder=""
+                    ngModel required="">
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">Fecha de control</label>
+                    <input type="date" pInputText [(ngModel)]="diagnostico.fechaC" placeholder=""
+                    ngModel required="">
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">Profesional</label>
+                    <input type="text" pInputText [(ngModel)]="diagnostico.profesional" placeholder="profesional"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">Codigo</label>
+                    <input type="number" pInputText [(ngModel)]="Odonto.codigo" placeholder="codigo"
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>12.Tratamiento</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">Sesion</label>
+                    <input type="text" pInputText [(ngModel)]="Odonto.sesion" placeholder="Sesion"
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">Fecha</label>
+                    <input type="date" pInputText [(ngModel)]="Odonto.fecha" placeholder="Fecha"
+                    ngModel required="">
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <label for="requisitos ">Codigo</label>
+                    <input type="text" pInputText [(ngModel)]="Odonto.codigo" placeholder="codigo"
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+
+            <div class="col-12 md:col-2">
+                <label for="float-input">Diagnosticos y complicaciones</label>
+                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Odonto.diagnostico"
+                ngModel required="" (keypress)="validarLetras($event)" maxlength="255"></textarea>
+            </div>
+
+            <div class="col-12 md:col-4">
+                <label for="float-input">Procedimientos</label>
+                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Odonto.procedimiento"
+                ngModel required="" (keypress)="validarLetras($event)" maxlength="255"></textarea>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for="float-input">Prescripciones</label>
+                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Odonto.prescripcion"
+                ngModel required="" (keypress)="validarLetras($event)" maxlength="255"> </textarea>
+
+            </div>
+        </div>
+        <p-button label="Guardar" (click)="cargarPersona()" icon="pi pi-check" [style]="{'margin-left': '.6em'}">
+        </p-button>
+    </div>
+    <p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
+        <div class="col-12 flex align-items-center justify-content-center">
+            <div class="p-fluid">
+                <p-table #dt [value]="odontologia" [lazy]="true" (onLazyLoad)="CargarOdon($event)"
+                    selectionMode="single" [loading]="loading" responsiveLayout="scroll" [resizableColumns]="true"
+                    styleClass="p-datatable-gridlines p-datatable-sm"
+                    [globalFilterFields]="['nombres','historia_clinica', 'identificacion']"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true"
+                    [rows]="10">
+                    <ng-template pTemplate="caption">
+                        <div class="flex">
+                            <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
+                                (click)="clear(dt)"></button>
+
+                            <span class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" autocomplete="off"
+                                    (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="BUSCAR" />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pResizableColumn style="width:110px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    IDENTIFICACIÓN
+                                </div>
+                            </th>
+                            <th pResizableColumn>
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    NOMBRES
+                                </div>
+                            </th>
+                            
+                            <th pResizableColumn style="width:100px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    FECHA
+                                </div>
+                            </th>
+
+                            <th pResizableColumn style="width:50px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    PRINT
+                                </div>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-odo>
+                        <tr>
+                            <td style="text-align:center">{{odo.usuario.identificacion}}</td>
+                            <td style="text-align:center">{{odo.usuario.nombres}}</td>
+                            <td style="text-align:center"> {{odo.fecha}}</td>
+                            <td style="text-align:center">
+                                <button pButton pRipple type="button" icon="pi pi-print"
+                                    (click)="imprimirPDFSinceButton(odo.idOdonto)"
+                                    class="p-button-rounded p-button-text">
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="8">Ningun registro.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+    </p-sidebar>
