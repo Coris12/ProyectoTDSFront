@@ -17,7 +17,6 @@ export class EmpleadoComponent implements OnInit {
   public empleForm = new FormGroup({
     idEmpleado: new FormControl(null),
     estado: new FormControl(null),
-    farmacia: new FormControl(null, [Validators.nullValidator, Validators.required]),
     cargoEmple: new FormControl(null, [Validators.nullValidator, Validators.required]),
     usuario: new FormControl(null, [Validators.nullValidator, Validators.required])
   });
@@ -47,7 +46,9 @@ export class EmpleadoComponent implements OnInit {
     })
   }
 
-
+  limpiar() {
+    this.empleForm.reset();
+  }
   cargarEmpleados(event?: LazyLoadEvent) {
     this.loading = true;
     setTimeout(() => {
@@ -66,14 +67,15 @@ export class EmpleadoComponent implements OnInit {
   }
 
   updateEmpleado(idEmpleado: number) {
-    this.empleadoController.getByIdUsingGET1(idEmpleado)
+    this.empleadoController.getByIdUsingGET2(idEmpleado)
       .subscribe(emple => {
         console.log(emple.idEmpleado)
         this.empleForm.setValue({
-          idEmpleado:emple.idEmpleado,
-          cargoEmple:emple.cargoEmple,
-          usuario:emple.usuario
-          
+          idEmpleado: emple.idEmpleado,
+          cargoEmple: emple.cargoEmple,
+          estado: emple.estado,
+          usuario: emple.usuario
+
         });
       });
     this.EmpleadoDialog = true;
@@ -81,8 +83,10 @@ export class EmpleadoComponent implements OnInit {
   }
 
   saveEmpleado(): void {
+    
     console.log(this.empleForm.value)
     if (this.empleForm.value?.idEmpleado !== null) {
+      
       this.empleadoController.updateUsingPUT1(
         this.empleForm.value,
         this.empleForm.value?.idEmpleado,
@@ -100,20 +104,21 @@ export class EmpleadoComponent implements OnInit {
         this.empleForm.value,
         this.empleForm.value?.usuario.idUsuario
       ).subscribe(data => {
-        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Sucursal creada con exito.' });
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Empleado creado con exito.' });
 
       },
         error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
 
-        this.EmpleadoDialog = false;
+      this.EmpleadoDialog = false;
 
-        this.empleForm.setValue({
-          idEmpleado: null,
-          cargoEmple: null,
-          usuario: null
+      this.empleForm.setValue({
+        idEmpleado: null,
+        cargoEmple: null,
+        usuario: null
       })
-
+      
     }
+    this.limpiar();
   }
 
   cargarUsuarios(): void {
@@ -144,6 +149,22 @@ export class EmpleadoComponent implements OnInit {
       }
     });
 
+  }
+
+  mensajeError(msg: String) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Error: ' + msg,
+    });
+  }
+
+  MessageSuccess(msg: String) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Resultado',
+      detail: 'Correcto!: ' + msg,
+    });
   }
 }
 

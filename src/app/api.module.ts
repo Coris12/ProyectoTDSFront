@@ -3,27 +3,69 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
+import { AccidenteControllerService } from './api/accidenteController.service';
+import { AdmisionControllerService } from './api/admisionController.service';
+import { AltaControllerService } from './api/altaController.service';
+import { AnestesiaControllerService } from './api/anestesiaController.service';
 import { AntecFamiliaresControllerService } from './api/antecFamiliaresController.service';
 import { AntecPersonalesControllerService } from './api/antecPersonalesController.service';
 import { AuthControllerService } from './api/authController.service';
+import { AutorizacionControllerService } from './api/autorizacionController.service';
 import { BasicErrorControllerService } from './api/basicErrorController.service';
 import { ClienteControllerService } from './api/clienteController.service';
+import { ComplicacionesControllerService } from './api/complicacionesController.service';
+import { ConsentimientoControllerService } from './api/consentimientoController.service';
 import { ConsultaExternaControllerService } from './api/consultaExternaController.service';
+import { ContraControllerService } from './api/contraController.service';
 import { CuerpoFacturaControllerService } from './api/cuerpoFacturaController.service';
+import { DatosInsControllerService } from './api/datosInsController.service';
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
+import { DiagnosticoOControllerService } from './api/diagnosticoOController.service';
+import { DiagnsticoAiControllerService } from './api/diagnsticoAiController.service';
+import { EmergenciaControllerService } from './api/emergenciaController.service';
 import { EmpleadoControllerService } from './api/empleadoController.service';
+import { EnfermadAnteControllerService } from './api/enfermadAnteController.service';
+import { EquiposControllerService } from './api/equiposController.service';
+import { EvolucionControllerService } from './api/evolucionController.service';
 import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalController.service';
+import { ExamenEstoControllerService } from './api/examenEstoController.service';
 import { FacturaControllerService } from './api/facturaController.service';
 import { FamiliaresControllerService } from './api/familiaresController.service';
 import { FaramaciaControllerService } from './api/faramaciaController.service';
+import { FormsControllerService } from './api/formsController.service';
+import { HistoriaControllerService } from './api/historiaController.service';
+import { IndiceControlllerService } from './api/indiceControlller.service';
+import { IndicesFamilControllerService } from './api/indicesFamilController.service';
+import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
+import { InfusionControllerService } from './api/infusionController.service';
+import { IngresoDiaControllerService } from './api/ingresoDiaController.service';
+import { InversaControllerService } from './api/inversaController.service';
+import { LesionesControllerService } from './api/lesionesController.service';
+import { LlegadaAdServiceService } from './api/llegadaAdService.service';
+import { MedicamentosControllerService } from './api/medicamentosController.service';
+import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
+import { OdontologiaControllerService } from './api/odontologiaController.service';
+import { OrganosControllerService } from './api/organosController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
+import { PlanesControllerService } from './api/planesController.service';
 import { ProductoControllerService } from './api/productoController.service';
+import { ProtocoloControllerService } from './api/protocoloController.service';
 import { ProveedorControllerService } from './api/proveedorController.service';
+import { RefiereControllerService } from './api/refiereController.service';
+import { RegionControllerService } from './api/regionController.service';
 import { ResidenciaControllerService } from './api/residenciaController.service';
 import { RevOrganoSistemControllerService } from './api/revOrganoSistemController.service';
+import { SaludControllerService } from './api/saludController.service';
 import { SigVitAntropometriaControllerService } from './api/sigVitAntropometriaController.service';
+import { SignosEControllerService } from './api/signosEController.service';
+import { SolicitudEControllerService } from './api/solicitudEController.service';
 import { SucursalControllerService } from './api/sucursalController.service';
 import { TarjetaControllerService } from './api/tarjetaController.service';
+import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadController.service';
+import { TecnicaControllerService } from './api/tecnicaController.service';
+import { TerapiaControllerService } from './api/terapiaController.service';
+import { TipoQuiControllerService } from './api/tipoQuiController.service';
+import { TrataMControllerService } from './api/trataMController.service';
 import { TratamientoControllerService } from './api/tratamientoController.service';
 
 @NgModule({
@@ -31,27 +73,69 @@ import { TratamientoControllerService } from './api/tratamientoController.servic
   declarations: [],
   exports:      [],
   providers: [
+    AccidenteControllerService,
+    AdmisionControllerService,
+    AltaControllerService,
+    AnestesiaControllerService,
     AntecFamiliaresControllerService,
     AntecPersonalesControllerService,
     AuthControllerService,
+    AutorizacionControllerService,
     BasicErrorControllerService,
     ClienteControllerService,
+    ComplicacionesControllerService,
+    ConsentimientoControllerService,
     ConsultaExternaControllerService,
+    ContraControllerService,
     CuerpoFacturaControllerService,
+    DatosInsControllerService,
     DiagnosticoControllerService,
+    DiagnosticoOControllerService,
+    DiagnsticoAiControllerService,
+    EmergenciaControllerService,
     EmpleadoControllerService,
+    EnfermadAnteControllerService,
+    EquiposControllerService,
+    EvolucionControllerService,
     ExamFisicoRegionalControllerService,
+    ExamenEstoControllerService,
     FacturaControllerService,
     FamiliaresControllerService,
     FaramaciaControllerService,
+    FormsControllerService,
+    HistoriaControllerService,
+    IndiceControlllerService,
+    IndicesFamilControllerService,
+    InformacionTratamientoControllerService,
+    InfusionControllerService,
+    IngresoDiaControllerService,
+    InversaControllerService,
+    LesionesControllerService,
+    LlegadaAdServiceService,
+    MedicamentosControllerService,
+    MedicoConsentimientoControllerService,
+    OdontologiaControllerService,
+    OrganosControllerService,
     PlanTratamientoControllerService,
+    PlanesControllerService,
     ProductoControllerService,
+    ProtocoloControllerService,
     ProveedorControllerService,
+    RefiereControllerService,
+    RegionControllerService,
     ResidenciaControllerService,
     RevOrganoSistemControllerService,
+    SaludControllerService,
     SigVitAntropometriaControllerService,
+    SignosEControllerService,
+    SolicitudEControllerService,
     SucursalControllerService,
     TarjetaControllerService,
+    TarjetaEspecialidadControllerService,
+    TecnicaControllerService,
+    TerapiaControllerService,
+    TipoQuiControllerService,
+    TrataMControllerService,
     TratamientoControllerService ]
 })
 export class ApiModule {

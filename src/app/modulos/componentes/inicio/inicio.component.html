@@ -1,36 +1,78 @@
 <app-header></app-header>
+<img src="../../../../assets/fondo.png"
+class="img-fluid" style="position: fixed; right: 10; top: 0; z-index: -100; opacity: 0.60;margin-top: 0;bottom: -500px;">
 <div class="container mt-4">
     <p-card header="Al centro de especialidades Medivalle." subheader="Sistema para el uso de los centros medicos" [style]="{width: '100%'}" styleClass="p-card-shadow">
         <ng-template pTemplate="header">
             <h1 *ngIf="!nombreUsuario" class="display-4">Bienvenido!</h1>
             <h1 *ngIf="nombreUsuario" class="display-4">Bienvenido, {{nombreUsuario}}</h1>
         </ng-template>
-        <ng-template pTemplate="footer">
+        
             <div *ngIf="!isLogged">
-                <p-carousel [value]="opciones" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
-                    <ng-template pTemplate="header">
-
-                    </ng-template>
-                    <ng-template let-opc pTemplate="item">
-                        <div class="product-item">
-                            <div class="product-item-content">
-                                <div class="p-mb-3">
-                                    <img src="{{opc.imagen}}" [alt]="" class="product-image" />
-                                </div>
-                                <div>
-                                    <h4 class="p-mb-1">{{opc.descripcion}}</h4>
-                                    <div class="car-buttons p-mt-5">
-                                    </div>
-                                </div>
-                            </div>
+                
+                <div class="row">
+                    <div class="slide-inner">
+                        <input class="slide-open" type="radio" id="slide-1" 
+                              name="slide" aria-hidden="true" hidden="" checked="checked">
+                        <div class="slide-item"align="center" >
+                            <img src="../../../../assets/nosotrs.jpg" width="300" height="200" >
                         </div>
-                    </ng-template>
-                </p-carousel>
+                        <input class="slide-open" type="radio" id="slide-2" 
+                              name="slide" aria-hidden="true" hidden="">
+                        <div class="slide-item" align="center" >
+                            <img src="../../../../assets/MEDIVALLE.gif" width="300" height="200" >
+                        </div>
+                        <input class="slide-open" type="radio" id="slide-3" 
+                              name="slide" aria-hidden="true" hidden="">
+                        <div class="slide-item" align="center">
+                            <img src="../../../../assets/Medi.jpg"  width="300" height="200">
+                        </div>
+                       <input class="slide-open" type="radio" id="slide-4" 
+                              name="slide" aria-hidden="true" hidden="">
+                        <div class="slide-item" align="center">
+                            <img src="../../../../assets/Mediva.jpg"  width="300" height="200">
+                        </div>
+                        <label for="slide-4" class="slide-control prev control-1">‹</label>
+                        <label for="slide-2" class="slide-control next control-1">›</label>
+                        <label for="slide-1" class="slide-control prev control-2">‹</label>
+                        <label for="slide-3" class="slide-control next control-2">›</label>
+                        <label for="slide-2" class="slide-control prev control-3">‹</label>
+                        <label for="slide-4" class="slide-control next control-3">›</label>
+                        <label for="slide-3" class="slide-control prev control-4">‹</label>
+                        <label for="slide-1" class="slide-control next control-4">›</label>
+                        <ol class="slide-indicador">
+                            <li>
+                                <label for="slide-1" class="slide-circulo">•</label>
+                            </li>
+                            <li>
+                                <label for="slide-2" class="slide-circulo">•</label>
+                            </li>
+                            <li>
+                                <label for="slide-3" class="slide-circulo">•</label>
+                            </li>
+                            <li>
+                                <label for="slide-4" class="slide-circulo">•</label>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                
                 <div align="center" *ngIf="!isLogged">
                     <p-button label="Iniciar Session" icon="pi pi-user" styleClass="p-button-warning" [style]="{'margin-left': '.5em'}" routerLink='/login'></p-button>
                 </div>
             </div>
-        </ng-template>
-
+      
     </p-card>
+</div> 
+
+
+
+
+<div align=center *ngIf="!isLogged">
+<app-footer></app-footer>
 </div>
+
+  
+    <body>
+        
+    </body>

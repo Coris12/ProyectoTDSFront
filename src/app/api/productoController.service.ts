@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class ProductoControllerService {
 
-    protected basePath = '//localhost:8080/';
+    protected basePath = '//localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -178,13 +178,13 @@ export class ProductoControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createUsingPOST3(body: Producto, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public createUsingPOST3(body: Producto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public createUsingPOST3(body: Producto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public createUsingPOST3(body: Producto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createUsingPOST4(body: Producto, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public createUsingPOST4(body: Producto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public createUsingPOST4(body: Producto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public createUsingPOST4(body: Producto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling createUsingPOST3.');
+            throw new Error('Required parameter body was null or undefined when calling createUsingPOST4.');
         }
 
         let headers = this.defaultHeaders;
@@ -328,13 +328,13 @@ export class ProductoControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getByIdUsingGET2(id: number, observe?: 'body', reportProgress?: boolean): Observable<Producto>;
-    public getByIdUsingGET2(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Producto>>;
-    public getByIdUsingGET2(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Producto>>;
-    public getByIdUsingGET2(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getByIdUsingGET9(id: number, observe?: 'body', reportProgress?: boolean): Observable<Producto>;
+    public getByIdUsingGET9(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Producto>>;
+    public getByIdUsingGET9(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Producto>>;
+    public getByIdUsingGET9(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET2.');
+            throw new Error('Required parameter id was null or undefined when calling getByIdUsingGET9.');
         }
 
         let headers = this.defaultHeaders;
@@ -368,15 +368,67 @@ export class ProductoControllerService {
     }
 
     /**
+     * Recibe la id de convocatoria para mostrar estudiantes asignados
+     * 
+     * @param idSucursal id_sucursal
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getProductoByIdSucursalUsingGET(idSucursal: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Producto>>;
+    public getProductoByIdSucursalUsingGET(idSucursal: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Producto>>>;
+    public getProductoByIdSucursalUsingGET(idSucursal: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Producto>>>;
+    public getProductoByIdSucursalUsingGET(idSucursal: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (idSucursal === null || idSucursal === undefined) {
+            throw new Error('Required parameter idSucursal was null or undefined when calling getProductoByIdSucursalUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (idSucursal !== undefined && idSucursal !== null) {
+            queryParameters = queryParameters.set('id_sucursal', <any>idSucursal);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<Producto>>('get',`${this.basePath}/producto/getProductoByIdSucursal`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Muestra una lista de productos
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listUsingGET2(observe?: 'body', reportProgress?: boolean): Observable<Array<Producto>>;
-    public listUsingGET2(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Producto>>>;
-    public listUsingGET2(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Producto>>>;
-    public listUsingGET2(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listUsingGET10(observe?: 'body', reportProgress?: boolean): Observable<Array<Producto>>;
+    public listUsingGET10(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Producto>>>;
+    public listUsingGET10(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Producto>>>;
+    public listUsingGET10(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -400,6 +452,58 @@ export class ProductoControllerService {
 
         return this.httpClient.request<Array<Producto>>('get',`${this.basePath}/producto/lista`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * saveProducto
+     * 
+     * @param body producto
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public saveProductoUsingPOST(body: Producto, observe?: 'body', reportProgress?: boolean): Observable<GenericResponsestring>;
+    public saveProductoUsingPOST(body: Producto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponsestring>>;
+    public saveProductoUsingPOST(body: Producto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponsestring>>;
+    public saveProductoUsingPOST(body: Producto, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling saveProductoUsingPOST.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (JWT) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<GenericResponsestring>('post',`${this.basePath}/producto/saveMedicamentos`,
+            {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

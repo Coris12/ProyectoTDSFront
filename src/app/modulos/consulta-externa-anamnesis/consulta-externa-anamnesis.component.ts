@@ -145,7 +145,7 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
   }
 
   ngOnInit(): void {
-    this.ConsultaExternaByHistoriaClinica();
+   // this.ConsultaExternaByHistoriaClinica();
     this.formCabezera = this.formBuilder.group({
       nombresApellidos: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       sexo: ['', [Validators.required]],
@@ -159,12 +159,12 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
     });
 
     this.formAntPer = this.formBuilder.group({
-      clinico: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(225), Validators.pattern('[a-zA-ZÑ0-9 :,-]*')]],
-      quirurgico: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(225), Validators.pattern('[a-zA-ZÑ0-9 :,-]*')]],
+      clinico: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(500), Validators.pattern('[a-zA-ZÑ0-9 :,-]*')]],
+      quirurgico: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(500), Validators.pattern('[a-zA-ZÑ0-9 :,-]*')]],
     });
 
     this.AntFam = this.formBuilder.group({
-      desFam: ['', [Validators.required]],
+      desFam: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(500)]],
     });
 
     this.enfAct = this.formBuilder.group({
@@ -182,6 +182,7 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
       urinario: ['', [Validators.required]],
       endocrino: ['', [Validators.required]],
       nervioso: ['', [Validators.required]],
+      descripcion: ['',[Validators.required, Validators.maxLength(500)]]
     });
 
     this.sigVital = this.formBuilder.group({
@@ -205,14 +206,14 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
     });
 
     this.diagnostic = this.formBuilder.group({
-      descDiag: ['', [Validators.required]],
-      cie: ['', [Validators.required]],
+      descDiag: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      cie: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       preDef: ['', [Validators.required]],
     });
 
     this.PresuntivoDef = this.formBuilder.group({
-      DescPreDef: ['', [Validators.required]],
-      DescPreDefCie: ['', [Validators.required]],
+      DescPreDef: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      DescPreDefCie: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       DescPreDefPreDef: ['', [Validators.required]],
     });
 
@@ -351,11 +352,11 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
         this.mensajesError('NO SE ENCONTRÓ LA PERSONA');
       }
       this.limpiarBuscar();
-      this.ConsultaExternaByHistoriaClinica();
+     // this.ConsultaExternaByHistoriaClinica();
     })
   }
 
-  ConsultaExternaByHistoriaClinica() {
+ /* ConsultaExternaByHistoriaClinica() {
     this.serviceConsExterna.getMaxHistoriaClinicaUsingGET().subscribe(data => {
       if (data) {
         this.ConsultaExternaObj.historiaClinica = data.object;
@@ -365,15 +366,14 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
     }, error => {
       this.mensajesError("OCURRIÓ UN ERROR AL OBTENER EL NUMERO DE HISTORIA CLINICA EN EL SERVIDOR");
     });
-  }
+  }*/
 
   consExtGPF = 0;
   crearConsultaExterna() {
-    console.log('crar consulta externa');
     this.submitted = true;
     if (this.formCabezera.valid && this.formAntPer.valid && this.formMotConst.valid && this.AntFam.valid && this.enfAct.valid && this.RevActu.valid
       && this.sigVital.valid && this.exaFisReg.valid && this.diagnostic.valid && this.footer.valid && this.PresuntivoDef.valid) {
-      this.ConsultaExternaObj.establecimiento = this.establecimiento;
+      this.ConsultaExternaObj.establecimiento = this.establecimiento.toUpperCase();
       this.ConsultaExternaObj.estado = "a";
       this.serviceConsExterna.comprobarHistoriaClinicaUsingGET(this.ConsultaExternaObj.historiaClinica).subscribe(data => {
         if (data.object == 0) {
@@ -393,10 +393,10 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
               this.crearSignosVitales();
               this.crearExamenFisico();
               this.crearDiagnostico();
-              this.mensajeSatisfactorio(data.message);
               this.crearPlanTratamiento();
+              this.mensajeSatisfactorio(data.message);
 
-              this.ConsultaExternaByHistoriaClinica();
+             // this.ConsultaExternaByHistoriaClinica();
             } else {
               this.mensajesError("OCURRIÓ UN ERROR AL CREAR LA CONSULTA EXTERNA");
             }
@@ -506,13 +506,29 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
         this.mensajeSatisfactorio(data.message);
         this.imprimirPDF(this.consExtGPF);
         //this.limpiarAll();
-
+        this.resetExcept();
       } else {
         this.mensajesError("Error al intententar guardar plan de tratamiento");
       }
     }, error => {
       this.mensajesError("ERROR AL GUARDAR EL PLAN DE TRATAMIENTO EN EL SERVIDOR");
     });
+  }
+
+  resetExcept() {
+    this.formCabezera.reset({
+      histCli: this.formCabezera.get('histCli').value
+    });
+    this.formAntPer.reset();
+    this.formMotConst.reset();
+    this.AntFam.reset();
+    this.enfAct.reset();
+    this.RevActu.reset();
+    this.sigVital.reset();
+    this.exaFisReg.reset();
+    this.diagnostic.reset();
+    this.PresuntivoDef.reset();
+    this.footer.reset();
   }
 
   cargarConsultaExterna(idConsultaExterna: number) {
@@ -590,7 +606,6 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
   }
 
   ngOnDestroy(): void {
-    console.log("ngOnDestroy");
     this.suscripcionCargarDatos.unsubscribe();
     this.suscripcionAntFam.unsubscribe();
     this.suscripcionAntPer.unsubscribe();
@@ -603,7 +618,6 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
   }
 
   updateConsultaExterna() {
-    console.log('update consulta externa');
     this.serviceConsExterna.updateConsultaExternaUsingPUT(this.ConsultaExternaObj.enfermedadActual, this.ConsultaExternaObj.fecha,
       this.ConsultaExternaObj.duracionConsulta, this.establecimiento, this.ConsultaExternaObj.idConsexterna,
       this.ConsultaExternaObj.motivoConsulta, this.ConsultaExternaObj.nombresProfesional).subscribe(data => {
@@ -751,12 +765,12 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
       link.download = 'CONSULTAEXTERNA_' + nomPer + '-' + (hitCli - 1) + '-' + fecha + '-h' + hora + '-' + numAlea + '.pdf';
       link.click();
       window.open(url);
-    }else{
+    } else {
       let nomPer = this.persona.nombresApellidos;
       let hitCli = this.persona.histCli;
       var link = document.createElement('a');
       link.href = url;
-      link.download = 'CONSULTAEXTERNA_' + (hitCli) + '-' + nomPer+ '-' +numAlea + '.pdf';
+      link.download = 'CONSULTAEXTERNA_' + (hitCli) + '-' + nomPer + '-' + numAlea + '.pdf';
       link.click();
       window.open(url);
     }
@@ -853,7 +867,8 @@ export class ConsultaExternaAnamnesisComponent implements OnInit, AfterContentCh
       this.planTratamientoObj.c = null,
       this.planTratamientoObj.t = null,
       this.planTratamientoObj.o = null
-    this.ConsultaExternaByHistoriaClinica();
+      this.resetExcept();
+   // this.ConsultaExternaByHistoriaClinica();
     this.submitted = false;
     this.updateSi = false;
     this.ngOnDestroy();

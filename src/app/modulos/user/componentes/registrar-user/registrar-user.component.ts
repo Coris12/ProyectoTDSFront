@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
+import { ResidenciaControllerService } from 'src/app/api/residenciaController.service';
+import { DatosTarjetaDto } from 'src/app/model/datosTarjetaDto';
+import { ResidenciaDto } from 'src/app/model/residenciaDto';
 
 import { TokenService } from 'src/app/service/token.service';
 import { NuevoUsuario } from '../../models/nuevo-usuario';
@@ -16,6 +19,26 @@ export class RegistrarUserComponent implements OnInit {
 
   nuevoUsuario: NuevoUsuario;
 
+
+  Reside: ResidenciaDto = {
+    barrio: null,
+    canton: null,
+    idRecidencia: null,
+    idUsuario: null,
+    nacionalidad: null,
+    pais: null,
+    parroquia: null,
+    provincia: null,
+    zona: null,
+  }
+
+
+
+  usuarioId: number;
+  provincia: string;
+  idUs: string;
+
+  //datos de persona
   celular: string;
   ciudad: string;
   direccion: string;
@@ -36,6 +59,7 @@ export class RegistrarUserComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private messageService: MessageService,
+    private residenciaService: ResidenciaControllerService,
   ) { }
 
   ngOnInit() {
@@ -56,23 +80,73 @@ export class RegistrarUserComponent implements OnInit {
     );
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
-        this.messageService.add({
-          severity: 'Cuenta creada',
-          summary: 'La se ha creado con exito:',
-          detail: data.message,
-          life: 3000,
-        });
-        this.router.navigate(['/login']);
+        if (data.mensaje != null) {
+          this.usuarioId = data.mensaje
+          this.MessageSuccess("cuenta creada");
+          this.limpiar();
+          this.router.navigate(['/lista-usuarios']);
+          this.guardarRecidencia();
+          console.log(this.usuarioId);
+
+        } else {
+          this.mensajeError("error al crear")
+          console.log(data.mensaje)
+        }
       },
       err => {
         this.errMsj = err.error.mensaje;
-        this.messageService.add({
-          severity: 'error',
-          summary: 'La cuenta no ha podido ser creada:',
-          detail: this.errMsj,
-          life: 3000,
-        });
       }
     );
+  }
+  guardarRecidencia() {
+    this.Reside.idUsuario = this.usuarioId
+    //this.ObjDatorTarj.provincia = this.provincia
+    this.residenciaService.guardarResidenciaUsingPOST(this.Reside).subscribe(
+      res => {
+        if (res.object != null) {
+          this.idUs = res.object;
+          console.log(this.idUs)
+          this.MessageSuccess("guardado");
+          console.log(this.Reside);
+          this.limpiar
+        } else {
+          this.mensajeError("error al guardar")
+          console.log("error" + this.errMsj)
+          console.log(res.object);
+        }
+      })
+  }
+  mensajeError(msg: String) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Error: ' + msg,
+    });
+  }
+
+  MessageSuccess(msg: String) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Resultado',
+      detail: 'Correcto!: ' + msg,
+    });
+  }
+  limpiar() {
+    this.identificacion = "";
+    this.nombres = "";
+    this.direccion = "";
+    this.celular = "";
+    this.sexo = "";
+    this.email = "";
+    this.ciudad = "";
+    this.nombreUsuario = "";
+    this.password = "";
+    this.Reside.barrio = "";
+    this.Reside.canton = "";
+    this.Reside.nacionalidad = "";
+    this.Reside.pais = "";
+    this.Reside.parroquia = "";
+    this.Reside.provincia = "";
+    this.Reside.zona = "";
   }
 }

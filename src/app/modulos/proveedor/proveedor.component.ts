@@ -14,136 +14,145 @@ import { ProveedorControllerService } from '../../api/proveedorController.servic
 })
 export class ProveedorComponent implements OnInit {
 
-
   public proveForm = new FormGroup({
     idProveedor: new FormControl(null),
     estado: new FormControl(null),
-    nombre_comercial_pro: new FormControl(null, [Validators.nullValidator, Validators.required]),
+    nombreComercialPro: new FormControl(null, [Validators.nullValidator, Validators.required]),
     usuario: new FormControl(null, [Validators.nullValidator, Validators.required])
   });
 
-  dialgoProveedor: boolean;
-  totalRecords: number
-  //! lista las convocatorias
-  proveedor: Proveedor[] = [];
 
+  //variables
+  proveedor: Proveedor[] = [];
   prove: any[];
+
+  //*lazy
+  loading: boolean;
+  totalRecords: number
   usuarios: Usuario[] = [];
 
-  loading: boolean;
+  proveDialog: boolean;
 
-  constructor(private authController: AuthControllerService, private proveedorController: ProveedorControllerService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(
+    private authController: AuthControllerService,
+    private proveedorController: ProveedorControllerService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.cargarProveedores();
-
     this.proveedorController.searchUsingGET3().subscribe((data: any) => {
       this.prove = data;
       console.log(this.prove);
     })
-
+    this.cargarProveedor();
     this.cargarUsuarios();
   }
 
-  guardarProveedor() {
-    this.proveedorController.createUsingPOST4(
-      this.proveForm.value,
-      this.proveForm.value?.usuario.idUsuario,
-    ).subscribe(data => {
-      this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Proveedor creado con exito.' });
-      setTimeout(() => {
-        this.cargarProveedores();
-      }, 1000);
-      this.dialgoProveedor = false;
-
-      this.proveForm.setValue({
-        idProveedor: null,
-        estado: null,
-        nombre_comercial_pro: null,
-        usuario: null
-      })
-
-    },
-      error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
-
-    this.dialgoProveedor = false;
-
-
-
-  }
-
-  /* guardarProveedor(): void {
-     this.proveedorController.createUsingPOST4(
-       this.proveForm.value,
-       this.proveForm.value?.usuario.idUsuario,
-     ).subscribe(data => {
-       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Proveedor creado con exito.' });
-       setTimeout(() => {
-         this.cargarProveedores();
-       }, 1000);
-       this.dialgoProveedor = false;
- 
-       this.proveForm.setValue({
-         idProveedor: null,
-         estado: null,
-         nombre_comercial_pro: null,
-         usuario: null
-       })
- 
-     },
-       error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
-   }*/
-
-
-  updateProveedor(idProveedor: number) {
-    this.proveedorController.getByIdUsingGET3(idProveedor)
-      .subscribe(prove => {
-        console.log(this.proveedor)
-        this.proveForm.setValue({
-          idProveedor: prove.proveedor.idProveedor,
-          nombre_comercial_pro: prove.proveedor.nombreComercialPro,
-          usuario: prove.proveedor.usuario,
-          estado: prove.proveedor.estado,
-        });
-      });
-    this.dialgoProveedor = true;
-
-  }
-
-  cargarProveedores(event?: LazyLoadEvent): void {
+  cargarProveedor(event?: LazyLoadEvent): void {
     this.loading = true;
     setTimeout(() => {
       this.proveedorController.searchUsingGET3().subscribe(
         data => {
           this.proveedor = data;
+          console.log(data);
           this.totalRecords = this.proveedor.length;
           this.loading = false;
         },
         err => {
-          this.messageService.add({ severity: 'danger', summary: 'Error', detail: err });
+          console.log(err);
         }
-
       );
-    }, 1000);
+    }, 100);
   }
 
-  borrarProveedor(idProveedor: number): void {
+  updateProveedor(idProveedor: number) {
+    //console.log(idProveedor);
 
+    this.proveedorController.getByIdUsingGET11(idProveedor)
+      .subscribe(prove => {
+        //console.log(prove.id_proveedor, prove.id_proveedor)
+        this.proveForm.setValue({
+          idProveedor: prove.idProveedor,
+          estado: prove.estado,
+          nombreComercialPro: prove.nombreComercialPro,
+          usuario: prove.usuario,
+        });
+      });
+    this.proveDialog = true;
+    this.limpiar();
+  }
+  limpiar() {
+    this.proveForm.reset()
+  }
+  saveProveedor() {
+
+    console.log(this.proveForm.value)
+    if (this.proveForm.value?.idProveedor !== null) {
+      this.proveedorController.updateUsingPUT3(
+        this.proveForm.value,
+        this.proveForm.value?.idProveedor,
+      ).subscribe(data => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Proveedor Actualizado',
+          detail: data.object
+        });
+        this.proveDialog = false;
+        this.cargarProveedor();
+      });
+    } else {
+      this.proveedorController.createUsingPOST5(
+        this.proveForm.value,
+        this.proveForm.value?.usuario.idUsuario,
+      ).subscribe(data => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Exito',
+          detail: 'Producto Creado .'
+        });
+      },
+        error =>
+          this.messageService.add({
+            severity: 'danger',
+            summary: 'Error',
+            detail: error.mensaje
+          })
+      );
+      this.proveDialog = false;
+      this.proveForm.setValue({
+        idProveedor: null,
+        estado: null,
+        nombreComercialPro: null,
+        usuario: null
+      })
+    }
+    this.limpiar();
+  }
+
+  borrarProveedor(idProveedor): void {
     this.confirmationService.confirm({
-      message: 'Esta seguro de eliminar el proveedor?',
+      message: 'Esta seguro de eliminar el proveedor ?',
       accept: () => {
-        //Actual logic to perform a confirmation
         this.proveedorController.deleteEmpleadoUsingPATCH1(idProveedor).subscribe(
           data => {
-            this.messageService.add({ severity: 'success', summary: 'Proveedor Eliminado', detail: 'eliminar.' });
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Proveedor Eliminado',
+              detail: 'Eliminar.'
+            });
             setTimeout(() => {
-              this.cargarProveedores();
+              this.cargarProveedor();
             }, 1000);
           },
-          error => this.messageService.add({ severity: 'danger', summary: 'Error', detail: error.mensaje }));
+          error =>
+            this.messageService.add({
+              severity: 'Danger',
+              summary: 'Error',
+              detail: error.mensaje
+            })
+        );
       }
-    });
-
+    })
   }
 
   cargarUsuarios(): void {
@@ -157,5 +166,66 @@ export class ProveedorComponent implements OnInit {
 
     );
 
+  }
+  
+  
+  validacionAlfanumerica(event) {
+    const patron = /[a-zA-ZÑ0-9 ,:-]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetras(event) {
+    const patron = /[a-zA-Z ]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validarLetrasYPunto(event) {
+    const patron = /[a-zA-Z .]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validacionsoloLetrasNumeros(event) {
+    const patron = /[a-zA-ZÑ0-9]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  validadcionPresionArterial(event) {
+    const patron = /[0-9 /]/;
+    const permitidos = event.keyCode;
+    if (permitidos === 8) {
+      return true;
+    } else if (patron.test(event.key)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

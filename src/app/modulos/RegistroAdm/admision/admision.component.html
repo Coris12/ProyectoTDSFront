@@ -1,9 +1,67 @@
 <app-header></app-header>
+<p-toast></p-toast>
 <div class="animated fadeIn mt-4">
     <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
             <div class="p-2">
-                <h1>Registro</h1>
+                <h2>Admision</h2>
+            </div>
+        </div>
+        <div class="p-fluid grid">
+            <div class="field col-12 md:col-2 centrar">
+                <span class="p-float-label">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="establecimiento"
+                        value={{establecimiento}} (keypress)="validarAlfanumerica($event)" maxlength="255"ngModel required>
+                    <label for="inputtext">INSTITUCIÓN DEL SISTEMA</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2 centrar">
+                <span class="p-float-label">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText
+                        [(ngModel)]="admision.unidadOperativa" ngModel required (keypress)="validarAlfanumerica($event)"
+                        maxlength="255">
+                    <label for="inputtext">UNIDAD OPERATIVA</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-2 centrar">
+                <span class="p-float-label">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="admision.codUd" required
+                        (keypress)="validarAlfanumerica($event)" maxlength="255" >
+                    <label for="inputtext">COD. UD</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <label for="" class="centrarLabel">COD. LOCALIZACIÓN</label>
+                <div class="flexDerecha">
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input autocomplete="off" type="text" id="inputtext" pInputText
+                                [(ngModel)]="admision.parroquia" ngModel required (keypress)="validarLetras($event)" maxlength="255">
+                            <label for="inputtext">PARROQUIA</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input autocomplete="off" type="text" id="inputtext" pInputText
+                                [(ngModel)]="admision.canton" (keypress)="validarLetras($event)" maxlength="255">
+                            <label for="inputtext">CANTÓN</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input autocomplete="off" type="text" id="inputtext" pInputText ngModel required
+                                [(ngModel)]="admision.provincia" (keypress)="validarLetras($event)" maxlength="255">
+                            <label for="inputtext">PROVINCIA</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-12 md:col-2 centrar">
+                <span class="p-float-label">
+                    <input autocomplete="off" type="text" id="inputtext" pInputText [(ngModel)]="numcli"
+                        (keypress)="validarNumero($event)" maxlength="10">
+                    <label for="inputtext"># HISTORIA CLÍNICA</label>
+                </span>
             </div>
         </div>
         <p-divider align="left">
@@ -16,570 +74,1639 @@
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext"  [(ngModel)]="buscarcedula" pInputText
+                    ngModel required="" (keypress)="validarCedula($event)" maxlength="13">
                     <label for="inputtext">Cedula</label>
                 </span>
             </div>
+            <div class="field col-12 md:col-2">
+                <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
+            </div>
+            <div class="field col-12 md:col-2">
+                <button pButton type="button" label="Limpiar"(click)="limpiar()" ></button>
+            </div>
+            <div class="field col-12 md:col-2">
+                <button pButton type="button" label="Listado"    (click)="listDialog = true;" ></button>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Nombres Completos</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Direccion (calle y nº -manzana</label>
+                    <input type="text" id="inputtext" [(ngModel)]="direccion" pInputText 
+                     ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Direccion</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Cedula</label>
+                    <input type="text" id="inputtext" [(ngModel)]="cel" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" >
+                    <label for="inputtext">Celular</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Cedula</label>
+                    <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Sexo</label>
                 </span>
             </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Cedula</label>
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="estado"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Estado Civil</label>
                 </span>
             </div>
-
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText
+                    [(ngModel)]="barrio"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Barrio</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText  [(ngModel)]="parrio" 
+                     ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Parroquia</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="canton"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Canton</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="provi"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Provincia</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="na"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Nacionalidad</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.instruccion"
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                    <label for="inputtext">Instruccion ultimo año aprobado</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="date" id="inputtext" pInputText [(ngModel)]="admision.fechaA"
+                    ngModel required="" >
+                    <label for="inputtext">Fecha Admision</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.ocupacion"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Ocupacion</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.empresa"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Empresa donde trabaja</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.tipoS"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Tipo de seguro</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.referidoD"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Referido de</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.emergencia"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">En caso de emergencia llamar a </label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.parantesco"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Parentesco</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.direccP"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Direcion</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.telefono"
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
         </div>
-        <!------------------------------------->
         <p-divider align="left">
             <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>2.Inicio de atencion y motivo</b>
+                <b>Forma de llegada</b>
             </div>
         </p-divider>
-        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="llegada.ambulancia" inputId="p1"></p-radioButton>
+                    <label for="p1">Ambulancia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="llegada.ambulat" inputId="p1"></p-radioButton>
+                    <label for="p1">Ambulatorio</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="X" [(ngModel)]="llegada.otro" inputId="p1"></p-radioButton>
+                    <label for="p1">Otro transporte</label>
+                </div>
+            </div>
+        </div>
         <div class="grid p-fluid">
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="time" pInputText>
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.fuente">
+                    <label for="inputtext">Fuente de informacion</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.persona">
+                    <label for="inputtext">Institucion o persona que entrega al paciente</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="admision.numero">
+                    <label for="inputtext">Telefono</label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>2.Inicio de Atencion y motivo </b>
+            </div>
+        </p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="time" id="inputtext" pInputText>
                     <label for="inputtext">Hora</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="group1" value="X" [(ngModel)]="llegada.trauma" inputId="ny"></p-radioButton>
+                    <label for="ny">Trauma</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="group1" value="X" [(ngModel)]="llegada.causaC" inputId="ny"></p-radioButton>
+                    <label for="ny">Causa clinica</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="X" value="X" [(ngModel)]="llegada.obstretica" inputId="ny"></p-radioButton>
+                    <label for="ny">Causa G.Obstretica</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="group1" value="X" [(ngModel)]="llegada.quirurgica"
+                        inputId="ny"></p-radioButton>
+                    <label for="ny">Causa Quirurgica</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="group1" value="X" [(ngModel)]="llegada.policia" inputId="ny"></p-radioButton>
+                    <label for="ny">Notificacion a la Policia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="group1" value="X" [(ngModel)]="llegada.motivo" inputId="ny"></p-radioButton>
+                    <label for="ny">Otro motivo</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Trauma</label>
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="llegada.desc"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Descripcion</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Causa Clinica</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Causa G.Ostretica</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Grupo Sanguineo y Factor Rh</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Notificacion a la policia</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Otro motivo</label>
+                    <input type="text" id="inputtext" pInputText [(ngModel)]="llegada.grupo"
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Grupo Sanguineo</label>
                 </span>
             </div>
         </div>
-        <!------------------------------------------------------------------------------>
         <p-divider align="left">
             <div class="inline-flex align-items-center">
                 <i class="pi pi-user mr-2"></i>
-                <b>3.Accidente,violencia,intoxicacion,envenamiento o quemadura</b>
+                <b>3.Accidente,violencia,intoxicacion,envenenamiento o quemadura </b>
             </div>
         </p-divider>
         <br>
         <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
+            <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="datetime-local" pInputText>
-                    <label for="">Fecha y Hora del evento</label>
+                    <input type="date" id="inputtext" [(ngModel)]="accidente.fecha" pInputText>
+                    <label for="inputtext">Fecha y Hora del evento</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="accidente.nombreE" pInputText
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
                     <label for="inputtext">Lugar del evento</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" pInputText>
-                    <label for="inputtext">Custodia policial</label>
+                    <input type="text" id="inputtext" [(ngModel)]="accidente.direccionE" pInputText
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="inputtext">Direccion del evento</label>
                 </span>
             </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-4 md:col-2">
+            <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Accidente de transito </label>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.policial" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Custodia Policial</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Caida </label>
+            <div class="grid p-fliud">
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.transito" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Accidente de transito</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.caida" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Caida</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.quemadura" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Quemadura</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.mode" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Mordedura</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.ahogamiento" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Ahogamiento</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.extrao" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Cuerpo Extraño</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.aplas" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Aplastamiento</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.otroa" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Otro accidente</label>
+                    </div>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Quemadura</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Mordedura</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Ahogamiento</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Cuerpo extraño</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Aplastamiento</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Violencia por arma de fuego</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Violencia por arma cortopunznate</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Violencia por riña</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Violencia Familiar</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Abuso Fisico</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Abuso Psicologico</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Abuso Sexual</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Otro accdiente</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Otra Violencia</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Intoxicacion alcoholica</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Intoxicacion alimentaria</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Intoxicacion por drogas</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Inhalacion de gases</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Otra Intoxicacion</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Envenamiento</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Picadura</label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Anafilaxia</label>
-                </div>
-            </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <textarea id="float-input" rows="5" cols="199" pInputTextarea></textarea>
-                    <label for="float-input">Observacion</label>
-                </span>
-            </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Aliento Etilico</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Valor Alcocheck</label>
-                </span>
-            </div>
-        </div>
-        <!------------------------------------------------------------------------------>
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>4.Antecedes personales y Familiares</b>
-            </div>
-            <br>
-            <label for="ny">Describir abajo,registrando el numero respectivo </label>
-        </p-divider>
+            <div class="grid p-fluid">
 
-        <div class="grid p-fluid">
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">1.Alergico </label>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.fuego" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Violencia por arma de fuego</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.rina" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Violencia por riña</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.corto" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Violencia por arma c.punzante</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.vfamiliar" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Violencia familiar</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.abusoF" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Abuso físico</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.apsicolgico" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Abuso psicológico</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.abusoS" inputId="bs"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Abuso sexual</label>
+                    </div>
+                </div>
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.otaraV" inputId="ov"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Otra violencia</label>
+                    </div>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">2.Clinico </label>
+            <div class="grid p-fliud">
+                <div class="col-12 md:col-2">
+                    <div class="field-checkbox">
+                        <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.alcolica" inputId="aa"
+                            [ngModelOptions]="{standalone: true}"></p-checkbox>
+                        <label for="ch">Intoxicación alcholica</label>
+                    </div>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">3.Ginecologico</label>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.alimentaria" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Intoxicación alimentaria</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">4.Traumotologo </label>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.drogas" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Intoxicación por drogas</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">5.Quirurgico</label>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.gases" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Inhalación de gases</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">6.Farmacologico </label>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.otraI" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Otra intoxicación</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">7.Psiquiatrico </label>
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.enve" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Envenenamiento</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="col-12 md:col-2">
                 <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">8.Otro </label>
+                    <p-checkbox name="X" [binary]="true" [(ngModel)]="accidente.picadura" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Picadura</label>
                 </div>
             </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="X" [binary]="true" [(ngModel)]="accidente.ana" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Anaflaxia</label>
+                </div>
+            </div>
+
         </div>
-        <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <textarea id="float-input" rows="5" cols="199" pInputTextarea></textarea>
-                    <label for="float-input">Descripcion</label>
+        <label for="cd">Observaciones</label>
+        <p-editor [(ngModel)]="accidente.desc" [style]="{'height':'120px'}"  ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
                 </span>
-            </div>
-        </div>
-        <!------------------------------------------------------------------------------>
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>5.Enfermedad actual y revision de sistemas</b>
-            </div>
-            <br>
-            <label for="ny">Describir cronologia-localizacion - caracteristica-intensidad-frecuencia-factores
-                agravantes</label>
-        </p-divider>
-        <div class="grid p-fluid">
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Via aerea libre </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Via aerea obstruida </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Condicion estable </label>
-                </div>
-            </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">Condicion inestable</label>
-                </div>
-            </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-                <span class="p-float-label">
-                    <textarea id="float-input" rows="5" cols="199" pInputTextarea></textarea>
-                    <label for="float-input">Descripcion</label>
-                </span>
-            </div>
-        </div>
-        <!------------------------------------------------------------------------------>
-        <p-divider align="left">
-            <div class="inline-flex align-items-center">
-                <i class="pi pi-user mr-2"></i>
-                <b>6.Signos Vitales</b>
-            </div>
-        </p-divider>
+            </ng-template>
+        </p-editor>
         <br>
         <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="accidente.etilico" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Aliento etílico</label>
+                </div>
+            </div>
             <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="accidente.valor" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
+                    <label for="inputtext">Valor alcocheck</label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>4.Antecedentes personales y familiares</b>
+            </div>
+        </p-divider>
+        <label for="inputtext">Describir abajo registrando el numero respectivo</label>
+        <p-divider></p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.alergico" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">1.Alérgico</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.clinico" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">2.Clínico</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.gine" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">3.Ginecológico</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.trau" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">4.Traumatóg.</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.quirur" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">5.Quirúrgico</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.farma" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">6.Farmacológ.</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.psiquiatrico" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">7.Psiquiatrico</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.otro" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">8.Otro</label>
+                </div>
+            </div>
+        </div>
+        <label for="cd">Observaciones</label>
+        <p-editor [(ngModel)]="enfermedad.descripcionA" [style]="{'height':'120px'}"  ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>5.Enfermedad actual y revisión de sistemas</b>
+            </div>
+        </p-divider>
+        <label for="inputtext">Describir cronologíalocalización caracteristicas intesidad frecuencia factores
+            agravantes</label>
+        <p-divider></p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.libre" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Via aérea libre</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.obstruida" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Via aérea obstriuda</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.estable" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Condición estable</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="enfermedad.inestable" inputId="hr"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Condición inestable</label>
+                </div>
+            </div>
+        </div>
+        <p-editor [(ngModel)]="enfermedad.descripcion" [style]="{'height':'120px'}"  ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>6.Signos vitales,mediciones y valores</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fliud">
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.presion" pInputText
+                      ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
                     <label for="inputtext">Presion arterial</label>
                 </span>
             </div>
-
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">F.Cardiaca (mln)</label>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.fCardiaca" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
+                    <label for="inputtext">F.Cardiaca</label>
                 </span>
             </div>
-
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Temp.Sucal (°c)</label>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.respira" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
+                    <label for="inputtext">F.Respiratoria</label>
                 </span>
             </div>
-
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Temp. Axilarl (°c)</label>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.bucal" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
+                    <label for="inputtext">Temp.bucal °C</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Peso (kg)</label>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.axilar" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" maxlength="255">
+                    <label for="inputtext">Temp.axilar °C</label>
                 </span>
             </div>
-            <div class="field col-12 md:col-4">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Talla (m)</label>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.peso" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" >
+                    <label for="inputtext">Peso Kg</label>
                 </span>
             </div>
-        </div>
-        <div class="grid p-fluid">
-            <div class="field col-8 md:col-2">
-            <p>GLASGOW</p>
-            </div>
-            <div class="field col-4 md:col-2">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.talla" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)">
+                    <label for="inputtext">Talla m </label>
+                </span>
+            </div>
+            <label for="inputtext">Glasgow </label>
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" [(ngModel)]="signos.ocular" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)">
                     <label for="inputtext">Ocular (4)</label>
                 </span>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Verbal (6)</label>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.verbal" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" >
+                    <label for="inputtext">Verbal (5)</label>
                 </span>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.motora" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" >
                     <label for="inputtext">Motora (6)</label>
                 </span>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.total" pInputText
+                    ngModel required="" (keypress)="validarNumero($event)" >
                     <label for="inputtext">Total (15)</label>
                 </span>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Reaccion pupila der</label>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.pupilaD" pInputText
+                    ngModel required="" (keypress)="validarAlfanumerica($event)">
+                    <label for="inputtext">Reaccion pupila der.</label>
                 </span>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">Reaccion pupila izq</label>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.pupilaI" pInputText
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                    <label for="inputtext">Reaccion pupila izq.</label>
                 </span>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
-                    <label for="inputtext">T.LLenado Capilar</label>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.capilar" pInputText
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                    <label for="inputtext">T.llenado capilar</label>
                 </span>
             </div>
-            <div class="field col-4 md:col-2">
+            <div class="field col-12 md:col-2">
                 <span class="p-float-label">
-                    <input type="text" id="inputtext" pInputText>
+                    <input type="text" id="inputtext" [(ngModel)]="signos.oxigeno" pInputText
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
                     <label for="inputtext">Satura Oxigeno</label>
                 </span>
             </div>
         </div>
-        <!------------------------------------------------------------------------------>
         <p-divider align="left">
             <div class="inline-flex align-items-center">
                 <i class="pi pi-user mr-2"></i>
-                <b>7.Examen Fisico y Diagnostico</b>
+                <b>7.Examen fisico y diagnostico</b>
             </div>
-            <br>
-            <label for="ny">Marcar "SP" si se encuentra sin patologia,marcar "CP" si se encuentra con patologia, Registrar abajo el numero y los hallazgos patologios</label>
         </p-divider>
+        <label for="inputtext">Marcar "SP" si de encunetra sn patologia marcar "CP" si se encuentra con patologia
+            registrar bajo el numeroy los halazgos patologicos</label>
+        <p-divider></p-divider>
         <div class="grid p-fluid">
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">1.Via aerea obstruida </label>
+            <div class="col-12 md:col-2">
+                <label for=""><b>1.Via aerea obstruida</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.viaObost" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">2.Cabeza </label>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.viaObost" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">3.Cuello</label>
+            <div class="col-12 md:col-2">
+                <label for=""><b>2.Cabeza</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.cabeza" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">4.Torax</label>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.cabeza" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">5.Abdomen</label>
+            <div class="col-12 md:col-2">
+                <label for=""><b>3.Cuello</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.cuello" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">6.Colummna</label>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.cuello" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">7.Pelvis</label>
+            <div class="col-12 md:col-2">
+                <label for=""><b>4.Torax</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.torax" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
                 </div>
             </div>
-            <div class="field col-4 md:col-2">
-                <div class="field-checkbox">
-                    <p-checkbox name="group1" value="New York" inputId="ny"></p-checkbox>
-                    <label for="ny">8.Extremidades</label>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.torax" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
                 </div>
             </div>
-            <div class="grid p-fluid">
-                <div class="field col-12 md:col-4">
-                    <span class="p-float-label">
-                        <textarea id="float-input" rows="5" cols="199" pInputTextarea></textarea>
-                        <label for="float-input">Descripcion</label>
-                    </span>
+            <div class="col-12 md:col-2">
+                <label for=""><b>5.Abdomen</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.abdomen" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.abdomen" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for=""><b>6.Colunma</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.columna" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.columna" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for=""><b>7.Pelvis</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.pelvis" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.pelvis" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <label for=""><b>8.Extremidades</b></label>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="SP" [(ngModel)]="signos.extremidades" nputId="p1"></p-radioButton>
+                    <label for="p1">SP</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="p16" value="CP" [(ngModel)]="signos.extremidades" nputId="p1"></p-radioButton>
+                    <label for="p1">CP</label>
                 </div>
             </div>
         </div>
+        <p-editor [(ngModel)]="signos.descripcion" [style]="{'height':'120px'}"  ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>8.Localizaciones de lesiones</b>
+            </div>
+        </p-divider>
+
+        <div class="grid p-fluid">
+            <div class="container mt-2" style="text-align: left;">
+                <img src="../../../../assets/lesiones.png" class="img-thumbnail" width="300" height="200">
+            </div>
+        </div>
+        
+        <div class="grid p-fliud">
+            <div class="col-12 md:col-2">
+                <input type="checkbox" id="vehicle1" [(ngModel)]="lesion.pentrante" name="vehicle1" value="penetrante">
+                <label for="vehicle1">1.Herida penetrante</label><br>
+                <input type="checkbox" id="vehicle2"[(ngModel)]="lesion.cortante" name="vehicle2" value="cortante">
+                <label for="vehicle2">2.Herida cortante</label><br>
+                <input type="checkbox" id="vehicle3" [(ngModel)]="lesion.expuesta" name="vehicle3" value="expuesta">
+                <label for="vehicle3">3.Fractura expuesta</label><br>
+                <input type="checkbox" id="vehicle4" [(ngModel)]="lesion.cerrada" name="vehicle4" value="cerrada">
+                <label for="vehicle4">4.Fractura cerrada</label><br>
+                <input type="checkbox" id="vehicle5" [(ngModel)]="lesion.extraa" name="vehicle5" value="estraño">
+                <label for="vehicle5">5.Cuerpo extraño</label><br>
+                <input type="checkbox" id="vehicle6"  [(ngModel)]="lesion.hemorragia"name="vehicle6" value="hemorragia">
+                <label for="inputtext">6.Hemorragia</label><br>
+                <input type="checkbox" id="vehicle7" [(ngModel)]="lesion.mordedura" name="vehicle7" value="mordedura">
+                <label for="vehicle7">7.Mordedura</label><br>
+            </div>
+            <div class="col-12 md:col-2">
+                <input type="checkbox" id="vehicle8" [(ngModel)]="lesion.picadura" name="vehicle8" value="picadura">
+                <label for="vehicle8">8.Picadura</label><br>
+                <input type="checkbox" id="vehicle9"  [(ngModel)]="lesion.excoracion" name="vehicle9" value="excoracion">
+                <label for="vehicle9">9.Excoracion</label><br>
+                <input type="checkbox" id="vehicle10" [(ngModel)]="lesion.masa" name="vehicle10" value="deformacion">
+                <label for="vehicle10">10.Deformacion o masa</label><br>
+                <input type="checkbox" id="vehicle11" [(ngModel)]="lesion.hematoma" name="vehicle11" value="hematoma">
+                <label for="vehicle11">11.Hematoma</label><br>
+                <input type="checkbox" id="vehicle12" [(ngModel)]="lesion.inflamacion" name="vehicle12" value="inflamacion">
+                <label for="vehicle12">12.Eritema/Inflamacion</label><br>
+                <input type="checkbox" id="vehicle13" [(ngModel)]="lesion.esguince" name="vehicle13" value="luxacion">
+                <label for="vehicle13">13.Luxacion/Esguince</label><br>
+                <input type="checkbox" id="vehicle14"[(ngModel)]="lesion.quemadura" name="vehicle14" value="quemadura">
+                <label for="vehicle14">14.Quemadura</label>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>9.Emergencia obstretica</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fliud">
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.gestas" placeholder=""
+                    >
+                    <label for="requisitos "> Gestas</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="int" pInputText [(ngModel)]="emergencia.partos" placeholder="">
+                    <label for="requisitos "> Partos</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.cesareas" placeholder="">
+                    <label for="requisitos "> Cesareas</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="date" pInputText [(ngModel)]="emergencia.fecha" placeholder="">
+                    <label for="requisitos "> Fecha de la ultima menstrauacion</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.semanas  " placeholder="">
+                    <label for="requisitos "> Semanas de gestacion</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.fetal" placeholder="">
+                    <label for="requisitos "> Movimiento fetal</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.frecuencia" placeholder="">
+                    <label for="requisitos "> Frecuencia c.fetal</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.membranas" placeholder="">
+                    <label for="requisitos "> Membranas rotas</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="int" pInputText [(ngModel)]="emergencia.tiempo" placeholder="">
+                    <label for="requisitos "> Tiempo</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.uterina" placeholder="">
+                    <label for="requisitos "> Altura uterina</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.presentacion" placeholder="">
+                    <label for="requisitos ">Presentacion</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.dilatacion" placeholder="">
+                    <label for="requisitos "> Dilatacion</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.borramiento" placeholder="">
+                    <label for="requisitos ">Borramiento</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.plano" placeholder="">
+                    <label for="requisitos "> Plano</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.util" placeholder="">
+                    <label for="requisitos "> Pelvis util</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.snagrado" placeholder="">
+                    <label for="requisitos "> Sangrado Vaginal</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="emergencia.contraciones" placeholder="">
+                    <label for="requisitos "> Contracciones</label>
+                </span>
+            </div>
+
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>10.Solicitud de examenes</b>
+            </div>
+        </p-divider>
+        <label for="inputtext">Registrar abajo comentarios y resusltados anotando el numero</label>
+        <p-divider></p-divider>
+        <div class="grid p-2">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.biometrica" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">1.Biometria</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.uro" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">2.Uroanalisis</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.sanguinea" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">3.Quimica sanguinea</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.elec" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">4.Electrolitos</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.gastro" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">5.Gastrometria</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.cardiograma" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">6.Electrocardiograma</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.endo" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">7.Endoscopia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.torax" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">8.R.X Torax</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.abdomen" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">9.R.X Abdomen</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.osea" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">10.R.X Osea</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.tomo" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">11.Tomografia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.reso" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">12.Resonancia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.pelvica" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">13.Ecografia pelvica</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.ecoA" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">14.Ecografia abdomen</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.inter" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">15.Interconsulta</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="soli.otros" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">16.Otros</label>
+                </div>
+            </div>
+        </div>
+        <p-editor [(ngModel)]="soli.desc" [style]="{'height':'120px'}" ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>11.Diagnostico de ingreso</b>
+            </div>
+        </p-divider>
+        <label for="inputtext">PRE=PRESUNTIVO DEF=DEFINITIVO</label>
+        <p-divider></p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-input-icon-left">
+                    <label for="requisitos "></label>
+                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion1" placeholder=""  
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                </span>
+            </div>
+            <label for="requisitos ">CIE</label>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <input type="text" pInputText [(ngModel)]="ingreso.cie1" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                </span>
+            </div>
+
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="ingreso.d1" inputId="city1"></p-radioButton>
+                    <label for="city1">PRE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="ingreso.d1" inputId="city"></p-radioButton>
+                    <label for="city">DEF</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-input-icon-left">
+                    <label for="requisitos "></label>
+                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion2" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                </span>
+            </div>
+            <label for="requisitos ">CIE</label>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <input type="text" pInputText [(ngModel)]="ingreso.cie2" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                </span>
+            </div>
+
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="ingreso.d2" inputId="city1"></p-radioButton>
+                    <label for="city1">PRE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="ingreso.d2" inputId="city"></p-radioButton>
+                    <label for="city">DEF</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-input-icon-left">
+                    <label for="requisitos "></label>
+                    <input type="text" pInputText [(ngModel)]="ingreso.descripcion3" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                </span>
+            </div>
+            <label for="requisitos ">CIE</label>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <input type="text" pInputText [(ngModel)]="ingreso.cie3" placeholder=""
+                     ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                </span>
+            </div>
+
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="ingreso.d3" inputId="city1"></p-radioButton>
+                    <label for="city1">PRE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="ingreso.d3" inputId="city"></p-radioButton>
+                    <label for="city">DEF</label>
+                </div>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>12.Diagnostico de alta</b>
+            </div>
+        </p-divider>
+        <label for="inputtext">PRE=PRESUNTIVO DEF=DEFINITIVO</label>
+        <p-divider></p-divider>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-input-icon-left">
+                    <label for="requisitos "></label>
+                    <input type="text" pInputText [(ngModel)]="alta.descripcion1" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                </span>
+            </div>
+            <label for="requisitos ">CIE</label>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <input type="text" pInputText [(ngModel)]="alta.cie1" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                </span>
+            </div>
+
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="alta.d1" inputId="city1"></p-radioButton>
+                    <label for="city1">PRE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="alta.d1" inputId="city"></p-radioButton>
+                    <label for="city">DEF</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-input-icon-left">
+                    <label for="requisitos "></label>
+                    <input type="text" pInputText [(ngModel)]="alta.descripcion2" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                </span>
+            </div>
+            <label for="requisitos ">CIE</label>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <input type="text" pInputText [(ngModel)]="alta.cie2" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                </span>
+            </div>
+
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="alta.d2" inputId="city1"></p-radioButton>
+                    <label for="city1">PRE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="alta.d2" inputId="city"></p-radioButton>
+                    <label for="city">DEF</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-input-icon-left">
+                    <label for="requisitos "></label>
+                    <input type="text" pInputText [(ngModel)]="alta.descripcion3" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                </span>
+            </div>
+            <label for="requisitos ">CIE</label>
+            <div class="col-12 md:col-2">
+                <span class="p-input-icon-left">
+                    <input type="text" pInputText [(ngModel)]="alta.cie3" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                </span>
+            </div>
+
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="pre1" value="PRE" [(ngModel)]="alta.d3" inputId="city1"></p-radioButton>
+                    <label for="city1">PRE</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-radiobutton">
+                    <p-radioButton name="def1" value="DEF" [(ngModel)]="alta.d3" inputId="city"></p-radioButton>
+                    <label for="city">DEF</label>
+                </div>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>13.Plan tratamiento</b>
+            </div>
+        </p-divider>
+        <br>
+        <label for="cd">Indicaciones</label>
+
+        <p-editor [(ngModel)]="trata.indicaciones" [style]="{'height':'100px'}" ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+        <br>
+        <label for="inputtext"><b>Medicamento</b></label>
+        <br>
+        <label for="inputtext">Principio activo,concentracion y presentacion</label>
+        <p-divider></p-divider>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.medica1" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="requisitos "> Medicamento</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.posologia1" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="requisitos "> Posologia</label>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.medica2" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                    <label for="requisitos "> Medicamento</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.posologia2" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                    <label for="requisitos "> Posologia</label>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.medica3" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                    <label for="requisitos "> Medicamento</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="trata.poso3" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="requisitos "> Posologia</label>
+                </span>
+            </div>
+        </div>
+        <p-divider align="left">
+            <div class="inline-flex align-items-center">
+                <i class="pi pi-book mr-2"></i>
+                <b>14.Alta</b>
+            </div>
+        </p-divider>
+        <div class="grid p-fliud">
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.domicilio" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Domicilio</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.cExterna" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Consulta externa</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.observacion" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Observacion</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.internacion" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Internacion</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.referencia" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Referencia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.vivo" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Egresa vivo</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.estable" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">En condicion estable</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.inestable" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">En condicion inestable</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-2">
+                <div class="field-checkbox">
+                    <p-checkbox name="group1" [binary]="true" [(ngModel)]="Alta.muerto" inputId="aa"
+                        [ngModelOptions]="{standalone: true}"></p-checkbox>
+                    <label for="ch">Muerto en emergencia</label>
+                </div>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="Alta.causa" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="requisitos "> Causa</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="int" pInputText [(ngModel)]="Alta.dias" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                    <label for="requisitos "> Dias de incapacidad</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="Alta.servicio" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="requisitos "> Servicio de referencia</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText [(ngModel)]="establecimiento" value={{establecimiento}}
+                        placeholder="" ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="requisitos "> Establecimiento</label>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="datetime-local" pInputText [(ngModel)]="Alta.fecha" placeholder="">
+                    <label for="requisitos "> Fecha y Hora</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="int" pInputText [(ngModel)]="Alta.nombre" placeholder=""
+                    ngModel required="" (keypress)="validarLetras($event)" maxlength="255">
+                    <label for="requisitos "> Nombre Profesional</label>
+                </span>
+            </div>
+            <div class="col-12 md:col-4">
+                <span class="p-float-label">
+                    <input type="int" pInputText [(ngModel)]="Alta.codigo" placeholder=""
+                    ngModel required="" (keypress)="validarAlfanumerica($event)" maxlength="255">
+                    <label for="requisitos "> Codigo</label>
+                </span>
+            </div>
+        </div>
+        <button pButton type="button" icon="pi pi-check" label="Guardar" (click)="cargarPersona()"></button>
+
     </div>
-</div>
+    <p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
+        <div class="col-12 flex align-items-center justify-content-center">
+            <div class="p-fluid">
+                <p-table #dt [value]="admi" [lazy]="true" (onLazyLoad)="cargarAdmision($event)"
+                    selectionMode="single" [loading]="loading" responsiveLayout="scroll" [resizableColumns]="true"
+                    styleClass="p-datatable-gridlines p-datatable-sm"
+                    [globalFilterFields]="['nombres','historia_clinica', 'identificacion']"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true"
+                    [rows]="10">
+                    <ng-template pTemplate="caption">
+                        <div class="flex">
+                            <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
+                                (click)="clear(dt)"></button>
+
+                            <span class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" autocomplete="off"
+                                    (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="BUSCAR" />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pResizableColumn style="width:110px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    IDENTIFICACIÓN
+                                </div>
+                            </th>
+                            <th pResizableColumn>
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    NOMBRES
+                                </div>
+                            </th>
+                            
+                            <th pResizableColumn style="width:100px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    FECHA
+                                </div>
+                            </th>
+                            <th pResizableColumn style="width:50px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    PRINT
+                                </div>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-ad>
+                        <tr>
+                            <td style="text-align:center">{{ad.usuario.identificacion}}</td>
+                            <td style="text-align:center">{{ad.usuario.nombres}}</td>
+                            <td style="text-align:center"> {{ad.fechaA}}</td>
+
+                            <td style="text-align:center">
+                                <button pButton pRipple type="button" icon="pi pi-print"
+                                    (click)="imprimirPDFSinceButton(ad.idAdmision)"
+                                    class="p-button-rounded p-button-text">
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="8">Ningun registro.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+    </p-sidebar>

@@ -44,16 +44,16 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
-import {CarouselModule} from 'primeng/carousel';
-import {GMapModule} from 'primeng/gmap';
-import {InputMaskModule} from 'primeng/inputmask';
+import { CarouselModule } from 'primeng/carousel';
+import { GMapModule } from 'primeng/gmap';
+import { InputMaskModule } from 'primeng/inputmask';
 import { SidebarModule } from 'primeng/sidebar';
-import {CheckboxModule} from 'primeng/checkbox';
+import { CheckboxModule } from 'primeng/checkbox';
 import { FieldsetModule, } from 'primeng/fieldset';
-import {ScrollPanelModule} from 'primeng/scrollpanel';
-import {AutoCompleteModule} from 'primeng/autocomplete';
-import {EditorModule} from 'primeng/editor';
-import {KeyFilterModule} from 'primeng/keyfilter';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { EditorModule } from 'primeng/editor';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 //filter
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -101,7 +101,7 @@ import { ExamFisicoRegionalControllerService } from './api/examFisicoRegionalCon
 import { DiagnosticoControllerService } from './api/diagnosticoController.service';
 import { PlanTratamientoControllerService } from './api/planTratamientoController.service';
 import { MessagesModule } from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import { MessageModule } from 'primeng/message';
 import { LectorComponent } from './modulos/tarjeta/lector/lector.component';
 import { ListaTarjetasComponent } from './modulos/tarjeta/lista-tarjetas/lista-tarjetas.component';
 import { FormularioTarjetaComponent } from './modulos/tarjeta/formulario-tarjeta/formulario-tarjeta.component';
@@ -109,6 +109,58 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { FamiliaresControllerService } from './api/familiaresController.service';
 
 import { TarjetaControllerService } from './api/tarjetaController.service';
+import { TarjetaEspecialidadControllerService } from './api/tarjetaEspecialidadController.service';
+import { ResidenciaControllerService } from './api/residenciaController.service';
+import { ConsentimientoControllerService } from './api/consentimientoController.service';
+import { InformacionTratamientoControllerService } from './api/informacionTratamientoController.service';
+import { MedicamentosControllerService } from './api/medicamentosController.service';
+import { EvolucionControllerService } from './api/evolucionController.service';
+import { MedicoConsentimientoComponent } from './modulos/Consentimiento/medico-consentimiento/medico-consentimiento.component';
+import { ErrorComponent } from './modulos/user/componentes/error/error.component';
+import { ProtocoloComponent } from './modulos/RecordOperatorio/protocolo/protocolo.component';
+import { MedicoConsentimientoControllerService } from './api/medicoConsentimientoController.service';
+import { ProtocoloControllerService } from './api/protocoloController.service';
+import { EquiposControllerService } from './api/equiposController.service';
+import { TipoQuiControllerService } from './api/tipoQuiController.service';
+import { HistoriaComponent } from './modulos/HistoriaClinica/historia/historia.component';
+import { HistoriaControllerService } from './api/historiaController.service';
+import { PersonaControllerService } from './api/personaController.service';
+import { OrganosControllerService } from './api/organosController.service';
+import { AutorizacionControllerService } from './api/autorizacionController.service';
+import { FormularioControllerService } from './api/formularioController.service';
+import { OdontologiaComponent } from './modulos/Odontologia/odontologia/odontologia.component';
+import { OdontologiaControllerService } from './api/odontologiaController.service';
+import { IndiceControlllerService } from './api/indiceControlller.service';
+import { IndicesFamilControllerService } from './api/indicesFamilController.service';
+import { ExamenEstoControllerService } from './api/examenEstoController.service';
+import { PlanesControllerService } from './api/planesController.service';
+import { DiagnosticoOControllerService } from './api/diagnosticoOController.service';
+import { SaludControllerService } from './api/saludController.service';
+import { AdmisionControllerService } from './api/admisionController.service';
+import { LlegadaAdServiceService } from './api/llegadaAdService.service';
+import { AccidenteControllerService } from './api/accidenteController.service';
+import { EnfermadAnteControllerService } from './api/enfermadAnteController.service';
+import { SignosEControllerService } from './api/signosEController.service';
+import { SolicitudEControllerService } from './api/solicitudEController.service';
+import { IngresoDiaControllerService } from './api/ingresoDiaController.service';
+import { DiagnsticoAiControllerService } from './api/diagnsticoAiController.service';
+import { TrataMControllerService } from './api/trataMController.service';
+import { AltaControllerService } from './api/altaController.service';
+import { EmergenciaControllerService } from './api/emergenciaController.service';
+import { LesionesControllerService } from './api/lesionesController.service';
+import { AnestesiaComponent } from './modulos/Anestesia/anestesia/anestesia.component';
+import { AnestesiaControllerService } from './api/anestesiaController.service';
+import { RegionControllerService } from './api/regionController.service';
+import { InfusionControllerService } from './api/infusionController.service';
+import { ComplicacionesControllerService } from './api/complicacionesController.service';
+import { TecnicaControllerService } from './api/tecnicaController.service';
+import { TerapiaControllerService } from './api/terapiaController.service';
+import { ErrorTailorModule } from '@ngneat/error-tailor';
+import { DatosInsControllerService } from './api/datosInsController.service';
+import { RefiereControllerService } from './api/refiereController.service';
+import { FormsControllerService } from './api/formsController.service';
+import { InversaControllerService } from './api/inversaController.service';
+import { ContraControllerService } from './api/contraController.service';
 
 @NgModule({
   declarations: [
@@ -131,6 +183,7 @@ import { TarjetaControllerService } from './api/tarjetaController.service';
     TratamientoComponent,
     DatosComponent,
     MedicamentosComponent,
+    MedicoConsentimientoComponent,
     EvolucionComponent,
     AutorizacionComponent,
     ConsentimientoComponent,
@@ -139,6 +192,13 @@ import { TarjetaControllerService } from './api/tarjetaController.service';
     LectorComponent,
     ListaTarjetasComponent,
     FormularioTarjetaComponent,
+    MedicoConsentimientoComponent,
+    ErrorComponent,
+    ProtocoloComponent,
+    HistoriaComponent,
+    OdontologiaComponent,
+    AnestesiaComponent,
+    ErrorComponent,
 
   ],
   imports: [
@@ -153,6 +213,7 @@ import { TarjetaControllerService } from './api/tarjetaController.service';
     RouterModule,
     Ng2SearchPipeModule,
     FileUploadModule,
+
     // *primeng
     InputMaskModule,
     ScrollPanelModule,
@@ -192,9 +253,21 @@ import { TarjetaControllerService } from './api/tarjetaController.service';
     MessagesModule,
     MessageModule,
     KeyFilterModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
     // ! primeng
 
+    ErrorTailorModule.forRoot({
+      errors: {
+        useFactory() {
+          return {
+            required: '',
+            minlength: ({ requiredLength, actualLength }) => `Expect ${requiredLength} but got ${actualLength}`,
+            invalidAddress: error => `Address not valid`
+          };
+        },
+        deps: []
+      }
+    })
 
   ],
   providers: [
@@ -202,6 +275,7 @@ import { TarjetaControllerService } from './api/tarjetaController.service';
     MessageService,
     ConfirmationService,
     AuthControllerService,
+    AutorizacionControllerService,
     ClienteControllerService,
     CuerpoFacturaControllerService,
     EmpleadoControllerService,
@@ -219,7 +293,53 @@ import { TarjetaControllerService } from './api/tarjetaController.service';
     ExamFisicoRegionalControllerService,
     DiagnosticoControllerService,
     PlanTratamientoControllerService,
+    MedicamentosControllerService,
+    MedicoConsentimientoControllerService,
     TarjetaControllerService,
+    FamiliaresControllerService,
+    TarjetaEspecialidadControllerService,
+    ResidenciaControllerService,
+    ConsentimientoControllerService,
+    HistoriaControllerService,
+    EvolucionControllerService,
+    InformacionTratamientoControllerService,
+    ProtocoloControllerService,
+    EquiposControllerService,
+    TipoQuiControllerService,
+    PersonaControllerService,
+    OrganosControllerService,
+    FormularioControllerService,
+    OrganosControllerService,
+    OdontologiaControllerService,
+    IndiceControlllerService,
+    IndicesFamilControllerService,
+    ExamenEstoControllerService,
+    PlanesControllerService,
+    DiagnosticoOControllerService,
+    SaludControllerService,
+    AdmisionControllerService,
+    LlegadaAdServiceService,
+    AccidenteControllerService,
+    EnfermadAnteControllerService,
+    SignosEControllerService,
+    SolicitudEControllerService,
+    IngresoDiaControllerService,
+    DiagnsticoAiControllerService,
+    TrataMControllerService,
+    AltaControllerService,
+    EmergenciaControllerService,
+    LesionesControllerService,
+    AnestesiaControllerService,
+    RegionControllerService,
+    InfusionControllerService,
+    ComplicacionesControllerService,
+    TecnicaControllerService,
+    TerapiaControllerService,
+    DatosInsControllerService,
+    RefiereControllerService,
+    FormsControllerService,
+    InversaControllerService,
+    ContraControllerService,
   ],
   bootstrap: [AppComponent]
 })

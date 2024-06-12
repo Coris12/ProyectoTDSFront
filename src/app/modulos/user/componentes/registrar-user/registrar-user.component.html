@@ -1,67 +1,24 @@
-<app-header></app-header>
+<app-header>
+</app-header>
+<img src="../../../../assets/fondo1.png" class="img-fluid" style="position: fixed; right: 10;top: 0; z-index: -100; opacity: 0.60;">
 <p-toast></p-toast>
+
 <div class="container d-flex justify-content-center mt-4">
     <div class="card" style="width: 50em;">
         <div class="card-header">
             <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link active" routerLink="/registro">Crear Cuenta</a>
                 </li>
 
             </ul>
         </div>
-        <!-- /.nav-collapse <div class="card-body">
-            <div class="container" style="text-align: center;">
-                <img src="../../../../assets/medivalle.jpg" class="img-thumbnail" width="350" height="350">
-            </div>
-            <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="nombres" required>
-                </div>
-                <div class="p-fluid">
-                    <label for="nombreUsuario">Nombre de Usuario</label>
-                    <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" [(ngModel)]="nombreUsuario" required>
-                </div>
-                <div class="p-fluid">
-                    <label for="password">Contraseña</label>
-                    <br>
-                    <p-password [(ngModel)]="password" name="password" required>
-                        <ng-template pTemplate="header">
-                            <h6>Ingrese una contraseña</h6>
-                        </ng-template>
-                        <ng-template pTemplate="footer">
-                            <p-divider></p-divider>
-                            <p class="p-mt-2">Sugerencias.</p>
-                            <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
-                                <li>Al menos una letra en minuscula.</li>
-                                <li>Al menos una letra en mayuscula.</li>
-                                <li>Al menos un numero.</li>
-                                <li>Minimo 8 caracteres.</li>
-                            </ul>
-                        </ng-template>
-                    </p-password>
-                </div>
-                <div class="p-fluid">
-                    <label for="email ">Correo Electrónico</label>
-                    <input type="text " name="email " id="email " class="form-control " [(ngModel)]="email " required>
-
-                </div>
-                <div class="form-group  mt-4" align='center'>
-                    <p-button class="p-button-rounded" [disabled]="!f.valid" type="submit">
-                        <i class="fas fa-sign-in-alt"></i> Crear cuenta
-                    </p-button>
-                </div>
-            </form>
-        </div>-->
         <div class="container mt-2" style="text-align: center;">
-            <img src="../../../../assets/medivalle.jpg" class="img-thumbnail" width="350" height="350">
+            <img src="../../../../assets/medivalle.jpg" class="img-thumbnail" width="200" height="200">
         </div>
         <br>
-        <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+        <form #f="ngForm" (ngSubmit)="onRegister()" novalidate >
             <div class="grid p-fluid">
                 <div class="p-field p-col-12 p-md-3">
                     <span class="p-float-label p-input-icon-left">
@@ -123,6 +80,55 @@
                 <div class="p-field p-col-12 p-md-3">
                     <span class="p-float-label p-input-icon-left">
                         <i class="pi pi-user-plus"></i>
+                        <input type="text" id="fecha" pInputText   name="fecha">
+                        <label for="inputtext-left">Fecha nacimiento</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="provincia" pInputText  [(ngModel)]="Reside.provincia" name="provincia">
+                        <label for="inputtext-left">Provincia</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="nacionalidad" pInputText [(ngModel)]="Reside.nacionalidad"  name="nacionalidad">
+                        <label for="inputtext-left">Nacionalidad</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="pais" pInputText [(ngModel)]="Reside.pais" name="pais">
+                        <label for="inputtext-left">Pais</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="parroquia" pInputText [(ngModel)]="Reside.parroquia" name="parroquia">
+                        <label for="inputtext-left">Parroquia</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="canton" pInputText  [(ngModel)]="Reside.canton" name="canton">
+                        <label for="inputtext-left">Canton</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
+                        <input type="text" id="barrio" pInputText  [(ngModel)]="Reside.barrio" name="barrio">
+                        <label for="inputtext-left">Barrio</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-3">
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-user-plus"></i>
                         <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario"
                             name="nombreUsuario">
                         <label for="inputtext-left">Nombre usuario</label>
@@ -152,8 +158,8 @@
             </div>
 
             <div class="form-group  mt-4" align='center'>
-                <p-button class="p-button-rounded" [disabled]="!f.valid" type="submit">
-                    <i class="fas fa-sign-in-alt"></i> Crear cuenta
+                <p-button class="p-button-rounded"  [disabled]="!f.valid" type="submit" >
+                    <i class="fas fa-sign-in-alt" ></i> Crear cuenta
                 </p-button>
             </div>
         </form>

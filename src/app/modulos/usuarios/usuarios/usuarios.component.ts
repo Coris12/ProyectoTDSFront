@@ -32,7 +32,7 @@ export class UsuariosComponent implements OnInit {
     this.loading = true;
 
     //carga de roles
-    this.roles = ['ROLE_ADMIN', 'ROLE_PACIENTE', 'ROLE_LABORATORIO', 'ROLE_DOCTOR', 'ROLE_FARMACIA', 'ROLE_CONTABILIDAD'];
+    this.roles = ['ROLE_ADMIN', 'ROLE_PACIENTE', 'ROLE_LABORATORIO', 'ROLE_DOCTOR', 'ROLE_FARMACIA', 'ROLE_CONTABILIDAD','ROLE_ODONTOLOGIA'];
     this.cargarUsuarios();
   }
   clear(table: Table) {
@@ -61,6 +61,7 @@ export class UsuariosComponent implements OnInit {
   save() {
     this.authController.putArrendatarioUsingPOST(this.idUsuario, this.nuevoRol).subscribe(data => {
       this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Rol actualizado.' });
+      
       this.cargarUsuarios();
       this.dialogo = false;
     })

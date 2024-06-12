@@ -36,10 +36,10 @@
 }
 
 /* TODOS LOS INPUTS Y P-EDITOR SON CONVERTIDOS A MAYÚSCULAS */
-input{
+/* input{
   text-transform: uppercase;
-}
+} */
 
-p-editor{
+/* p-editor{
   text-transform: uppercase;
-}
+} */

@@ -2,6 +2,8 @@
 <p-toast></p-toast>
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
 </p-confirmDialog>
+<p-confirmDialog [style]="{width: '50vw'}" key="positionDialog" [position]="position" [baseZIndex]="10000"
+  rejectButtonStyleClass="p-button-outlined"></p-confirmDialog>
 <div class="animated fadeIn mt-4">
   <div class="p-5 bg-light">
     <div class="d-flex justify-content-between">
@@ -11,100 +13,146 @@
     </div>
     <div class="content-section implementation mt-2">
       <p-scrollPanel [style]="{width: '100%', height: '700px'}">
-        <div class="mt-4">
-          <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-              <span class="p-float-label">
-                <input type="text" id="inputtext" [(ngModel)]="buscarPerIdent" name="value" pInputText>
-                <label for="inputtext">Cedula</label>
-              </span>
+        <form [formGroup]="formDatosTarjeta">
+          <div class="mt-4">
+            <div class="grid p-fluid">
+              <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                  <input autocomplete="off" type="text" id="inputtext" (keypress)="keyPress($event)"
+                    [(ngModel)]="buscarPerIdent" pInputText formControlName="cedula" [(ngModel)]="value">
+                  <label for="inputtext">Cedula</label>
+                </span>
+              </div>
+              <div class="field col-12 md:col-4">
+                <button pButton type="button" label="Buscar"
+                  (click)="buscarPersonaIdentificacionConTodosLosDatos()"></button>
+              </div>
+              <div class="field col-12 md:col-4" align='center'>
+                <ngx-qrcode rcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value">
+                </ngx-qrcode>
+              </div>
             </div>
-            <div class="field col-12 md:col-4">
-              <button pButton type="button" label="Buscar" (click)="buscarPersonaPorIdentificacion()"></button>
+            <p-divider align="left">
+              <div class="inline-flex align-items-center">
+                <i class="pi pi-user mr-2"></i>
+                <b>Datos</b>
+              </div>
+            </p-divider>
+            <br>
+            <div class="grid p-fluid">
+              <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                  <input autocomplete="off" type="text" id="inputtext" pInputText
+                    [(ngModel)]="objtDatosTarjetaAllDto.nombres" formControlName="nombres" (keypress)="validarLetras($event)">
+                  <label for="inputtext">Nombres</label>
+                </span>
+              </div>
+
+              <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                  <p-dropdown [autoDisplayFirst]="false" [options]="afiliacion"
+                    [(ngModel)]="objtDatosTarjetaAllDto.afiliacion" optionLabel="name"
+                    [placeholder]="objtDatosTarjetaAllDto.afiliacion" formControlName="afili"></p-dropdown>
+                  <label for="dropdown">Afiliación</label>
+                </span>
+              </div>
+
+              <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                  <p-dropdown [autoDisplayFirst]="false" [options]="listEspecialidades"
+                    [(ngModel)]="objtDatosTarjetaAllDto.tipoEspecialidad" optionLabel="tipoEspecialidad"
+                    [placeholder]="objtDatosTarjetaAllDto.tipoEspecialidad" formControlName="tipoTarjeta"></p-dropdown>
+                  <label for="dropdownLE">Tipo de tarjeta</label>
+                </span>
+              </div>
+
+              <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                  <input autocomplete="off" type="text" id="inputtext" pInputText
+                    [(ngModel)]="objtDatosTarjetaAllDto.parroquia" formControlName="parroquia" (keypress)="validarLetras($event)">
+                  <label for="inputtext">Parroquia</label>
+                </span>
+              </div>
             </div>
-            <div class="field col-12 md:col-4" align='center'>
-              <ngx-qrcode rcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value">
-              </ngx-qrcode>
+            <!-- grupo de 3 para el formulario-->
+            <div class="grid p-fluid">
+              <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                  <input autocomplete="off" type="text" id="inputtext" pInputText
+                    [(ngModel)]="objtDatosTarjetaAllDto.nacionalidad" formControlName="nacionalidad" (keypress)="validarLetras($event)">
+                  <label for="inputtext">Nacionalidad</label>
+                </span>
+              </div>
+
+              <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                  <input autocomplete="off" type="text" id="inputtext" pInputText
+                    [(ngModel)]="objtDatosTarjetaAllDto.pais" formControlName="pais" (keypress)="validarLetras($event)">
+                  <label for="inputtext">Pais</label>
+                </span>
+              </div>
+
+              <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                  <input autocomplete="off" type="text" id="inputtext" pInputText
+                    [(ngModel)]="objtDatosTarjetaAllDto.provincia" formControlName="provincia" (keypress)="validarLetras($event)">
+                  <label for="inputtext">Provincia</label>
+                </span>
+              </div>
+            </div>
+            <!-- grupo de 3 para el formulario-->
+            <div class="grid p-fluid">
+              <div class="field col-12 md:col-4">
+                <span class="p-float-label">
+                  <input autocomplete="off" type="text" id="inputtext" pInputText
+                    [(ngModel)]="objtDatosTarjetaAllDto.direccion" formControlName="direccDomicilio" (keypress)="validarLetras($event)">
+                  <label for="inputtext">Dirección Domicilio</label>
+                </span>
+              </div>
+
+              <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                  <p-calendar inputId="calendar" [(ngModel)]="objtDatosTarjetaAllDto.fechaFin"
+                    formControlName="fechaFin"></p-calendar>
+                  <label for="calendar">Fecha Exp Tarjeta</label>
+                </span>
+              </div>
+
+              <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                  <p-inputNumber inputId="inputnumber" [(ngModel)]="objtDatosTarjetaAllDto.consultas"
+                    formControlName="consulta"></p-inputNumber>
+                  <label for="inputnumber">Número de consultas</label>
+                </span>
+              </div>
+
+              <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                  <input autocomplete="off" type="text" id="inputtext" pInputText
+                    [(ngModel)]="objtDatosTarjetaAllDto.canton" formControlName="canton" (keypress)="validarLetras($event)">
+                  <label for="inputtext">Cantón</label>
+                </span>
+              </div>
+
+              <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                  <input autocomplete="off" type="text" id="inputtext" pInputText
+                    [(ngModel)]="objtDatosTarjetaAllDto.celular" formControlName="celular" (keypress)="keyPress($event)">
+                  <label for="inputtext">Numero telefono/celular</label>
+                </span>
+              </div>
+
+            </div>
+            <!-- grupo de 3 para el formulario-->
+            <div class="field col-12 md:col-4">
+              <!-- <button pButton type="button" label="Guardar datos" class="p-button-success" [disabled]="formDatosTarjeta.invalid"></button> -->
+              <p-button [disabled]="formDatosTarjeta.invalid" [label]="mostrarBotonGuardar ? 'GUARDAR': 'ACTUALIZAR'"
+                (onClick)="mostrarBotonGuardar ? guardarTarjetaUsuario() : editarDatosTarjeta()"></p-button>
+              <!-- <button  pButton type="button" label="Guardar datos" class="p-button-success" [disabled]="formDatosTarjeta.invalid" (click)="guardarTarjetaUsuario()" ></button>               -->
             </div>
           </div>
-          <p-divider align="left">
-            <div class="inline-flex align-items-center">
-              <i class="pi pi-user mr-2"></i>
-              <b>Datos</b>
-            </div>
-          </p-divider>
-          <br>
-          <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-              <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.nombres">
-                <label for="inputtext">Nombres</label>
-              </span>
-            </div>
+        </form>
 
-            <div class="field col-12 md:col-4">
-              <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText>
-                <label for="inputtext">Fecha de nacimiento</label>
-              </span>
-            </div>
-
-            <div class="field col-12 md:col-4">
-              <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.parroquia">
-                <label for="inputtext">Parroquia</label>
-              </span>
-            </div>
-          </div>
-          <!-- grupo de 3 para el formulario-->
-          <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-              <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.nacionalidad">
-                <label for="inputtext">Nacionalidad</label>
-              </span>
-            </div>
-
-            <div class="field col-12 md:col-4">
-              <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.pais">
-                <label for="inputtext">Pais</label>
-              </span>
-            </div>
-
-            <div class="field col-12 md:col-4">
-              <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.provincia">
-                <label for="inputtext">Provincia</label>
-              </span>
-            </div>
-          </div>
-          <!-- grupo de 3 para el formulario-->
-          <div class="grid p-fluid">
-            <div class="field col-12 md:col-4">
-              <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.direccion">
-                <label for="inputtext">Dirección Domicilio</label>
-              </span>
-            </div>
-
-            <div class="field col-12 md:col-4">
-              <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.celular">
-                <label for="inputtext">Numero telefono/celular</label>
-              </span>
-            </div>
-
-            <div class="field col-12 md:col-4">
-              <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText [(ngModel)]="ObjDatorTarj.canton">
-                <label for="inputtext">Cantón</label>
-              </span>
-            </div>
-          </div>
-          <!-- grupo de 3 para el formulario-->
-
-        </div>
 
         <p-divider align="left">
           <div class="inline-flex align-items-center">
@@ -156,7 +204,7 @@
         <p-table [value]="listFamily" responsiveLayout="scroll" styleClass="p-datatable-gridlines p-datatable-sm"
           responsiveLayout="scroll">
           <ng-template pTemplate="caption">
-            FAMILIARES DE {{ObjDatorTarj.nombres}}
+            FAMILIARES DE {{objtDatosTarjetaAllDto.nombres}}
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
@@ -213,12 +261,12 @@
 </div>
 
 <p-dialog header="Datos del familiar" [(visible)]="display">
-  <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+  <form #f="ngForm" novalidate>
     <div class="grid p-fluid">
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label p-input-icon-left">
           <i class="pi pi-user-plus"></i>
-          <input type="text" id="identificacion" pInputText [(ngModel)]="identificacion" name="identificacion">
+          <input type="text" id="identificacion1" pInputText [(ngModel)]="identificacion" name="identificacion">
           <label for="inputtext-left">Identificacion</label>
         </span>
       </div>
@@ -257,7 +305,7 @@
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label p-input-icon-left">
           <i class="pi pi-user-plus"></i>
-          <input type="text" id="email" pInputText [(ngModel)]="email" name="email">
+          <input type="text" id="email1" pInputText [(ngModel)]="email" name="email">
           <label for="inputtext-left">Email</label>
         </span>
       </div>
@@ -267,21 +315,21 @@
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label p-input-icon-left">
           <i class="pi pi-user-plus"></i>
-          <input type="text" id="ciudad" pInputText [(ngModel)]="ciudad" name="ciudad">
+          <input type="text" id="ciudad1" pInputText [(ngModel)]="ciudad" name="ciudad">
           <label for="inputtext-left">Ciudad</label>
         </span>
       </div>
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label p-input-icon-left">
           <i class="pi pi-user-plus"></i>
-          <input type="text" id="nombreUsuario" pInputText [(ngModel)]="nombreUsuario" name="nombreUsuario">
+          <input type="text" id="nombreUsuario1" pInputText [(ngModel)]="nombreUsuario" name="nombreUsuario">
           <label for="inputtext-left">Nombre usuario</label>
         </span>
       </div>
       <div class="p-field p-col-12 p-md-3">
         <span class="p-float-label p-input-icon-left">
           <i class="pi pi-user-plus"></i>
-          <input type="text" id="parentesco" pInputText [(ngModel)]="parentesco" name="parentesco">
+          <input type="text" id="parentesco1" pInputText [(ngModel)]="parentesco" name="parentesco">
           <label for="inputtext-left">Parentesco</label>
         </span>
       </div>
@@ -316,15 +364,63 @@
   </form>
 </p-dialog>
 
-<p-dialog [(visible)]="editDialog" [style]="{width: '1300px'}" header="EDITAR FAMILIAR" [modal]="true"
+<p-dialog [(visible)]="editDialog" [style]="{width: '1300px'}" header="CREAR RESIDENCIA" [modal]="true"
   styleClass="p-fluid">
-  <p-toast></p-toast>
   <ng-template pTemplate="content">
-    <!--INICIO-->
-    <!--FIN-->
+    <form [formGroup]="formResidencia">
+      <div class="p-fluid grid mt-4">
+        <div class="field col-12 md:col-4">
+          <span class="p-float-label">
+            <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="pais" (keypress)="validarLetras($event)">
+            <label for="inputtext">PAÍS</label>
+          </span>
+        </div>
+        <div class="field col-12 md:col-4">
+          <span class="p-float-label">
+            <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="nacionalidad" (keypress)="validarLetras($event)">
+            <label for="inputtext">NACIONALIDAD</label>
+          </span>
+        </div>
+        <div class="field col-12 md:col-4">
+          <span class="p-float-label">
+            <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="provincia" (keypress)="validarLetras($event)">
+            <label for="inputtext">PROVINCIA</label>
+          </span>
+        </div>
+        <div class="field col-12 md:col-4">
+          <span class="p-float-label">
+            <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="canton" (keypress)="validarLetras($event)">
+            <label for="inputtext">CANTÓN</label>
+          </span>
+        </div>
+        <div class="field col-12 md:col-4">
+          <span class="p-float-label">
+            <input autocomplete="off" type="text" id="inputtext" pInputText formControlName="parroquia" (keypress)="validarLetras($event)">
+            <label for="inputtext">PARROQUIA</label>
+          </span>
+        </div>
+        <!-- <div class="field col-12 md:col-4">
+          <span class="p-float-label">
+            <p-dropdown [autoDisplayFirst]="false" [options]="afiliacion" optionLabel="name" formControlName="afiliacion"></p-dropdown>
+            <label for="dropdown">Afiliación</label>
+          </span>
+        </div>
+        <div class="field col-12 md:col-4">
+          <span class="p-float-label">
+            <p-dropdown [autoDisplayFirst]="false" [options]="listEspecialidades" optionLabel="tipoEspecialidad" formControlName="tipoTarjeta">
+              <ng-template pTemplate="selectedItem" let-option>
+                <span>{{option.tipoEspecialidad}}</span>
+              </ng-template>
+            </p-dropdown>
+            <label for="dropdown">Especialidad</label>
+          </span>
+        </div> -->
+      </div>
+    </form>
   </ng-template>
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-    <button pButton pRipple label="EDITAR" icon="pi pi-check" class="p-button-text"></button>
+    <button pButton pRipple label="CANCELAR" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="CREAR RESIDENCIA" [disabled]="formResidencia.invalid" icon="pi pi-check"
+      class="p-button-text" (click)="agregarResidenciaUsuario()"></button>
   </ng-template>
 </p-dialog>

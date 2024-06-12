@@ -1,5 +1,5 @@
 <app-header></app-header>
-
+<p-toast></p-toast>
 <div class="animated fadeIn mt-4">
     <div class="p-5 bg-light">
         <div class="d-flex justify-content-between">
@@ -7,52 +7,69 @@
                 <h1>Evolución y Prescripciones</h1>
             </div>
         </div>
+        
         <div class="content-section implementation mt-2">
             <div class="mt-4">
                 <div class="grid p-fluid">
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="establecimiento" value={{establecimiento}}
+                                pInputText>
+                            <label for="inputtext">Establecimiento</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" [(ngModel)]="buscarcedula" pInputText ngModel required=""
+                            (keypress)="validarCedula($event)" maxlength="13">
                             <label for="inputtext">Cedula</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="buscarnombre" pInputText ngModel required="" 
+                            (keypress)="validarLetras($event)" >
                             <label for="inputtext">Nombres</label>
+                            
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext" [(ngModel)]="sexo" pInputText
+                            ngModel required="" 
+                            (keypress)="validarLetras($event)">
                             <label for="inputtext">Sexo</label>
+
+
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
                         <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
-                            <label for="inputtext">N° Hoja</label>
-                        </span>
-                    </div>
-                    <div class="field col-12 md:col-2">
-                        <span class="p-float-label">
-                            <input type="text" id="inputtext" pInputText>
+                            <input type="text" id="inputtext"  [(ngModel)]="numcli" pInputText ngModel required="" 
+                            (keypress)="validarNumero($event)">
                             <label for="inputtext">N° Historia Clinica</label>
                         </span>
                     </div>
                     <div class="field col-12 md:col-2">
-                        <button pButton type="button" label="Buscar"></button>
+                        <button pButton type="button" label="Buscar" (click)="buscarPersona();"></button>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <button  pButton type="button"label="Guardar" (click)="cargarPersona()" >
+                        </button>
+                    </div>
+                    <div class="field col-12 md:col-2">
+                        <button pButton type="button" label="Limpiar" (click)="limpiarCampos()" >
+                        </button>
+                    </div>
+                    <div class="col-12 md:col-2">
+                            <button type="button" pButton pRipple label="LISTADO EVOLUCIONES" (click)="listDialog = true;"></button>
                     </div>
                 </div>
             </div>
         </div>
-       
-     
         <div class="col-12">
-
             <div class="row">
-                <!--<div class="col-6">// era esto ?siya est-->
-             <div class="col-6" >
+                <div class="col-6">
                     <p-card header="1.Evolución" [style]="{width: '360px'}" styleClass="p-card-shadow">
                         <ng-template pTemplate="header">
                         </ng-template>
@@ -60,62 +77,130 @@
                             <div class="form-group mt-2">
                                 <span class="p-input-icon-left">
                                     <label for="requisitos ">Fecha</label>
-                                    <input type="date" pInputText placeholder="Fecha">
+                                    <input type="date" pInputText placeholder="Fecha" [(ngModel)]="Evolu.fecha"  pInputText ngModel required="" 
+                                    >
                                 </span>
                             </div>
                             <div class="form-group mt-2">
                                 <span class="p-input-icon-left">
                                     <label for="requisitos ">Hora</label>
-                                    <input type="time" pInputText placeholder="Hora">
+                                    <input type="time" pInputText placeholder="Hora" [(ngModel)]="Evolu.hora"  pInputText ngModel required="" 
+                                    >
                                 </span>
                             </div>
                             <div class="form-group mt-2">
-                                <span class="p-float-label">
-                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
-                                    <label for="float-input">Evolución</label>
-                                </span>
+                                <label for="float-input" >Evolución</label>
+                                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Evolu.evolucion"
+                                ngModel required="" 
+                                (keypress)="validarLetras($event)" ></textarea>
+
                             </div>
-            
                         </div>
-                        <ng-template pTemplate="footer">
-                            <p-button label="Save" icon="pi pi-check"></p-button>
-                            <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
-                                [style]="{'margin-left': '.5em'}"></p-button>
-                        </ng-template>
                     </p-card>
                 </div>
-                <div class="col-4" >
+                <div class="col-4">
                     <p-card header="2.Prescripciones" [style]="{width: '360px'}" styleClass="p-card-shadow">
-                        <h6></h6>
                         <ng-template pTemplate="header">
                         </ng-template>
                         <div class="grid p-fluid">
                             <div class="form-group mt-2">
-                                <span class="p-input-icon-left">
-                                    <label for="requisitos ">Farmacoterapia e indicaciones</label>
-                                    <h6>(PARA ENFERMERIA Y OTRO PERSONAL)</h6>
-                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
-                                </span>
+                                <label for="requisitos ">Farmacoterapia e indicaciones (PARA ENFERMERIA Y OTRO
+                                    PERSONAL)</label>
+                                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Evolu.indicaciones"
+                                ngModel required="" 
+                                (keypress)="validarLetras($event)"></textarea>
                             </div>
                             <div class="form-group mt-2">
-                                <span class="p-float-label">
-                                    <textarea rows="5" cols="30" pInputTextarea></textarea>
-                                    <label for="requisitos ">Administrar,Farmacos,Insumos</label>
-                                </span>
+                                <label for="requisitos ">Administrar,Farmacos,Insumos</label>
+                                <textarea rows="5" cols="30" pInputTextarea
+                                    [(ngModel)]="Evolu.medicamentoAD"
+                                    ngModel required="" 
+                                    (keypress)="validarLetras($event)"></textarea>
                             </div>
-        
                         </div>
-                        <ng-template pTemplate="footer">
-                            <p-button label="Save" icon="pi pi-check"></p-button>
-                            <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
-                                [style]="{'margin-left': '.5em'}"></p-button>
-                        </ng-template>
                     </p-card>
-
                 </div>
             </div>
         </div>
-
-
+        
     </div>
+    <p-sidebar [(visible)]="listDialog" position="right" [baseZIndex]="10000" [style]="{width:'50em'}" [modal]="false">
+        <div class="col-12 flex align-items-center justify-content-center">
+            <div class="p-fluid">
+                <p-table #dt [value]="Evoluciones" [lazy]="true" (onLazyLoad)="cargarEvolucion($event)"
+                    selectionMode="single" [loading]="loading" responsiveLayout="scroll" [resizableColumns]="true"
+                    styleClass="p-datatable-gridlines p-datatable-sm"
+                    [globalFilterFields]="['nombres','historia_clinica', 'identificacion']"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [paginator]="true"
+                    [rows]="10">
+                    <ng-template pTemplate="caption">
+                        <div class="flex">
+                            <button pButton label="Clear" class="p-button-rounded" icon="pi pi-filter-slash"
+                                (click)="clear(dt)"></button>
+
+                            <span class="p-input-icon-left ml-auto">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" autocomplete="off"
+                                    (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="BUSCAR" />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pResizableColumn style="width:110px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    IDENTIFICACIÓN
+                                </div>
+                            </th>
+                            <th pResizableColumn>
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    NOMBRES
+                                </div>
+                            </th>
+                            <th pResizableColumn style="width:30px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    #HC
+                                </div>
+                            </th>
+                            <th pResizableColumn style="width:100px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    FECHA
+                                </div>
+                            </th>
+
+                            <th pResizableColumn style="width:50px">
+                                <div class="flex justify-content-center align-items-center letrasPequeñasNegrita">
+                                    PRINT
+                                </div>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-evo>
+                        <tr>
+                            <td style="text-align:center">{{evo.usuario.identificacion}}</td>
+                            <td style="text-align:center">{{evo.usuario.nombres}}</td>
+                            <td style="text-align:center">{{evo.numCl}}</td>
+                            <td style="text-align:center"> {{evo.fecha}}</td>
+                            <td style="text-align:center">
+                                <button pButton pRipple type="button" icon="pi pi-print"
+                                    (click)="imprimirPDFSinceButton(evo.usuario.identificacion)"
+                                    class="p-button-rounded p-button-text">
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="8">Ningun registro.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+    </p-sidebar>
 </div>

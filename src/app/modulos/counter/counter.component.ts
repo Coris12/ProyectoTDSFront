@@ -129,6 +129,7 @@ export class CounterComponent implements OnInit {
     total: null,
     valorUnitario: null,
   }
+  valorEntrada: 0.0;
 
   tratamiento: Tratamiento = {
     cantidad: null,
@@ -215,7 +216,7 @@ export class CounterComponent implements OnInit {
   listarTratamientos(event?: LazyLoadEvent): void {
     //this.loadTabFV = true;
     setTimeout(() => {
-      this.serviceTto.listUsingGET5().subscribe(
+      this.serviceTto.listUsingGET15().subscribe(
         data => {
           if (data) {
             this.tratamientos = data;
@@ -268,4 +269,5 @@ export class CounterComponent implements OnInit {
       this.usuarioForm.patchValue({ total: this.totalDes });
     }
   }
+  
 }
